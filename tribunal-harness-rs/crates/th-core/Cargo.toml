@@ -1,0 +1,16 @@
+[package]
+name = "th-core"
+description = "Tribunal Harness — pure domain logic (constants, schemas, deadlines, citation validation, prompts, agent stand-in). No I/O."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+serde = { workspace = true }
+serde_json = { workspace = true }
+regex = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+
+[dev-dependencies]

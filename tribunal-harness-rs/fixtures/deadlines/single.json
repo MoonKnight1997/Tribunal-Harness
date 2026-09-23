@@ -1,0 +1,355 @@
+{
+  "generated_today": "2026-09-23",
+  "cases": [
+    {
+      "date_of_act": "2025-06-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-08-31",
+        "final_deadline": "2025-08-31",
+        "original_deadline": "2025-08-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -388,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2026-10-15",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2027-04-14",
+        "final_deadline": "2027-04-14",
+        "original_deadline": "2027-04-14",
+        "regime": "post_era_2025",
+        "days_remaining": 203,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2026-10-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2027-03-31",
+        "final_deadline": "2027-03-31",
+        "original_deadline": "2027-03-31",
+        "regime": "post_era_2025",
+        "days_remaining": 189,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2026-09-30",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2026-12-29",
+        "final_deadline": "2026-12-29",
+        "original_deadline": "2026-12-29",
+        "regime": "pre_era_2025",
+        "days_remaining": 97,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2025-01-15",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-04-14",
+        "final_deadline": "2025-04-14",
+        "original_deadline": "2025-04-14",
+        "regime": "pre_era_2025",
+        "days_remaining": -527,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-04-06",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-07-05",
+        "final_deadline": "2025-07-05",
+        "original_deadline": "2025-07-05",
+        "regime": "pre_era_2025",
+        "days_remaining": -445,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-04-07",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-07-06",
+        "final_deadline": "2025-07-06",
+        "original_deadline": "2025-07-06",
+        "regime": "pre_era_2025",
+        "days_remaining": -444,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2020-01-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2020-03-31",
+        "final_deadline": "2020-03-31",
+        "original_deadline": "2020-03-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -2367,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2099-01-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2099-06-30",
+        "final_deadline": "2099-06-30",
+        "original_deadline": "2099-06-30",
+        "regime": "post_era_2025",
+        "days_remaining": 26578,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-02-01",
+      "acas_day_b": "2025-02-15",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-03-31",
+        "acas_extended_deadline": "2025-04-14",
+        "final_deadline": "2025-04-14",
+        "original_deadline": "2025-04-14",
+        "regime": "pre_era_2025",
+        "days_remaining": -527,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-03-30",
+      "acas_day_b": "2025-04-01",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-03-31",
+        "acas_extended_deadline": "2025-05-01",
+        "final_deadline": "2025-05-01",
+        "original_deadline": "2025-05-01",
+        "regime": "pre_era_2025",
+        "days_remaining": -510,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-04-10",
+      "acas_day_b": "2025-04-15",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-03-31",
+        "final_deadline": "2025-03-31",
+        "original_deadline": "2025-03-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -541,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2026-01-15",
+      "acas_day_a": "2026-06-01",
+      "acas_day_b": "2026-07-01",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2026-04-14",
+        "final_deadline": "2026-04-14",
+        "original_deadline": "2026-04-14",
+        "regime": "pre_era_2025",
+        "days_remaining": -162,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-02-15",
+      "acas_day_b": "2025-02-01",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-03-31",
+        "acas_extended_deadline": "2025-03-31",
+        "final_deadline": "2025-03-31",
+        "original_deadline": "2025-03-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -541,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-02-10",
+      "acas_day_b": "2025-02-10",
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-03-31",
+        "acas_extended_deadline": "2025-03-31",
+        "final_deadline": "2025-03-31",
+        "original_deadline": "2025-03-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -541,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2026-09-15",
+      "acas_day_a": "2026-09-20",
+      "acas_day_b": "2026-10-05",
+      "claim_type": "unfair_dismissal",
+      "result": {
+        "claim_type": "unfair_dismissal",
+        "base_deadline": "2026-12-14",
+        "acas_extended_deadline": "2026-12-29",
+        "final_deadline": "2026-12-29",
+        "original_deadline": "2026-12-29",
+        "regime": "pre_era_2025",
+        "days_remaining": 97,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": "wrongful_dismissal",
+      "result": {
+        "claim_type": "wrongful_dismissal",
+        "base_deadline": "2025-03-31",
+        "final_deadline": "2025-03-31",
+        "original_deadline": "2025-03-31",
+        "regime": "pre_era_2025",
+        "days_remaining": -541,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2028-12-31",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2029-06-30",
+        "final_deadline": "2029-06-30",
+        "original_deadline": "2029-06-30",
+        "regime": "post_era_2025",
+        "days_remaining": 1011,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2027-11-30",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2028-05-29",
+        "final_deadline": "2028-05-29",
+        "original_deadline": "2028-05-29",
+        "regime": "post_era_2025",
+        "days_remaining": 614,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2027-12-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2028-05-31",
+        "final_deadline": "2028-05-31",
+        "original_deadline": "2028-05-31",
+        "regime": "post_era_2025",
+        "days_remaining": 616,
+        "is_expired": false
+      }
+    },
+    {
+      "date_of_act": "2025-01-31",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-04-30",
+        "final_deadline": "2025-04-30",
+        "original_deadline": "2025-04-30",
+        "regime": "pre_era_2025",
+        "days_remaining": -511,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-08-31",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2025-11-30",
+        "final_deadline": "2025-11-30",
+        "original_deadline": "2025-11-30",
+        "regime": "pre_era_2025",
+        "days_remaining": -297,
+        "is_expired": true
+      }
+    },
+    {
+      "date_of_act": "2025-11-30",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "claim_type": null,
+      "result": {
+        "claim_type": "general",
+        "base_deadline": "2026-02-28",
+        "final_deadline": "2026-02-28",
+        "original_deadline": "2026-02-28",
+        "regime": "pre_era_2025",
+        "days_remaining": -207,
+        "is_expired": true
+      }
+    }
+  ]
+}

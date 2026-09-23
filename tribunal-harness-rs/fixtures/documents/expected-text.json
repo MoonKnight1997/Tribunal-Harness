@@ -1,0 +1,11 @@
+{
+  "pdf_text_raw": "\n\nJudgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+  "pdf_markdown": {
+    "status": "ok",
+    "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+    "pages": 1
+  },
+  "docx_text": "I was dismissed on 14 January 2025 without any disciplinary process.\n\nEmployer: Acme Logistics Ltd.\n\nEDT: 2025-01-14\n\n",
+  "docx_messages": [],
+  "txt": "Claimant: warehouse employee with ~4 years' service. Dismissed 3 March 2026 for alleged gross misconduct shortly after raising written health and safety concerns. No investigation meeting was held. Employer: Acme Logistics Ltd. EDT: 2026-03-03."
+}

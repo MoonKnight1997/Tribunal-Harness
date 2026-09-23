@@ -1,0 +1,204 @@
+{
+  "cases": [
+    {
+      "mode": "abort",
+      "input": {
+        "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "name": "Polkey v AE Dayton Services Ltd"
+      },
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "source": "verified_db",
+        "matchedName": "Polkey",
+        "matchedCitation": "[1987] UKHL 8"
+      },
+      "fetched": 0
+    },
+    {
+      "mode": "abort",
+      "input": {
+        "citation": "Polkey v AE Dayton Services Ltd [1999] UKHL 99",
+        "name": "Polkey v AE Dayton Services Ltd"
+      },
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1999] UKHL 99",
+        "trustLevel": "CHECK",
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([1999] UKHL 99) does not match the verified citation [1987] UKHL 8. Manual check recommended. (Live Find Case Law check unavailable; based on curated database only.)",
+        "source": "unavailable",
+        "matchedName": "Polkey",
+        "matchedCitation": "[1987] UKHL 8"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "abort",
+      "input": {
+        "citation": "Some Invented Case [2099] UKSC 999"
+      },
+      "result": {
+        "originalCitation": "Some Invented Case [2099] UKSC 999",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified. (Live Find Case Law check unavailable; based on curated database only.)",
+        "source": "unavailable"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "Essop v Home Office [2017] UKSC 27",
+        "name": "Essop v Home Office"
+      },
+      "result": {
+        "originalCitation": "Essop v Home Office [2017] UKSC 27",
+        "trustLevel": "VERIFIED",
+        "reason": "Exact match: Essop v Home Office [2017] UKSC 27",
+        "source": "verified_db",
+        "matchedName": "Essop",
+        "matchedCitation": "[2017] UKSC 27"
+      },
+      "fetched": 0
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "Essop v Home Office [2017] UKSC 999",
+        "name": "Essop v Home Office"
+      },
+      "result": {
+        "originalCitation": "Essop v Home Office [2017] UKSC 999",
+        "trustLevel": "CHECK",
+        "reason": "Citation [2017] UKSC 999 not confirmed, but a related judgment exists: [2017] UKSC 27. Verify manually.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "ok:EMPTY_FEED",
+      "input": {
+        "citation": "Made Up v Nobody [2099] UKSC 1",
+        "name": "Made Up v Nobody"
+      },
+      "result": {
+        "originalCitation": "Made Up v Nobody [2099] UKSC 1",
+        "trustLevel": "QUARANTINED",
+        "reason": "Neutral citation [2099] UKSC 1 not found in Find Case Law (note: coverage is ~2003 onward).",
+        "source": "verified_db+find_case_law"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "ok:EMPTY_FEED",
+      "input": {
+        "citation": "Polkey v AE Dayton Services Ltd [1999] UKHL 99"
+      },
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1999] UKHL 99",
+        "trustLevel": "CHECK",
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([1999] UKHL 99) does not match the verified citation [1987] UKHL 8. Manual check recommended.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "Polkey",
+        "matchedCitation": "[1987] UKHL 8"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "ok:FMX_FEED",
+      "input": {
+        "citation": "Nonexistent v Fabricated Ltd [2020] UKSC 1"
+      },
+      "result": {
+        "originalCitation": "Nonexistent v Fabricated Ltd [2020] UKSC 1",
+        "trustLevel": "CHECK",
+        "reason": "Neutral citation [2020] UKSC 1 exists but resolves to 'FMX Food Merchants Import Export Co Ltd v HMRC', which does not match the cited party name(s) — likely a mis-citation; verify manually.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "FMX Food Merchants Import Export Co Ltd v HMRC",
+        "matchedCitation": "[2020] UKSC 1",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+      },
+      "fetched": 1
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "BHS v Burchell [1978]"
+      },
+      "result": {
+        "originalCitation": "BHS v Burchell [1978]",
+        "trustLevel": "CHECK",
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "BHS v Burchell",
+        "matchedCitation": "[1978] UKEAT 0108_78_2007"
+      },
+      "fetched": 0
+    },
+    {
+      "mode": "status:503",
+      "input": {
+        "citation": "BHS v Burchell [1978]"
+      },
+      "result": {
+        "originalCitation": "BHS v Burchell [1978]",
+        "trustLevel": "CHECK",
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "BHS v Burchell",
+        "matchedCitation": "[1978] UKEAT 0108_78_2007"
+      },
+      "fetched": 0
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": ""
+      },
+      "result": {
+        "originalCitation": "",
+        "trustLevel": "QUARANTINED",
+        "reason": "No citation or case name to verify.",
+        "source": "verified_db+find_case_law"
+      },
+      "fetched": 0
+    }
+  ],
+  "batch_abort": {
+    "results": [
+      {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "source": "verified_db",
+        "matchedName": "Polkey",
+        "matchedCitation": "[1987] UKHL 8"
+      },
+      {
+        "originalCitation": "Some Invented Case [2099] UKSC 999",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified. (Live Find Case Law check unavailable; based on curated database only.)",
+        "source": "unavailable"
+      },
+      {
+        "originalCitation": "BHS v Burchell [1978]",
+        "trustLevel": "CHECK",
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended.",
+        "source": "verified_db+find_case_law",
+        "matchedName": "BHS v Burchell",
+        "matchedCitation": "[1978] UKEAT 0108_78_2007"
+      }
+    ],
+    "summary": {
+      "total": 3,
+      "verified": 1,
+      "check": 1,
+      "quarantined": 1,
+      "verifiedPercentage": 33,
+      "liveChecks": 2
+    }
+  }
+}
