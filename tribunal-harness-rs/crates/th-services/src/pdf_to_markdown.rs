@@ -102,6 +102,17 @@ pub fn looks_like_pdf(buffer: &[u8]) -> bool {
     buffer.len() >= 5 && &buffer[..5] == b"%PDF-"
 }
 
+/// Raw text of a PDF (what `pdf-parse`'s `data.text` is to the TypeScript
+/// triage route). Panics inside the extractor are contained and reported as
+/// errors, like a thrown JS error would be caught.
+pub fn pdf_raw_text(buffer: &[u8]) -> Result<String, String> {
+    match std::panic::catch_unwind(|| pdf_extract::extract_text_from_mem(buffer)) {
+        Ok(Ok(text)) => Ok(text),
+        Ok(Err(e)) => Err(e.to_string()),
+        Err(_) => Err("extractor panicked on malformed input".to_string()),
+    }
+}
+
 /// Convert an in-memory PDF to Markdown. Never fails (errors become a status).
 pub fn pdf_buffer_to_markdown(buffer: &[u8]) -> PdfMarkdownResult {
     if buffer.is_empty() {

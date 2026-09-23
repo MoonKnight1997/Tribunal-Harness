@@ -152,18 +152,22 @@ pub fn search(q: Option<&str>, claim_type: Option<&str>, tier: Option<&str>, lim
         None => 10,
         Some(n) => n.clamp(1, 20) as usize,
     };
-    if query.is_empty() && claim_type.is_none() {
+    // JS truthiness: an empty `claim_type` / `tier` behaves as "not supplied"
+    // in every check below, but `claim_type` is echoed back verbatim.
+    let ct_filter = claim_type.filter(|c| !c.is_empty());
+    let tier_filter = tier.filter(|t| !t.is_empty());
+    if query.is_empty() && ct_filter.is_none() {
         return SearchOutcome::BadRequest(json!({ "error": "Provide at least one of: q (search query) or claim_type" }));
     }
     let mut results: Vec<&CaseLawEntry> = SEED_CASES.iter().collect();
-    if let Some(t) = tier {
+    if let Some(t) = tier_filter {
         results.retain(|c| c.tier == t);
     }
-    if let Some(ct) = claim_type {
+    if let Some(ct) = ct_filter {
         results.retain(|c| c.claim_types.contains(&ct));
     }
     let results: Vec<&CaseLawEntry> = if !query.is_empty() {
-        let mut scored: Vec<(i64, &CaseLawEntry)> = results.into_iter().map(|c| (score_case(c, query, claim_type), c)).filter(|(s, _)| *s > 0).collect();
+        let mut scored: Vec<(i64, &CaseLawEntry)> = results.into_iter().map(|c| (score_case(c, query, ct_filter), c)).filter(|(s, _)| *s > 0).collect();
         // Stable sort descending by score (JS sort is stable).
         scored.sort_by(|a, b| b.0.cmp(&a.0));
         scored.into_iter().take(limit).map(|(_, c)| c).collect()
