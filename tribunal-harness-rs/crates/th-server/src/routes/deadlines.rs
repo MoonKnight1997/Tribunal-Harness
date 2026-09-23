@@ -107,13 +107,19 @@ pub async fn post_deadlines(State(state): State<SharedState>, body: Bytes) -> Re
         let Some(a_str) = valid_calendar_date(a) else {
             return error_json(
                 400,
-                format!("acas_day_a must be a real calendar date in YYYY-MM-DD format between {MIN_YEAR} and {MAX_YEAR} (received: {}).", serde_json::to_string(a).unwrap_or_default()),
+                format!(
+                    "acas_day_a must be a real calendar date in YYYY-MM-DD format between {MIN_YEAR} and {MAX_YEAR} (received: {}).",
+                    serde_json::to_string(a).unwrap_or_default()
+                ),
             );
         };
         let Some(b_str) = valid_calendar_date(b) else {
             return error_json(
                 400,
-                format!("acas_day_b must be a real calendar date in YYYY-MM-DD format between {MIN_YEAR} and {MAX_YEAR} (received: {}).", serde_json::to_string(b).unwrap_or_default()),
+                format!(
+                    "acas_day_b must be a real calendar date in YYYY-MM-DD format between {MIN_YEAR} and {MAX_YEAR} (received: {}).",
+                    serde_json::to_string(b).unwrap_or_default()
+                ),
             );
         };
         if b_str < a_str {

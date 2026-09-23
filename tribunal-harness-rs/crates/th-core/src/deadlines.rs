@@ -40,13 +40,41 @@ pub fn parse_utc(iso: &str) -> Result<CivilDate, DeadlineError> {
 // ---------------------------------------------------------------------------
 pub const UK_BANK_HOLIDAYS_EW: [&str; 32] = [
     // 2025
-    "2025-01-01", "2025-04-18", "2025-04-21", "2025-05-05", "2025-05-26", "2025-08-25", "2025-12-25", "2025-12-26",
+    "2025-01-01",
+    "2025-04-18",
+    "2025-04-21",
+    "2025-05-05",
+    "2025-05-26",
+    "2025-08-25",
+    "2025-12-25",
+    "2025-12-26",
     // 2026
-    "2026-01-01", "2026-04-03", "2026-04-06", "2026-05-04", "2026-05-25", "2026-08-31", "2026-12-25", "2026-12-28",
+    "2026-01-01",
+    "2026-04-03",
+    "2026-04-06",
+    "2026-05-04",
+    "2026-05-25",
+    "2026-08-31",
+    "2026-12-25",
+    "2026-12-28",
     // 2027
-    "2027-01-01", "2027-03-26", "2027-03-29", "2027-05-03", "2027-05-31", "2027-08-30", "2027-12-27", "2027-12-28",
+    "2027-01-01",
+    "2027-03-26",
+    "2027-03-29",
+    "2027-05-03",
+    "2027-05-31",
+    "2027-08-30",
+    "2027-12-27",
+    "2027-12-28",
     // 2028
-    "2028-01-03", "2028-04-14", "2028-04-17", "2028-05-01", "2028-05-29", "2028-08-28", "2028-12-25", "2028-12-26",
+    "2028-01-03",
+    "2028-04-14",
+    "2028-04-17",
+    "2028-05-01",
+    "2028-05-29",
+    "2028-08-28",
+    "2028-12-25",
+    "2028-12-26",
 ];
 
 /// The last year the bank-holiday table covers (staleness warning threshold).
@@ -217,9 +245,7 @@ pub fn calculate_deadlines(
     for ct in claim_types {
         if hedge {
             deadlines.push(compute_one(&act_date, config.pre_era_2025_months, Regime::PreEra2025, ct, acas_a, acas_b, today)?);
-            let secondary_label = format!(
-                "{ct} (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed {commencement_month} commencement)"
-            );
+            let secondary_label = format!("{ct} (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed {commencement_month} commencement)");
             deadlines.push(compute_one(&act_date, config.post_era_2025_months, Regime::PostEra2025, &secondary_label, acas_a, acas_b, today)?);
         } else {
             let months = if is_post { config.post_era_2025_months } else { config.pre_era_2025_months };
@@ -274,9 +300,7 @@ pub fn calculate_deadlines(
     // Urgent warning (based on the soonest operative deadline).
     if let Some(soonest) = deadlines.iter().map(|d| d.days_remaining).min() {
         if (0..=14).contains(&soonest) {
-            warnings.push(format!(
-                "URGENT: Your earliest deadline expires in {soonest} days. Seek immediate advice if you have not already filed your claim."
-            ));
+            warnings.push(format!("URGENT: Your earliest deadline expires in {soonest} days. Seek immediate advice if you have not already filed your claim."));
         }
     }
 
@@ -295,12 +319,7 @@ pub fn calculate_deadlines(
     }
 
     // ISSUE-17: bank holiday staleness warning.
-    let has_stale = deadlines
-        .iter()
-        .map(|d| parse_utc(&d.final_deadline).map(|x| x.year))
-        .collect::<Result<Vec<_>, _>>()?
-        .into_iter()
-        .any(|y| y > BANK_HOLIDAY_DATA_LAST_YEAR);
+    let has_stale = deadlines.iter().map(|d| parse_utc(&d.final_deadline).map(|x| x.year)).collect::<Result<Vec<_>, _>>()?.into_iter().any(|y| y > BANK_HOLIDAY_DATA_LAST_YEAR);
     if has_stale {
         warnings.push(format!(
             "WARNING: One or more deadlines fall after {y}. The bank holiday calendar used by this calculator only covers up to {y}. Bank holiday extensions may not be applied correctly. Please verify your deadline against the GOV.UK bank holidays calendar.",
@@ -308,11 +327,7 @@ pub fn calculate_deadlines(
         ));
     }
 
-    Ok(DeadlineResponse {
-        deadlines,
-        time_limit_regime: if is_post { Regime::PostEra2025 } else { Regime::PreEra2025 },
-        warnings,
-    })
+    Ok(DeadlineResponse { deadlines, time_limit_regime: if is_post { Regime::PostEra2025 } else { Regime::PreEra2025 }, warnings })
 }
 
 #[cfg(test)]

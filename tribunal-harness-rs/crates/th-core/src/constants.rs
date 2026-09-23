@@ -136,15 +136,7 @@ pub struct TrackerEntry {
 
 macro_rules! row {
     ($provision:expr, $old:expr, $new:expr, $comm:expr, $status:expr, $key:expr, $tbc:expr) => {
-        TrackerEntry {
-            provision: $provision,
-            old_position: $old,
-            new_position: $new,
-            commencement: $comm,
-            status: $status,
-            key: $key,
-            tbc: $tbc,
-        }
+        TrackerEntry { provision: $provision, old_position: $old, new_position: $new, commencement: $comm, status: $status, key: $key, tbc: $tbc }
     };
 }
 
@@ -168,33 +160,9 @@ pub const ERA_2025_TRACKER: [TrackerEntry; 21] = [
         "INDUSTRIAL_ACTION_DISMISSAL",
         false
     ),
-    row!(
-        "SSP from day 1",
-        "3-day waiting period",
-        "Payable from day 1 of sickness",
-        "6 Apr 2026",
-        TrackerStatus::InForce,
-        "SSP_DAY_ONE",
-        false
-    ),
-    row!(
-        "Paternity leave — day 1 right",
-        "26 weeks' service required",
-        "Day 1 right",
-        "6 Apr 2026",
-        TrackerStatus::InForce,
-        "PATERNITY_LEAVE_DAY_ONE",
-        false
-    ),
-    row!(
-        "Parental leave — day 1 right",
-        "1 year's service required",
-        "Day 1 right",
-        "6 Apr 2026",
-        TrackerStatus::InForce,
-        "PARENTAL_LEAVE_DAY_ONE",
-        false
-    ),
+    row!("SSP from day 1", "3-day waiting period", "Payable from day 1 of sickness", "6 Apr 2026", TrackerStatus::InForce, "SSP_DAY_ONE", false),
+    row!("Paternity leave — day 1 right", "26 weeks' service required", "Day 1 right", "6 Apr 2026", TrackerStatus::InForce, "PATERNITY_LEAVE_DAY_ONE", false),
+    row!("Parental leave — day 1 right", "1 year's service required", "Day 1 right", "6 Apr 2026", TrackerStatus::InForce, "PARENTAL_LEAVE_DAY_ONE", false),
     row!(
         "Sexual harassment as whistleblowing",
         "Not a qualifying disclosure",
@@ -204,15 +172,7 @@ pub const ERA_2025_TRACKER: [TrackerEntry; 21] = [
         "SEXUAL_HARASSMENT_WHISTLEBLOWING",
         false
     ),
-    row!(
-        "Collective redundancy — 180-day period",
-        "90 days maximum",
-        "180 days maximum",
-        "6 Apr 2026",
-        TrackerStatus::InForce,
-        "COLLECTIVE_REDUNDANCY_180_DAYS",
-        false
-    ),
+    row!("Collective redundancy — 180-day period", "90 days maximum", "180 days maximum", "6 Apr 2026", TrackerStatus::InForce, "COLLECTIVE_REDUNDANCY_180_DAYS", false),
     row!(
         "Fair Work Agency established",
         "No single enforcement body",
@@ -222,15 +182,7 @@ pub const ERA_2025_TRACKER: [TrackerEntry; 21] = [
         "FAIR_WORK_AGENCY",
         false
     ),
-    row!(
-        "ET time limit — 6 months",
-        "3 months less 1 day",
-        "6 months less 1 day",
-        "Oct 2026 (SI awaited)",
-        TrackerStatus::Upcoming,
-        "ET_TIME_LIMIT_6_MONTHS",
-        true
-    ),
+    row!("ET time limit — 6 months", "3 months less 1 day", "6 months less 1 day", "Oct 2026 (SI awaited)", TrackerStatus::Upcoming, "ET_TIME_LIMIT_6_MONTHS", true),
     row!(
         "Harassment — all reasonable steps",
         "Reasonable steps defence",
@@ -249,24 +201,8 @@ pub const ERA_2025_TRACKER: [TrackerEntry; 21] = [
         "THIRD_PARTY_HARASSMENT",
         true
     ),
-    row!(
-        "NDAs void for harassment/discrimination",
-        "NDAs enforceable",
-        "NDAs preventing disclosure are void",
-        "Oct 2026 (SI awaited)",
-        TrackerStatus::Upcoming,
-        "NDA_VOID",
-        true
-    ),
-    row!(
-        "Union right to inform workers",
-        "No right",
-        "Right to inform workers of union membership",
-        "Oct 2026 (SI awaited)",
-        TrackerStatus::Upcoming,
-        "UNION_INFORM_RIGHT",
-        true
-    ),
+    row!("NDAs void for harassment/discrimination", "NDAs enforceable", "NDAs preventing disclosure are void", "Oct 2026 (SI awaited)", TrackerStatus::Upcoming, "NDA_VOID", true),
+    row!("Union right to inform workers", "No right", "Right to inform workers of union membership", "Oct 2026 (SI awaited)", TrackerStatus::Upcoming, "UNION_INFORM_RIGHT", true),
     row!(
         "Qualifying period — 6 months",
         "2 years' continuous employment",
@@ -380,12 +316,7 @@ pub struct TimeLimitConfig {
 
 impl TimeLimitConfig {
     pub fn with_commencement(commencement_date: impl Into<String>) -> Self {
-        Self {
-            pre_era_2025_months: 3,
-            post_era_2025_months: 6,
-            commencement_date: commencement_date.into(),
-            time_limit_si_confirmed: false,
-        }
+        Self { pre_era_2025_months: 3, post_era_2025_months: 6, commencement_date: commencement_date.into(), time_limit_si_confirmed: false }
     }
 }
 
@@ -402,11 +333,8 @@ pub struct QualifyingPeriodConfig {
     pub commencement_date: &'static str,
 }
 
-pub const QUALIFYING_PERIOD_CONFIG: QualifyingPeriodConfig = QualifyingPeriodConfig {
-    pre_era_2025_years: 2,
-    post_era_2025_months: 6,
-    commencement_date: ERA_2025.qualifying_period_6_months,
-};
+pub const QUALIFYING_PERIOD_CONFIG: QualifyingPeriodConfig =
+    QualifyingPeriodConfig { pre_era_2025_years: 2, post_era_2025_months: 6, commencement_date: ERA_2025.qualifying_period_6_months };
 
 /// `effectiveFrom` on a claim type: absent, explicitly `null`, or a date.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

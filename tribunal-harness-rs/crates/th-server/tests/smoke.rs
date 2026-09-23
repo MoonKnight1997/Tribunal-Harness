@@ -10,7 +10,7 @@ use std::sync::Arc;
 use th_server::smoke;
 use th_services::http::NoNetwork;
 
-fn sections<'a>(r: &'a smoke::Report) -> [(&'static str, &'a smoke::SectionReport); 7] {
+fn sections(r: &smoke::Report) -> [(&'static str, &smoke::SectionReport); 7] {
     [
         ("schema_lookup", &r.schema_lookup),
         ("triage", &r.triage),

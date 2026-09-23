@@ -61,10 +61,7 @@ static FACTS_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"(?s)Facts:\s*(.
 /// Extract the claim type id from a route-built user message (default
 /// `unfair_dismissal`).
 pub fn extract_claim_type(user_message: &str) -> String {
-    CLAIM_TYPE_RE
-        .captures(user_message)
-        .map(|c| c[1].to_lowercase())
-        .unwrap_or_else(|| "unfair_dismissal".to_string())
+    CLAIM_TYPE_RE.captures(user_message).map(|c| c[1].to_lowercase()).unwrap_or_else(|| "unfair_dismissal".to_string())
 }
 
 fn extract_facts(user_message: &str) -> String {

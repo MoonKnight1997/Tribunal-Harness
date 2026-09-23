@@ -134,11 +134,7 @@ fn normalise_statutory_provision(raw: &Value) -> StatutoryProvision {
     let Some(obj) = raw.as_object() else {
         return StatutoryProvision { statute: as_string(Some(raw)), section: String::new(), relevance: String::new() };
     };
-    StatutoryProvision {
-        statute: as_string(obj.get("statute")),
-        section: as_string(obj.get("section")),
-        relevance: as_string(obj.get("relevance")),
-    }
+    StatutoryProvision { statute: as_string(obj.get("statute")), section: as_string(obj.get("section")), relevance: as_string(obj.get("relevance")) }
 }
 
 fn normalise_flag(raw: &Value) -> Era2025Flag {
@@ -162,11 +158,7 @@ pub fn normalise_analyse_response(raw: &Value) -> AnalyseResponse {
         claims: as_array(obj.get("claims")).iter().map(normalise_claim).collect(),
         authorities: as_array(obj.get("authorities")).iter().map(normalise_authority).collect(),
         statutory_provisions: as_array(obj.get("statutory_provisions")).iter().map(normalise_statutory_provision).collect(),
-        procedural_notes: as_array(obj.get("procedural_notes"))
-            .iter()
-            .map(|v| as_string(Some(v)))
-            .filter(|s| !s.is_empty())
-            .collect(),
+        procedural_notes: as_array(obj.get("procedural_notes")).iter().map(|v| as_string(Some(v))).filter(|s| !s.is_empty()).collect(),
         era_2025_flags: as_array(obj.get("era_2025_flags")).iter().map(normalise_flag).collect(),
     }
 }
@@ -188,7 +180,9 @@ mod tests {
         assert_eq!(out.claims[0].legal_test_elements[0].evidence.as_deref(), Some("A."));
         assert_eq!(out.authorities[0].trust_level, Some(TrustLevel::Check));
         assert_eq!(out.era_2025_flags[0].status, EraFlagStatus::Tbc);
-        let out = normalise_analyse_response(&json!({"claims": [{"type": "x", "strength": "wobbly"}], "authorities": [{"name": "y"}], "era_2025_flags": [{"provision": "q"}], "procedural_notes": ["keep", "", null, "also"]}));
+        let out = normalise_analyse_response(
+            &json!({"claims": [{"type": "x", "strength": "wobbly"}], "authorities": [{"name": "y"}], "era_2025_flags": [{"provision": "q"}], "procedural_notes": ["keep", "", null, "also"]}),
+        );
         assert_eq!(out.claims[0].strength, ClaimStrength::Weak);
         assert_eq!(out.authorities[0].trust_level, Some(TrustLevel::Quarantined));
         assert_eq!(out.procedural_notes, vec!["keep", "also"]);

@@ -12,54 +12,59 @@ const META: PageMeta = PageMeta::root("/adversarial-debate");
 const LABEL: &str = "display:block;font-size:0.7rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em;color:var(--color-text-muted);margin-bottom:0.5rem";
 
 fn input_card() -> Markup {
-    card(CardVariant::Glass, "", None, html! {
-        div style="display:flex;flex-direction:column;gap:1.5rem" {
-            div {
-                label for="debate-claim-type" style=(LABEL) { "Claim Type" }
-                select id="debate-claim-type" style="width:100%;padding:1rem;font-size:1.1rem;border-radius:var(--radius-card);background:rgba(255,255,255,0.02);border:1px solid var(--color-border-subtle);color:var(--color-text-primary);outline:none" {
-                    (claim_type_options("unfair_dismissal"))
+    card(
+        CardVariant::Glass,
+        "",
+        None,
+        html! {
+            div style="display:flex;flex-direction:column;gap:1.5rem" {
+                div {
+                    label for="debate-claim-type" style=(LABEL) { "Claim Type" }
+                    select id="debate-claim-type" style="width:100%;padding:1rem;font-size:1.1rem;border-radius:var(--radius-card);background:rgba(255,255,255,0.02);border:1px solid var(--color-border-subtle);color:var(--color-text-primary);outline:none" {
+                        (claim_type_options("unfair_dismissal"))
+                    }
                 }
-            }
-            div {
-                label for="debate-facts" style=(LABEL) { "Facts" }
-                textarea id="debate-facts" rows="5" placeholder="Describe what happened — the more specific the facts, the sharper the critique..." style="width:100%;padding:1rem;border-radius:var(--radius-card);background:rgba(0,0,0,0.2);border:1px solid var(--color-border-subtle);color:var(--color-text-primary);outline:none;resize:vertical" {}
-            }
-            div {
-                span style=(LABEL) { "Debate Mode" }
-                div role="radiogroup" aria-label="Debate mode" style="display:flex;flex-direction:column;gap:0.75rem" {
-                    @for opt in DEBATE_MODES.iter() {
-                        @let selected = opt.id == DebateMode::SinglePass;
-                        label class=(format!("mode-option{}", if selected { " selected" } else { "" })) style="display:flex;gap:0.85rem;align-items:flex-start;cursor:pointer;padding:1rem;border-radius:var(--radius-card);transition:all 0.2s ease" {
-                            input type="radio" name="debate-mode" value=(opt.id.as_str()) checked[selected] style="margin-top:3px;accent-color:var(--color-accent-purple);width:16px;height:16px;flex-shrink:0";
-                            div style="flex:1" {
-                                div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;margin-bottom:0.35rem" {
-                                    span style="font-size:0.95rem;font-weight:600;color:var(--color-text-primary)" { (opt.label) }
-                                    (badge(if opt.higher_cost { BadgeVariant::Warning } else { BadgeVariant::Neutral }, "", html! { (opt.cost_tag) }))
-                                }
-                                p style="font-size:0.8rem;color:var(--color-text-secondary);margin:0 0 0.5rem 0;line-height:1.5" { (opt.description) }
-                                p style=(format!("font-size:0.72rem;font-family:var(--font-mono);margin:0;line-height:1.5;color:{}", if opt.higher_cost { "#f59e0b" } else { "var(--color-text-muted)" })) {
-                                    (if opt.higher_cost { "⚠ " } else { "" }) (opt.cost_note)
+                div {
+                    label for="debate-facts" style=(LABEL) { "Facts" }
+                    textarea id="debate-facts" rows="5" placeholder="Describe what happened — the more specific the facts, the sharper the critique..." style="width:100%;padding:1rem;border-radius:var(--radius-card);background:rgba(0,0,0,0.2);border:1px solid var(--color-border-subtle);color:var(--color-text-primary);outline:none;resize:vertical" {}
+                }
+                div {
+                    span style=(LABEL) { "Debate Mode" }
+                    div role="radiogroup" aria-label="Debate mode" style="display:flex;flex-direction:column;gap:0.75rem" {
+                        @for opt in DEBATE_MODES.iter() {
+                            @let selected = opt.id == DebateMode::SinglePass;
+                            label class=(format!("mode-option{}", if selected { " selected" } else { "" })) style="display:flex;gap:0.85rem;align-items:flex-start;cursor:pointer;padding:1rem;border-radius:var(--radius-card);transition:all 0.2s ease" {
+                                input type="radio" name="debate-mode" value=(opt.id.as_str()) checked[selected] style="margin-top:3px;accent-color:var(--color-accent-purple);width:16px;height:16px;flex-shrink:0";
+                                div style="flex:1" {
+                                    div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.6rem;margin-bottom:0.35rem" {
+                                        span style="font-size:0.95rem;font-weight:600;color:var(--color-text-primary)" { (opt.label) }
+                                        (badge(if opt.higher_cost { BadgeVariant::Warning } else { BadgeVariant::Neutral }, "", html! { (opt.cost_tag) }))
+                                    }
+                                    p style="font-size:0.8rem;color:var(--color-text-secondary);margin:0 0 0.5rem 0;line-height:1.5" { (opt.description) }
+                                    p style=(format!("font-size:0.72rem;font-family:var(--font-mono);margin:0;line-height:1.5;color:{}", if opt.higher_cost { "#f59e0b" } else { "var(--color-text-muted)" })) {
+                                        (if opt.higher_cost { "⚠ " } else { "" }) (opt.cost_note)
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius-card);border:1px solid rgba(255,255,255,0.06)" {
-                label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer" {
-                    input id="debate-consent" type="checkbox" style="margin-top:2px;accent-color:var(--color-accent-purple);width:14px;height:14px;flex-shrink:0";
-                    span style="font-size:0.7rem;color:var(--color-text-secondary);line-height:1.5" {
-                        "I understand this tool provides " strong { "legal information, not legal advice" } ". I consent to my case description being processed by Tribunal Harness and Anthropic in accordance with the "
-                        a href="/privacy" style="color:var(--color-accent-purple);text-decoration:underline" { "Privacy Policy" }
-                        " and "
-                        a href="/terms" style="color:var(--color-accent-purple);text-decoration:underline" { "Terms of Use" }
-                        "."
+                div style="padding:0.75rem;background:rgba(255,255,255,0.03);border-radius:var(--radius-card);border:1px solid rgba(255,255,255,0.06)" {
+                    label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer" {
+                        input id="debate-consent" type="checkbox" style="margin-top:2px;accent-color:var(--color-accent-purple);width:14px;height:14px;flex-shrink:0";
+                        span style="font-size:0.7rem;color:var(--color-text-secondary);line-height:1.5" {
+                            "I understand this tool provides " strong { "legal information, not legal advice" } ". I consent to my case description being processed by Tribunal Harness and Anthropic in accordance with the "
+                            a href="/privacy" style="color:var(--color-accent-purple);text-decoration:underline" { "Privacy Policy" }
+                            " and "
+                            a href="/terms" style="color:var(--color-accent-purple);text-decoration:underline" { "Terms of Use" }
+                            "."
+                        }
                     }
                 }
+                button type="button" id="run-debate" class=(button_classes(ButtonVariant::Primary, ButtonSize::Md)) style="align-self:flex-start" disabled { "Run Single-Pass Debate" }
             }
-            button type="button" id="run-debate" class=(button_classes(ButtonVariant::Primary, ButtonSize::Md)) style="align-self:flex-start" disabled { "Run Single-Pass Debate" }
-        }
-    })
+        },
+    )
 }
 
 pub async fn page(State(state): State<SharedState>) -> Markup {

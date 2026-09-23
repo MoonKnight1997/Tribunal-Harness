@@ -146,8 +146,8 @@ async fn build_canonical_body(state: &SharedState, result: &ClaudeCallResult) ->
                 // neutral citation against the verified neutral citation.
                 let model_neutral = extract_neutral_citation(&citation_str);
                 let verified_citation = vr.matched_citation.as_deref().unwrap_or("").trim().to_string();
-                let corrected = !verified_citation.is_empty()
-                    && model_neutral.as_deref().map(|mn| normalise_citation(mn) != normalise_citation(&verified_citation)).unwrap_or(false);
+                let corrected =
+                    !verified_citation.is_empty() && model_neutral.as_deref().map(|mn| normalise_citation(mn) != normalise_citation(&verified_citation)).unwrap_or(false);
                 let corrected_citation: Value = match (&corrected, &model_neutral) {
                     (true, Some(mn)) => {
                         if citation_str.contains(mn.as_str()) {

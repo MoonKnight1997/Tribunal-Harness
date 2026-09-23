@@ -1,0 +1,97 @@
+# PROPOSED workflow for the Rust rebuild — NOT wired up.
+#
+# The existing `.github/workflows/ci.yml` (Next.js app) is deliberately left
+# untouched. To adopt this, copy it to `.github/workflows/rust-ci.yml` (or
+# append the job to `ci.yml`). It needs no secrets: every test is hermetic
+# (recorded fixtures, no network, no API key) and the stylesheet is committed.
+#
+# Mirrors the style of the existing workflow: one job, ubuntu-latest,
+# read-only permissions, working-directory pinned to the app.
+
+name: Rust CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tribunal-harness-rs/**'
+      - '.github/workflows/rust-ci.yml'
+  pull_request:
+    paths:
+      - 'tribunal-harness-rs/**'
+      - '.github/workflows/rust-ci.yml'
+
+permissions:
+  contents: read
+
+env:
+  CARGO_TERM_COLOR: always
+  # No network in tests — fail loudly if anything tries.
+  CARGO_NET_OFFLINE: "false" # dependencies still need fetching in the build step
+
+jobs:
+  build-and-test:
+    name: rust build & test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tribunal-harness-rs
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tribunal-harness-rs
+
+      - name: Format
+        run: cargo fmt --all -- --check
+
+      - name: Lint
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Build
+        run: cargo build --workspace --locked
+
+      - name: Test (hermetic — no network, no API key)
+        run: cargo test --workspace --locked
+
+      - name: Smoke (LLM_PROVIDER=agent end-to-end)
+        run: cargo run --bin smoke --locked
+        env:
+          LLM_PROVIDER: agent
+
+      - name: Upload smoke report
+        uses: actions/upload-artifact@v4
+        with:
+          name: rust-smoke-report
+          path: |
+            tribunal-harness-rs/smoke-report.json
+            tribunal-harness-rs/smoke-report.md
+
+      # Stylesheet drift guard: the committed static/app.css must match a fresh
+      # Tailwind standalone build of tailwind/input.css.
+      - name: Check committed stylesheet is current
+        run: |
+          curl -sSL -o /tmp/tailwindcss https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
+          chmod +x /tmp/tailwindcss
+          /tmp/tailwindcss --input crates/th-server/tailwind/input.css --output /tmp/app.css --minify
+          diff -q /tmp/app.css crates/th-server/static/app.css
+
+  # Optional, manual: live Find Case Law checks (network). Never runs on PRs.
+  live-caselaw:
+    name: live TNA checks (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tribunal-harness-rs
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo test -p th-services --test live_optin -- --ignored --nocapture
+        env:
+          RUN_LIVE_CASELAW: "1"

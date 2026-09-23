@@ -225,7 +225,9 @@ fn triage_parts(label: &str) -> Vec<MultipartPart> {
         "docx-degraded" => vec![MultipartPart::file("document", "sample.docx", "application/octet-stream", docx)],
         "pdf-corrupt" => vec![MultipartPart::file("document", "bad.pdf", "application/pdf", "%PDF-1.4 garbage")],
         "docx-corrupt" => vec![MultipartPart::file("document", "bad.docx", "application/octet-stream", "PK garbage")],
-        "txt-agent-with-schema-state" => vec![MultipartPart::file("document", "sample.txt", "text/plain", txt), MultipartPart::text("schema_state", "{\"claim_type\":\"unfair_dismissal\"}")],
+        "txt-agent-with-schema-state" => {
+            vec![MultipartPart::file("document", "sample.txt", "text/plain", txt), MultipartPart::text("schema_state", "{\"claim_type\":\"unfair_dismissal\"}")]
+        }
         "txt-agent-long" | "txt-degraded-long" => vec![MultipartPart::file("document", "long.txt", "text/plain", txt.repeat(80))],
         "txt-degraded" => vec![MultipartPart::file("document", "narrative.txt", "text/plain", "I was dismissed on 14 January 2025 without any disciplinary process.")],
         other => panic!("unknown triage label {other}"),
@@ -252,7 +254,10 @@ async fn triage_routes() {
             assert_eq!(body["updated_fields"], expected["updated_fields"]);
             assert_eq!(body["query_array"], expected["query_array"]);
             assert_eq!(body["refinement"], expected["refinement"]);
-            assert!(body["document_summary"].as_str().unwrap().starts_with("Extracted ") && body["document_summary"].as_str().unwrap().ends_with(" characters from sample.pdf. AI triage requires an Anthropic API key."));
+            assert!(
+                body["document_summary"].as_str().unwrap().starts_with("Extracted ")
+                    && body["document_summary"].as_str().unwrap().ends_with(" characters from sample.pdf. AI triage requires an Anthropic API key.")
+            );
             assert_eq!(normalise_ws(body["extracted_text"].as_str().unwrap()), normalise_ws(expected["extracted_text"].as_str().unwrap()), "{context}: extracted text words");
         } else {
             assert_response(&res, &c["response"], &context);

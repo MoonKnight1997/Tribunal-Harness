@@ -23,18 +23,9 @@ pub fn schema() -> ClaimSchema {
         ],
         era2025_changes: Some(vec![
             format!("Qualifying period reduces from 2 years to 6 months (from {})", qp_month),
-            format!(
-                "Compensatory award cap removed entirely (from {})",
-                format_commencement_month(ERA_2025.compensatory_award_uncapped)
-            ),
-            format!(
-                "Fire and rehire dismissals automatically unfair (from {})",
-                format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)
-            ),
-            format!(
-                "Industrial action dismissals automatically unfair with no 12-week limit (from {}, in force)",
-                format_commencement_month(ERA_2025.industrial_action_dismissal)
-            ),
+            format!("Compensatory award cap removed entirely (from {})", format_commencement_month(ERA_2025.compensatory_award_uncapped)),
+            format!("Fire and rehire dismissals automatically unfair (from {})", format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)),
+            format!("Industrial action dismissals automatically unfair with no 12-week limit (from {}, in force)", format_commencement_month(ERA_2025.industrial_action_dismissal)),
         ]),
         fields: vec![
             SchemaField::new("employee_status", "Employment Status", FieldType::Select, true).options(vec![
@@ -43,8 +34,7 @@ pub fn schema() -> ClaimSchema {
                 opt("self_employed", "Self-employed"),
                 opt("uncertain", "Uncertain / Disputed"),
             ]),
-            SchemaField::new("start_date", "Employment Start Date", FieldType::Date, true)
-                .help("The date you started continuous employment."),
+            SchemaField::new("start_date", "Employment Start Date", FieldType::Date, true).help("The date you started continuous employment."),
             SchemaField::new("effective_date_of_termination", "Effective Date of Termination (EDT)", FieldType::Date, true)
                 .help("The date your employment ended — last day of notice, or date of summary dismissal."),
             SchemaField::new("qualifying_service", "Qualifying Service Met", FieldType::Boolean, false)
@@ -54,10 +44,7 @@ pub fn schema() -> ClaimSchema {
                     changed_from: Some("2 years continuous employment".into()),
                     commencement_date: ERA_2025.qualifying_period_6_months.into(),
                     status: AnnotationStatus::Upcoming,
-                    note: format!(
-                        "Reduces to 6 months from {}.",
-                        format_commencement_date(ERA_2025.qualifying_period_6_months)
-                    ),
+                    note: format!("Reduces to 6 months from {}.", format_commencement_date(ERA_2025.qualifying_period_6_months)),
                 }),
             SchemaField::new("dismissal_reason", "Reason Given for Dismissal", FieldType::Select, true).options(vec![
                 opt("capability", "Capability / Performance"),
@@ -81,17 +68,11 @@ pub fn schema() -> ClaimSchema {
                     opt("industrial_action", "Industrial action (ERA 2025 — no 12-week limit)"),
                     SelectOption {
                         value: "fire_and_rehire",
-                        label: leak(format!(
-                            "Fire and rehire (ERA 2025 — from {})",
-                            format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)
-                        )),
+                        label: leak(format!("Fire and rehire (ERA 2025 — from {})", format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair))),
                     },
                     SelectOption {
                         value: "fire_and_replace",
-                        label: leak(format!(
-                            "Fire and replace (ERA 2025 — from {})",
-                            format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)
-                        )),
+                        label: leak(format!("Fire and replace (ERA 2025 — from {})", format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair))),
                     },
                 ])
                 .era2025(Era2025Annotation {
@@ -110,20 +91,16 @@ pub fn schema() -> ClaimSchema {
                 opt("no", "No — no procedure at all"),
                 opt("unknown", "Unknown / Need to review"),
             ]),
-            SchemaField::new("compensatory_award_cap", "Compensatory Award Cap Applies", FieldType::Boolean, false)
-                .help("Auto-calculated based on EDT.")
-                .era2025(Era2025Annotation {
+            SchemaField::new("compensatory_award_cap", "Compensatory Award Cap Applies", FieldType::Boolean, false).help("Auto-calculated based on EDT.").era2025(
+                Era2025Annotation {
                     is_new: false,
                     changed_from: Some("Capped at lower of 1 year's pay or statutory maximum (£115,115)".into()),
                     commencement_date: ERA_2025.compensatory_award_uncapped.into(),
                     status: AnnotationStatus::Upcoming,
-                    note: format!(
-                        "Cap removed entirely from {}.",
-                        format_commencement_date(ERA_2025.compensatory_award_uncapped)
-                    ),
-                }),
-            SchemaField::new("narrative", "Describe What Happened", FieldType::Textarea, false)
-                .help("Provide a chronological account of the events."),
+                    note: format!("Cap removed entirely from {}.", format_commencement_date(ERA_2025.compensatory_award_uncapped)),
+                },
+            ),
+            SchemaField::new("narrative", "Describe What Happened", FieldType::Textarea, false).help("Provide a chronological account of the events."),
         ],
     }
 }

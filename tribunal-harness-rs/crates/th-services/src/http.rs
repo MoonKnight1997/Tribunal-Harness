@@ -90,10 +90,7 @@ pub struct ReqwestClient {
 impl ReqwestClient {
     pub fn new() -> Result<Self, HttpError> {
         let following = reqwest::Client::builder().build().map_err(|e| HttpError::Transport(e.to_string()))?;
-        let manual = reqwest::Client::builder()
-            .redirect(reqwest::redirect::Policy::none())
-            .build()
-            .map_err(|e| HttpError::Transport(e.to_string()))?;
+        let manual = reqwest::Client::builder().redirect(reqwest::redirect::Policy::none()).build().map_err(|e| HttpError::Transport(e.to_string()))?;
         Ok(Self { following, manual })
     }
 }
@@ -115,11 +112,7 @@ impl HttpClient for ReqwestClient {
         builder = builder.timeout(req.timeout);
         let resp = builder.send().await.map_err(|e| if e.is_timeout() { HttpError::Timeout } else { HttpError::Transport(e.to_string()) })?;
         let status = resp.status().as_u16();
-        let headers = resp
-            .headers()
-            .iter()
-            .map(|(k, v)| (k.as_str().to_string(), v.to_str().unwrap_or("").to_string()))
-            .collect();
+        let headers = resp.headers().iter().map(|(k, v)| (k.as_str().to_string(), v.to_str().unwrap_or("").to_string())).collect();
         let body = resp.bytes().await.map_err(|e| if e.is_timeout() { HttpError::Timeout } else { HttpError::Transport(e.to_string()) })?.to_vec();
         Ok(HttpResponse { status, headers, body })
     }

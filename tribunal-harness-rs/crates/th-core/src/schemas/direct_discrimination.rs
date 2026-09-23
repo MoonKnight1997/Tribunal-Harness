@@ -30,10 +30,8 @@ pub fn schema() -> ClaimSchema {
                 opt("pregnancy", "Pregnancy and maternity"),
                 opt("marriage", "Marriage and civil partnership"),
             ]),
-            SchemaField::new("comparator_type", "Comparator", FieldType::Select, true).options(vec![
-                opt("actual", "Actual comparator (named individual)"),
-                opt("hypothetical", "Hypothetical comparator"),
-            ]),
+            SchemaField::new("comparator_type", "Comparator", FieldType::Select, true)
+                .options(vec![opt("actual", "Actual comparator (named individual)"), opt("hypothetical", "Hypothetical comparator")]),
             SchemaField::new("comparator_details", "Comparator Details", FieldType::Textarea, false),
             SchemaField::new("less_favourable_treatment", "Less Favourable Treatment", FieldType::Textarea, true),
             SchemaField::new("date_of_last_act", "Date of Last Act", FieldType::Date, true),

@@ -19,8 +19,7 @@ pub fn schema() -> ClaimSchema {
         ],
         era2025_changes: None,
         fields: vec![
-            SchemaField::new("contractual_notice", "Contractual Notice Period", FieldType::Text, true)
-                .help("e.g., '3 months', '1 week per year of service'"),
+            SchemaField::new("contractual_notice", "Contractual Notice Period", FieldType::Text, true).help("e.g., '3 months', '1 week per year of service'"),
             SchemaField::new("notice_given", "Notice Actually Given", FieldType::Text, true),
             SchemaField::new("summary_dismissal", "Was It Summary Dismissal (No Notice)?", FieldType::Boolean, true),
             SchemaField::new("gross_misconduct_alleged", "Gross Misconduct Alleged?", FieldType::Boolean, false),

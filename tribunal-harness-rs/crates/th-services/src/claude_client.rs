@@ -147,10 +147,7 @@ impl LlmClient {
             let output_tokens = estimate_tokens(&content);
             let duration = self.clock.now_epoch_ms() - start;
             let cost = estimate_cost(config.model, input_tokens, output_tokens);
-            tracing::info!(
-                "[Claude:agent] {} | {}ms | {}→{} tokens | £{} | {}",
-                config.label, duration, input_tokens, output_tokens, cost.cost_gbp, params.prompt_version
-            );
+            tracing::info!("[Claude:agent] {} | {}ms | {}→{} tokens | £{} | {}", config.label, duration, input_tokens, output_tokens, cost.cost_gbp, params.prompt_version);
             return Ok(Some(ClaudeCallResult {
                 content,
                 usage: ClaudeUsage { input_tokens, output_tokens },
@@ -183,10 +180,7 @@ impl LlmClient {
                 // F-4: budget_tokens must be strictly LESS than max_tokens.
                 if budget >= config.max_tokens {
                     let clamped = config.max_tokens - 1;
-                    tracing::warn!(
-                        "[Claude] thinking.budget_tokens ({budget}) >= max_tokens ({}) for {}; clamping to {clamped}.",
-                        config.max_tokens, config.label
-                    );
+                    tracing::warn!("[Claude] thinking.budget_tokens ({budget}) >= max_tokens ({}) for {}; clamping to {clamped}.", config.max_tokens, config.label);
                     budget = clamped;
                 }
                 request.thinking = Some(ThinkingParam { kind: "enabled", budget_tokens: budget });
@@ -204,7 +198,12 @@ impl LlmClient {
         let cost = estimate_cost(config.model, response.usage.input_tokens, response.usage.output_tokens);
         tracing::info!(
             "[Claude] {} | {}ms | {}→{} tokens | £{} | {}",
-            config.label, duration, response.usage.input_tokens, response.usage.output_tokens, cost.cost_gbp, params.prompt_version
+            config.label,
+            duration,
+            response.usage.input_tokens,
+            response.usage.output_tokens,
+            cost.cost_gbp,
+            params.prompt_version
         );
         Ok(Some(ClaudeCallResult {
             content,
@@ -255,7 +254,11 @@ mod tests {
     async fn agent_path_and_degradation() {
         let c = client(LlmConfig { agent_provider: true, ..Default::default() }, MockHttp::transport_error());
         assert!(c.is_client_available());
-        let r = c.call_claude(CallClaudeParams { endpoint: "analyse", system: "sys", user_message: "claim_type: unfair_dismissal", prompt_version: "v2", config_override: None }).await.unwrap().unwrap();
+        let r = c
+            .call_claude(CallClaudeParams { endpoint: "analyse", system: "sys", user_message: "claim_type: unfair_dismissal", prompt_version: "v2", config_override: None })
+            .await
+            .unwrap()
+            .unwrap();
         assert_eq!(r.debug.model, "agent-stand-in");
         assert!(r.usage.input_tokens > 0);
         let v: Value = serde_json::from_str(&r.content).unwrap();
@@ -291,13 +294,22 @@ mod tests {
         assert_eq!(sent["thinking"]["budget_tokens"], 999);
         assert!(sent.get("temperature").is_none());
         assert_eq!(sent["model"], "claude-sonnet-5");
-        let req = &http.calls.lock().unwrap()[0];
-        assert!(req.headers.iter().any(|(k, v)| k == "x-api-key" && v == "sk-test-key"));
-        assert!(req.headers.iter().any(|(k, v)| k == "anthropic-version" && v == "2023-06-01"));
+        let headers = http.calls.lock().unwrap()[0].headers.clone();
+        assert!(headers.iter().any(|(k, v)| k == "x-api-key" && v == "sk-test-key"));
+        assert!(headers.iter().any(|(k, v)| k == "anthropic-version" && v == "2023-06-01"));
 
         let http = ok_response(json!({"stop_reason": "max_tokens", "content": [{"type": "text", "text": "{\"claims\":[{\"partial"}]}));
         let c = client(LlmConfig { api_key: Some("k".into()), ..Default::default() }, http);
-        let e = c.call_claude(CallClaudeParams { endpoint: "analyse", system: "s", user_message: "u", prompt_version: "v2", config_override: Some(ConfigOverride { thinking: Some(ThinkingConfig::disabled()), ..Default::default() }) }).await.unwrap_err();
+        let e = c
+            .call_claude(CallClaudeParams {
+                endpoint: "analyse",
+                system: "s",
+                user_message: "u",
+                prompt_version: "v2",
+                config_override: Some(ConfigOverride { thinking: Some(ThinkingConfig::disabled()), ..Default::default() }),
+            })
+            .await
+            .unwrap_err();
         assert_eq!(e.code(), Some("response_truncated_max_tokens"));
     }
 }

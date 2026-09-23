@@ -16,10 +16,7 @@ pub fn schema() -> ClaimSchema {
         ],
         key_authorities: vec!["This is a new statutory provision — case law will develop from 2027".into()],
         era2025_changes: Some(vec![
-            format!(
-                "Entirely new claim type created by ERA 2025 (from {})",
-                format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)
-            ),
+            format!("Entirely new claim type created by ERA 2025 (from {})", format_commencement_month(ERA_2025.fire_and_rehire_auto_unfair)),
             "Dismissals to impose restricted variations are automatically unfair".into(),
             "Limited defence: employer must prove severe financial distress AND no alternative".into(),
         ]),
@@ -29,10 +26,7 @@ pub fn schema() -> ClaimSchema {
                 changed_from: None,
                 commencement_date: ERA_2025.fire_and_rehire_auto_unfair.into(),
                 status: AnnotationStatus::Upcoming,
-                note: format!(
-                    "This claim type is only available for dismissals on or after {}.",
-                    format_commencement_date(ERA_2025.fire_and_rehire_auto_unfair)
-                ),
+                note: format!("This claim type is only available for dismissals on or after {}.", format_commencement_date(ERA_2025.fire_and_rehire_auto_unfair)),
             }),
             SchemaField::new("restricted_variation", "Which Restricted Term Was Changed?", FieldType::Select, true).options(vec![
                 opt("pay", "Pay"),

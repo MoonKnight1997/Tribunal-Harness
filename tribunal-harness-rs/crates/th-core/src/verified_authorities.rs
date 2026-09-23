@@ -120,9 +120,7 @@ pub fn find_authority_by_short_name(name: &str) -> Option<&'static VerifiedAutho
 /// inside `text`, in list order — shortName checked before fullName per entry.
 pub fn find_authority_by_partial_match(text: &str) -> Option<&'static VerifiedAuthority> {
     let lower = text.to_lowercase();
-    VERIFIED_AUTHORITIES
-        .iter()
-        .find(|a| lower.contains(&a.short_name.to_lowercase()) || lower.contains(&a.full_name.to_lowercase()))
+    VERIFIED_AUTHORITIES.iter().find(|a| lower.contains(&a.short_name.to_lowercase()) || lower.contains(&a.full_name.to_lowercase()))
 }
 
 #[cfg(test)]

@@ -12,7 +12,11 @@ const SECTION_H2: &str = "font-family:var(--font-sans);font-weight:600;font-size
 const PURPLE: &str = "color:var(--color-accent-purple)";
 
 pub async fn era_2025(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "ERA 2025 Tracker | Tribunal Harness", description: "Employment Rights Act 2025 commencement tracker — all provisions, dates, and status.", path: "/era-2025" };
+    const META: PageMeta = PageMeta {
+        title: "ERA 2025 Tracker | Tribunal Harness",
+        description: "Employment Rights Act 2025 commencement tracker — all provisions, dates, and status.",
+        path: "/era-2025",
+    };
     let body = html! {
         div style="padding-top:10rem" {
             div class="page-section" {
@@ -79,7 +83,11 @@ const METHODOLOGY_SECTIONS: [(&str, &str); 6] = [
 const DEBATE_SVG: &str = r##"<path d="M100 200 L300 200 L200 70 Z" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2" stroke-dasharray="5 5"/><rect x="70" y="170" width="60" height="60" rx="8" fill="rgba(139,92,246,0.05)" stroke="var(--color-accent-purple)" stroke-width="1.5"/><text x="100" y="210" fill="var(--color-accent-purple)" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">DRAFTER</text><circle cx="100" cy="185" r="4" fill="var(--color-accent-purple)"/><rect x="270" y="170" width="60" height="60" rx="8" fill="rgba(45,212,191,0.05)" stroke="#2dd4bf" stroke-width="1.5"/><text x="300" y="210" fill="#2dd4bf" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">CRITIC</text><circle cx="300" cy="185" r="4" fill="#2dd4bf"/><rect x="170" y="50" width="60" height="60" rx="8" fill="rgba(251,191,36,0.05)" stroke="#fbbf24" stroke-width="1.5"/><text x="200" y="90" fill="#fbbf24" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">JUDGE</text><path d="M190 70 L210 70 M200 65 L200 75" fill="none" stroke="#fbbf24" stroke-width="1.5"/><path d="M130 190 L270 190" fill="none" stroke="var(--color-accent-purple)" stroke-width="1.5"/><polygon points="265,185 273,190 265,195" fill="var(--color-accent-purple)"/><path d="M270 210 L130 210" fill="none" stroke="#2dd4bf" stroke-width="1.5"/><polygon points="135,205 127,210 135,215" fill="#2dd4bf"/><path d="M115 170 L185 110" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="180,115 188,107 178,107" fill="rgba(255,255,255,0.4)"/><path d="M285 170 L215 110" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><polygon points="220,115 212,107 222,107" fill="rgba(255,255,255,0.4)"/>"##;
 
 pub async fn methodology(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Methodology | Tribunal Harness", description: "How we build trustworthy legal AI — from epistemic quarantine to adversarial debate.", path: "/methodology" };
+    const META: PageMeta = PageMeta {
+        title: "Methodology | Tribunal Harness",
+        description: "How we build trustworthy legal AI — from epistemic quarantine to adversarial debate.",
+        path: "/methodology",
+    };
     let body = html! {
         div class="page-section" style="padding-top:10rem;max-width:800px" {
             (page_intro("TECHNICAL METHODOLOGY", "How we build trustworthy legal AI."))
@@ -99,7 +107,11 @@ pub async fn methodology(State(state): State<SharedState>) -> Markup {
 }
 
 pub async fn privacy(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Privacy Policy | Tribunal Harness", description: "How Tribunal Harness collects, uses, and protects your personal data under UK GDPR.", path: "/privacy" };
+    const META: PageMeta = PageMeta {
+        title: "Privacy Policy | Tribunal Harness",
+        description: "How Tribunal Harness collects, uses, and protects your personal data under UK GDPR.",
+        path: "/privacy",
+    };
     let dpo = || html! { a href="mailto:dpo@tribunalharness.co.uk" style=(PURPLE) { "dpo@tribunalharness.co.uk" } };
     let body = html! {
         div class="page-section" style="padding-top:10rem;max-width:800px" {
@@ -200,7 +212,8 @@ const PILLARS: [(&str, &str, &str, &str, &str); 4] = [
 ];
 
 pub async fn product(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Product | Tribunal Harness", description: "Four architectural pillars powering the Tribunal Harness legal intelligence platform.", path: "/product" };
+    const META: PageMeta =
+        PageMeta { title: "Product | Tribunal Harness", description: "Four architectural pillars powering the Tribunal Harness legal intelligence platform.", path: "/product" };
     let body = html! {
         div class="page-section" style="padding-top:10rem" {
             (page_intro("ARCHITECTURE", "Four pillars. One engine."))
@@ -243,7 +256,11 @@ const INDICATORS: [(&str, &str, &str); 4] = [
 const QUARANTINE_SVG: &str = r##"<path d="M50 80 L150 80 L150 220 L50 220" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="4 4"/><text x="100" y="70" fill="var(--color-text-secondary)" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">LLM PARAMETRIC MEMORY</text><path d="M190 60 L210 60 L210 240 L190 240 Z" fill="rgba(139,92,246,0.05)" stroke="var(--color-accent-purple)" stroke-width="1.5"/><text x="200" y="50" fill="var(--color-accent-purple)" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">EPISTEMIC FILTER</text><path d="M250 80 L350 80 L350 220 L250 220" fill="none" stroke="rgba(45,212,191,0.2)" stroke-width="1"/><text x="300" y="70" fill="#2dd4bf" font-size="10" font-family="var(--font-mono)" text-anchor="middle" letter-spacing="0.1em">GROUNDED OUTPUT</text><path d="M100 120 L190 120" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><circle cx="100" cy="120" r="3" fill="#fff"/><path d="M210 120 L300 120" fill="none" stroke="#2dd4bf" stroke-width="2"/><polygon points="295,116 303,120 295,124" fill="#2dd4bf"/><circle cx="210" cy="120" r="4" fill="#2dd4bf"/><path d="M100 160 L190 160" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><circle cx="100" cy="160" r="3" fill="#fff"/><path d="M210 160 L300 160" fill="none" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="6 3"/><polygon points="295,156 303,160 295,164" fill="#fbbf24"/><rect x="208" y="158" width="4" height="4" fill="#fbbf24"/><path d="M100 200 L190 200" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/><circle cx="100" cy="200" r="3" fill="#fff"/><path d="M190 195 L205 205 M190 205 L205 195" stroke="var(--color-error-coral)" stroke-width="2"/><circle cx="197.5" cy="200" r="10" fill="none" stroke="var(--color-error-coral)" stroke-width="1.5"/><path d="M210 200 L300 200" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="2 4"/>"##;
 
 pub async fn security(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Security & Compliance | Tribunal Harness", description: "Our commitment to GDPR compliance, epistemic honesty, and data protection.", path: "/security" };
+    const META: PageMeta = PageMeta {
+        title: "Security & Compliance | Tribunal Harness",
+        description: "Our commitment to GDPR compliance, epistemic honesty, and data protection.",
+        path: "/security",
+    };
     let body = html! {
         div style="padding-top:10rem" {
             div class="page-section" {
@@ -329,7 +346,11 @@ pub async fn security(State(state): State<SharedState>) -> Markup {
 }
 
 pub async fn terms(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Terms of Use | Tribunal Harness", description: "Terms governing use of Tribunal Harness, including legal information disclaimers and limitation of liability.", path: "/terms" };
+    const META: PageMeta = PageMeta {
+        title: "Terms of Use | Tribunal Harness",
+        description: "Terms governing use of Tribunal Harness, including legal information disclaimers and limitation of liability.",
+        path: "/terms",
+    };
     let body = html! {
         div class="page-section" style="padding-top:10rem;max-width:800px" {
             (page_intro("LEGAL", "Terms of Use"))

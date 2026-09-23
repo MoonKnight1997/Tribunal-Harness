@@ -10,21 +10,61 @@ use serde_json::{json, Value};
 pub fn roadmap_stages() -> Vec<Value> {
     let tl = format_commencement_month(ERA_2025.et_time_limit_6_months);
     let qp = format_commencement_month(ERA_2025.qualifying_period_6_months);
-    let s = |id: &str, label: &str, phase: &str, description: &str, actions: &[&str], note: Option<String>| {
-        json!({ "id": id, "label": label, "phase": phase, "description": description, "actions": actions, "era2025_note": note })
-    };
+    let s = |id: &str, label: &str, phase: &str, description: &str, actions: &[&str], note: Option<String>| json!({ "id": id, "label": label, "phase": phase, "description": description, "actions": actions, "era2025_note": note });
     vec![
-        s("PRE_ACTION", "Pre-Action", "ET", "Assess claim viability, gather evidence, calculate time limits", &["Run gap analysis", "Identify claim types", "Calculate deadlines"], Some(format!("Time limits change from {tl} — check which regime applies"))),
-        s("ACAS_EC", "ACAS Early Conciliation", "ET", "Mandatory pre-claim conciliation (up to 6 weeks)", &["Notify ACAS", "Engage in conciliation", "Obtain EC certificate"], None),
+        s(
+            "PRE_ACTION",
+            "Pre-Action",
+            "ET",
+            "Assess claim viability, gather evidence, calculate time limits",
+            &["Run gap analysis", "Identify claim types", "Calculate deadlines"],
+            Some(format!("Time limits change from {tl} — check which regime applies")),
+        ),
+        s(
+            "ACAS_EC",
+            "ACAS Early Conciliation",
+            "ET",
+            "Mandatory pre-claim conciliation (up to 6 weeks)",
+            &["Notify ACAS", "Engage in conciliation", "Obtain EC certificate"],
+            None,
+        ),
         s("ET1_FILED", "ET1 Filed", "ET", "Claim form submitted to Employment Tribunal", &["Complete ET1 form", "Attach supporting documents", "Pay fee (if applicable)"], None),
         s("ET3_RECEIVED", "ET3 Response", "ET", "Respondent files defence (28 days)", &["Review ET3", "Identify disputed facts", "Consider default judgment"], None),
         s("CASE_MANAGED", "Case Management", "ET", "Preliminary hearing for directions", &["Prepare case summary", "Draft proposed directions", "Attend PH"], None),
-        s("DISCLOSURE", "Disclosure", "ET", "Exchange of relevant documents", &["Prepare disclosure list", "Review respondent's disclosure", "Apply for specific disclosure if needed"], None),
-        s("WITNESS_STATEMENTS", "Witness Statements", "ET", "Preparation and simultaneous exchange", &["Draft witness statements", "Obtain supporting statements", "Exchange on deadline"], None),
+        s(
+            "DISCLOSURE",
+            "Disclosure",
+            "ET",
+            "Exchange of relevant documents",
+            &["Prepare disclosure list", "Review respondent's disclosure", "Apply for specific disclosure if needed"],
+            None,
+        ),
+        s(
+            "WITNESS_STATEMENTS",
+            "Witness Statements",
+            "ET",
+            "Preparation and simultaneous exchange",
+            &["Draft witness statements", "Obtain supporting statements", "Exchange on deadline"],
+            None,
+        ),
         s("BUNDLE_PREP", "Bundle Preparation", "ET", "Agreed hearing bundle compiled", &["Agree bundle contents", "Paginate and index", "Submit to tribunal"], None),
-        s("HEARING", "Final Hearing", "ET", "Full merits hearing before tribunal panel", &["Prepare skeleton argument", "Compile authorities bundle", "Attend hearing"], Some(format!("From {qp}: qualifying period for UD = 6 months, no compensatory cap"))),
+        s(
+            "HEARING",
+            "Final Hearing",
+            "ET",
+            "Full merits hearing before tribunal panel",
+            &["Prepare skeleton argument", "Compile authorities bundle", "Attend hearing"],
+            Some(format!("From {qp}: qualifying period for UD = 6 months, no compensatory cap")),
+        ),
         s("JUDGMENT", "Judgment", "ET", "Tribunal decision", &["Request written reasons (14 days)", "Assess grounds of appeal", "Consider remedy hearing"], None),
-        s("EAT_APPEAL", "Notice of Appeal", "EAT", "Appeal on point of law (42 days from written reasons)", &["Draft Notice of Appeal", "Identify error of law", "File with EAT"], None),
+        s(
+            "EAT_APPEAL",
+            "Notice of Appeal",
+            "EAT",
+            "Appeal on point of law (42 days from written reasons)",
+            &["Draft Notice of Appeal", "Identify error of law", "File with EAT"],
+            None,
+        ),
         s("EAT_SIFT", "EAT Sift", "EAT", "Registrar/judge reviews on paper", &["Await sift decision", "Prepare for Rule 3(10) if needed"], None),
         s("EAT_RULE3_10", "Rule 3(10) Hearing", "EAT", "Oral hearing to argue appeal should proceed", &["Prepare oral submissions", "Attend hearing"], None),
         s("EAT_FULL_HEARING", "EAT Full Hearing", "EAT", "Full appeal hearing", &["Prepare skeleton", "Compile authorities", "Attend hearing"], None),

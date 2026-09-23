@@ -11,10 +11,7 @@ pub fn schema() -> ClaimSchema {
             "Was the claimant subjected to a detriment?".into(),
             "Was the detriment because of the protected act?".into(),
         ],
-        key_authorities: vec![
-            "Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841".into(),
-            "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773".into(),
-        ],
+        key_authorities: vec!["Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841".into(), "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773".into()],
         era2025_changes: None,
         fields: vec![
             SchemaField::new("protected_act", "Protected Act", FieldType::Select, true).options(vec![

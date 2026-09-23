@@ -99,7 +99,16 @@ fn arr_len(v: Option<&Value>) -> Option<Value> {
 
 fn section(name: &str, duration_ms: i64, status: u16, checks: Vec<Check>, extract: Value, raw: Value) -> SectionReport {
     let ok = checks.iter().all(|c| c.pass);
-    SectionReport { name: name.to_string(), status: if ok { "OK" } else { "FAIL" }, duration_ms, http_status: Some(status), error: None, extract: Some(extract), raw: Some(raw), checks: Some(checks) }
+    SectionReport {
+        name: name.to_string(),
+        status: if ok { "OK" } else { "FAIL" },
+        duration_ms,
+        http_status: Some(status),
+        error: None,
+        extract: Some(extract),
+        raw: Some(raw),
+        checks: Some(checks),
+    }
 }
 
 fn refinement_checks(body: &Value) -> (Check, Value, Value, Value) {
@@ -127,7 +136,12 @@ async fn run_schema_lookup(app: &Router) -> SectionReport {
         check("schema.label present", body["label"].is_string(), Some(format!("label={}", crate::jsval::template_or_undefined(body.get("label"))))),
         check("schema.statute present", body["statute"].is_string(), Some(format!("statute={}", crate::jsval::template_or_undefined(body.get("statute"))))),
     ];
-    let extract = obj(vec![("label", opt(body.get("label"))), ("statute", opt(body.get("statute"))), ("description", opt(body.get("description"))), ("field_count", arr_len(body.get("fields")))]);
+    let extract = obj(vec![
+        ("label", opt(body.get("label"))),
+        ("statute", opt(body.get("statute"))),
+        ("description", opt(body.get("description"))),
+        ("field_count", arr_len(body.get("fields"))),
+    ]);
     section("schema_lookup", duration, res.status, checks, extract, body)
 }
 
@@ -169,7 +183,11 @@ async fn run_analyse(app: &Router) -> SectionReport {
     let (rc, applied, source, changes) = refinement_checks(&body);
     let checks = vec![
         check("HTTP 200", res.status == 200, Some(format!("got {}", res.status))),
-        check("claims present", body["claims"].is_array(), Some(format!("len={}", body.get("claims").and_then(Value::as_array).map(|a| a.len().to_string()).unwrap_or_else(|| "n/a".into())))),
+        check(
+            "claims present",
+            body["claims"].is_array(),
+            Some(format!("len={}", body.get("claims").and_then(Value::as_array).map(|a| a.len().to_string()).unwrap_or_else(|| "n/a".into()))),
+        ),
         check("authorities present", body["authorities"].is_array(), Some(format!("len={}", authorities.len()))),
         check("statutory_provisions present", body["statutory_provisions"].is_array(), None),
         check("procedural_notes present", body["procedural_notes"].is_array(), None),
@@ -182,7 +200,14 @@ async fn run_analyse(app: &Router) -> SectionReport {
         rc,
     ];
     let first_authority = first
-        .map(|f| obj(vec![("name", opt(f.get("name"))), ("citation", opt(f.get("citation"))), ("trust_level", opt(f.get("trust_level"))), ("verification_source", opt(f.get("verification_source")))]))
+        .map(|f| {
+            obj(vec![
+                ("name", opt(f.get("name"))),
+                ("citation", opt(f.get("citation"))),
+                ("trust_level", opt(f.get("trust_level"))),
+                ("verification_source", opt(f.get("verification_source"))),
+            ])
+        })
         .unwrap_or(Value::Null);
     let extract = obj(vec![
         ("claim_count", arr_len(body.get("claims"))),
@@ -206,7 +231,15 @@ async fn run_deadlines(app: &Router) -> SectionReport {
     let deadlines: Vec<Value> = body.get("deadlines").and_then(Value::as_array).cloned().unwrap_or_default();
     let first = deadlines.first();
     let regime_raw = first.and_then(|f| f.get("regime")).and_then(Value::as_str).map(str::to_string);
-    let regime_normalised: Option<&str> = regime_raw.as_deref().and_then(|r| if r.starts_with("post") { Some("post") } else if r.starts_with("pre") { Some("pre") } else { None });
+    let regime_normalised: Option<&str> = regime_raw.as_deref().and_then(|r| {
+        if r.starts_with("post") {
+            Some("post")
+        } else if r.starts_with("pre") {
+            Some("pre")
+        } else {
+            None
+        }
+    });
     let checks = vec![
         check("HTTP 200", res.status == 200, Some(format!("got {}", res.status))),
         check("at least one deadline returned", !deadlines.is_empty(), Some(format!("count={}", deadlines.len()))),
@@ -215,8 +248,16 @@ async fn run_deadlines(app: &Router) -> SectionReport {
             first.map(|f| f.get("original_deadline").or(f.get("deadline_date")).map(Value::is_string).unwrap_or(false)).unwrap_or(false),
             Some(first.map(|f| format!("original_deadline={}", crate::jsval::template_or_undefined(f.get("original_deadline")))).unwrap_or_else(|| "no deadlines".into())),
         ),
-        check("regime is 'pre' or 'post'", matches!(regime_normalised, Some("pre") | Some("post")), Some(format!("raw={} normalised={}", regime_raw.clone().unwrap_or_else(|| "undefined".into()), regime_normalised.unwrap_or("null")))),
-        check("claim_type present", first.map(|f| f["claim_type"].is_string()).unwrap_or(false), Some(first.map(|f| format!("claim_type={}", crate::jsval::template_or_undefined(f.get("claim_type")))).unwrap_or_else(|| "no deadlines".into()))),
+        check(
+            "regime is 'pre' or 'post'",
+            matches!(regime_normalised, Some("pre") | Some("post")),
+            Some(format!("raw={} normalised={}", regime_raw.clone().unwrap_or_else(|| "undefined".into()), regime_normalised.unwrap_or("null"))),
+        ),
+        check(
+            "claim_type present",
+            first.map(|f| f["claim_type"].is_string()).unwrap_or(false),
+            Some(first.map(|f| format!("claim_type={}", crate::jsval::template_or_undefined(f.get("claim_type")))).unwrap_or_else(|| "no deadlines".into())),
+        ),
     ];
     let first_deadline = first
         .map(|f| {

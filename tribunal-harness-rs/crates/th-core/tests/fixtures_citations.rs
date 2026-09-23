@@ -14,7 +14,7 @@ fn validate_citation_cases() {
         assert_json_eq(&to_value(&r), &c["result"], &format!("validate {:?}", c["input"]));
     }
     for c in f["extract_validator"].as_array().unwrap() {
-        assert_eq!(extract_neutral_citation(c["input"].as_str().unwrap()).as_deref(), c["result"].as_str(), "extract(validator) {:?}", c["input"]);
+        assert_eq!(th_core::citation_validator::extract_neutral_citation(c["input"].as_str().unwrap()).as_deref(), c["result"].as_str(), "extract(validator) {:?}", c["input"]);
     }
     for c in f["extract_fcl"].as_array().unwrap() {
         assert_eq!(th_core::find_case_law::extract_neutral_citation(c["input"].as_str().unwrap()).as_deref(), c["result"].as_str(), "extract(fcl) {:?}", c["input"]);
@@ -116,11 +116,7 @@ fn authoritative_merge_cases() {
         assert_eq!(fetched, c["fetched"].as_u64().unwrap() > 0, "fetch gating {citation:?}");
     }
     let batch = f["batch_abort"].clone();
-    let results: Vec<AuthoritativeValidation> = batch["results"]
-        .as_array()
-        .unwrap()
-        .iter()
-        .map(|r| authoritative_offline(r["originalCitation"].as_str().unwrap(), None, "abort", &feeds).0)
-        .collect();
+    let results: Vec<AuthoritativeValidation> =
+        batch["results"].as_array().unwrap().iter().map(|r| authoritative_offline(r["originalCitation"].as_str().unwrap(), None, "abort", &feeds).0).collect();
     assert_json_eq(&json!({"results": results, "summary": summarise_authoritative(&results)}), &batch, "batch abort");
 }

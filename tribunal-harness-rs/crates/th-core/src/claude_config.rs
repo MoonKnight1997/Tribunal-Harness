@@ -76,13 +76,76 @@ pub struct EndpointConfig {
 
 /// Per-endpoint Claude configuration, in the TypeScript declaration order.
 pub const ENDPOINT_CONFIG: [(&str, EndpointConfig); 7] = [
-    ("triage", EndpointConfig { model: models::HAIKU, effort: EffortLevel::Low, max_tokens: 2048, thinking: ThinkingConfig::disabled(), temperature: Some(0.3), label: "Triage (Haiku)" }),
-    ("analyse", EndpointConfig { model: models::SONNET, effort: EffortLevel::Medium, max_tokens: 16_000, thinking: ThinkingConfig::enabled(10_000), temperature: Some(0.3), label: "Analysis (Sonnet)" }),
-    ("analyse_complex", EndpointConfig { model: models::OPUS, effort: EffortLevel::High, max_tokens: 24_000, thinking: ThinkingConfig::enabled(20_000), temperature: Some(0.3), label: "Analysis Complex (Opus)" }),
-    ("drafter", EndpointConfig { model: models::SONNET, effort: EffortLevel::Medium, max_tokens: 12_000, thinking: ThinkingConfig::enabled(8_000), temperature: Some(0.3), label: "Drafter (Sonnet)" }),
-    ("critic", EndpointConfig { model: models::OPUS, effort: EffortLevel::High, max_tokens: 20_000, thinking: ThinkingConfig::enabled(15_000), temperature: Some(0.7), label: "Critic (Opus)" }),
-    ("judge", EndpointConfig { model: models::OPUS, effort: EffortLevel::Medium, max_tokens: 14_000, thinking: ThinkingConfig::enabled(10_000), temperature: Some(0.1), label: "Judge (Opus)" }),
-    ("refine", EndpointConfig { model: models::SONNET, effort: EffortLevel::Low, max_tokens: 4000, thinking: ThinkingConfig::disabled(), temperature: Some(0.2), label: "Legal-writing refinement (Sonnet)" }),
+    (
+        "triage",
+        EndpointConfig { model: models::HAIKU, effort: EffortLevel::Low, max_tokens: 2048, thinking: ThinkingConfig::disabled(), temperature: Some(0.3), label: "Triage (Haiku)" },
+    ),
+    (
+        "analyse",
+        EndpointConfig {
+            model: models::SONNET,
+            effort: EffortLevel::Medium,
+            max_tokens: 16_000,
+            thinking: ThinkingConfig::enabled(10_000),
+            temperature: Some(0.3),
+            label: "Analysis (Sonnet)",
+        },
+    ),
+    (
+        "analyse_complex",
+        EndpointConfig {
+            model: models::OPUS,
+            effort: EffortLevel::High,
+            max_tokens: 24_000,
+            thinking: ThinkingConfig::enabled(20_000),
+            temperature: Some(0.3),
+            label: "Analysis Complex (Opus)",
+        },
+    ),
+    (
+        "drafter",
+        EndpointConfig {
+            model: models::SONNET,
+            effort: EffortLevel::Medium,
+            max_tokens: 12_000,
+            thinking: ThinkingConfig::enabled(8_000),
+            temperature: Some(0.3),
+            label: "Drafter (Sonnet)",
+        },
+    ),
+    (
+        "critic",
+        EndpointConfig {
+            model: models::OPUS,
+            effort: EffortLevel::High,
+            max_tokens: 20_000,
+            thinking: ThinkingConfig::enabled(15_000),
+            temperature: Some(0.7),
+            label: "Critic (Opus)",
+        },
+    ),
+    (
+        "judge",
+        EndpointConfig {
+            model: models::OPUS,
+            effort: EffortLevel::Medium,
+            max_tokens: 14_000,
+            thinking: ThinkingConfig::enabled(10_000),
+            temperature: Some(0.1),
+            label: "Judge (Opus)",
+        },
+    ),
+    (
+        "refine",
+        EndpointConfig {
+            model: models::SONNET,
+            effort: EffortLevel::Low,
+            max_tokens: 4000,
+            thinking: ThinkingConfig::disabled(),
+            temperature: Some(0.2),
+            label: "Legal-writing refinement (Sonnet)",
+        },
+    ),
 ];
 
 /// Get the endpoint config, warning and falling back to `analyse` if the key

@@ -30,5 +30,4 @@ pub mod ui_view;
 pub mod verified_authorities;
 
 /// The Legal Services Act 2007 disclaimer sentence used across the product.
-pub const LSA_DISCLAIMER: &str =
-    "This tool provides legal information, not legal advice. It does not create a solicitor-client relationship.";
+pub const LSA_DISCLAIMER: &str = "This tool provides legal information, not legal advice. It does not create a solicitor-client relationship.";

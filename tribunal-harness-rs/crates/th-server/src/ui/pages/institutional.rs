@@ -12,7 +12,8 @@ use th_core::constants::{TrackerStatus, CLAIM_TYPES, ERA_2025_TRACKER};
 const PURPLE_LINK: &str = "color:var(--color-accent-purple);text-decoration:underline";
 
 pub async fn about(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "About | Tribunal Harness", description: "Closing the information asymmetry between litigants-in-person and represented parties.", path: "/about" };
+    const META: PageMeta =
+        PageMeta { title: "About | Tribunal Harness", description: "Closing the information asymmetry between litigants-in-person and represented parties.", path: "/about" };
     let body = html! {
         div class="theme-light page-section" style="padding-top:10rem;max-width:800px" {
             (page_intro("MISSION", "Closing the information gap."))
@@ -107,7 +108,11 @@ pub async fn contact(State(state): State<SharedState>) -> Markup {
 }
 
 pub async fn documentation(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "Documentation | Tribunal Harness", description: "Architecture overview, claim types, trust indicators, and ERA 2025 Implementation Tracker.", path: "/documentation" };
+    const META: PageMeta = PageMeta {
+        title: "Documentation | Tribunal Harness",
+        description: "Architecture overview, claim types, trust indicators, and ERA 2025 Implementation Tracker.",
+        path: "/documentation",
+    };
     let body = html! {
         div class="theme-light" style="padding-top:10rem" {
             div class="page-section" {
@@ -166,10 +171,21 @@ const STEPS: [(&str, &str, &str); 4] = [
     ("04", "Procedural Roadmap", "See your full procedural journey from pre-action through to the Court of Appeal. Key deadlines are calculated automatically — with ERA 2025 time limit changes applied."),
 ];
 
-const FEATURED_KEYS: [&str; 6] = ["INDUSTRIAL_ACTION_DISMISSAL", "SEXUAL_HARASSMENT_WHISTLEBLOWING", "ET_TIME_LIMIT_6_MONTHS", "HARASSMENT_ALL_REASONABLE_STEPS", "QUALIFYING_PERIOD_6_MONTHS", "FIRE_AND_REHIRE_AUTO_UNFAIR"];
+const FEATURED_KEYS: [&str; 6] = [
+    "INDUSTRIAL_ACTION_DISMISSAL",
+    "SEXUAL_HARASSMENT_WHISTLEBLOWING",
+    "ET_TIME_LIMIT_6_MONTHS",
+    "HARASSMENT_ALL_REASONABLE_STEPS",
+    "QUALIFYING_PERIOD_6_MONTHS",
+    "FIRE_AND_REHIRE_AUTO_UNFAIR",
+];
 
 pub async fn how_it_works(State(state): State<SharedState>) -> Markup {
-    const META: PageMeta = PageMeta { title: "How It Works | Tribunal Harness", description: "Step-by-step walkthrough of how Tribunal Harness analyses employment tribunal claims.", path: "/how-it-works" };
+    const META: PageMeta = PageMeta {
+        title: "How It Works | Tribunal Harness",
+        description: "Step-by-step walkthrough of how Tribunal Harness analyses employment tribunal claims.",
+        path: "/how-it-works",
+    };
     let body = html! {
         div class="theme-light" style="padding-top:10rem" {
             div class="page-section" {
@@ -223,9 +239,27 @@ struct Tier {
 }
 
 const TIERS: [Tier; 3] = [
-    Tier { name: "LiP Access", price: "Free", period: "during beta", features: &["10 claim analyses per month", "All 10 claim type schemas", "Deadline calculator", "ERA 2025 tracker", "Basic document triage"], highlight: false },
-    Tier { name: "Professional", price: "£49", period: "/month", features: &["Unlimited analyses", "Adversarial Risk Analysis", "Advanced document triage", "Case law database search", "Custom Strategy Schemas", "Priority support"], highlight: true },
-    Tier { name: "Legal Aid", price: "£0", period: "always free", features: &["Unlimited analyses", "Full feature access", "For verified legal aid providers", "Supporting access to justice", "Contact us to verify"], highlight: false },
+    Tier {
+        name: "LiP Access",
+        price: "Free",
+        period: "during beta",
+        features: &["10 claim analyses per month", "All 10 claim type schemas", "Deadline calculator", "ERA 2025 tracker", "Basic document triage"],
+        highlight: false,
+    },
+    Tier {
+        name: "Professional",
+        price: "£49",
+        period: "/month",
+        features: &["Unlimited analyses", "Adversarial Risk Analysis", "Advanced document triage", "Case law database search", "Custom Strategy Schemas", "Priority support"],
+        highlight: true,
+    },
+    Tier {
+        name: "Legal Aid",
+        price: "£0",
+        period: "always free",
+        features: &["Unlimited analyses", "Full feature access", "For verified legal aid providers", "Supporting access to justice", "Contact us to verify"],
+        highlight: false,
+    },
 ];
 
 pub async fn pricing(State(state): State<SharedState>) -> Markup {

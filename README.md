@@ -80,3 +80,14 @@ tribunal-harness/                # repo root (Vite prototype lives here)
 ## Status
 
 In active development. The schema-driven analysis engine, deadline calculator, ERA 2025 tracker, live case-law lookup, 3-agent debate engine, Noir design system, and compliance infrastructure (GDPR, LSA 2007) are implemented and covered by 215 passing tests. Open items: a managed API layer to replace BYOK as the default data flow (required before institutional pilots), and the durable Temporal.io state machine (Phase 4).
+
+## Rust rebuild (`tribunal-harness-rs/`)
+
+`tribunal-harness-rs/` is a Rust port of the `tribunal-harness/` Next.js app with the same API routes, JSON payloads, pages and legal content (statutory dates, time limits, bank holidays, the curated authority list, disclaimers, rubric text and system prompts ported verbatim). Server side it is Axum with no Node at runtime; the UI is server-rendered with `maud`, and the app's `globals.css` is compiled once by the Tailwind standalone CLI and embedded in the binary. Parity with the TypeScript app is established by fixture-diff tests recorded from the TypeScript code itself — see [`tribunal-harness-rs/README.md`](tribunal-harness-rs/README.md) and [`tribunal-harness-rs/PARITY.md`](tribunal-harness-rs/PARITY.md). The Next.js app remains the reference build and is unchanged.
+
+```bash
+cd tribunal-harness-rs
+cargo test --workspace                     # hermetic, no network, no API key
+LLM_PROVIDER=agent cargo run --bin smoke   # end-to-end smoke run with the offline stand-in
+cargo run --bin th-server                  # http://localhost:3000
+```

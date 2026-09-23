@@ -65,12 +65,7 @@ fn between<'a>(s: &'a str, open: &str, close: &str) -> Option<&'a str> {
 fn main_text_nodes(html: &str) -> Vec<String> {
     let main = between(html, "<main>", "</main>").expect("fixture has <main>");
     let no_scripts = SCRIPT_RE.replace_all(main, " ");
-    no_scripts
-        .split('<')
-        .filter_map(|chunk| chunk.split_once('>').map(|(_, text)| text))
-        .map(|t| normalise_ws(&decode_entities(t)))
-        .filter(|t| t.chars().count() >= 12)
-        .collect()
+    no_scripts.split('<').filter_map(|chunk| chunk.split_once('>').map(|(_, text)| text)).map(|t| normalise_ws(&decode_entities(t))).filter(|t| t.chars().count() >= 12).collect()
 }
 
 fn headings(html: &str) -> Vec<String> {
@@ -149,13 +144,29 @@ async fn consent_gates_and_nav_are_present() {
     for route in ["/", "/adversarial-debate"] {
         let html = call(&app, get(route)).await.text();
         let text = visible_text(&html);
-        assert!(squash(&text).contains(&squash("I understand this tool provides legal information, not legal advice. I consent to my case description being processed by Tribunal Harness and Anthropic")), "{route}: consent wording");
+        assert!(
+            squash(&text).contains(&squash(
+                "I understand this tool provides legal information, not legal advice. I consent to my case description being processed by Tribunal Harness and Anthropic"
+            )),
+            "{route}: consent wording"
+        );
         assert!(html.contains("type=\"checkbox\""), "{route}: consent checkbox");
         // The run button starts disabled until consent is given.
         assert!(html.contains("disabled"), "{route}: run button disabled");
     }
     let html = call(&app, get("/about")).await.text();
-    for (href, label) in [("/how-it-works", "How It Works"), ("/analysis-engine", "Analysis"), ("/documentation", "Docs"), ("/pricing", "Pricing"), ("/about", "About"), ("/security", "Security"), ("/ethics", "Ethics"), ("/methodology", "Methodology"), ("/blog", "Blog"), ("/request-access", "Request Access")] {
+    for (href, label) in [
+        ("/how-it-works", "How It Works"),
+        ("/analysis-engine", "Analysis"),
+        ("/documentation", "Docs"),
+        ("/pricing", "Pricing"),
+        ("/about", "About"),
+        ("/security", "Security"),
+        ("/ethics", "Ethics"),
+        ("/methodology", "Methodology"),
+        ("/blog", "Blog"),
+        ("/request-access", "Request Access"),
+    ] {
         assert!(html.contains(&format!("href=\"{href}\"")), "nav link {href}");
         assert!(html.contains(label), "nav label {label}");
     }
@@ -166,7 +177,12 @@ async fn consent_gates_and_nav_are_present() {
     // Static assets are served from the binary.
     let css = call(&app, get("/static/app.css")).await;
     assert_eq!(css.status, 200);
-    assert!(css.text().contains(".theme-light"));
+    let css_text = css.text();
+    assert!(css_text.contains(".theme-light"));
+    // Noir design tokens (F12): pure black, purple accent, cream footer.
+    for token in ["--color-bg-primary:#000", "--color-accent-purple:#8b5cf6", "--color-bg-cream:#e8e3d5", ".glass-thick", ".nav-pill", ".site-footer"] {
+        assert!(css_text.to_lowercase().contains(token), "stylesheet lacks {token}");
+    }
     let font = call(&app, get("/static/fonts/outfit-normal-300_600.woff2")).await;
     assert_eq!(font.status, 200);
     assert_eq!(&font.body[..4], b"wOF2");
@@ -281,7 +297,10 @@ async fn schema_and_case_law_fragments() {
     let text = visible_text(&res.text());
     // The seed scorer awards tier points even without a text match, so the
     // recorded TypeScript response for q=Polkey has 10 results (Polkey first).
-    assert!(text.contains("10 results — seed data v1") && text.contains("Polkey v AE Dayton Services Ltd") && text.contains("BINDING") && text.contains("unfair dismissal"), "{text}");
+    assert!(
+        text.contains("10 results — seed data v1") && text.contains("Polkey v AE Dayton Services Ltd") && text.contains("BINDING") && text.contains("unfair dismissal"),
+        "{text}"
+    );
     assert!(text.find("Polkey v AE Dayton Services Ltd").unwrap() < text.find("Various Claimants v Wm Morrison Supermarkets plc").unwrap());
     // (A text-only miss still returns tier-scored cases; an unmatched claim type is empty.)
     let res = call(&app, get("/_ui/fragments/case-law-results?claim_type=nonexistent_type&limit=10")).await;

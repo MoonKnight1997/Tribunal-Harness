@@ -10,7 +10,9 @@ use th_core::dates::CivilDate;
 use th_core::seed_cases::SearchOutcome;
 use th_core::types::{ClaimSchema, ClaimStrength, EraFlagStatus, TrustLevel};
 use th_core::ui_view::analysis_results::{build_analysis_results_view, flag_status_label};
-use th_core::ui_view::debate_modes::{describe_rounds, format_usage, get_argument_text, get_score, get_synthesis_text, partition_authorities, viability_label, DebateMode, DisplayAuthority};
+use th_core::ui_view::debate_modes::{
+    describe_rounds, format_usage, get_argument_text, get_score, get_synthesis_text, partition_authorities, viability_label, DebateMode, DisplayAuthority,
+};
 
 // ─── Badge ───────────────────────────────────────────────────────────────
 
@@ -377,42 +379,47 @@ fn round_view(round: &Value, heading: Option<String>, highlight: bool) -> Markup
     let critic_auth = partition_authorities(critic.and_then(|c| c.get("attacks")), None);
     let quarantined = drafter_auth.quarantined + critic_auth.quarantined;
     let variant = if highlight { CardVariant::Solid } else { CardVariant::Wireframe };
-    card(variant, "", if highlight { Some("border-color:rgba(139,92,246,0.35)") } else { None }, html! {
-        @if let Some(h) = &heading {
-            div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem" {
-                h4 style="font-size:1rem;font-weight:600;margin:0" { (h) }
-                @if let Some(sc) = score {
-                    (badge(viability_badge(viable), "", html! { "SCORE " (fmt_score(sc)) " / 100" }))
-                }
-            }
-        }
-        @if !argument.is_empty() {
-            (agent_section(&icons::SCALE, "Drafter — strongest case", html! { p style=(PROSE_STYLE) { (argument) } }))
-        }
-        @if !drafter_auth.displayed.is_empty() { (authority_list(&drafter_auth.displayed)) }
-        @if !critic_auth.displayed.is_empty() {
-            (agent_section(&icons::SWORD, "Critic — opposing counsel's attacks", authority_list(&critic_auth.displayed)))
-        }
-        @if !synthesis.is_empty() {
-            (agent_section(&icons::GAVEL, "Judge — assessment", html! {
-                p style=(PROSE_STYLE) { (synthesis) }
-                @if let (Some(sc), None) = (score, &heading) {
-                    div style="margin-top:0.6rem" {
-                        (badge(viability_badge(viable), "", html! { "SCORE " (fmt_score(sc)) " / 100 · " (viability_label(viable)) }))
+    card(
+        variant,
+        "",
+        if highlight { Some("border-color:rgba(139,92,246,0.35)") } else { None },
+        html! {
+            @if let Some(h) = &heading {
+                div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem" {
+                    h4 style="font-size:1rem;font-weight:600;margin:0" { (h) }
+                    @if let Some(sc) = score {
+                        (badge(viability_badge(viable), "", html! { "SCORE " (fmt_score(sc)) " / 100" }))
                     }
                 }
-            }))
-        }
-        @if quarantined > 0 {
-            div style="display:flex;align-items:flex-start;gap:0.6rem;margin-top:1rem;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(239, 68, 68, 0.3);background:rgba(239, 68, 68, 0.06)" {
-                (icon(&icons::SHIELD_OFF, 16, "", "flex-shrink:0;margin-top:2px", Some("#ef4444")))
-                p style="font-size:0.78rem;color:var(--color-text-secondary);margin:0;line-height:1.5" {
-                    strong style="color:#ef4444" { (quarantined) " ungrounded citation" (if quarantined == 1 { "" } else { "s" }) " withheld." }
-                    " Citations that could not be verified against a known authority were quarantined and stripped from this round."
+            }
+            @if !argument.is_empty() {
+                (agent_section(&icons::SCALE, "Drafter — strongest case", html! { p style=(PROSE_STYLE) { (argument) } }))
+            }
+            @if !drafter_auth.displayed.is_empty() { (authority_list(&drafter_auth.displayed)) }
+            @if !critic_auth.displayed.is_empty() {
+                (agent_section(&icons::SWORD, "Critic — opposing counsel's attacks", authority_list(&critic_auth.displayed)))
+            }
+            @if !synthesis.is_empty() {
+                (agent_section(&icons::GAVEL, "Judge — assessment", html! {
+                    p style=(PROSE_STYLE) { (synthesis) }
+                    @if let (Some(sc), None) = (score, &heading) {
+                        div style="margin-top:0.6rem" {
+                            (badge(viability_badge(viable), "", html! { "SCORE " (fmt_score(sc)) " / 100 · " (viability_label(viable)) }))
+                        }
+                    }
+                }))
+            }
+            @if quarantined > 0 {
+                div style="display:flex;align-items:flex-start;gap:0.6rem;margin-top:1rem;padding:0.75rem 1rem;border-radius:6px;border:1px solid rgba(239, 68, 68, 0.3);background:rgba(239, 68, 68, 0.06)" {
+                    (icon(&icons::SHIELD_OFF, 16, "", "flex-shrink:0;margin-top:2px", Some("#ef4444")))
+                    p style="font-size:0.78rem;color:var(--color-text-secondary);margin:0;line-height:1.5" {
+                        strong style="color:#ef4444" { (quarantined) " ungrounded citation" (if quarantined == 1 { "" } else { "s" }) " withheld." }
+                        " Citations that could not be verified against a known authority were quarantined and stripped from this round."
+                    }
                 }
             }
-        }
-    })
+        },
+    )
 }
 
 pub fn debate_results(result: &Value) -> Markup {
@@ -429,11 +436,8 @@ pub fn debate_results(result: &Value) -> Markup {
             "viable": result.get("viable").cloned().unwrap_or(Value::Null),
         }))
     };
-    let final_viable: Option<bool> = if mode == DebateMode::Adversarial {
-        result.get("final").and_then(|f| f.get("viable")).and_then(Value::as_bool)
-    } else {
-        result.get("viable").and_then(Value::as_bool)
-    };
+    let final_viable: Option<bool> =
+        if mode == DebateMode::Adversarial { result.get("final").and_then(|f| f.get("viable")).and_then(Value::as_bool) } else { result.get("viable").and_then(Value::as_bool) };
     let rounds_run = result.get("rounds_run").and_then(Value::as_i64);
     let stopped_early = result.get("stopped_early").and_then(Value::as_bool).unwrap_or(false);
     html! {

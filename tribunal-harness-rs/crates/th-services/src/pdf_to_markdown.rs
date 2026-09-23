@@ -10,13 +10,7 @@ use crate::http::{HttpClient, HttpError, HttpRequest};
 use serde::Serialize;
 use std::time::Duration;
 
-const ALLOWED_HOSTS: [&str; 5] = [
-    "caselaw.nationalarchives.gov.uk",
-    "assets.caselaw.nationalarchives.gov.uk",
-    "www.bailii.org",
-    "www.legislation.gov.uk",
-    "www.gov.uk",
-];
+const ALLOWED_HOSTS: [&str; 5] = ["caselaw.nationalarchives.gov.uk", "assets.caselaw.nationalarchives.gov.uk", "www.bailii.org", "www.legislation.gov.uk", "www.gov.uk"];
 
 const MAX_PDF_BYTES: usize = 20 * 1024 * 1024; // 20 MB
 const DEFAULT_TIMEOUT_MS: u64 = 20_000;
@@ -124,9 +118,7 @@ pub fn pdf_buffer_to_markdown(buffer: &[u8]) -> PdfMarkdownResult {
     // pdf-extract panics on some malformed inputs; contain that like a thrown
     // JS error would be caught.
     let extracted = std::panic::catch_unwind(|| pdf_extract::extract_text_from_mem(buffer));
-    let pages = std::panic::catch_unwind(|| lopdf::Document::load_mem(buffer).ok().map(|d| d.get_pages().len() as u64))
-        .ok()
-        .flatten();
+    let pages = std::panic::catch_unwind(|| lopdf::Document::load_mem(buffer).ok().map(|d| d.get_pages().len() as u64)).ok().flatten();
     match extracted {
         Ok(Ok(text)) => {
             let md = tidy_to_markdown(&text);
@@ -245,7 +237,7 @@ pub async fn fetch_pdf_as_markdown(http: &dyn HttpClient, url: &str, timeout_ms:
         }
         return PdfMarkdownResult::err(PdfStatus::Error, format!("Source returned {}.", resp.status)).with_source(url);
     }
-    let declared = resp.header("content-length").and_then(|v| th_core::jsnum::js_parse_int(v)).unwrap_or(0);
+    let declared = resp.header("content-length").and_then(th_core::jsnum::js_parse_int).unwrap_or(0);
     if declared > 0 && declared as usize > MAX_PDF_BYTES {
         return PdfMarkdownResult::err(PdfStatus::TooLarge, format!("PDF too large ({declared} bytes).")).with_source(url);
     }

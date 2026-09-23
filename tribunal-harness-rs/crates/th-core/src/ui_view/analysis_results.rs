@@ -20,12 +20,7 @@ pub fn build_analysis_results_view(results: &Value) -> AnalysisResultsView {
     let normalised = normalise_analyse_response(results);
     let displayed: Vec<Authority> = normalised.authorities.iter().filter(|a| a.trust_level != Some(TrustLevel::Quarantined)).cloned().collect();
     let stripped_in_list = normalised.authorities.len() - displayed.len();
-    let summary_quarantined = results
-        .get("quarantine_summary")
-        .and_then(|s| s.get("quarantined"))
-        .and_then(Value::as_f64)
-        .map(|f| f.max(0.0) as usize)
-        .unwrap_or(0);
+    let summary_quarantined = results.get("quarantine_summary").and_then(|s| s.get("quarantined")).and_then(Value::as_f64).map(|f| f.max(0.0) as usize).unwrap_or(0);
     AnalysisResultsView {
         claims: normalised.claims,
         displayed_authorities: displayed,

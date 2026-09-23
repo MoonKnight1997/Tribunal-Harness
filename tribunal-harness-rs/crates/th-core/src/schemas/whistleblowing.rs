@@ -53,8 +53,7 @@ pub fn schema() -> ClaimSchema {
                 opt("prescribed_person", "Prescribed person / regulator"),
                 opt("other", "Other (wider disclosure)"),
             ]),
-            SchemaField::new("public_interest", "Public Interest Element", FieldType::Textarea, true)
-                .help("Explain why this disclosure was in the public interest."),
+            SchemaField::new("public_interest", "Public Interest Element", FieldType::Textarea, true).help("Explain why this disclosure was in the public interest."),
             SchemaField::new("detriment_or_dismissal", "Detriment or Dismissal", FieldType::Select, true).options(vec![
                 opt("detriment", "Subjected to detriment"),
                 opt("dismissal", "Dismissed"),

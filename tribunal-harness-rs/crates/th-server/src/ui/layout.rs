@@ -24,7 +24,8 @@ impl PageMeta {
     }
 }
 
-const NAV_LINKS: [(&str, &str); 5] = [("/how-it-works", "How It Works"), ("/analysis-engine", "Analysis"), ("/documentation", "Docs"), ("/pricing", "Pricing"), ("/about", "About")];
+const NAV_LINKS: [(&str, &str); 5] =
+    [("/how-it-works", "How It Works"), ("/analysis-engine", "Analysis"), ("/documentation", "Docs"), ("/pricing", "Pricing"), ("/about", "About")];
 const TRUST_LINKS: [(&str, &str); 3] = [("/security", "Security"), ("/ethics", "Ethics"), ("/methodology", "Methodology")];
 const PLATFORM_LINKS: [(&str, &str); 6] = [
     ("/how-it-works", "How It Works"),

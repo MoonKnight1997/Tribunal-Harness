@@ -99,12 +99,8 @@ pub fn decode_entities(s: &str) -> String {
         "apos" | "#39" => "'",
         _ => "",
     });
-    let hex = HEX_ENTITY_RE.replace_all(&named, |c: &regex::Captures| {
-        u32::from_str_radix(&c[1], 16).ok().and_then(char::from_u32).map(String::from).unwrap_or_default()
-    });
-    let dec = DEC_ENTITY_RE.replace_all(&hex, |c: &regex::Captures| {
-        c[1].parse::<u32>().ok().and_then(char::from_u32).map(String::from).unwrap_or_default()
-    });
+    let hex = HEX_ENTITY_RE.replace_all(&named, |c: &regex::Captures| u32::from_str_radix(&c[1], 16).ok().and_then(char::from_u32).map(String::from).unwrap_or_default());
+    let dec = DEC_ENTITY_RE.replace_all(&hex, |c: &regex::Captures| c[1].parse::<u32>().ok().and_then(char::from_u32).map(String::from).unwrap_or_default());
     dec.trim().to_string()
 }
 
@@ -232,12 +228,7 @@ pub fn status_for_response(code: u16) -> (LookupStatus, String) {
 pub fn envelope_from_feed(xml: &str, limit: usize) -> SearchEnvelope {
     let ParsedFeed { hits, total } = parse_atom_feed(xml, limit);
     if hits.is_empty() {
-        return SearchEnvelope {
-            status: LookupStatus::Empty,
-            results: vec![],
-            detail: Some("No matching judgments in Find Case Law (coverage is ~2003 onward).".into()),
-            total,
-        };
+        return SearchEnvelope { status: LookupStatus::Empty, results: vec![], detail: Some("No matching judgments in Find Case Law (coverage is ~2003 onward).".into()), total };
     }
     SearchEnvelope { status: LookupStatus::Ok, results: hits, detail: None, total }
 }
@@ -305,32 +296,17 @@ pub fn decide_verification(q: &VerifyQuery, env: &SearchEnvelope) -> (VerifyResu
     if matches!(env.status, LookupStatus::Empty | LookupStatus::NotFound) || env.results.is_empty() {
         let reason = match &q.ncn {
             Some(n) => format!("Neutral citation {n} not found in Find Case Law (note: coverage is ~2003 onward)."),
-            None => format!(
-                "No Find Case Law match for \"{}\".",
-                if !q.case_name.is_empty() { &q.case_name } else { &q.citation }
-            ),
+            None => format!("No Find Case Law match for \"{}\".", if !q.case_name.is_empty() { &q.case_name } else { &q.citation }),
         };
         return (
-            VerifyResult {
-                trust_level: TrustLevel::Quarantined,
-                reason,
-                source: VerifySource::FindCaseLaw,
-                matched_title: None,
-                matched_citation: None,
-                slug: None,
-                url: None,
-            },
+            VerifyResult { trust_level: TrustLevel::Quarantined, reason, source: VerifySource::FindCaseLaw, matched_title: None, matched_citation: None, slug: None, url: None },
             true,
         );
     }
 
     if let Some(ncn) = &q.ncn {
         let wanted = normalise_citation(ncn);
-        if let Some(exact) = env
-            .results
-            .iter()
-            .find(|h| h.neutral_citation.as_deref().map(normalise_citation) == Some(wanted.clone()))
-        {
+        if let Some(exact) = env.results.iter().find(|h| h.neutral_citation.as_deref().map(normalise_citation) == Some(wanted.clone())) {
             // A matching neutral-citation NUMBER is not sufficient: cross-check
             // the cited party name against the matched title.
             let name_to_check = if !q.case_name.is_empty() {
@@ -365,11 +341,7 @@ pub fn decide_verification(q: &VerifyQuery, env: &SearchEnvelope) -> (VerifyResu
             return (
                 VerifyResult {
                     trust_level: TrustLevel::Verified,
-                    reason: format!(
-                        "Exact neutral-citation match in Find Case Law: {} — {}.",
-                        exact.neutral_citation.clone().unwrap_or_default(),
-                        exact.title
-                    ),
+                    reason: format!("Exact neutral-citation match in Find Case Law: {} — {}.", exact.neutral_citation.clone().unwrap_or_default(), exact.title),
                     source: VerifySource::FindCaseLaw,
                     matched_title: Some(exact.title.clone()),
                     matched_citation: exact.neutral_citation.clone(),

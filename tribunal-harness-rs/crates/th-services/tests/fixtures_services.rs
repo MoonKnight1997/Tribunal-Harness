@@ -8,6 +8,7 @@ use common::*;
 use serde_json::{json, Value};
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::sync::Arc;
+use th_core::claude_config::ThinkingConfig;
 use th_core::dates::FixedClock;
 use th_core::prompts::{versions, CRITIC_PROMPT_V2, LEGAL_WRITING_REFINEMENT_PROMPT_V1};
 use th_core::refinement::RefineEndpoint;
@@ -18,7 +19,6 @@ use th_services::http::{HttpError, HttpResponse, MockHttp};
 use th_services::pdf_to_markdown::{fetch_pdf_as_markdown, is_allowed_pdf_url, looks_like_pdf, pdf_buffer_to_markdown, tidy_to_markdown, PdfStatus};
 use th_services::refinement::refine_for_user;
 use th_services::tna::{SearchOptions, TnaClient};
-use th_core::claude_config::ThinkingConfig;
 
 fn clock() -> Arc<FixedClock> {
     Arc::new(FixedClock(0))
@@ -294,7 +294,10 @@ async fn claude_client_cases() {
 
     let none = LlmClient::new(LlmConfig::default(), MockHttp::transport_error(), clock());
     assert_eq!(none.is_client_available(), f["available_none"].as_bool().unwrap());
-    let r = none.call_claude(CallClaudeParams { endpoint: "analyse", system: "sys", user_message: "claim_type: unfair_dismissal", prompt_version: "v2", config_override: None }).await.unwrap();
+    let r = none
+        .call_claude(CallClaudeParams { endpoint: "analyse", system: "sys", user_message: "claim_type: unfair_dismissal", prompt_version: "v2", config_override: None })
+        .await
+        .unwrap();
     assert!(r.is_none());
     assert!(f["call_none"].is_null());
 

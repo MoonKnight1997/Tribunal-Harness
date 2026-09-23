@@ -17,24 +17,9 @@ pub struct CivilDate {
     pub day: u32,
 }
 
-const MONTH_NAMES: [&str; 12] = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-];
+const MONTH_NAMES: [&str; 12] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const MONTH_SHORT: [&str; 12] = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec",
-];
+const MONTH_SHORT: [&str; 12] = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 pub fn is_leap(year: i32) -> bool {
     (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
@@ -59,12 +44,7 @@ pub fn days_in_month(year: i32, month: u32) -> u32 {
 /// shape test the TypeScript sources apply before any calendar check.
 pub fn is_iso_shape(s: &str) -> bool {
     let b = s.as_bytes();
-    b.len() == 10
-        && b[4] == b'-'
-        && b[7] == b'-'
-        && b.iter()
-            .enumerate()
-            .all(|(i, c)| if i == 4 || i == 7 { true } else { c.is_ascii_digit() })
+    b.len() == 10 && b[4] == b'-' && b[7] == b'-' && b.iter().enumerate().all(|(i, c)| if i == 4 || i == 7 { true } else { c.is_ascii_digit() })
 }
 
 impl CivilDate {
@@ -247,9 +227,7 @@ pub struct SystemClock;
 
 impl Clock for SystemClock {
     fn now_epoch_ms(&self) -> i64 {
-        let d = std::time::SystemTime::now()
-            .duration_since(std::time::UNIX_EPOCH)
-            .unwrap_or_default();
+        let d = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap_or_default();
         d.as_millis() as i64
     }
 }
@@ -311,9 +289,6 @@ mod tests {
         assert_eq!(CivilDate::new(2027, 1, 1).format_long(), "1 January 2027");
         assert_eq!(CivilDate::new(2026, 10, 1).format_month_year(), "October 2026");
         assert_eq!(iso_datetime_from_epoch_ms(0), "1970-01-01T00:00:00.000Z");
-        assert_eq!(
-            iso_datetime_from_epoch_ms(1_774_000_000_123),
-            "2026-03-20T09:46:40.123Z"
-        );
+        assert_eq!(iso_datetime_from_epoch_ms(1_774_000_000_123), "2026-03-20T09:46:40.123Z");
     }
 }

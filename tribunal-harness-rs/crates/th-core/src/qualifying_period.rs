@@ -61,15 +61,10 @@ pub fn qualifying_period(employment_start: &str, edt: &str) -> Result<Qualifying
     if edt_date < start {
         return Err(QualifyingPeriodError::EdtBeforeStart);
     }
-    let commencement = parse_utc_strict(QUALIFYING_PERIOD_CONFIG.commencement_date)
-        .ok_or(QualifyingPeriodError::InvalidCommencement)?;
+    let commencement = parse_utc_strict(QUALIFYING_PERIOD_CONFIG.commencement_date).ok_or(QualifyingPeriodError::InvalidCommencement)?;
 
     let is_post = edt_date >= commencement;
-    let required_months = if is_post {
-        QUALIFYING_PERIOD_CONFIG.post_era_2025_months
-    } else {
-        QUALIFYING_PERIOD_CONFIG.pre_era_2025_years * 12
-    };
+    let required_months = if is_post { QUALIFYING_PERIOD_CONFIG.post_era_2025_months } else { QUALIFYING_PERIOD_CONFIG.pre_era_2025_years * 12 };
     let actual_months = complete_months_between(&start, &edt_date);
     let has_qualifying_service = actual_months >= required_months as i64;
 
@@ -89,14 +84,7 @@ pub fn qualifying_period(employment_start: &str, edt: &str) -> Result<Qualifying
         verdict = if has_qualifying_service { "appear to meet" } else { "do NOT appear to meet" }
     );
 
-    Ok(QualifyingPeriodResult {
-        has_qualifying_service,
-        required_months,
-        actual_months,
-        regime: if is_post { "post" } else { "pre" },
-        auto_unfair_may_apply: true,
-        note,
-    })
+    Ok(QualifyingPeriodResult { has_qualifying_service, required_months, actual_months, regime: if is_post { "post" } else { "pre" }, auto_unfair_may_apply: true, note })
 }
 
 #[cfg(test)]

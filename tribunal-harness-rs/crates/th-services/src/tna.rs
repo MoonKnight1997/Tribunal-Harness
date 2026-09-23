@@ -83,18 +83,12 @@ impl TnaClient {
                 }
                 envelope_from_feed(&resp.text(), limit)
             }
-            Err(HttpError::Timeout) => SearchEnvelope {
-                status: LookupStatus::UpstreamTimeout,
-                results: vec![],
-                detail: Some("Find Case Law timed out — it may be slow; retry.".into()),
-                total: None,
-            },
-            Err(HttpError::Transport(_)) => SearchEnvelope {
-                status: LookupStatus::UpstreamUnavailable,
-                results: vec![],
-                detail: Some("Could not reach Find Case Law.".into()),
-                total: None,
-            },
+            Err(HttpError::Timeout) => {
+                SearchEnvelope { status: LookupStatus::UpstreamTimeout, results: vec![], detail: Some("Find Case Law timed out — it may be slow; retry.".into()), total: None }
+            }
+            Err(HttpError::Transport(_)) => {
+                SearchEnvelope { status: LookupStatus::UpstreamUnavailable, results: vec![], detail: Some("Could not reach Find Case Law.".into()), total: None }
+            }
         }
     }
 

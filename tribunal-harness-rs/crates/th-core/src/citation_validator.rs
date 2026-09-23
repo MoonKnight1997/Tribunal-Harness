@@ -21,8 +21,7 @@ use std::sync::LazyLock;
 
 /// `/\[\s*\d{4}\s*\]\s*[A-Za-z][A-Za-z./ ]*?\s*[\d_]+/` — handles "[2025] UKSC 99",
 /// "[2007] EWCA Civ 33", "[1988] ICR 142" and EAT references with underscores.
-static NEUTRAL_CITE_RE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"\[\s*\d{4}\s*\]\s*[A-Za-z][A-Za-z./ ]*?\s*[\d_]+").unwrap());
+static NEUTRAL_CITE_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[\s*\d{4}\s*\]\s*[A-Za-z][A-Za-z./ ]*?\s*[\d_]+").unwrap());
 static WS_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\s+").unwrap());
 
 /// Pull a neutral-citation token out of a free-text citation string, with
@@ -145,10 +144,7 @@ pub fn validate_all_citations(citations: &[String]) -> BatchValidation {
     let check = results.iter().filter(|r| r.trust_level == TrustLevel::Check).count();
     let quarantined = results.iter().filter(|r| r.trust_level == TrustLevel::Quarantined).count();
     let total = results.len();
-    BatchValidation {
-        results,
-        summary: ValidationSummary { total, verified, check, quarantined, verified_percentage: js_round_percentage(verified, total) },
-    }
+    BatchValidation { results, summary: ValidationSummary { total, verified, check, quarantined, verified_percentage: js_round_percentage(verified, total) } }
 }
 
 // ---------------------------------------------------------------------------
@@ -232,11 +228,7 @@ pub fn curated_fallback(citation: &str, stat: &CitationValidationResult) -> Auth
 }
 
 /// Merge the curated and live verdicts (live is not `unavailable` here).
-pub fn merge_with_live(
-    citation: &str,
-    stat: &CitationValidationResult,
-    live: &crate::find_case_law::VerifyResult,
-) -> AuthoritativeValidation {
+pub fn merge_with_live(citation: &str, stat: &CitationValidationResult, live: &crate::find_case_law::VerifyResult) -> AuthoritativeValidation {
     if live.trust_level == TrustLevel::Verified {
         return AuthoritativeValidation {
             original_citation: citation.to_string(),
@@ -262,10 +254,7 @@ pub fn merge_with_live(
         reason,
         source: CitationSource::Both,
         matched_name: live.matched_title.clone().or_else(|| stat.matched_authority.map(|a| a.short_name.to_string())),
-        matched_citation: live
-            .matched_citation
-            .clone()
-            .or_else(|| stat.matched_authority.map(|a| a.neutral_citation.to_string())),
+        matched_citation: live.matched_citation.clone().or_else(|| stat.matched_authority.map(|a| a.neutral_citation.to_string())),
         url: live.url.clone(),
     }
 }

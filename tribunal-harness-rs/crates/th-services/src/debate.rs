@@ -146,9 +146,7 @@ fn viable_from_judge(judge: &Map<String, Value>) -> Option<bool> {
 }
 
 async fn call(llm: &LlmClient, endpoint: &str, system: &str, user_message: &str, prompt_version: &str, agent: &'static str) -> Result<ClaudeCallResult, DebateError> {
-    llm.call_claude(CallClaudeParams { endpoint, system, user_message: user_message.into(), prompt_version, config_override: None })
-        .await?
-        .ok_or(DebateError::AgentFailed(agent))
+    llm.call_claude(CallClaudeParams { endpoint, system, user_message, prompt_version, config_override: None }).await?.ok_or(DebateError::AgentFailed(agent))
 }
 
 pub struct DebateOutcome {
@@ -157,7 +155,17 @@ pub struct DebateOutcome {
 
 /// Run the debate. `facts` and `claim_type` are already stringified the way a
 /// template literal would render them. `dev` attaches `_debug`.
-pub async fn run_debate(llm: &LlmClient, tna: &TnaClient, facts: &str, claim_type: &str, mode: DebateMode, dev: bool, start_ms: i64, now_ms: impl Fn() -> i64) -> Result<DebateOutcome, DebateError> {
+#[allow(clippy::too_many_arguments)]
+pub async fn run_debate(
+    llm: &LlmClient,
+    tna: &TnaClient,
+    facts: &str,
+    claim_type: &str,
+    mode: DebateMode,
+    dev: bool,
+    start_ms: i64,
+    now_ms: impl Fn() -> i64,
+) -> Result<DebateOutcome, DebateError> {
     let mut total_in: u64 = 0;
     let mut total_out: u64 = 0;
 
@@ -170,7 +178,15 @@ pub async fn run_debate(llm: &LlmClient, tna: &TnaClient, facts: &str, claim_typ
         let mut stopped_early = false;
 
         for round in 1..=MAX_DEBATE_ROUNDS {
-            let critic = call(llm, "critic", CRITIC_PROMPT_V2, &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{current_draft}"), versions::CRITIC, "Critic").await?;
+            let critic = call(
+                llm,
+                "critic",
+                CRITIC_PROMPT_V2,
+                &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{current_draft}"),
+                versions::CRITIC,
+                "Critic",
+            )
+            .await?;
             total_in += critic.usage.input_tokens;
             total_out += critic.usage.output_tokens;
 
@@ -187,7 +203,15 @@ pub async fn run_debate(llm: &LlmClient, tna: &TnaClient, facts: &str, claim_typ
             total_out += revise.usage.output_tokens;
             current_draft = revise.content.clone();
 
-            let judge = call(llm, "judge", JUDGE_PROMPT_V2, &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}\n\nCritic Attack:\n{}", revise.content, critic.content), versions::JUDGE, "Judge").await?;
+            let judge = call(
+                llm,
+                "judge",
+                JUDGE_PROMPT_V2,
+                &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}\n\nCritic Attack:\n{}", revise.content, critic.content),
+                versions::JUDGE,
+                "Judge",
+            )
+            .await?;
             total_in += judge.usage.input_tokens;
             total_out += judge.usage.output_tokens;
 
@@ -244,10 +268,26 @@ pub async fn run_debate(llm: &LlmClient, tna: &TnaClient, facts: &str, claim_typ
     let drafter = call(llm, "drafter", &DRAFTER_PROMPT_V2, &format!("Claim Type: {claim_type}\n\nFacts:\n{facts}"), versions::DRAFTER, "Drafter").await?;
     total_in += drafter.usage.input_tokens;
     total_out += drafter.usage.output_tokens;
-    let critic = call(llm, "critic", CRITIC_PROMPT_V2, &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}", drafter.content), versions::CRITIC, "Critic").await?;
+    let critic = call(
+        llm,
+        "critic",
+        CRITIC_PROMPT_V2,
+        &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}", drafter.content),
+        versions::CRITIC,
+        "Critic",
+    )
+    .await?;
     total_in += critic.usage.input_tokens;
     total_out += critic.usage.output_tokens;
-    let judge = call(llm, "judge", JUDGE_PROMPT_V2, &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}\n\nCritic Attack:\n{}", drafter.content, critic.content), versions::JUDGE, "Judge").await?;
+    let judge = call(
+        llm,
+        "judge",
+        JUDGE_PROMPT_V2,
+        &format!("Claim Type: {claim_type}\n\nOriginal Facts:\n{facts}\n\nDrafter Argument:\n{}\n\nCritic Attack:\n{}", drafter.content, critic.content),
+        versions::JUDGE,
+        "Judge",
+    )
+    .await?;
     total_in += judge.usage.input_tokens;
     total_out += judge.usage.output_tokens;
 

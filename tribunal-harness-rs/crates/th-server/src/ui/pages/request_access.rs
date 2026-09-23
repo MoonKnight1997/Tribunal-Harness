@@ -8,7 +8,8 @@ use maud::{html, Markup};
 
 const META: PageMeta = PageMeta::root("/request-access");
 
-const USER_TYPES: [(&str, &str); 5] = [("lip", "Litigant-in-Person"), ("solicitor", "Solicitor"), ("legal_aid", "Legal Aid Provider"), ("researcher", "Researcher"), ("other", "Other")];
+const USER_TYPES: [(&str, &str); 5] =
+    [("lip", "Litigant-in-Person"), ("solicitor", "Solicitor"), ("legal_aid", "Legal Aid Provider"), ("researcher", "Researcher"), ("other", "Other")];
 
 pub async fn page(State(state): State<SharedState>) -> Markup {
     let body = html! {
