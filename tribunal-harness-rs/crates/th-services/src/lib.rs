@@ -8,6 +8,7 @@ pub mod claude_client;
 pub mod debate;
 pub mod docx;
 pub mod http;
+pub mod muse;
 pub mod pdf_to_markdown;
 pub mod refinement;
 pub mod request_access;

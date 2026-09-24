@@ -89,7 +89,7 @@ pub async fn refine_for_user(llm: &LlmClient, endpoint: RefineEndpoint, payload:
     }
     // 6) Splice refined strings back into a clone of the payload
     let (refined_payload, changes) = splice_refined_fields(&payload, &parsed.refined_fields);
-    let source = if llm.config.agent_provider { "agent-stand-in" } else { "claude-sonnet" };
+    let source = llm.config.refinement_source();
     RefinedResult { payload: refined_payload, refinement: RefineMeta { applied: true, reason: None, error: None, source: Some(source), changes: Some(changes) } }
 }
 

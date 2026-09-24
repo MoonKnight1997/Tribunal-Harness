@@ -9,7 +9,8 @@ use th_services::claude_client::LlmConfig;
 
 #[derive(Debug, Clone)]
 pub struct AppConfig {
-    /// `LLM_PROVIDER`, `ANTHROPIC_API_KEY`, `NODE_ENV`, `REFINEMENT_DISABLED`.
+    /// `LLM_PROVIDER`, `ANTHROPIC_API_KEY`, `MODEL_API_KEY` (+ `MODEL_API_*`),
+    /// `NODE_ENV`, `REFINEMENT_DISABLED`.
     pub llm: LlmConfig,
     /// `WEBHOOK_SECRET` — `None` when unset or empty (JS falsy).
     pub webhook_secret: Option<String>,
@@ -54,7 +55,7 @@ impl AppConfig {
     /// replay tests: agent stand-in, no keys, no webhook secret.
     pub fn hermetic(data_dir: PathBuf) -> Self {
         Self {
-            llm: LlmConfig { agent_provider: true, api_key: None, node_env: None, refinement_disabled: false },
+            llm: LlmConfig { agent_provider: true, api_key: None, muse: None, node_env: None, refinement_disabled: false },
             webhook_secret: None,
             resend_api_key: None,
             notify_email: None,

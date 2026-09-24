@@ -24,6 +24,7 @@ async fn main() {
     if config.llm.agent_provider {
         tracing::warn!("LLM_PROVIDER=agent — the offline agent stand-in will answer every model call (SIMULATED analysis).");
     }
+    tracing::info!("LLM provider: {}", config.llm.provider_label());
     let http = match ReqwestClient::new() {
         Ok(c) => Arc::new(c),
         Err(e) => {

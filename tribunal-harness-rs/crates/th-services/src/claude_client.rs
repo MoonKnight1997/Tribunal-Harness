@@ -1,9 +1,11 @@
 //! Claude Client — port of `src/lib/claude-client.ts`. Routes every model
-//! call either to the offline agent stand-in (`LLM_PROVIDER=agent`) or to the
+//! call to the offline agent stand-in (`LLM_PROVIDER=agent`), to Meta's Model
+//! API running Muse Spark (`LLM_PROVIDER=muse`, [`crate::muse`]) or to the
 //! Anthropic Messages API, applying the centralised endpoint configuration.
 
 use crate::anthropic::{create_message, MessageCreateParams, MessageParam, ThinkingParam};
 use crate::http::HttpClient;
+use crate::muse::{create_response, reasoning_effort, MuseConfig, ResponsesRequest};
 use serde::Serialize;
 use std::sync::Arc;
 use th_core::agent_provider::{estimate_tokens, generate_agent_response, AgentProviderRequest, AGENT_STAND_IN_MODEL};
@@ -11,12 +13,21 @@ use th_core::claude_config::{estimate_cost, get_endpoint_config, CostEstimate, E
 use th_core::dates::Clock;
 
 /// Environment-derived LLM settings (read once at start-up).
+///
+/// Provider resolution (`LLM_PROVIDER`):
+/// - `agent` → the offline stand-in;
+/// - `muse` (also `meta`, `model-api`) → Meta Model API with `MODEL_API_KEY`;
+/// - `anthropic` → Anthropic with `ANTHROPIC_API_KEY`;
+/// - unset → Anthropic when `ANTHROPIC_API_KEY` is set, otherwise Muse when
+///   `MODEL_API_KEY` is set, otherwise no provider (degraded responses).
 #[derive(Debug, Clone, Default)]
 pub struct LlmConfig {
     /// `LLM_PROVIDER=agent`
     pub agent_provider: bool,
     /// `ANTHROPIC_API_KEY`
     pub api_key: Option<String>,
+    /// Meta Model API (Muse Spark) — `Some` when it is the selected provider.
+    pub muse: Option<MuseConfig>,
     /// `NODE_ENV`
     pub node_env: Option<String>,
     /// `REFINEMENT_DISABLED=1`
@@ -25,9 +36,28 @@ pub struct LlmConfig {
 
 impl LlmConfig {
     pub fn from_env() -> Self {
+        let provider = std::env::var("LLM_PROVIDER").ok().map(|v| v.trim().to_ascii_lowercase()).filter(|v| !v.is_empty());
+        let anthropic_key = std::env::var("ANTHROPIC_API_KEY").ok().filter(|k| !k.is_empty());
+        let muse_env = MuseConfig::from_env();
+        let (agent_provider, api_key, muse) = match provider.as_deref() {
+            Some("agent") => (true, None, None),
+            Some("muse") | Some("meta") | Some("model-api") => {
+                if muse_env.is_none() {
+                    tracing::warn!("LLM_PROVIDER={} but MODEL_API_KEY is not set — model calls will be degraded.", provider.as_deref().unwrap_or("muse"));
+                }
+                (false, None, muse_env)
+            }
+            Some("anthropic") => (false, anthropic_key, None),
+            Some(other) => {
+                tracing::warn!("Unknown LLM_PROVIDER={other:?}; using the key-based default.");
+                (false, anthropic_key.clone(), if anthropic_key.is_none() { muse_env } else { None })
+            }
+            None => (false, anthropic_key.clone(), if anthropic_key.is_none() { muse_env } else { None }),
+        };
         Self {
-            agent_provider: std::env::var("LLM_PROVIDER").map(|v| v == "agent").unwrap_or(false),
-            api_key: std::env::var("ANTHROPIC_API_KEY").ok().filter(|k| !k.is_empty()),
+            agent_provider,
+            api_key,
+            muse,
             node_env: std::env::var("NODE_ENV").ok(),
             refinement_disabled: std::env::var("REFINEMENT_DISABLED").map(|v| v == "1").unwrap_or(false),
         }
@@ -37,6 +67,28 @@ impl LlmConfig {
     }
     pub fn is_development(&self) -> bool {
         self.node_env.as_deref() == Some("development")
+    }
+    /// Human-readable description of the active provider (start-up log).
+    pub fn provider_label(&self) -> String {
+        if self.agent_provider {
+            "agent stand-in (SIMULATED analysis)".to_string()
+        } else if let Some(m) = &self.muse {
+            format!("Meta Model API — {} via {}", m.model, m.base_url)
+        } else if self.api_key.is_some() {
+            "Anthropic Messages API".to_string()
+        } else {
+            "none (no ANTHROPIC_API_KEY or MODEL_API_KEY — model routes degrade)".to_string()
+        }
+    }
+    /// The `refinement.source` value reported for a successful refinement.
+    pub fn refinement_source(&self) -> &'static str {
+        if self.agent_provider {
+            "agent-stand-in"
+        } else if self.muse.is_some() {
+            "muse-spark"
+        } else {
+            "claude-sonnet"
+        }
     }
 }
 
@@ -91,6 +143,8 @@ pub enum ClaudeError {
     Truncated { label: String, max_tokens: u32 },
     #[error(transparent)]
     Api(#[from] crate::anthropic::AnthropicError),
+    #[error(transparent)]
+    Muse(#[from] crate::muse::MuseError),
 }
 
 impl ClaudeError {
@@ -114,9 +168,9 @@ impl LlmClient {
         Self { config, http, clock }
     }
 
-    /// True when an API key is configured OR the agent stand-in is selected.
+    /// True when a real provider is configured OR the agent stand-in is selected.
     pub fn is_client_available(&self) -> bool {
-        self.config.agent_provider || self.config.api_key.is_some()
+        self.config.agent_provider || self.config.muse.is_some() || self.config.api_key.is_some()
     }
 
     /// Make a Claude call using the centralised configuration. Returns
@@ -162,6 +216,11 @@ impl LlmClient {
                     cost_estimate: cost,
                 },
             }));
+        }
+
+        // ─── Meta Model API (Muse Spark) path ───────────────────────────
+        if let Some(muse) = &self.config.muse {
+            return self.call_muse(muse, &config, &params, start).await.map(Some);
         }
 
         // ─── Real Anthropic API path ────────────────────────────────────
@@ -219,6 +278,51 @@ impl LlmClient {
                 cost_estimate: cost,
             },
         }))
+    }
+
+    /// One Responses API call. The per-endpoint `max_tokens` becomes
+    /// `max_output_tokens` (both budgets cover reasoning plus visible output)
+    /// and the effort/thinking pair becomes `reasoning.effort`. A reply that
+    /// stopped on `max_output_tokens` is surfaced as [`ClaudeError::Truncated`]
+    /// exactly like an Anthropic `stop_reason: "max_tokens"`.
+    async fn call_muse(&self, muse: &MuseConfig, config: &EndpointConfig, params: &CallClaudeParams<'_>, start: i64) -> Result<ClaudeCallResult, ClaudeError> {
+        let effort = reasoning_effort(config);
+        let mut request = ResponsesRequest::new(&muse.model, params.system, params.user_message, effort, config.max_tokens, muse.stream);
+        if muse.use_configured_temperature {
+            request.temperature = config.temperature;
+        }
+        let response = create_response(self.http.as_ref(), muse, &request).await?;
+        if response.truncated() {
+            return Err(ClaudeError::Truncated { label: config.label.to_string(), max_tokens: config.max_tokens });
+        }
+        let content = response.output_text();
+        let duration = self.clock.now_epoch_ms() - start;
+        let model = if response.model.is_empty() { muse.model.clone() } else { response.model.clone() };
+        let cost = estimate_cost(&model, response.usage.input_tokens, response.usage.output_tokens);
+        tracing::info!(
+            "[Claude:muse] {} | {}ms | {}→{} tokens | effort={effort} | status={} | {}",
+            config.label,
+            duration,
+            response.usage.input_tokens,
+            response.usage.output_tokens,
+            response.status,
+            params.prompt_version
+        );
+        Ok(ClaudeCallResult {
+            content,
+            usage: ClaudeUsage { input_tokens: response.usage.input_tokens, output_tokens: response.usage.output_tokens },
+            debug: ClaudeDebug {
+                model,
+                endpoint_config: params.endpoint.to_string(),
+                prompt_version: params.prompt_version.to_string(),
+                duration_ms: duration,
+                effort,
+                // Muse Spark always reasons; there is no token budget to report.
+                thinking_enabled: true,
+                thinking_budget: None,
+                cost_estimate: cost,
+            },
+        })
     }
 }
 
@@ -311,5 +415,75 @@ mod tests {
             .await
             .unwrap_err();
         assert_eq!(e.code(), Some("response_truncated_max_tokens"));
+    }
+
+    #[tokio::test]
+    async fn muse_path_maps_config_and_surfaces_truncation() {
+        use crate::muse::tests::{completed_response, sse_stream};
+
+        let http = MockHttp::new(|_| Ok(HttpResponse { status: 200, headers: vec![], body: sse_stream("response.completed", &completed_response("{\"ok\":true}")).into_bytes() }));
+        let config = LlmConfig { muse: Some(MuseConfig::new("mk")), ..Default::default() };
+        assert_eq!(config.refinement_source(), "muse-spark");
+        assert!(config.provider_label().contains("muse-spark-1.3"));
+        let c = client(config, http.clone());
+        assert!(c.is_client_available());
+        let r = c.call_claude(CallClaudeParams { endpoint: "critic", system: "SYS", user_message: "USER", prompt_version: "v2", config_override: None }).await.unwrap().unwrap();
+        assert_eq!(r.content, "{\"ok\":true}");
+        assert_eq!(r.debug.model, "muse-spark-1.3");
+        assert_eq!(r.debug.effort, "high");
+        assert!(r.debug.thinking_enabled && r.debug.thinking_budget.is_none());
+        assert_eq!((r.usage.input_tokens, r.usage.output_tokens), (69, 163));
+        assert_eq!(r.debug.cost_estimate.cost_usd, 0.0, "no published price is assumed");
+        let call = http.calls.lock().unwrap()[0].clone();
+        assert_eq!(call.url, "https://api.meta.ai/v1/responses");
+        assert!(call.headers.iter().any(|(k, v)| k == "authorization" && v == "Bearer mk"));
+        let sent: Value = serde_json::from_slice(call.body.as_ref().unwrap()).unwrap();
+        assert_eq!(sent["model"], "muse-spark-1.3");
+        assert_eq!(sent["instructions"], "SYS");
+        assert_eq!(sent["input"][0]["content"][0]["text"], "USER");
+        assert_eq!(sent["reasoning"]["effort"], "high");
+        assert_eq!(sent["max_output_tokens"], 20_000);
+        assert_eq!(sent["store"], false);
+        assert_eq!(sent["stream"], true);
+        assert!(sent.get("temperature").is_none(), "temperature stays at the model default unless enabled");
+
+        // Thinking-disabled endpoints run at minimal effort; configured temperature is opt-in.
+        let http = MockHttp::new(|_| Ok(HttpResponse { status: 200, headers: vec![], body: serde_json::to_vec(&completed_response("x")).unwrap() }));
+        let mut muse = MuseConfig::new("mk");
+        muse.use_configured_temperature = true;
+        muse.stream = false;
+        let c = client(LlmConfig { muse: Some(muse), ..Default::default() }, http.clone());
+        c.call_claude(CallClaudeParams { endpoint: "triage", system: "s", user_message: "u", prompt_version: "v2", config_override: None }).await.unwrap().unwrap();
+        let sent: Value = serde_json::from_slice(http.calls.lock().unwrap()[0].body.as_ref().unwrap()).unwrap();
+        assert_eq!(sent["reasoning"]["effort"], "minimal");
+        assert_eq!(sent["temperature"], 0.3);
+        assert_eq!(sent["stream"], false);
+
+        // max_output_tokens hit → the same truncation error as the Anthropic path.
+        let mut v = completed_response("{\"claims\":[{\"partial");
+        v["status"] = json!("incomplete");
+        v["incomplete_details"] = json!({"reason": "max_output_tokens"});
+        let http = MockHttp::new(move |_| Ok(HttpResponse { status: 200, headers: vec![], body: sse_stream("response.incomplete", &v).into_bytes() }));
+        let c = client(LlmConfig { muse: Some(MuseConfig::new("mk")), ..Default::default() }, http);
+        let e = c.call_claude(CallClaudeParams { endpoint: "analyse", system: "s", user_message: "u", prompt_version: "v2", config_override: None }).await.unwrap_err();
+        assert_eq!(e.code(), Some("response_truncated_max_tokens"));
+        assert!(e.to_string().contains("max_tokens (16000)"));
+
+        // An API error is a typed error, never a degraded `None`.
+        let c = client(LlmConfig { muse: Some(MuseConfig::new("mk")), ..Default::default() }, MockHttp::status(401));
+        let e = c.call_claude(CallClaudeParams { endpoint: "analyse", system: "s", user_message: "u", prompt_version: "v2", config_override: None }).await.unwrap_err();
+        assert!(matches!(e, ClaudeError::Muse(crate::muse::MuseError::Status { status: 401, .. })));
+
+        // The stand-in still wins when both are configured.
+        let c = client(LlmConfig { agent_provider: true, muse: Some(MuseConfig::new("mk")), ..Default::default() }, MockHttp::transport_error());
+        assert_eq!(
+            c.call_claude(CallClaudeParams { endpoint: "analyse", system: "s", user_message: "u", prompt_version: "v2", config_override: None })
+                .await
+                .unwrap()
+                .unwrap()
+                .debug
+                .model,
+            "agent-stand-in"
+        );
     }
 }

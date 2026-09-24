@@ -47,6 +47,7 @@ tribunal-harness-rs/
 - [x] 8. UI: maud layout (NavBar, Footer), 19 pages + 3 redirects, consent gate + disclaimers, inline JS for the 6 interactive pages, `/_ui/fragments/*` result renderers, Tailwind standalone build of `globals.css`, self-hosted fonts; page parity tests (`tests/pages.rs`); real-browser check (`scripts/browser-check.js`, 23/23)
 - [x] 9. Verify every `PARITY.md` row; Verified column filled with evidence
 - [x] 10. Hand-off: `README.md` (this directory + a section in the repo README), `.github/workflows/rust-ci.yml` (adopted), opt-in live test, PR against this fork's `main`
+- [x] 11. (post-parity request) Muse Spark provider: `th-services/src/muse.rs` (Meta Model API, Responses endpoint, SSE), `LLM_PROVIDER=muse` / `MODEL_API_KEY` in `claude_client`, end-to-end route test against a scripted Model API (`th-server/tests/muse_provider.rs`), opt-in live call (`RUN_LIVE_MUSE=1`), README section, DECISIONS assumption 22
 
 ## Running
 
@@ -69,3 +70,6 @@ Environment variables honoured (same names as the TypeScript app):
   opt-in live test exists. First deployment should run it.
 - PDF text extraction is `pdf-extract`, not pdf.js: same words, different
   whitespace. Evaluate on real judgment PDFs before relying on it for triage.
+- The Muse Spark provider has not been run against the real Model API from
+  the sandbox (host blocked). Run the opt-in live test with a key, then a real
+  analysis and debate, before switching production to it.

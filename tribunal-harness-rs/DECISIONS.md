@@ -105,6 +105,44 @@
     referenced by name. Tailwind v4 has no `border-opacity-*` utilities, so those
     classes on the Timeline card are no-ops in both apps; kept verbatim.
 21. **Favicon**: neither app ships one (404 in both).
+22. **Muse Spark provider (`LLM_PROVIDER=muse`)** — added after parity, on
+    request, so the site can run on Meta's Model API (`muse-spark-1.3`). Not a
+    port of anything in the TypeScript app. Decisions, in order of consequence:
+    - **Responses API, not the Anthropic-compatible Messages endpoint.** Meta's
+      docs recommend it for new work and it was the one reference available in
+      full (`dev.meta.ai` is blocked from the build sandbox; the founder pasted
+      the Responses guide). Its behaviour for `max_output_tokens`, `reasoning.
+      effort`, `store`, streaming and `incomplete` status is documented; what
+      the Messages shim does with `thinking.budget_tokens` and per-call
+      `temperature` is not, and legal output must not depend on a guess.
+    - **`store: false`** on every call: the narratives contain special-category
+      data (UK GDPR Art. 9) and nothing should be retained by the provider.
+    - **`stream: true`** with the whole SSE body consumed and the terminal
+      `response.completed`/`incomplete`/`failed` event parsed: non-streaming
+      requests are subject to a server-side time limit (504) and the analysis
+      endpoints allow 16–24k output tokens. `MODEL_API_STREAM=0` opts out.
+    - **Effort mapping**: Muse Spark cannot switch reasoning off (`"none"` →
+      400), so `thinking: disabled` (triage, refine) becomes `minimal`; enabled
+      endpoints map low/medium/high/max → low/medium/high/xhigh.
+    - **Temperature is not sent** by default: Meta states the model is tuned
+      for `temperature=1.0` and to prefer clearer instructions. The
+      `claude_config` temperatures (0.1 Judge … 0.7 Critic) are Anthropic
+      tuning. `MODEL_API_USE_CONFIGURED_TEMPERATURE=1` sends them unchanged.
+      **Founder decision needed** (follow-up below).
+    - **One model for every endpoint**: the Haiku/Sonnet/Opus routing table
+      has no Muse equivalent; `MODEL_API_MODEL` overrides the id.
+    - **Bearer auth** (`Authorization: Bearer $MODEL_API_KEY`), per the
+      "same bearer-token auth" statement in the overview.
+    - **Retries**: 429/500/502/503/504 and connection errors are retried twice
+      (0.5 s, 1 s), mirroring the OpenAI SDK default; the Anthropic path has
+      no retry (the TypeScript SDK's own 2 retries were not ported — noted).
+    - **Provider selection**: explicit `LLM_PROVIDER` wins; otherwise
+      Anthropic if its key is set, else Muse if `MODEL_API_KEY` is set. The
+      degraded-mode wording (`ANTHROPIC_API_KEY not configured`) is unchanged
+      because it is part of the recorded route contract and the page script
+      matches on it.
+    - `refinement.source` reports `"muse-spark"` (a new value; the recorded
+      values `agent-stand-in`/`claude-sonnet` are untouched for those paths).
 
 ## Conflicts with repository docs (brief wins, logged here)
 
@@ -151,3 +189,17 @@
   pages) before the Rust build is relied on for triage; pdf.js is more tolerant.
 - The React `Timeline` formats deadlines in the visitor's time zone; the port
   uses the UTC date (see assumption 14). For UK visitors the dates coincide.
+- **Muse Spark (assumption 22) — needs a live run and three founder calls.**
+  (a) The provider has only been exercised against a scripted Model API; run
+  `RUN_LIVE_MUSE=1 MODEL_API_KEY=… cargo test -p th-services --test live_optin
+  -- --ignored --nocapture` once with a real key, then a real `/api/analyse`
+  and `/api/debate`, and check the JSON contracts the prompts demand are met
+  by Muse Spark as reliably as by Claude (the Critic/Judge rubric prompts
+  were written for Claude). (b) Decide whether the per-endpoint temperatures
+  should be sent (`MODEL_API_USE_CONFIGURED_TEMPERATURE=1`) or Meta's default
+  kept. (c) Cost estimation prices Muse at 0 (no published price is
+  hard-coded); add the rate to `claude_config::pricing_for` when known.
+  (d) If the Responses API rejects any field on the live run, the request
+  builder is in `th-services/src/muse.rs::ResponsesRequest` — the docs pages
+  for `/v1/responses` could not be fetched from the sandbox to double-check
+  `reasoning.effort` value names beyond the ones quoted in the guide.

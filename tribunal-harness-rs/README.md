@@ -8,9 +8,10 @@ text and system prompts — ported verbatim. **This is a port, not a redesign.**
 The Next.js app is untouched and remains the reference.
 
 Everything server-side is Rust (Axum, no Node at runtime): the deadline
-calculator, citation validation, the Find Case Law (TNA) client, the Anthropic
-client, PDF/DOCX text extraction, the three-agent debate engine and the
-legal-writing refinement pass. The UI is rendered with `maud`; the six
+calculator, citation validation, the Find Case Law (TNA) client, the model
+clients (Anthropic Messages API, and Meta's Model API for Muse Spark — see
+[Running on Muse Spark](#running-on-muse-spark)), PDF/DOCX text extraction,
+the three-agent debate engine and the legal-writing refinement pass. The UI is rendered with `maud`; the six
 interactive pages use small inline scripts that call the same `/api/*` routes
 the React pages called. The stylesheet is the app's `globals.css` compiled once
 by the Tailwind standalone CLI and embedded in the binary; the fonts are
@@ -49,8 +50,10 @@ already in the environment.
 
 | Variable | Effect |
 |---|---|
-| `ANTHROPIC_API_KEY` | Enables real model calls. Without it (and without the stand-in) `/api/analyse` and `/api/triage` return their degraded 200 bodies and `/api/debate` returns the 500 `ANTHROPIC_API_KEY not configured`. |
-| `LLM_PROVIDER=agent` | Routes every model call to the deterministic offline stand-in (`th_core::agent_provider`). Refused when `NODE_ENV=production`. |
+| `ANTHROPIC_API_KEY` | Enables real model calls through Anthropic. Without any provider (no Anthropic key, no `MODEL_API_KEY`, no stand-in) `/api/analyse` and `/api/triage` return their degraded 200 bodies and `/api/debate` returns the 500 `ANTHROPIC_API_KEY not configured` (wording kept from the Next.js app). |
+| `MODEL_API_KEY` | Enables real model calls through Meta's Model API running **Muse Spark** — see [Running on Muse Spark](#running-on-muse-spark). Used automatically when `ANTHROPIC_API_KEY` is unset, or explicitly with `LLM_PROVIDER=muse`. |
+| `LLM_PROVIDER` | `agent` → the deterministic offline stand-in (`th_core::agent_provider`; refused when `NODE_ENV=production`). `muse` → Meta Model API. `anthropic` → Anthropic. Unset → Anthropic if its key is set, else Muse if `MODEL_API_KEY` is set. |
+| `MODEL_API_MODEL`, `MODEL_API_BASE_URL`, `MODEL_API_STREAM`, `MODEL_API_USE_CONFIGURED_TEMPERATURE` | Muse provider tuning; defaults `muse-spark-1.3`, `https://api.meta.ai/v1`, `true`, unset. |
 | `REFINEMENT_DISABLED=1` | Bypasses the legal-writing refinement pass (`refinement.reason = "disabled"`). |
 | `NODE_ENV` | `development` attaches `_debug` metadata to responses; `production` refuses the stand-in. |
 | `WEBHOOK_SECRET` | Required for `/api/webhook` (otherwise 503). |
@@ -61,10 +64,53 @@ already in the environment.
 Access requests are appended to `<cwd>/data/access-requests.jsonl`, exactly as
 the Next.js route does.
 
+### Running on Muse Spark
+
+The site can run entirely on Meta's Model API with the `muse-spark-1.3`
+model instead of Anthropic. Put the key in `.env.local` (never commit it):
+
+```bash
+MODEL_API_KEY=...          # from dev.meta.ai
+LLM_PROVIDER=muse          # optional: it is selected automatically when ANTHROPIC_API_KEY is unset
+cargo run --release --bin th-server
+```
+
+The start-up log prints `LLM provider: Meta Model API — muse-spark-1.3 via
+https://api.meta.ai/v1`. Every `callClaude()` site (triage, analysis, the
+Drafter/Critic/Judge debate agents, legal-writing refinement) then goes to
+`POST /v1/responses` (the Responses API) with bearer-token auth. The system
+prompts, user messages, JSON output contracts, citation quarantine, deadline
+logic and disclaimers are unchanged — only the transport differs:
+
+| Tribunal Harness endpoint config | Responses API request |
+|---|---|
+| system prompt | `instructions` (developer-level, sent on every call) |
+| user message | `input: [{role:"user", content:[{type:"input_text", text}]}]` |
+| `max_tokens` | `max_output_tokens` (both cover reasoning + visible output) |
+| `effort` + `thinking` | `reasoning.effort`: `minimal` where extended thinking was disabled (triage, refine), otherwise `low`/`medium`/`high`/`xhigh` |
+| `temperature` | not sent (Muse Spark is tuned for its defaults); `MODEL_API_USE_CONFIGURED_TEMPERATURE=1` sends the per-endpoint value |
+| — | `store: false` — Meta keeps no copy of the conversation |
+| — | `stream: true` — long generations avoid the non-streaming 504 limit; the terminal `response.completed` event is parsed |
+
+A reply that stops on `max_output_tokens` is reported as the same
+`response_truncated_max_tokens` error the Anthropic path raises; a `failed`
+response or a non-2xx status is a typed error and the route returns 500 —
+nothing is ever simulated. 429/5xx and connection errors are retried twice
+with a short back-off. The single-model routing means the Haiku/Sonnet/Opus
+split in `claude_config` collapses to one model; the per-endpoint labels,
+prompt versions and token limits still apply. Cost estimates in `_debug`
+(development only) are 0 for Muse because no price is hard-coded.
+
+`crates/th-server/tests/muse_provider.rs` runs `/api/analyse`, `/api/triage`
+and `/api/debate` against a scripted Model API (request shape validated,
+SSE terminal event returned) and checks the route bodies match the stand-in
+run. `crates/th-services/src/muse.rs` holds the client and its unit tests.
+
 ### Live checks (opt-in, never run by default)
 
 ```bash
 RUN_LIVE_CASELAW=1 cargo test -p th-services --test live_optin -- --ignored --nocapture
+RUN_LIVE_MUSE=1 MODEL_API_KEY=... cargo test -p th-services --test live_optin -- --ignored --nocapture
 ```
 
 ### Optional real-browser check of the UI scripts
@@ -98,7 +144,8 @@ tribunal-harness-rs/
 │                                 citation validation, Find Case Law parsing/verdicts, prompts,
 │                                 model routing config, agent stand-in, refinement helpers, view models
 ├── crates/th-services/           async I/O behind an HttpClient trait: TNA client, Anthropic client,
-│                                 PDF/DOCX extraction, authoritative citation check, refinement, debate
+│                                 Meta Model API (Muse Spark) client, PDF/DOCX extraction,
+│                                 authoritative citation check, refinement, debate
 ├── crates/th-server/             Axum router (all /api routes, sitemap, robots, redirects, 404),
 │   ├── src/ui/                   maud layout, nav/footer, 19 pages, result fragments, inline scripts
 │   ├── src/bin/smoke.rs          hermetic smoke harness (port of scripts/smoke-run.ts)
