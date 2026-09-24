@@ -1,25 +1,22 @@
-# Node / Next.js / Vite
+# Node / Next.js
 node_modules/
 .next/
 out/
 dist/
 
 # Environment & secrets
-# T-0.4 / F-39: precise patterns — broad globs (*key*, *token*, *secret*)
-# would wrongly ignore legit source files like tokenizer.ts
 .env*
+!.env.example
 *.key
 *.pem
 secrets.*
 
-# Data (may contain personal/sensitive information)
+# Local data (embedded database, uploads) — may contain personal data
 data/
 
 # Logs
 *.log
 npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
@@ -28,28 +25,19 @@ next-env.d.ts
 # Vercel
 .vercel
 
-# OS
+# OS / IDE
 .DS_Store
 Thumbs.db
-
-# Package-manager / tooling cache artefacts (T-0.4 / F-36)
-_cacache/
-_update-notifier-last-checked
-
-# Python (if scripts present)
-__pycache__/
-*.pyc
-venv/
-.venv/
-
-# Vitest / test cache
-.vitest-cache/
-coverage/
-
-# IDE
 .idea/
+.vscode/
 *.swp
 *.swo
 
-# Local-only MCP dev config (machine-specific absolute path)
+# Tooling caches
+_cacache/
+_update-notifier-last-checked
+.vitest-cache/
+coverage/
+
+# Local-only MCP dev config
 .mcp.json
