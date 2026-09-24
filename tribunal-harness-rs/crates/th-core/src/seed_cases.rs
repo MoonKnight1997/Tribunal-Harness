@@ -169,7 +169,7 @@ pub fn search(q: Option<&str>, claim_type: Option<&str>, tier: Option<&str>, lim
     let results: Vec<&CaseLawEntry> = if !query.is_empty() {
         let mut scored: Vec<(i64, &CaseLawEntry)> = results.into_iter().map(|c| (score_case(c, query, ct_filter), c)).filter(|(s, _)| *s > 0).collect();
         // Stable sort descending by score (JS sort is stable).
-        scored.sort_by(|a, b| b.0.cmp(&a.0));
+        scored.sort_by_key(|a| std::cmp::Reverse(a.0));
         scored.into_iter().take(limit).map(|(_, c)| c).collect()
     } else {
         results.into_iter().take(limit).collect()

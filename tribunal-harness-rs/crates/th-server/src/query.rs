@@ -44,7 +44,7 @@ fn decode(s: &str) -> String {
                 out.push(b' ');
                 i += 1;
             }
-            b'%' if i + 2 < bytes.len() + 1 && i + 2 <= bytes.len() - 1 => match (hex_val(bytes[i + 1]), hex_val(bytes[i + 2])) {
+            b'%' if i + 2 < bytes.len() => match (hex_val(bytes[i + 1]), hex_val(bytes[i + 2])) {
                 (Some(h), Some(l)) => {
                     out.push(h * 16 + l);
                     i += 3;
