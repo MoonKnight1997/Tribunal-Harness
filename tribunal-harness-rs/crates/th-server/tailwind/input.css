@@ -1,8 +1,12 @@
 /* Tailwind v4 entry — the Next.js app's globals.css verbatim (below the @source lines).
    Build: see tailwind/README.md. The compiled output is committed as static/app.css. */
+/* source(none): scan ONLY the explicit @source below (the maud templates and inline
+   scripts), never the working directory — so the build is byte-identical wherever
+   the CLI is run from (CI runs it from tribunal-harness-rs/, which also contains the
+   captured Next.js page fixtures). */
 @source "../src";
 
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 
 /* ============================================
    DESIGN SYSTEM: TRIBUNAL HARNESS / FLANK
