@@ -15,7 +15,7 @@
 >
 > **coffeecup (Sept 2026, planning only):** a proposed case-first successor product —
 > workplace problem → grievance/disciplinary → Acas → possible ET claims → ET1 — on a
-> Rust backend with Meta Muse Spark 1.3 as the reasoning layer. See `coffeecup/README.md`.
+> Rust backend with Meta Muse Spark 1.3 as the reasoning layer. **Any launch: not before February 2027.** See `coffeecup/README.md`.
 > It re-opens resolved decision #5 (LLM routing) and conflicts with the current stack;
 > **read `coffeecup/RECONCILIATION.md` § 1 and get founder sign-off before building any of it.**
 

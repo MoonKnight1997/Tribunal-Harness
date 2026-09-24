@@ -1,6 +1,6 @@
 # coffeecup — Product, UX and Muse Spark 1.3 Runtime Plan
 
-> **Status:** Planning document (captured 24 September 2026). Nothing in this file is
+> **Status:** Planning document (captured 24 September 2026). **Launch timing: any launch will be not before February 2027** (founder decision). Build-phase planning, commencement assumptions and pricing should target that date. Nothing in this file is
 > built yet. Read [`RECONCILIATION.md`](./RECONCILIATION.md) for how it maps onto the
 > existing Tribunal Harness code and which decisions still need founder sign-off.
 > Target backend architecture is in [`ARCHITECTURE.md`](./ARCHITECTURE.md).
@@ -778,6 +778,10 @@ No code deploy should be required to turn a legally sensitive feature off.
 | **H — Claim engine** | migrate Tribunal Harness claim schemas; replace claim-first intake with `Case → relevant facts → claim triggers → elements`; Muse critic/validator loop. Public output stays feature-flagged. |
 | **I — ET1** | ET1 readiness; information completeness; narrative builder; stale dependency handling; export; handoff. Personalised legal functionality stays flagged until cleared. |
 | **J — Production hardening** | rate limiting; abuse controls; Muse fallback/error handling; tenancy testing; security review; accessibility; backups; deletion/export; operational monitoring; model-cost telemetry; source-change monitoring. |
+
+---
+
+**Launch constraint:** no public launch (including a paid or free beta for real users) before **February 2027**. Phase G's real-user testing may use invited testers only.
 
 ---
 

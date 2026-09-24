@@ -4,7 +4,7 @@ A low-cost digital case companion for UK workers dealing with a problem at work 
 from organising the facts, through grievance/disciplinary and Acas, to (possibly) ET1
 preparation. The core object is a **case**, not a chat and not a tribunal claim.
 
-**Status: planning only — no code yet.** The running app in this repo is still
+**Status: planning only — no code yet. Launch: not before February 2027** (founder decision, 24 Sep 2026). The running app in this repo is still
 Tribunal Harness (`../tribunal-harness/`).
 
 | Doc | What it covers |
