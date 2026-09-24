@@ -1,12 +1,11 @@
-# PROPOSED workflow for the Rust rebuild — NOT wired up.
+# Rust CI for the Rust rebuild in tribunal-harness-rs/.
 #
-# The existing `.github/workflows/ci.yml` (Next.js app) is deliberately left
-# untouched. To adopt this, copy it to `.github/workflows/rust-ci.yml` (or
-# append the job to `ci.yml`). It needs no secrets: every test is hermetic
-# (recorded fixtures, no network, no API key) and the stylesheet is committed.
+# Separate from ci.yml (the Next.js app), which is unchanged. Needs no secrets:
+# every test is hermetic (recorded fixtures, no network, no API key) and the
+# compiled stylesheet is committed. Mirrors ci.yml's style: one job,
+# ubuntu-latest, read-only permissions, working-directory pinned to the app.
 #
-# Mirrors the style of the existing workflow: one job, ubuntu-latest,
-# read-only permissions, working-directory pinned to the app.
+# The live Find Case Law checks are a manual (workflow_dispatch) job only.
 
 name: Rust CI
 
@@ -20,19 +19,19 @@ on:
     paths:
       - 'tribunal-harness-rs/**'
       - '.github/workflows/rust-ci.yml'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 env:
   CARGO_TERM_COLOR: always
-  # No network in tests — fail loudly if anything tries.
-  CARGO_NET_OFFLINE: "false" # dependencies still need fetching in the build step
 
 jobs:
   build-and-test:
     name: rust build & test
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     defaults:
       run:
         working-directory: tribunal-harness-rs
@@ -81,17 +80,21 @@ jobs:
           /tmp/tailwindcss --input crates/th-server/tailwind/input.css --output /tmp/app.css --minify
           diff -q /tmp/app.css crates/th-server/static/app.css
 
-  # Optional, manual: live Find Case Law checks (network). Never runs on PRs.
+  # Manual only: live Find Case Law checks over the network. Never runs on PRs.
   live-caselaw:
     name: live TNA checks (manual)
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: tribunal-harness-rs
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: tribunal-harness-rs
       - run: cargo test -p th-services --test live_optin -- --ignored --nocapture
         env:
           RUN_LIVE_CASELAW: "1"

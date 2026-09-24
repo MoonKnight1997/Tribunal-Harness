@@ -24,8 +24,8 @@ tribunal-harness-rs/
 │       └── tests/              # routes.rs, smoke.rs, pages.rs (+ common/)
 ├── fixtures/                   # golden fixtures from the TypeScript app (see fixtures/README.md)
 ├── scripts/browser-check.js    # optional headless-Chromium check of the inline UI scripts
-├── ci/rust-ci.yml              # proposed GitHub workflow (not wired up)
 └── AUDIT.md PARITY.md PLAN.md DECISIONS.md README.md
+(CI: ../.github/workflows/rust-ci.yml — separate from the Next.js ci.yml)
 ```
 
 ## Order of work (checklist)
@@ -46,7 +46,7 @@ tribunal-harness-rs/
 - [x] 7. Server (`th-server`): Axum router with identical paths/payloads; `AppState`; route replay tests against `fixtures/routes/responses.json` (`tests/routes.rs`); `smoke` binary + comparison with the TS report (`tests/smoke.rs`)
 - [x] 8. UI: maud layout (NavBar, Footer), 19 pages + 3 redirects, consent gate + disclaimers, inline JS for the 6 interactive pages, `/_ui/fragments/*` result renderers, Tailwind standalone build of `globals.css`, self-hosted fonts; page parity tests (`tests/pages.rs`); real-browser check (`scripts/browser-check.js`, 23/23)
 - [x] 9. Verify every `PARITY.md` row; Verified column filled with evidence
-- [x] 10. Hand-off: `README.md` (this directory + a section in the repo README), `ci/rust-ci.yml` proposal, opt-in live test, PR against this fork's `main`
+- [x] 10. Hand-off: `README.md` (this directory + a section in the repo README), `.github/workflows/rust-ci.yml` (adopted), opt-in live test, PR against this fork's `main`
 
 ## Running
 

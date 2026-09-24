@@ -119,8 +119,9 @@
   (`claude-config.ts`) uses `claude-opus-4-8` / `claude-sonnet-5` /
   `claude-haiku-4-5-20251001`. The **code** values are ported (the brief says port
   model IDs as they are). See follow-ups.
-- The existing `.github/workflows/ci.yml` was not edited; the proposed Rust
-  workflow is `ci/rust-ci.yml`.
+- The existing `.github/workflows/ci.yml` was not edited; the Rust workflow is
+  a separate file, `.github/workflows/rust-ci.yml` (adopted on request; it was
+  first delivered as a proposal under `ci/`).
 
 ## Follow-ups noticed but deliberately not changed (ported as-is)
 

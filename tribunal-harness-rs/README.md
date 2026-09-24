@@ -107,12 +107,16 @@ tribunal-harness-rs/
 │   └── tests/                    route replay, smoke comparison, page parity, fragment tests
 ├── fixtures/                     golden fixtures recorded from the TypeScript app (see fixtures/README.md)
 ├── scripts/browser-check.js      optional headless-Chromium UI check
-├── ci/rust-ci.yml                proposed GitHub workflow (not wired up)
 ├── AUDIT.md                      inventory of the TypeScript app that was ported
 ├── PARITY.md                     behaviour contract with per-row verification evidence
 ├── PLAN.md                       work plan / resume point
 └── DECISIONS.md                  crate choices, assumptions, conflicts, follow-ups
 ```
+
+CI for this directory is `.github/workflows/rust-ci.yml` (format, clippy,
+locked build, hermetic tests, smoke run with the report uploaded as an
+artifact, and a stylesheet drift check); the Next.js `ci.yml` is separate. The
+live Find Case Law checks are a manual `workflow_dispatch` job.
 
 ## How parity was established
 
