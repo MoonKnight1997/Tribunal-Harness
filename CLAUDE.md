@@ -12,6 +12,12 @@
 > Markdown before reasoning over it** (see "PDF → Markdown" in the inner CLAUDE.md).
 > **`LLM_PROVIDER=agent` + `npm run smoke`** in the inner app runs a hermetic end-to-end smoke test with no API key (agent stand-in at `src/lib/llm/agent-provider.ts`).
 > The `_AGENT_BRIEFINGS/` docs (2 Mar 2026) are stale — trust the code.
+>
+> **coffeecup (Sept 2026, planning only):** a proposed case-first successor product —
+> workplace problem → grievance/disciplinary → Acas → possible ET claims → ET1 — on a
+> Rust backend with Meta Muse Spark 1.3 as the reasoning layer. See `coffeecup/README.md`.
+> It re-opens resolved decision #5 (LLM routing) and conflicts with the current stack;
+> **read `coffeecup/RECONCILIATION.md` § 1 and get founder sign-off before building any of it.**
 
 ---
 

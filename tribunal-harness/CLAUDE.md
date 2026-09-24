@@ -10,6 +10,8 @@
 **Mission:** Close the information asymmetry between unrepresented claimants and respondents with solicitors.
 
 > **Build state (June 2026):** All 10 claim schemas are implemented (one file each). `/api/debate` is a working 3-agent engine. ESLint is configured; 193 Vitest tests pass. Case law is looked up **live** from TNA Find Case Law — no RAG corpus (see `docs/live-case-law.md`). Status reports: `IMPROVEMENT-LOG.md`, `TESTING_READINESS.md`. ⚠ The `../_AGENT_BRIEFINGS/` docs (2 Mar 2026) are **stale** — trust the code over them.
+>
+> **coffeecup:** a planned case-first successor (Rust + Muse Spark 1.3) is documented in `../coffeecup/` — planning only; see `../coffeecup/RECONCILIATION.md` for what in this app it reuses and which decisions are still open.
 
 ---
 
