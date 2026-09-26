@@ -1,0 +1,457 @@
+{
+  "DEBATE_MODES": [
+    {
+      "id": "single_pass",
+      "label": "Single pass",
+      "tagline": "One Drafter → Critic → Judge round.",
+      "costTag": "Lower cost · one round",
+      "higherCost": false,
+      "costNote": "Runs a single round of three model calls. Faster and cheaper.",
+      "description": "One pass: the Drafter builds the strongest version of your argument, the Critic attacks it once, and the Judge scores viability. Best for a quick first read on a claim."
+    },
+    {
+      "id": "adversarial",
+      "label": "Adversarial (Draft → Attack → Revise → Score)",
+      "tagline": "Multiple rounds of drafting, adversarial critique and revision.",
+      "costTag": "Higher cost · runs multiple rounds",
+      "higherCost": true,
+      "costNote": "More expensive and slower to run: up to three iterations, each looping Critic → Drafter revision → Judge, with additional higher-tier (Opus) model calls.",
+      "description": "The Drafter produces an initial argument, then up to three rounds of Critic attack, Drafter revision and Judge scoring, stopping early once the Judge scores the draft viable (≥ 70). It surfaces and repairs weaknesses your opponent would exploit, at a higher cost."
+    }
+  ],
+  "get_mode": [
+    {
+      "id": "single_pass",
+      "result": "single_pass"
+    },
+    {
+      "id": "adversarial",
+      "result": "adversarial"
+    },
+    {
+      "id": "nonsense",
+      "result": "single_pass"
+    }
+  ],
+  "describe_rounds": [
+    {
+      "mode": "single_pass",
+      "rounds": 1,
+      "stopped": false,
+      "result": "Single pass — one Drafter → Critic → Judge round."
+    },
+    {
+      "mode": "adversarial",
+      "rounds": 2,
+      "stopped": true,
+      "result": "Adversarial mode ran 2 scored rounds — stopped early once the Judge scored a viable draft (≥ 70)."
+    },
+    {
+      "mode": "adversarial",
+      "rounds": 3,
+      "stopped": false,
+      "result": "Adversarial mode ran 3 scored rounds — reached the maximum without a viable score."
+    },
+    {
+      "mode": "adversarial",
+      "rounds": 1,
+      "stopped": true,
+      "result": "Adversarial mode ran 1 scored round — stopped early once the Judge scored a viable draft (≥ 70)."
+    },
+    {
+      "mode": "adversarial",
+      "rounds": null,
+      "stopped": false,
+      "result": "Adversarial mode ran 0 scored rounds — reached the maximum without a viable score."
+    },
+    {
+      "mode": "adversarial",
+      "rounds": 0,
+      "stopped": true,
+      "result": "Adversarial mode ran 0 scored rounds — stopped early once the Judge scored a viable draft (≥ 70)."
+    }
+  ],
+  "format_int": [
+    {
+      "n": 0,
+      "result": "0"
+    },
+    {
+      "n": 999,
+      "result": "999"
+    },
+    {
+      "n": 12345,
+      "result": "12,345"
+    },
+    {
+      "n": 1000000,
+      "result": "1,000,000"
+    },
+    {
+      "n": -1234,
+      "result": "-1,234"
+    },
+    {
+      "n": 1.6,
+      "result": "2"
+    },
+    {
+      "n": null,
+      "result": "0"
+    },
+    {
+      "n": 1000000000,
+      "result": "1,000,000,000"
+    }
+  ],
+  "format_usage": [
+    {
+      "usage": {
+        "total_input_tokens": 12345,
+        "total_output_tokens": 6789
+      },
+      "result": "12,345 input · 6,789 output tokens"
+    },
+    {
+      "usage": null,
+      "result": "0 input · 0 output tokens"
+    },
+    {
+      "usage": {
+        "total_input_tokens": 0,
+        "total_output_tokens": 0
+      },
+      "result": "0 input · 0 output tokens"
+    }
+  ],
+  "viability": [
+    {
+      "v": true,
+      "result": "Viable"
+    },
+    {
+      "v": false,
+      "result": "Not yet viable"
+    },
+    {
+      "v": null,
+      "result": "No score returned"
+    },
+    {
+      "v": null,
+      "result": "No score returned"
+    }
+  ],
+  "argument_text": [
+    {
+      "input": {
+        "argument": "The dismissal was unfair."
+      },
+      "result": "The dismissal was unfair."
+    },
+    {
+      "input": "Raw fallback text",
+      "result": "Raw fallback text"
+    },
+    {
+      "input": null,
+      "result": ""
+    },
+    {
+      "input": {
+        "draft": "D"
+      },
+      "result": "D"
+    },
+    {
+      "input": {
+        "text": "T"
+      },
+      "result": "T"
+    },
+    {
+      "input": {
+        "content": "C"
+      },
+      "result": "C"
+    },
+    {
+      "input": {
+        "argument": "  ",
+        "draft": "D2"
+      },
+      "result": "D2"
+    },
+    {
+      "input": 5,
+      "result": ""
+    }
+  ],
+  "synthesis_text": [
+    {
+      "input": {
+        "synthesis": "Marginal."
+      },
+      "result": "Marginal."
+    },
+    {
+      "input": null,
+      "result": ""
+    },
+    {
+      "input": {
+        "summary": "S"
+      },
+      "result": "S"
+    },
+    {
+      "input": {
+        "reasoning": "R"
+      },
+      "result": "R"
+    },
+    {
+      "input": "raw",
+      "result": "raw"
+    }
+  ],
+  "score": [
+    {
+      "round": {
+        "score": 82
+      },
+      "judge": null,
+      "result": 82
+    },
+    {
+      "round": null,
+      "judge": {
+        "score": 71
+      },
+      "result": 71
+    },
+    {
+      "round": {
+        "score": null
+      },
+      "judge": {
+        "score": null
+      },
+      "result": null
+    },
+    {
+      "round": null,
+      "judge": null,
+      "result": null
+    },
+    {
+      "round": {
+        "score": 10
+      },
+      "judge": {
+        "score": 20
+      },
+      "result": 10
+    },
+    {
+      "round": {
+        "score": "5"
+      },
+      "judge": {
+        "score": 30
+      },
+      "result": 30
+    }
+  ],
+  "partition": [
+    {
+      "items": [
+        {
+          "authority": "Polkey v AE Dayton",
+          "citation": "[1988] ICR 142",
+          "trust_level": "VERIFIED",
+          "validation_reason": "Matched."
+        },
+        {
+          "authority": "Made Up v Nobody",
+          "citation": "[2099] FAKE 1",
+          "trust_level": "QUARANTINED",
+          "validation_reason": "No match."
+        },
+        {
+          "authority": "Iceland Frozen Foods",
+          "citation": "[1982] IRLR 439",
+          "trust_level": "CHECK"
+        }
+      ],
+      "name_key": "authority",
+      "result": {
+        "displayed": [
+          {
+            "title": "Polkey v AE Dayton",
+            "citation": "[1988] ICR 142",
+            "detail": "Matched.",
+            "trustLevel": "VERIFIED"
+          },
+          {
+            "title": "Iceland Frozen Foods",
+            "citation": "[1982] IRLR 439",
+            "detail": "",
+            "trustLevel": "CHECK"
+          }
+        ],
+        "quarantined": 1
+      }
+    },
+    {
+      "items": [
+        {
+          "weakness": "No evidence of a hearing",
+          "citation": "[2010] ICR 325",
+          "trust_level": "CHECK"
+        }
+      ],
+      "name_key": null,
+      "result": {
+        "displayed": [
+          {
+            "title": "No evidence of a hearing",
+            "citation": "[2010] ICR 325",
+            "detail": "No evidence of a hearing",
+            "trustLevel": "CHECK"
+          }
+        ],
+        "quarantined": 0
+      }
+    },
+    {
+      "items": null,
+      "name_key": null,
+      "result": {
+        "displayed": [],
+        "quarantined": 0
+      }
+    },
+    {
+      "items": "not an array",
+      "name_key": null,
+      "result": {
+        "displayed": [],
+        "quarantined": 0
+      }
+    },
+    {
+      "items": [
+        null,
+        5,
+        {},
+        {
+          "citation": "only cite"
+        },
+        {
+          "detail": "only detail"
+        },
+        {
+          "matched_case": "MC",
+          "name": "N",
+          "principle": "P",
+          "trust_level": "bogus"
+        }
+      ],
+      "name_key": null,
+      "result": {
+        "displayed": [
+          {
+            "title": "only cite",
+            "citation": "only cite",
+            "detail": ""
+          },
+          {
+            "title": "Cited authority",
+            "citation": "",
+            "detail": "only detail"
+          },
+          {
+            "title": "MC",
+            "citation": "",
+            "detail": "P"
+          }
+        ],
+        "quarantined": 0
+      }
+    },
+    {
+      "items": [
+        {
+          "element": "Reasonable investigation",
+          "authority": "British Home Stores Ltd v Burchell",
+          "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007"
+        },
+        {
+          "element": "Band of reasonable responses",
+          "authority": "Iceland Frozen Foods Ltd v Jones",
+          "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+        },
+        {
+          "element": "Effect of procedural defects",
+          "authority": "Polkey v AE Dayton Services Ltd",
+          "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+        }
+      ],
+      "name_key": "authority",
+      "result": {
+        "displayed": [
+          {
+            "title": "British Home Stores Ltd v Burchell",
+            "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+            "detail": ""
+          },
+          {
+            "title": "Iceland Frozen Foods Ltd v Jones",
+            "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+            "detail": ""
+          },
+          {
+            "title": "Polkey v AE Dayton Services Ltd",
+            "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+            "detail": ""
+          }
+        ],
+        "quarantined": 0
+      }
+    },
+    {
+      "items": [
+        {
+          "weakness": "Qualifying service and reason may be contested; gross misconduct, if proven, is a potentially fair conduct reason.",
+          "legal_basis": "s98(1)-(2) ERA 1996; band of reasonable responses",
+          "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+          "severity": "SIGNIFICANT"
+        },
+        {
+          "weakness": "Even if the procedure was flawed, compensation may be heavily reduced if dismissal was inevitable on the facts.",
+          "legal_basis": "Polkey reduction to the compensatory award",
+          "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+          "severity": "SIGNIFICANT"
+        }
+      ],
+      "name_key": null,
+      "result": {
+        "displayed": [
+          {
+            "title": "Qualifying service and reason may be contested; gross misconduct, if proven, is a potentially fair conduct reason.",
+            "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+            "detail": "Qualifying service and reason may be contested; gross misconduct, if proven, is a potentially fair conduct reason."
+          },
+          {
+            "title": "Even if the procedure was flawed, compensation may be heavily reduced if dismissal was inevitable on the facts.",
+            "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+            "detail": "Even if the procedure was flawed, compensation may be heavily reduced if dismissal was inevitable on the facts."
+          }
+        ],
+        "quarantined": 0
+      }
+    }
+  ]
+}

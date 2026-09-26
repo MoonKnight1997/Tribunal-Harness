@@ -1,0 +1,237 @@
+{
+  "cases": [
+    {
+      "mode": "ok:FEED",
+      "opts": {
+        "query": "unfair dismissal",
+        "court": "eat"
+      },
+      "result": {
+        "status": "ok",
+        "results": [
+          {
+            "neutralCitation": "[2017] UKSC 27",
+            "title": "Essop & Ors v Home Office (UK Border Agency)",
+            "court": "United Kingdom Supreme Court",
+            "date": "2017-04-05",
+            "slug": "uksc/2017/27",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+          },
+          {
+            "neutralCitation": "[2026] EAT 90",
+            "title": "G Laffy v Wkcic Group T/A Capital City College Group",
+            "court": "Employment Appeal Tribunal",
+            "date": "2026-06-19",
+            "slug": "eat/2026/90",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2026/90"
+          }
+        ]
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=unfair+dismissal&page=1&court=eat"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "opts": {
+        "query": "unfair dismissal",
+        "court": "eat",
+        "limit": 1,
+        "page": 2,
+        "party": "Essop"
+      },
+      "result": {
+        "status": "ok",
+        "results": [
+          {
+            "neutralCitation": "[2017] UKSC 27",
+            "title": "Essop & Ors v Home Office (UK Border Agency)",
+            "court": "United Kingdom Supreme Court",
+            "date": "2017-04-05",
+            "slug": "uksc/2017/27",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+          }
+        ]
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=unfair+dismissal&page=2&court=eat&party=Essop"
+      ]
+    },
+    {
+      "mode": "ok:FEED_VARIANT",
+      "opts": {
+        "query": "smith",
+        "limit": 100
+      },
+      "result": {
+        "status": "ok",
+        "results": [
+          {
+            "neutralCitation": "[2019] EWCA Civ 123",
+            "title": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+            "court": "Court of Appeal (Civil Division)",
+            "date": "2019-03-01",
+            "slug": "ewca/civ/2019/123",
+            "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+          },
+          {
+            "neutralCitation": null,
+            "title": "No Citation Case",
+            "court": "Employment Appeal Tribunal",
+            "date": null,
+            "slug": "eat/2021/7",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2021/7"
+          },
+          {
+            "neutralCitation": null,
+            "title": "Untitled Slugless",
+            "court": null,
+            "date": "2020-01-01",
+            "slug": null,
+            "url": null
+          }
+        ],
+        "total": 42
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=smith&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED_VARIANT",
+      "opts": {
+        "query": "smith",
+        "limit": 0
+      },
+      "result": {
+        "status": "ok",
+        "results": [
+          {
+            "neutralCitation": "[2019] EWCA Civ 123",
+            "title": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+            "court": "Court of Appeal (Civil Division)",
+            "date": "2019-03-01",
+            "slug": "ewca/civ/2019/123",
+            "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+          }
+        ],
+        "total": 42
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=smith&page=1"
+      ]
+    },
+    {
+      "mode": "ok:EMPTY_FEED",
+      "opts": {
+        "query": "zzzz no match"
+      },
+      "result": {
+        "status": "empty",
+        "results": [],
+        "detail": "No matching judgments in Find Case Law (coverage is ~2003 onward)."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=zzzz+no+match&page=1"
+      ]
+    },
+    {
+      "mode": "status:503",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "upstream_unavailable",
+        "results": [],
+        "detail": "Find Case Law returned 503 — try again later."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "status:404",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "not_found",
+        "results": [],
+        "detail": "Find Case Law returned 404."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "status:429",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "upstream_unavailable",
+        "results": [],
+        "detail": "Find Case Law rate limit hit — retry shortly."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "status:400",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "error",
+        "results": [],
+        "detail": "Find Case Law rejected the request (400)."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "status:500",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "upstream_unavailable",
+        "results": [],
+        "detail": "Find Case Law returned 500 — try again later."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "abort",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "upstream_timeout",
+        "results": [],
+        "detail": "Find Case Law timed out — it may be slow; retry."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    },
+    {
+      "mode": "reject",
+      "opts": {
+        "query": "x"
+      },
+      "result": {
+        "status": "upstream_unavailable",
+        "results": [],
+        "detail": "Could not reach Find Case Law."
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=x&page=1"
+      ]
+    }
+  ]
+}

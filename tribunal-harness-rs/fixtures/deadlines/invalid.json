@@ -1,0 +1,97 @@
+{
+  "generated_today": "2026-09-23",
+  "cases": [
+    {
+      "date_of_act": "not-a-date",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid date (expected YYYY-MM-DD): not-a-date"
+    },
+    {
+      "date_of_act": "2026-02-31",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid calendar date: 2026-02-31"
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-13-40",
+      "acas_day_b": "2025-02-15",
+      "error": "Invalid calendar date: 2025-13-40"
+    },
+    {
+      "date_of_act": "",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid date (expected YYYY-MM-DD): "
+    },
+    {
+      "date_of_act": "2025-1-1",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid date (expected YYYY-MM-DD): 2025-1-1"
+    },
+    {
+      "date_of_act": "2025-01-01T00:00:00Z",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid date (expected YYYY-MM-DD): 2025-01-01T00:00:00Z"
+    },
+    {
+      "date_of_act": "20250101",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid date (expected YYYY-MM-DD): 20250101"
+    },
+    {
+      "date_of_act": "2025-00-10",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid calendar date: 2025-00-10"
+    },
+    {
+      "date_of_act": "2025-01-00",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid calendar date: 2025-01-00"
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "bad",
+      "acas_day_b": "2025-02-15",
+      "error": "Invalid date (expected YYYY-MM-DD): bad"
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "acas_day_a": "2025-02-15",
+      "acas_day_b": "2025-02-30",
+      "error": "Invalid calendar date: 2025-02-30"
+    },
+    {
+      "date_of_act": "0000-01-01",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid calendar date: 0000-01-01"
+    },
+    {
+      "date_of_act": "2025-02-29",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "error": "Invalid calendar date: 2025-02-29"
+    },
+    {
+      "date_of_act": "2024-02-29",
+      "acas_day_a": null,
+      "acas_day_b": null,
+      "ok": {
+        "claim_type": "general",
+        "base_deadline": "2024-05-28",
+        "final_deadline": "2024-05-28",
+        "original_deadline": "2024-05-28",
+        "regime": "pre_era_2025",
+        "days_remaining": -848,
+        "is_expired": true
+      }
+    }
+  ]
+}

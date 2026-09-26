@@ -1,0 +1,700 @@
+{
+  "cases": [
+    {
+      "input": {
+        "claims": [
+          {
+            "type": "unfair_dismissal",
+            "strength": "MODERATE",
+            "reasoning": "Viable on the facts.",
+            "legal_test_elements": [
+              {
+                "element": "Employee status",
+                "satisfied": true,
+                "evidence": "Not disputed."
+              },
+              {
+                "element": "Fair reason",
+                "satisfied": false,
+                "evidence": "Fact-dependent."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "Polkey",
+            "citation": "Polkey [1987] UKHL 8",
+            "principle": "Procedure.",
+            "trust_level": "VERIFIED"
+          }
+        ],
+        "statutory_provisions": [
+          {
+            "statute": "ERA 1996",
+            "section": "s98",
+            "relevance": "Fairness."
+          }
+        ],
+        "procedural_notes": [
+          "Three months less one day."
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "Time limit",
+            "applies": false,
+            "reason": "Pre-commencement.",
+            "commencement_date": "Oct 2026",
+            "status": "tbc"
+          }
+        ]
+      },
+      "result": {
+        "claims": [
+          {
+            "type": "unfair_dismissal",
+            "strength": "MODERATE",
+            "reasoning": "Viable on the facts.",
+            "legal_test_elements": [
+              {
+                "element": "Employee status",
+                "satisfied": true,
+                "evidence": "Not disputed."
+              },
+              {
+                "element": "Fair reason",
+                "satisfied": false,
+                "evidence": "Fact-dependent."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "Polkey",
+            "citation": "Polkey [1987] UKHL 8",
+            "principle": "Procedure.",
+            "trust_level": "VERIFIED"
+          }
+        ],
+        "statutory_provisions": [
+          {
+            "statute": "ERA 1996",
+            "section": "s98",
+            "relevance": "Fairness."
+          }
+        ],
+        "procedural_notes": [
+          "Three months less one day."
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "Time limit",
+            "applies": false,
+            "reason": "Pre-commencement.",
+            "commencement_date": "Oct 2026",
+            "status": "tbc"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "claims": [
+          {
+            "claim_type": "harassment",
+            "strength": "strong",
+            "summary": "Old-shape summary.",
+            "elements": [
+              {
+                "element": "Unwanted conduct",
+                "met": true,
+                "reasoning": "Alleged."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "X",
+            "citation": "[2020] EAT 1",
+            "relevance": "Old field name.",
+            "trust": "check"
+          }
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "P",
+            "applies": true,
+            "reason": "r",
+            "commencement_date": "d",
+            "status": "awaiting_si"
+          }
+        ]
+      },
+      "result": {
+        "claims": [
+          {
+            "type": "harassment",
+            "strength": "STRONG",
+            "reasoning": "Old-shape summary.",
+            "legal_test_elements": [
+              {
+                "element": "Unwanted conduct",
+                "satisfied": true,
+                "evidence": "Alleged."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "X",
+            "citation": "[2020] EAT 1",
+            "principle": "Old field name.",
+            "trust_level": "CHECK"
+          }
+        ],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": [
+          {
+            "provision": "P",
+            "applies": true,
+            "reason": "r",
+            "commencement_date": "d",
+            "status": "tbc"
+          }
+        ]
+      }
+    },
+    {
+      "input": {},
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": null,
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": "nonsense",
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": 42,
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": [],
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "claims": [
+          {
+            "type": "x",
+            "strength": "WEAK",
+            "reasoning": "r"
+          }
+        ]
+      },
+      "result": {
+        "claims": [
+          {
+            "type": "x",
+            "strength": "WEAK",
+            "reasoning": "r",
+            "legal_test_elements": []
+          }
+        ],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "claims": "oops"
+      },
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "claims": [
+          {
+            "type": "x",
+            "strength": "wobbly"
+          }
+        ],
+        "authorities": [
+          {
+            "name": "y",
+            "citation": "z",
+            "principle": "p"
+          }
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "q"
+          }
+        ]
+      },
+      "result": {
+        "claims": [
+          {
+            "type": "x",
+            "strength": "WEAK",
+            "reasoning": "",
+            "legal_test_elements": []
+          }
+        ],
+        "authorities": [
+          {
+            "name": "y",
+            "citation": "z",
+            "principle": "p",
+            "trust_level": "QUARANTINED"
+          }
+        ],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": [
+          {
+            "provision": "q",
+            "applies": false,
+            "reason": "",
+            "commencement_date": "",
+            "status": "tbc"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "procedural_notes": [
+          "keep",
+          "",
+          null,
+          "also",
+          5,
+          true,
+          {}
+        ]
+      },
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [
+          "keep",
+          "also",
+          "5",
+          "true"
+        ],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "authorities": [
+          {
+            "name": "Polkey",
+            "citation": "Polkey [1987] UKHL 8",
+            "principle": "p",
+            "trust_level": "VERIFIED",
+            "citation_corrected": true,
+            "original_citation": "Polkey [1988] ICR 142",
+            "verified": true,
+            "validation_reason": "ok",
+            "matched_case": "Polkey",
+            "matched_citation": "[1987] UKHL 8",
+            "source_url": "https://x",
+            "verification_source": "verified_db"
+          }
+        ]
+      },
+      "result": {
+        "claims": [],
+        "authorities": [
+          {
+            "name": "Polkey",
+            "citation": "Polkey [1987] UKHL 8",
+            "principle": "p",
+            "trust_level": "VERIFIED",
+            "verified": true,
+            "validation_reason": "ok",
+            "matched_case": "Polkey",
+            "matched_citation": "[1987] UKHL 8",
+            "source_url": "https://x",
+            "verification_source": "verified_db",
+            "citation_corrected": true,
+            "original_citation": "Polkey [1988] ICR 142"
+          }
+        ],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "authorities": [
+          "bare string",
+          7,
+          null,
+          {
+            "matched_case": "MC",
+            "citation": 12,
+            "principle": null,
+            "trust_level": "verified",
+            "verified": "yes",
+            "citation_corrected": 0
+          }
+        ]
+      },
+      "result": {
+        "claims": [],
+        "authorities": [
+          {
+            "name": "bare string",
+            "citation": "",
+            "principle": "",
+            "trust_level": "QUARANTINED"
+          },
+          {
+            "name": "7",
+            "citation": "",
+            "principle": "",
+            "trust_level": "QUARANTINED"
+          },
+          {
+            "name": "",
+            "citation": "",
+            "principle": "",
+            "trust_level": "QUARANTINED"
+          },
+          {
+            "name": "MC",
+            "citation": "12",
+            "principle": "",
+            "trust_level": "VERIFIED",
+            "verified": false,
+            "matched_case": "MC",
+            "citation_corrected": false
+          }
+        ],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "claims": [
+          "bare",
+          {
+            "type": 5,
+            "strength": null,
+            "reasoning": 7,
+            "legal_test_elements": [
+              "e",
+              {
+                "label": "L",
+                "satisfied": "true"
+              },
+              {
+                "name": "N",
+                "met": true,
+                "reasoning": ""
+              },
+              {
+                "element": "E",
+                "satisfied": 1,
+                "evidence": 3
+              }
+            ]
+          }
+        ]
+      },
+      "result": {
+        "claims": [
+          {
+            "type": "bare",
+            "strength": "WEAK",
+            "reasoning": "",
+            "legal_test_elements": []
+          },
+          {
+            "type": "5",
+            "strength": "WEAK",
+            "reasoning": "7",
+            "legal_test_elements": [
+              {
+                "element": "e",
+                "satisfied": false
+              },
+              {
+                "element": "L",
+                "satisfied": false
+              },
+              {
+                "element": "N",
+                "satisfied": true
+              },
+              {
+                "element": "E",
+                "satisfied": false,
+                "evidence": "3"
+              }
+            ]
+          }
+        ],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "statutory_provisions": [
+          "s",
+          {
+            "statute": 1,
+            "section": true,
+            "relevance": null
+          }
+        ]
+      },
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [
+          {
+            "statute": "s",
+            "section": "",
+            "relevance": ""
+          },
+          {
+            "statute": "1",
+            "section": "true",
+            "relevance": ""
+          }
+        ],
+        "procedural_notes": [],
+        "era_2025_flags": []
+      }
+    },
+    {
+      "input": {
+        "era_2025_flags": [
+          "f",
+          {
+            "provision": "p",
+            "applies": 1,
+            "reason": 2,
+            "commencementDate": "cd",
+            "status": "IN_FORCE"
+          },
+          {
+            "status": "Upcoming"
+          },
+          {
+            "status": ""
+          }
+        ]
+      },
+      "result": {
+        "claims": [],
+        "authorities": [],
+        "statutory_provisions": [],
+        "procedural_notes": [],
+        "era_2025_flags": [
+          {
+            "provision": "f",
+            "applies": false,
+            "reason": "",
+            "commencement_date": "",
+            "status": "tbc"
+          },
+          {
+            "provision": "p",
+            "applies": false,
+            "reason": "2",
+            "commencement_date": "cd",
+            "status": "in_force"
+          },
+          {
+            "provision": "",
+            "applies": false,
+            "reason": "",
+            "commencement_date": "",
+            "status": "upcoming"
+          },
+          {
+            "provision": "",
+            "applies": false,
+            "reason": "",
+            "commencement_date": "",
+            "status": "tbc"
+          }
+        ]
+      }
+    }
+  ],
+  "strength": [
+    {
+      "input": "strong",
+      "result": "STRONG"
+    },
+    {
+      "input": "MODERATE",
+      "result": "MODERATE"
+    },
+    {
+      "input": null,
+      "result": "WEAK"
+    },
+    {
+      "input": "Weak",
+      "result": "WEAK"
+    },
+    {
+      "input": "",
+      "result": "WEAK"
+    },
+    {
+      "input": " strong ",
+      "result": "STRONG"
+    },
+    {
+      "input": 5,
+      "result": "WEAK"
+    }
+  ],
+  "trust": [
+    {
+      "input": "verified",
+      "result": "VERIFIED"
+    },
+    {
+      "input": "",
+      "result": "QUARANTINED"
+    },
+    {
+      "input": "CHECK",
+      "result": "CHECK"
+    },
+    {
+      "input": "quarantined",
+      "result": "QUARANTINED"
+    },
+    {
+      "input": " Verified ",
+      "result": "VERIFIED"
+    },
+    {
+      "input": null,
+      "result": "QUARANTINED"
+    },
+    {
+      "input": 1,
+      "result": "QUARANTINED"
+    }
+  ],
+  "flag": [
+    {
+      "input": "in_force",
+      "result": "in_force"
+    },
+    {
+      "input": "upcoming",
+      "result": "upcoming"
+    },
+    {
+      "input": "awaiting_si",
+      "result": "tbc"
+    },
+    {
+      "input": null,
+      "result": "tbc"
+    },
+    {
+      "input": "TBC",
+      "result": "tbc"
+    },
+    {
+      "input": " In_Force ",
+      "result": "in_force"
+    },
+    {
+      "input": "x",
+      "result": "tbc"
+    }
+  ],
+  "is_record": [
+    {
+      "input": {},
+      "result": true
+    },
+    {
+      "input": [],
+      "result": false
+    },
+    {
+      "input": null,
+      "result": false
+    },
+    {
+      "input": "s",
+      "result": false
+    },
+    {
+      "input": 1,
+      "result": false
+    },
+    {
+      "input": {
+        "a": 1
+      },
+      "result": true
+    }
+  ]
+}

@@ -1,1 +1,0 @@
-export const ANTHROPIC_API_URL = "/api/anthropic";

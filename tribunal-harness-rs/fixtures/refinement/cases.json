@@ -1,0 +1,1313 @@
+{
+  "ENDPOINT_PROSE_FIELDS": {
+    "analyse": [
+      "claims[].reasoning",
+      "claims[].legal_test_elements[].evidence",
+      "authorities[].principle",
+      "statutory_provisions[].relevance",
+      "procedural_notes[]",
+      "era_2025_flags[].reason"
+    ],
+    "triage": [
+      "document_summary",
+      "query_array[].question",
+      "query_array[].legal_relevance"
+    ],
+    "debate": [
+      "drafter.factual_summary",
+      "drafter.application[].facts_supporting",
+      "drafter.remedies[].basis",
+      "drafter.overall_assessment",
+      "critic.attacks[].weakness",
+      "critic.attacks[].legal_basis",
+      "critic.factual_gaps[].missing_fact",
+      "critic.factual_gaps[].why_it_matters",
+      "critic.procedural_risks[].risk",
+      "critic.procedural_risks[].consequence",
+      "critic.overall_vulnerability_assessment",
+      "judge.synthesis",
+      "judge.score_breakdown.legal_test_completeness.reasoning",
+      "judge.score_breakdown.evidential_sufficiency.reasoning",
+      "judge.score_breakdown.procedural_compliance.reasoning",
+      "judge.score_breakdown.era_2025_awareness.reasoning",
+      "judge.score_breakdown.authority_quality.reasoning",
+      "judge.key_vulnerabilities[]",
+      "judge.evidentiary_requirements[]",
+      "judge.procedural_recommendations[]"
+    ]
+  },
+  "refine": [
+    {
+      "endpoint": "analyse",
+      "payload": {
+        "claims": [
+          {
+            "type": "unfair_dismissal",
+            "strength": "MODERATE",
+            "reasoning": "On the facts provided there is a viable unfair dismissal claim. The absence of any investigation meeting before a 'gross misconduct' dismissal is a strong indicator of procedural unfairness under s98(4). Strength is MODERATE rather than STRONG because the merits turn on disputed facts (the reason for dismissal and what investigation, if any, occurred) that require evidence to resolve.",
+            "legal_test_elements": [
+              {
+                "element": "Was the claimant an employee?",
+                "satisfied": true,
+                "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+              },
+              {
+                "element": "Was the claimant dismissed (s95)?",
+                "satisfied": true,
+                "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+              },
+              {
+                "element": "Does the claimant have sufficient qualifying service?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              },
+              {
+                "element": "Has the employer shown a potentially fair reason (s98(1)-(2))?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              },
+              {
+                "element": "Did the employer act reasonably in treating that reason as sufficient (s98(4))?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "British Home Stores Ltd v Burchell",
+            "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+            "principle": "For a conduct dismissal the employer must genuinely believe in the misconduct, on reasonable grounds, after a reasonable investigation.",
+            "trust_level": "VERIFIED"
+          },
+          {
+            "name": "Iceland Frozen Foods Ltd v Jones",
+            "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+            "principle": "The tribunal must not substitute its own view; it asks whether dismissal fell within the band of reasonable responses open to a reasonable employer.",
+            "trust_level": "VERIFIED"
+          },
+          {
+            "name": "Polkey v AE Dayton Services Ltd",
+            "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+            "principle": "A procedurally unfair dismissal is not saved by the argument that a fair procedure would have made no difference; that question goes to remedy (the 'Polkey reduction'), not liability.",
+            "trust_level": "VERIFIED"
+          }
+        ],
+        "statutory_provisions": [
+          {
+            "statute": "ERA 1996",
+            "section": "s98",
+            "relevance": "Primary statutory test for unfair dismissal: reason for dismissal and overall fairness."
+          },
+          {
+            "statute": "ERA 1996",
+            "section": "s207B",
+            "relevance": "ACAS Early Conciliation clock-stop: the limitation period is extended by the Day A → Day B period (or one month from Day B, whichever is longer)."
+          }
+        ],
+        "procedural_notes": [
+          "Time limit (act before October 2026): three months less one day from the effective date of termination.",
+          "ACAS Early Conciliation is mandatory before an ET1 can be presented; obtain the EC certificate first.",
+          "Request written reasons for dismissal under s92 ERA 1996 if not already provided."
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "Unfair dismissal qualifying period reduced to 6 months",
+            "applies": false,
+            "reason": "The effective date of termination is before the commencement date, so the 2-year qualifying period regime still applies on these facts.",
+            "commencement_date": "1 January 2027",
+            "status": "upcoming"
+          },
+          {
+            "provision": "ET time limit extended to 6 months less one day",
+            "applies": false,
+            "reason": "The act complained of pre-dates commencement; the three-months-less-one-day limit applies. Exact commencement date to be confirmed by Statutory Instrument.",
+            "commencement_date": "1 October 2026",
+            "status": "upcoming"
+          }
+        ]
+      },
+      "result": {
+        "payload": {
+          "claims": [
+            {
+              "type": "unfair_dismissal",
+              "strength": "MODERATE",
+              "reasoning": "On the facts provided there is a viable unfair dismissal claim. The absence of any investigation meeting before a 'gross misconduct' dismissal is a strong indicator of procedural unfairness under s98(4). Strength is MODERATE rather than STRONG because the merits turn on disputed facts (the reason for dismissal and what investigation, if any, occurred) that require evidence to resolve.",
+              "legal_test_elements": [
+                {
+                  "element": "Was the claimant an employee?",
+                  "satisfied": true,
+                  "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+                },
+                {
+                  "element": "Was the claimant dismissed (s95)?",
+                  "satisfied": true,
+                  "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+                },
+                {
+                  "element": "Does the claimant have sufficient qualifying service?",
+                  "satisfied": false,
+                  "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+                },
+                {
+                  "element": "Has the employer shown a potentially fair reason (s98(1)-(2))?",
+                  "satisfied": false,
+                  "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+                },
+                {
+                  "element": "Did the employer act reasonably in treating that reason as sufficient (s98(4))?",
+                  "satisfied": false,
+                  "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+                }
+              ]
+            }
+          ],
+          "authorities": [
+            {
+              "name": "British Home Stores Ltd v Burchell",
+              "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+              "principle": "For a conduct dismissal the employer must genuinely believe in the misconduct, on reasonable grounds, after a reasonable investigation.",
+              "trust_level": "VERIFIED"
+            },
+            {
+              "name": "Iceland Frozen Foods Ltd v Jones",
+              "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+              "principle": "The tribunal must not substitute its own view; it asks whether dismissal fell within the band of reasonable responses open to a reasonable employer.",
+              "trust_level": "VERIFIED"
+            },
+            {
+              "name": "Polkey v AE Dayton Services Ltd",
+              "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+              "principle": "A procedurally unfair dismissal is not saved by the argument that a fair procedure would have made no difference; that question goes to remedy (the 'Polkey reduction'), not liability.",
+              "trust_level": "VERIFIED"
+            }
+          ],
+          "statutory_provisions": [
+            {
+              "statute": "ERA 1996",
+              "section": "s98",
+              "relevance": "Primary statutory test for unfair dismissal: reason for dismissal and overall fairness."
+            },
+            {
+              "statute": "ERA 1996",
+              "section": "s207B",
+              "relevance": "ACAS Early Conciliation clock-stop: the limitation period is extended by the Day A → Day B period (or one month from Day B, whichever is longer)."
+            }
+          ],
+          "procedural_notes": [
+            "Time limit (act before October 2026): three months less one day from the effective date of termination.",
+            "ACAS Early Conciliation is mandatory before an ET1 can be presented; obtain the EC certificate first.",
+            "Request written reasons for dismissal under s92 ERA 1996 if not already provided."
+          ],
+          "era_2025_flags": [
+            {
+              "provision": "Unfair dismissal qualifying period reduced to 6 months",
+              "applies": false,
+              "reason": "The effective date of termination is before the commencement date, so the 2-year qualifying period regime still applies on these facts.",
+              "commencement_date": "1 January 2027",
+              "status": "upcoming"
+            },
+            {
+              "provision": "ET time limit extended to 6 months less one day",
+              "applies": false,
+              "reason": "The act complained of pre-dates commencement; the three-months-less-one-day limit applies. Exact commencement date to be confirmed by Statutory Instrument.",
+              "commencement_date": "1 October 2026",
+              "status": "upcoming"
+            }
+          ]
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "triage",
+      "payload": {
+        "updated_fields": {
+          "edt": "2026-03-03",
+          "employment_start_date": "2022-01-10",
+          "dismissal_reason": "gross misconduct"
+        },
+        "query_array": [
+          {
+            "field_id": "investigation_held",
+            "question": "Was an investigation meeting or disciplinary hearing held before your dismissal?",
+            "ui_component": "radio",
+            "options": [
+              "Yes",
+              "No",
+              "Not sure"
+            ],
+            "legal_relevance": "Absence of a fair procedure (investigation, hearing, appeal) is central to fairness under s98(4) ERA 1996."
+          },
+          {
+            "field_id": "acas_ec_started",
+            "question": "Have you started ACAS Early Conciliation, and if so on what date?",
+            "ui_component": "date",
+            "options": null,
+            "legal_relevance": "ACAS EC is mandatory before presenting an ET1 and stops the limitation clock between Day A and Day B."
+          }
+        ],
+        "document_summary": "Synthetic narrative: a warehouse employee with approximately four years' service was dismissed on 3 March 2026 for 'gross misconduct' shortly after raising written health and safety concerns. The narrative states no investigation meeting was held, raising both ordinary unfair dismissal (procedure) and a potential protected-disclosure dimension.",
+        "potential_claim_types": [
+          "unfair_dismissal",
+          "whistleblowing"
+        ],
+        "extracted_dates": {
+          "edt": "2026-03-03",
+          "last_act": "2026-03-03",
+          "acas_day_a": null,
+          "acas_day_b": null,
+          "employment_start": "2022-01-10"
+        }
+      },
+      "result": {
+        "payload": {
+          "updated_fields": {
+            "edt": "2026-03-03",
+            "employment_start_date": "2022-01-10",
+            "dismissal_reason": "gross misconduct"
+          },
+          "query_array": [
+            {
+              "field_id": "investigation_held",
+              "question": "Was an investigation meeting or disciplinary hearing held before your dismissal?",
+              "ui_component": "radio",
+              "options": [
+                "Yes",
+                "No",
+                "Not sure"
+              ],
+              "legal_relevance": "Absence of a fair procedure (investigation, hearing, appeal) is central to fairness under s98(4) ERA 1996."
+            },
+            {
+              "field_id": "acas_ec_started",
+              "question": "Have you started ACAS Early Conciliation, and if so on what date?",
+              "ui_component": "date",
+              "options": null,
+              "legal_relevance": "ACAS EC is mandatory before presenting an ET1 and stops the limitation clock between Day A and Day B."
+            }
+          ],
+          "document_summary": "Synthetic narrative: a warehouse employee with approximately four years' service was dismissed on 3 March 2026 for 'gross misconduct' shortly after raising written health and safety concerns. The narrative states no investigation meeting was held, raising both ordinary unfair dismissal (procedure) and a potential protected-disclosure dimension.",
+          "potential_claim_types": [
+            "unfair_dismissal",
+            "whistleblowing"
+          ],
+          "extracted_dates": {
+            "edt": "2026-03-03",
+            "last_act": "2026-03-03",
+            "acas_day_a": null,
+            "acas_day_b": null,
+            "employment_start": "2022-01-10"
+          }
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "debate",
+      "payload": {
+        "mode": "single_pass",
+        "rounds_run": 1,
+        "drafter": {
+          "factual_summary": "The claimant, a warehouse employee of around four years' standing, was summarily dismissed on 3 March 2026 for alleged 'gross misconduct' shortly after raising written health and safety concerns. No investigation meeting or disciplinary hearing was held before the decision.",
+          "legal_framework": [
+            {
+              "element": "Reasonable investigation",
+              "authority": "British Home Stores Ltd v Burchell",
+              "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007"
+            },
+            {
+              "element": "Band of reasonable responses",
+              "authority": "Iceland Frozen Foods Ltd v Jones",
+              "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+            },
+            {
+              "element": "Effect of procedural defects",
+              "authority": "Polkey v AE Dayton Services Ltd",
+              "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+            }
+          ],
+          "application": [
+            {
+              "element": "Reasonable investigation (Burchell)",
+              "facts_supporting": "No investigation meeting was held, so the employer cannot show it formed its belief in misconduct on reasonable grounds after a reasonable investigation.",
+              "strength": "STRONG"
+            },
+            {
+              "element": "Fair procedure / Polkey",
+              "facts_supporting": "The complete absence of a hearing or appeal points to a procedurally unfair dismissal; any 'would have dismissed anyway' argument goes to a Polkey reduction in remedy, not liability.",
+              "strength": "STRONG"
+            },
+            {
+              "element": "Reason for dismissal",
+              "facts_supporting": "Dismissal closely following protected health-and-safety concerns raises a question over the true reason, which is fact-sensitive and to be tested in evidence.",
+              "strength": "MODERATE"
+            }
+          ],
+          "remedies": [
+            {
+              "type": "Basic award",
+              "basis": "s119 ERA 1996 — calculated on age, length of service and a week's pay."
+            },
+            {
+              "type": "Compensatory award",
+              "basis": "s123 ERA 1996 — loss flowing from the dismissal, subject to the statutory cap for a pre-2027 EDT and to any Polkey reduction."
+            },
+            {
+              "type": "Reinstatement / re-engagement",
+              "basis": "ss113-116 ERA 1996 — available but rarely ordered; the claimant should indicate preference."
+            }
+          ],
+          "overall_assessment": "The unfair dismissal claim is arguable and, on procedure, strong. The principal exposure is evidential — establishing the true reason for dismissal and rebutting any band-of-reasonable-responses defence."
+        },
+        "critic": {
+          "attacks": [
+            {
+              "weakness": "Qualifying service and reason may be contested; gross misconduct, if proven, is a potentially fair conduct reason.",
+              "legal_basis": "s98(1)-(2) ERA 1996; band of reasonable responses",
+              "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+              "severity": "SIGNIFICANT"
+            },
+            {
+              "weakness": "Even if the procedure was flawed, compensation may be heavily reduced if dismissal was inevitable on the facts.",
+              "legal_basis": "Polkey reduction to the compensatory award",
+              "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+              "severity": "SIGNIFICANT"
+            }
+          ],
+          "factual_gaps": [
+            {
+              "missing_fact": "Whether any investigation, hearing or appeal occurred at all (the narrative asserts none, but the employer's records are not before us).",
+              "why_it_matters": "Determines whether the Burchell reasonable-investigation limb is breached."
+            },
+            {
+              "missing_fact": "The precise content and audience of the health and safety concerns raised.",
+              "why_it_matters": "Goes to whether there is a qualifying protected disclosure capable of making the dismissal automatically unfair."
+            }
+          ],
+          "procedural_risks": [
+            {
+              "risk": "Time limit: three months less one day from the EDT (pre-October-2026 regime).",
+              "consequence": "A late ET1 is liable to be struck out unless it was not reasonably practicable to present in time."
+            },
+            {
+              "risk": "ACAS Early Conciliation not yet shown as commenced.",
+              "consequence": "An ET1 presented without a valid EC certificate will be rejected."
+            }
+          ],
+          "overall_vulnerability_assessment": "The unfair dismissal claim's procedural footing is solid but its value is exposed to a Polkey reduction and to a conduct-reason defence. The protected-disclosure angle is promising but presently under-evidenced."
+        },
+        "judge": {
+          "score": 79,
+          "score_breakdown": {
+            "legal_test_completeness": {
+              "score": 21,
+              "max": 25,
+              "reasoning": "All s98 elements identified and addressed; minor gaps on qualifying-service evidence."
+            },
+            "evidential_sufficiency": {
+              "score": 17,
+              "max": 25,
+              "reasoning": "Procedural unfairness is well-supported; the true reason for dismissal is under-evidenced."
+            },
+            "procedural_compliance": {
+              "score": 15,
+              "max": 20,
+              "reasoning": "Correct time-limit regime and ACAS EC identified; EC certificate not yet obtained."
+            },
+            "era_2025_awareness": {
+              "score": 13,
+              "max": 15,
+              "reasoning": "Correctly applies the pre-commencement regime to a March 2026 EDT and flags the upcoming changes."
+            },
+            "authority_quality": {
+              "score": 13,
+              "max": 15,
+              "reasoning": "Authorities (Burchell, Iceland Frozen Foods, Polkey) are real, binding/persuasive and correctly applied."
+            }
+          },
+          "synthesis": "The unfair dismissal claim is viable. The strongest ground is procedural unfairness (no investigation, contrary to Burchell), with the principal contest being the true reason for dismissal and the size of any Polkey reduction. On the rubric the argument scores 79/100 and crosses the 70-point viability threshold.",
+          "key_vulnerabilities": [
+            "A conduct-reason defence if the employer can evidence reasonable grounds and investigation.",
+            "A Polkey reduction substantially cutting the compensatory award.",
+            "The protected-disclosure angle is currently under-evidenced."
+          ],
+          "evidentiary_requirements": [
+            "Disclosure of the investigation and disciplinary records (or proof none exist).",
+            "Contemporaneous evidence of the health and safety concerns raised and to whom.",
+            "Pay and continuity records to fix qualifying service and quantum."
+          ],
+          "procedural_recommendations": [
+            "Commence ACAS Early Conciliation immediately and preserve the certificate.",
+            "Calculate and diarise the three-months-less-one-day limit from the EDT.",
+            "Request written reasons for dismissal under s92 ERA 1996."
+          ],
+          "viable": true
+        },
+        "viable": true,
+        "usage": {
+          "total_input_tokens": 1,
+          "total_output_tokens": 1
+        }
+      },
+      "result": {
+        "payload": {
+          "mode": "single_pass",
+          "rounds_run": 1,
+          "drafter": {
+            "factual_summary": "The claimant, a warehouse employee of around four years' standing, was summarily dismissed on 3 March 2026 for alleged 'gross misconduct' shortly after raising written health and safety concerns. No investigation meeting or disciplinary hearing was held before the decision.",
+            "legal_framework": [
+              {
+                "element": "Reasonable investigation",
+                "authority": "British Home Stores Ltd v Burchell",
+                "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007"
+              },
+              {
+                "element": "Band of reasonable responses",
+                "authority": "Iceland Frozen Foods Ltd v Jones",
+                "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+              },
+              {
+                "element": "Effect of procedural defects",
+                "authority": "Polkey v AE Dayton Services Ltd",
+                "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+              }
+            ],
+            "application": [
+              {
+                "element": "Reasonable investigation (Burchell)",
+                "facts_supporting": "No investigation meeting was held, so the employer cannot show it formed its belief in misconduct on reasonable grounds after a reasonable investigation.",
+                "strength": "STRONG"
+              },
+              {
+                "element": "Fair procedure / Polkey",
+                "facts_supporting": "The complete absence of a hearing or appeal points to a procedurally unfair dismissal; any 'would have dismissed anyway' argument goes to a Polkey reduction in remedy, not liability.",
+                "strength": "STRONG"
+              },
+              {
+                "element": "Reason for dismissal",
+                "facts_supporting": "Dismissal closely following protected health-and-safety concerns raises a question over the true reason, which is fact-sensitive and to be tested in evidence.",
+                "strength": "MODERATE"
+              }
+            ],
+            "remedies": [
+              {
+                "type": "Basic award",
+                "basis": "s119 ERA 1996 — calculated on age, length of service and a week's pay."
+              },
+              {
+                "type": "Compensatory award",
+                "basis": "s123 ERA 1996 — loss flowing from the dismissal, subject to the statutory cap for a pre-2027 EDT and to any Polkey reduction."
+              },
+              {
+                "type": "Reinstatement / re-engagement",
+                "basis": "ss113-116 ERA 1996 — available but rarely ordered; the claimant should indicate preference."
+              }
+            ],
+            "overall_assessment": "The unfair dismissal claim is arguable and, on procedure, strong. The principal exposure is evidential — establishing the true reason for dismissal and rebutting any band-of-reasonable-responses defence."
+          },
+          "critic": {
+            "attacks": [
+              {
+                "weakness": "Qualifying service and reason may be contested; gross misconduct, if proven, is a potentially fair conduct reason.",
+                "legal_basis": "s98(1)-(2) ERA 1996; band of reasonable responses",
+                "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+                "severity": "SIGNIFICANT"
+              },
+              {
+                "weakness": "Even if the procedure was flawed, compensation may be heavily reduced if dismissal was inevitable on the facts.",
+                "legal_basis": "Polkey reduction to the compensatory award",
+                "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+                "severity": "SIGNIFICANT"
+              }
+            ],
+            "factual_gaps": [
+              {
+                "missing_fact": "Whether any investigation, hearing or appeal occurred at all (the narrative asserts none, but the employer's records are not before us).",
+                "why_it_matters": "Determines whether the Burchell reasonable-investigation limb is breached."
+              },
+              {
+                "missing_fact": "The precise content and audience of the health and safety concerns raised.",
+                "why_it_matters": "Goes to whether there is a qualifying protected disclosure capable of making the dismissal automatically unfair."
+              }
+            ],
+            "procedural_risks": [
+              {
+                "risk": "Time limit: three months less one day from the EDT (pre-October-2026 regime).",
+                "consequence": "A late ET1 is liable to be struck out unless it was not reasonably practicable to present in time."
+              },
+              {
+                "risk": "ACAS Early Conciliation not yet shown as commenced.",
+                "consequence": "An ET1 presented without a valid EC certificate will be rejected."
+              }
+            ],
+            "overall_vulnerability_assessment": "The unfair dismissal claim's procedural footing is solid but its value is exposed to a Polkey reduction and to a conduct-reason defence. The protected-disclosure angle is promising but presently under-evidenced."
+          },
+          "judge": {
+            "score": 79,
+            "score_breakdown": {
+              "legal_test_completeness": {
+                "score": 21,
+                "max": 25,
+                "reasoning": "All s98 elements identified and addressed; minor gaps on qualifying-service evidence."
+              },
+              "evidential_sufficiency": {
+                "score": 17,
+                "max": 25,
+                "reasoning": "Procedural unfairness is well-supported; the true reason for dismissal is under-evidenced."
+              },
+              "procedural_compliance": {
+                "score": 15,
+                "max": 20,
+                "reasoning": "Correct time-limit regime and ACAS EC identified; EC certificate not yet obtained."
+              },
+              "era_2025_awareness": {
+                "score": 13,
+                "max": 15,
+                "reasoning": "Correctly applies the pre-commencement regime to a March 2026 EDT and flags the upcoming changes."
+              },
+              "authority_quality": {
+                "score": 13,
+                "max": 15,
+                "reasoning": "Authorities (Burchell, Iceland Frozen Foods, Polkey) are real, binding/persuasive and correctly applied."
+              }
+            },
+            "synthesis": "The unfair dismissal claim is viable. The strongest ground is procedural unfairness (no investigation, contrary to Burchell), with the principal contest being the true reason for dismissal and the size of any Polkey reduction. On the rubric the argument scores 79/100 and crosses the 70-point viability threshold.",
+            "key_vulnerabilities": [
+              "A conduct-reason defence if the employer can evidence reasonable grounds and investigation.",
+              "A Polkey reduction substantially cutting the compensatory award.",
+              "The protected-disclosure angle is currently under-evidenced."
+            ],
+            "evidentiary_requirements": [
+              "Disclosure of the investigation and disciplinary records (or proof none exist).",
+              "Contemporaneous evidence of the health and safety concerns raised and to whom.",
+              "Pay and continuity records to fix qualifying service and quantum."
+            ],
+            "procedural_recommendations": [
+              "Commence ACAS Early Conciliation immediately and preserve the certificate.",
+              "Calculate and diarise the three-months-less-one-day limit from the EDT.",
+              "Request written reasons for dismissal under s92 ERA 1996."
+            ],
+            "viable": true
+          },
+          "viable": true,
+          "usage": {
+            "total_input_tokens": 1,
+            "total_output_tokens": 1
+          }
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "analyse",
+      "payload": {
+        "claims": [
+          {
+            "reasoning": "The claimant has continuous service."
+          }
+        ],
+        "authorities": [
+          {
+            "principle": "Procedural fairness is required."
+          }
+        ],
+        "statutory_provisions": [
+          {
+            "relevance": "s98(4)."
+          }
+        ],
+        "procedural_notes": [
+          "Commence ACAS."
+        ],
+        "era_2025_flags": [
+          {
+            "reason": "Time-limit regime shifts."
+          }
+        ]
+      },
+      "result": {
+        "payload": {
+          "claims": [
+            {
+              "reasoning": "The claimant has continuous service."
+            }
+          ],
+          "authorities": [
+            {
+              "principle": "Procedural fairness is required."
+            }
+          ],
+          "statutory_provisions": [
+            {
+              "relevance": "s98(4)."
+            }
+          ],
+          "procedural_notes": [
+            "Commence ACAS."
+          ],
+          "era_2025_flags": [
+            {
+              "reason": "Time-limit regime shifts."
+            }
+          ]
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "analyse",
+      "payload": {
+        "claims": [
+          {
+            "reasoning": ""
+          }
+        ],
+        "procedural_notes": [],
+        "era_2025_flags": "nope",
+        "authorities": [
+          null,
+          5,
+          {
+            "principle": 7
+          }
+        ]
+      },
+      "result": {
+        "payload": {
+          "claims": [
+            {
+              "reasoning": ""
+            }
+          ],
+          "procedural_notes": [],
+          "era_2025_flags": "nope",
+          "authorities": [
+            null,
+            5,
+            {
+              "principle": 7
+            }
+          ]
+        },
+        "refinement": {
+          "applied": false,
+          "reason": "empty_input",
+          "error": "no eligible prose fields found in payload"
+        }
+      },
+      "same_reference": true
+    },
+    {
+      "endpoint": "debate",
+      "payload": {
+        "drafter": {
+          "overall_assessment": "Viable."
+        },
+        "critic": {
+          "overall_vulnerability_assessment": "Risky."
+        },
+        "judge": {
+          "synthesis": "Score 76."
+        }
+      },
+      "result": {
+        "payload": {
+          "drafter": {
+            "overall_assessment": "Viable."
+          },
+          "critic": {
+            "overall_vulnerability_assessment": "Risky."
+          },
+          "judge": {
+            "synthesis": "Score 76."
+          }
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "analyse",
+      "payload": {},
+      "result": {
+        "payload": {},
+        "refinement": {
+          "applied": false,
+          "reason": "empty_input",
+          "error": "no eligible prose fields found in payload"
+        }
+      },
+      "same_reference": true
+    },
+    {
+      "endpoint": "analyse",
+      "payload": {
+        "claims": "not-an-array"
+      },
+      "result": {
+        "payload": {
+          "claims": "not-an-array"
+        },
+        "refinement": {
+          "applied": false,
+          "reason": "empty_input",
+          "error": "no eligible prose fields found in payload"
+        }
+      },
+      "same_reference": true
+    },
+    {
+      "endpoint": "debate",
+      "payload": {
+        "judge": {
+          "score_breakdown": {
+            "legal_test_completeness": {
+              "reasoning": "r1"
+            },
+            "evidential_sufficiency": {
+              "reasoning": ""
+            },
+            "authority_quality": {
+              "reasoning": "r5"
+            }
+          },
+          "key_vulnerabilities": [
+            "a",
+            "",
+            "b"
+          ]
+        }
+      },
+      "result": {
+        "payload": {
+          "judge": {
+            "score_breakdown": {
+              "legal_test_completeness": {
+                "reasoning": "r1"
+              },
+              "evidential_sufficiency": {
+                "reasoning": ""
+              },
+              "authority_quality": {
+                "reasoning": "r5"
+              }
+            },
+            "key_vulnerabilities": [
+              "a",
+              "",
+              "b"
+            ]
+          }
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    },
+    {
+      "endpoint": "triage",
+      "payload": {
+        "document_summary": "S",
+        "query_array": [
+          {
+            "question": "Q",
+            "legal_relevance": ""
+          },
+          "x"
+        ]
+      },
+      "result": {
+        "payload": {
+          "document_summary": "S",
+          "query_array": [
+            {
+              "question": "Q",
+              "legal_relevance": ""
+            },
+            "x"
+          ]
+        },
+        "refinement": {
+          "applied": true,
+          "source": "agent-stand-in",
+          "changes": 0
+        }
+      },
+      "same_reference": false
+    }
+  ],
+  "disabled": {
+    "result": {
+      "payload": {
+        "claims": [
+          {
+            "type": "unfair_dismissal",
+            "strength": "MODERATE",
+            "reasoning": "On the facts provided there is a viable unfair dismissal claim. The absence of any investigation meeting before a 'gross misconduct' dismissal is a strong indicator of procedural unfairness under s98(4). Strength is MODERATE rather than STRONG because the merits turn on disputed facts (the reason for dismissal and what investigation, if any, occurred) that require evidence to resolve.",
+            "legal_test_elements": [
+              {
+                "element": "Was the claimant an employee?",
+                "satisfied": true,
+                "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+              },
+              {
+                "element": "Was the claimant dismissed (s95)?",
+                "satisfied": true,
+                "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+              },
+              {
+                "element": "Does the claimant have sufficient qualifying service?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              },
+              {
+                "element": "Has the employer shown a potentially fair reason (s98(1)-(2))?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              },
+              {
+                "element": "Did the employer act reasonably in treating that reason as sufficient (s98(4))?",
+                "satisfied": false,
+                "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+              }
+            ]
+          }
+        ],
+        "authorities": [
+          {
+            "name": "British Home Stores Ltd v Burchell",
+            "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+            "principle": "For a conduct dismissal the employer must genuinely believe in the misconduct, on reasonable grounds, after a reasonable investigation.",
+            "trust_level": "VERIFIED"
+          },
+          {
+            "name": "Iceland Frozen Foods Ltd v Jones",
+            "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+            "principle": "The tribunal must not substitute its own view; it asks whether dismissal fell within the band of reasonable responses open to a reasonable employer.",
+            "trust_level": "VERIFIED"
+          },
+          {
+            "name": "Polkey v AE Dayton Services Ltd",
+            "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+            "principle": "A procedurally unfair dismissal is not saved by the argument that a fair procedure would have made no difference; that question goes to remedy (the 'Polkey reduction'), not liability.",
+            "trust_level": "VERIFIED"
+          }
+        ],
+        "statutory_provisions": [
+          {
+            "statute": "ERA 1996",
+            "section": "s98",
+            "relevance": "Primary statutory test for unfair dismissal: reason for dismissal and overall fairness."
+          },
+          {
+            "statute": "ERA 1996",
+            "section": "s207B",
+            "relevance": "ACAS Early Conciliation clock-stop: the limitation period is extended by the Day A → Day B period (or one month from Day B, whichever is longer)."
+          }
+        ],
+        "procedural_notes": [
+          "Time limit (act before October 2026): three months less one day from the effective date of termination.",
+          "ACAS Early Conciliation is mandatory before an ET1 can be presented; obtain the EC certificate first.",
+          "Request written reasons for dismissal under s92 ERA 1996 if not already provided."
+        ],
+        "era_2025_flags": [
+          {
+            "provision": "Unfair dismissal qualifying period reduced to 6 months",
+            "applies": false,
+            "reason": "The effective date of termination is before the commencement date, so the 2-year qualifying period regime still applies on these facts.",
+            "commencement_date": "1 January 2027",
+            "status": "upcoming"
+          },
+          {
+            "provision": "ET time limit extended to 6 months less one day",
+            "applies": false,
+            "reason": "The act complained of pre-dates commencement; the three-months-less-one-day limit applies. Exact commencement date to be confirmed by Statutory Instrument.",
+            "commencement_date": "1 October 2026",
+            "status": "upcoming"
+          }
+        ]
+      },
+      "refinement": {
+        "applied": false,
+        "reason": "disabled"
+      }
+    },
+    "same_reference": true
+  },
+  "no_client": {
+    "payload": {
+      "claims": [
+        {
+          "type": "unfair_dismissal",
+          "strength": "MODERATE",
+          "reasoning": "On the facts provided there is a viable unfair dismissal claim. The absence of any investigation meeting before a 'gross misconduct' dismissal is a strong indicator of procedural unfairness under s98(4). Strength is MODERATE rather than STRONG because the merits turn on disputed facts (the reason for dismissal and what investigation, if any, occurred) that require evidence to resolve.",
+          "legal_test_elements": [
+            {
+              "element": "Was the claimant an employee?",
+              "satisfied": true,
+              "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+            },
+            {
+              "element": "Was the claimant dismissed (s95)?",
+              "satisfied": true,
+              "evidence": "Supported by the narrative facts (employment relationship and dismissal are not in dispute)."
+            },
+            {
+              "element": "Does the claimant have sufficient qualifying service?",
+              "satisfied": false,
+              "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+            },
+            {
+              "element": "Has the employer shown a potentially fair reason (s98(1)-(2))?",
+              "satisfied": false,
+              "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+            },
+            {
+              "element": "Did the employer act reasonably in treating that reason as sufficient (s98(4))?",
+              "satisfied": false,
+              "evidence": "Fact-dependent — requires disclosure of the investigation record and the employer's stated reason."
+            }
+          ]
+        }
+      ],
+      "authorities": [
+        {
+          "name": "British Home Stores Ltd v Burchell",
+          "citation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+          "principle": "For a conduct dismissal the employer must genuinely believe in the misconduct, on reasonable grounds, after a reasonable investigation.",
+          "trust_level": "VERIFIED"
+        },
+        {
+          "name": "Iceland Frozen Foods Ltd v Jones",
+          "citation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+          "principle": "The tribunal must not substitute its own view; it asks whether dismissal fell within the band of reasonable responses open to a reasonable employer.",
+          "trust_level": "VERIFIED"
+        },
+        {
+          "name": "Polkey v AE Dayton Services Ltd",
+          "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+          "principle": "A procedurally unfair dismissal is not saved by the argument that a fair procedure would have made no difference; that question goes to remedy (the 'Polkey reduction'), not liability.",
+          "trust_level": "VERIFIED"
+        }
+      ],
+      "statutory_provisions": [
+        {
+          "statute": "ERA 1996",
+          "section": "s98",
+          "relevance": "Primary statutory test for unfair dismissal: reason for dismissal and overall fairness."
+        },
+        {
+          "statute": "ERA 1996",
+          "section": "s207B",
+          "relevance": "ACAS Early Conciliation clock-stop: the limitation period is extended by the Day A → Day B period (or one month from Day B, whichever is longer)."
+        }
+      ],
+      "procedural_notes": [
+        "Time limit (act before October 2026): three months less one day from the effective date of termination.",
+        "ACAS Early Conciliation is mandatory before an ET1 can be presented; obtain the EC certificate first.",
+        "Request written reasons for dismissal under s92 ERA 1996 if not already provided."
+      ],
+      "era_2025_flags": [
+        {
+          "provision": "Unfair dismissal qualifying period reduced to 6 months",
+          "applies": false,
+          "reason": "The effective date of termination is before the commencement date, so the 2-year qualifying period regime still applies on these facts.",
+          "commencement_date": "1 January 2027",
+          "status": "upcoming"
+        },
+        {
+          "provision": "ET time limit extended to 6 months less one day",
+          "applies": false,
+          "reason": "The act complained of pre-dates commencement; the three-months-less-one-day limit applies. Exact commencement date to be confirmed by Statutory Instrument.",
+          "commencement_date": "1 October 2026",
+          "status": "upcoming"
+        }
+      ]
+    },
+    "refinement": {
+      "applied": false,
+      "reason": "llm_error",
+      "error": "no LLM client available (ANTHROPIC_API_KEY unset and LLM_PROVIDER not 'agent')"
+    }
+  },
+  "get_by_path": [
+    {
+      "obj": {
+        "document_summary": "before"
+      },
+      "path": "document_summary",
+      "result": "before"
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "a"
+          },
+          {
+            "reasoning": "b"
+          }
+        ]
+      },
+      "path": "claims.1.reasoning",
+      "result": "b"
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "claims.0.missing",
+      "result": null
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "claims.5.reasoning",
+      "result": null
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "absent.path",
+      "result": null
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "claims.abc.reasoning",
+      "result": null
+    },
+    {
+      "obj": {
+        "a": null
+      },
+      "path": "a.b",
+      "result": null
+    },
+    {
+      "obj": "str",
+      "path": "length",
+      "result": null
+    },
+    {
+      "obj": {
+        "a": {
+          "b": {
+            "c": "deep"
+          }
+        }
+      },
+      "path": "a.b.c",
+      "result": "deep"
+    },
+    {
+      "obj": [
+        1,
+        2,
+        3
+      ],
+      "path": "1",
+      "result": 2
+    }
+  ],
+  "set_by_path": [
+    {
+      "obj": {
+        "document_summary": "before"
+      },
+      "path": "document_summary",
+      "value": "after",
+      "ok": true,
+      "after": {
+        "document_summary": "after"
+      }
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "a"
+          },
+          {
+            "reasoning": "b"
+          }
+        ]
+      },
+      "path": "claims.1.reasoning",
+      "value": "B",
+      "ok": true,
+      "after": {
+        "claims": [
+          {
+            "reasoning": "a"
+          },
+          {
+            "reasoning": "B"
+          }
+        ]
+      }
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "claims.5.reasoning",
+      "value": "y",
+      "ok": false,
+      "after": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      }
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "absent.path",
+      "value": "y",
+      "ok": false,
+      "after": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      }
+    },
+    {
+      "obj": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      },
+      "path": "claims.abc.reasoning",
+      "value": "y",
+      "ok": false,
+      "after": {
+        "claims": [
+          {
+            "reasoning": "x"
+          }
+        ]
+      }
+    },
+    {
+      "obj": {
+        "a": null
+      },
+      "path": "a.b",
+      "value": "y",
+      "ok": false,
+      "after": {
+        "a": null
+      }
+    },
+    {
+      "obj": {
+        "a": {
+          "b": {
+            "c": "deep"
+          }
+        }
+      },
+      "path": "a.b.c",
+      "value": "D",
+      "ok": true,
+      "after": {
+        "a": {
+          "b": {
+            "c": "D"
+          }
+        }
+      }
+    },
+    {
+      "obj": [
+        1,
+        2,
+        3
+      ],
+      "path": "1",
+      "value": 9,
+      "ok": true,
+      "after": [
+        1,
+        9,
+        3
+      ]
+    },
+    {
+      "obj": {
+        "a": 1
+      },
+      "path": "a",
+      "value": "one",
+      "ok": true,
+      "after": {
+        "a": "one"
+      }
+    }
+  ]
+}

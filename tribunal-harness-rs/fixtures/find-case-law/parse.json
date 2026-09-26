@@ -1,0 +1,212 @@
+{
+  "cases": [
+    {
+      "feed": "FEED",
+      "limit": 1,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2017] UKSC 27",
+            "title": "Essop & Ors v Home Office (UK Border Agency)",
+            "court": "United Kingdom Supreme Court",
+            "date": "2017-04-05",
+            "slug": "uksc/2017/27",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "FEED",
+      "limit": 2,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2017] UKSC 27",
+            "title": "Essop & Ors v Home Office (UK Border Agency)",
+            "court": "United Kingdom Supreme Court",
+            "date": "2017-04-05",
+            "slug": "uksc/2017/27",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+          },
+          {
+            "neutralCitation": "[2026] EAT 90",
+            "title": "G Laffy v Wkcic Group T/A Capital City College Group",
+            "court": "Employment Appeal Tribunal",
+            "date": "2026-06-19",
+            "slug": "eat/2026/90",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2026/90"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "FEED",
+      "limit": 10,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2017] UKSC 27",
+            "title": "Essop & Ors v Home Office (UK Border Agency)",
+            "court": "United Kingdom Supreme Court",
+            "date": "2017-04-05",
+            "slug": "uksc/2017/27",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+          },
+          {
+            "neutralCitation": "[2026] EAT 90",
+            "title": "G Laffy v Wkcic Group T/A Capital City College Group",
+            "court": "Employment Appeal Tribunal",
+            "date": "2026-06-19",
+            "slug": "eat/2026/90",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2026/90"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "EMPTY_FEED",
+      "limit": 1,
+      "result": {
+        "hits": []
+      }
+    },
+    {
+      "feed": "EMPTY_FEED",
+      "limit": 2,
+      "result": {
+        "hits": []
+      }
+    },
+    {
+      "feed": "EMPTY_FEED",
+      "limit": 10,
+      "result": {
+        "hits": []
+      }
+    },
+    {
+      "feed": "FMX_FEED",
+      "limit": 1,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2020] UKSC 1",
+            "title": "FMX Food Merchants Import Export Co Ltd v HMRC",
+            "court": "United Kingdom Supreme Court",
+            "date": "2020-01-29",
+            "slug": "uksc/2020/1",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "FMX_FEED",
+      "limit": 2,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2020] UKSC 1",
+            "title": "FMX Food Merchants Import Export Co Ltd v HMRC",
+            "court": "United Kingdom Supreme Court",
+            "date": "2020-01-29",
+            "slug": "uksc/2020/1",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "FMX_FEED",
+      "limit": 10,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2020] UKSC 1",
+            "title": "FMX Food Merchants Import Export Co Ltd v HMRC",
+            "court": "United Kingdom Supreme Court",
+            "date": "2020-01-29",
+            "slug": "uksc/2020/1",
+            "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+          }
+        ]
+      }
+    },
+    {
+      "feed": "FEED_VARIANT",
+      "limit": 1,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2019] EWCA Civ 123",
+            "title": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+            "court": "Court of Appeal (Civil Division)",
+            "date": "2019-03-01",
+            "slug": "ewca/civ/2019/123",
+            "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+          }
+        ],
+        "total": 42
+      }
+    },
+    {
+      "feed": "FEED_VARIANT",
+      "limit": 2,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2019] EWCA Civ 123",
+            "title": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+            "court": "Court of Appeal (Civil Division)",
+            "date": "2019-03-01",
+            "slug": "ewca/civ/2019/123",
+            "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+          },
+          {
+            "neutralCitation": null,
+            "title": "No Citation Case",
+            "court": "Employment Appeal Tribunal",
+            "date": null,
+            "slug": "eat/2021/7",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2021/7"
+          }
+        ],
+        "total": 42
+      }
+    },
+    {
+      "feed": "FEED_VARIANT",
+      "limit": 10,
+      "result": {
+        "hits": [
+          {
+            "neutralCitation": "[2019] EWCA Civ 123",
+            "title": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+            "court": "Court of Appeal (Civil Division)",
+            "date": "2019-03-01",
+            "slug": "ewca/civ/2019/123",
+            "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+          },
+          {
+            "neutralCitation": null,
+            "title": "No Citation Case",
+            "court": "Employment Appeal Tribunal",
+            "date": null,
+            "slug": "eat/2021/7",
+            "url": "https://caselaw.nationalarchives.gov.uk/eat/2021/7"
+          },
+          {
+            "neutralCitation": null,
+            "title": "Untitled Slugless",
+            "court": null,
+            "date": "2020-01-01",
+            "slug": null,
+            "url": null
+          }
+        ],
+        "total": 42
+      }
+    }
+  ]
+}

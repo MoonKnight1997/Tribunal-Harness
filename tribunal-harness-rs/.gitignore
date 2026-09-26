@@ -1,0 +1,6 @@
+/target
+smoke-report.json
+smoke-report.md
+/data/
+.env
+.env.local

@@ -1,0 +1,318 @@
+{
+  "tidy": [
+    {
+      "input": "a\r\n\n\n\nb   \n",
+      "result": "a\n\nb"
+    },
+    {
+      "input": "  x  \n\n\n\n\n y\t\n",
+      "result": "x\n\n y"
+    },
+    {
+      "input": "",
+      "result": ""
+    },
+    {
+      "input": "\r\r\n",
+      "result": ""
+    },
+    {
+      "input": "one\n\ntwo\n\n\nthree",
+      "result": "one\n\ntwo\n\nthree"
+    }
+  ],
+  "looks_like_pdf": [
+    {
+      "input": "%PDF-1.7",
+      "result": true
+    },
+    {
+      "input": "not a pdf",
+      "result": false
+    },
+    {
+      "input": "%PDF",
+      "result": false
+    },
+    {
+      "input": "%PDF-",
+      "result": true
+    },
+    {
+      "input": "",
+      "result": false
+    }
+  ],
+  "allowed_url": [
+    {
+      "input": "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf",
+      "result": true
+    },
+    {
+      "input": "https://www.bailii.org/x.pdf",
+      "result": true
+    },
+    {
+      "input": "http://caselaw.nationalarchives.gov.uk/x.pdf",
+      "result": false
+    },
+    {
+      "input": "https://evil.example.com/x.pdf",
+      "result": false
+    },
+    {
+      "input": "https://169.254.169.254/latest/meta-data",
+      "result": false
+    },
+    {
+      "input": "not a url",
+      "result": false
+    },
+    {
+      "input": "https://assets.caselaw.nationalarchives.gov.uk/final.pdf",
+      "result": true
+    },
+    {
+      "input": "https://www.legislation.gov.uk/x.pdf",
+      "result": true
+    },
+    {
+      "input": "https://www.gov.uk/big.pdf",
+      "result": true
+    },
+    {
+      "input": "https://WWW.BAILII.ORG/x.pdf",
+      "result": true
+    },
+    {
+      "input": "https://www.bailii.org:443/x.pdf",
+      "result": true
+    },
+    {
+      "input": "https://user:pw@www.bailii.org/x.pdf",
+      "result": true
+    },
+    {
+      "input": "ftp://www.bailii.org/x.pdf",
+      "result": false
+    },
+    {
+      "input": "",
+      "result": false
+    }
+  ],
+  "buffer_sample": {
+    "status": "ok",
+    "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+    "pages": 1
+  },
+  "buffer_empty": {
+    "status": "empty",
+    "detail": "Empty buffer."
+  },
+  "buffer_not_pdf": {
+    "status": "not_pdf",
+    "detail": "Not a PDF (missing %PDF- header)."
+  },
+  "buffer_corrupt": {
+    "status": "error",
+    "detail": "PDF parse failed: Invalid PDF structure"
+  },
+  "fetch": [
+    {
+      "mode": "reject",
+      "url": "https://evil.example.com/x.pdf",
+      "result": {
+        "status": "forbidden_host",
+        "detail": "Refusing to fetch: only https PDFs from trusted legal sources are allowed (caselaw.nationalarchives.gov.uk, assets.caselaw.nationalarchives.gov.uk, www.bailii.org, www.legislation.gov.uk, www.gov.uk).",
+        "sourceUrl": "https://evil.example.com/x.pdf"
+      },
+      "fetched": []
+    },
+    {
+      "mode": "reject",
+      "url": "http://www.bailii.org/x.pdf",
+      "result": {
+        "status": "forbidden_host",
+        "detail": "Refusing to fetch: only https PDFs from trusted legal sources are allowed (caselaw.nationalarchives.gov.uk, assets.caselaw.nationalarchives.gov.uk, www.bailii.org, www.legislation.gov.uk, www.gov.uk).",
+        "sourceUrl": "http://www.bailii.org/x.pdf"
+      },
+      "fetched": []
+    },
+    {
+      "mode": "reject",
+      "url": "not a url",
+      "result": {
+        "status": "error",
+        "detail": "Invalid URL.",
+        "sourceUrl": "not a url"
+      },
+      "fetched": []
+    },
+    {
+      "mode": "pdf:sample",
+      "url": "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf",
+      "result": {
+        "status": "ok",
+        "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+        "pages": 1,
+        "sourceUrl": "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf"
+      ]
+    },
+    {
+      "mode": "status:503",
+      "url": "https://www.legislation.gov.uk/x.pdf",
+      "result": {
+        "status": "upstream_unavailable",
+        "detail": "Source returned 503.",
+        "sourceUrl": "https://www.legislation.gov.uk/x.pdf"
+      },
+      "fetched": [
+        "https://www.legislation.gov.uk/x.pdf"
+      ]
+    },
+    {
+      "mode": "status:429",
+      "url": "https://www.legislation.gov.uk/x.pdf",
+      "result": {
+        "status": "upstream_unavailable",
+        "detail": "Source returned 429.",
+        "sourceUrl": "https://www.legislation.gov.uk/x.pdf"
+      },
+      "fetched": [
+        "https://www.legislation.gov.uk/x.pdf"
+      ]
+    },
+    {
+      "mode": "status:404",
+      "url": "https://www.legislation.gov.uk/x.pdf",
+      "result": {
+        "status": "error",
+        "detail": "Source returned 404.",
+        "sourceUrl": "https://www.legislation.gov.uk/x.pdf"
+      },
+      "fetched": [
+        "https://www.legislation.gov.uk/x.pdf"
+      ]
+    },
+    {
+      "mode": "pdf:too-large-header",
+      "url": "https://www.gov.uk/big.pdf",
+      "result": {
+        "status": "too_large",
+        "detail": "PDF too large (103809024 bytes).",
+        "sourceUrl": "https://www.gov.uk/big.pdf"
+      },
+      "fetched": [
+        "https://www.gov.uk/big.pdf"
+      ]
+    },
+    {
+      "mode": "redirect:forbidden",
+      "url": "https://www.gov.uk/open-redirect.pdf",
+      "result": {
+        "status": "forbidden_host",
+        "detail": "Refusing to follow redirect to a non-allowlisted host (SSRF guard).",
+        "sourceUrl": "https://www.gov.uk/open-redirect.pdf"
+      },
+      "fetched": [
+        "https://www.gov.uk/open-redirect.pdf"
+      ]
+    },
+    {
+      "mode": "redirect:allowed",
+      "url": "https://caselaw.nationalarchives.gov.uk/redirect.pdf",
+      "result": {
+        "status": "ok",
+        "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+        "pages": 1,
+        "sourceUrl": "https://caselaw.nationalarchives.gov.uk/redirect.pdf"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/redirect.pdf",
+        "https://assets.caselaw.nationalarchives.gov.uk/final.pdf"
+      ]
+    },
+    {
+      "mode": "redirect:relative",
+      "url": "https://caselaw.nationalarchives.gov.uk/redirect.pdf",
+      "result": {
+        "status": "ok",
+        "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+        "pages": 1,
+        "sourceUrl": "https://caselaw.nationalarchives.gov.uk/redirect.pdf"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/redirect.pdf",
+        "https://caselaw.nationalarchives.gov.uk/relative/final.pdf"
+      ]
+    },
+    {
+      "mode": "abort",
+      "url": "https://www.bailii.org/x.pdf",
+      "result": {
+        "status": "upstream_timeout",
+        "detail": "Fetch timed out.",
+        "sourceUrl": "https://www.bailii.org/x.pdf"
+      },
+      "fetched": [
+        "https://www.bailii.org/x.pdf"
+      ]
+    },
+    {
+      "mode": "reject",
+      "url": "https://www.bailii.org/x.pdf",
+      "result": {
+        "status": "upstream_unavailable",
+        "detail": "Could not fetch the PDF.",
+        "sourceUrl": "https://www.bailii.org/x.pdf"
+      },
+      "fetched": [
+        "https://www.bailii.org/x.pdf"
+      ]
+    },
+    {
+      "mode": "pdf:not-pdf",
+      "url": "https://www.bailii.org/x.pdf",
+      "result": {
+        "status": "not_pdf",
+        "detail": "Not a PDF (missing %PDF- header).",
+        "sourceUrl": "https://www.bailii.org/x.pdf"
+      },
+      "fetched": [
+        "https://www.bailii.org/x.pdf"
+      ]
+    }
+  ],
+  "judgment": [
+    {
+      "slug": "eat/2026/90",
+      "status": "ok",
+      "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+      "pages": 1,
+      "sourceUrl": "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf"
+    },
+    {
+      "slug": "eat/2026/90",
+      "status": "ok",
+      "markdown": "Judgment paragraph one.\nParagraph two follows the first.\nClaimant: warehouse employee dismissed 3 March 2026 for alleged gross\nmisconduct shortly after raising written health and safety concerns. No\ninvestigation meeting was held.\nEmployer: Acme Logistics Ltd. EDT: 2026-03-03.",
+      "pages": 1,
+      "sourceUrl": "https://caselaw.nationalarchives.gov.uk/eat/2026/90/data.pdf"
+    },
+    {
+      "slug": "",
+      "status": "error",
+      "sourceUrl": "https://caselaw.nationalarchives.gov.uk//data.pdf",
+      "detail": "Empty judgment slug."
+    },
+    {
+      "slug": "///",
+      "status": "error",
+      "sourceUrl": "https://caselaw.nationalarchives.gov.uk//data.pdf",
+      "detail": "Empty judgment slug."
+    }
+  ]
+}

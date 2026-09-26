@@ -1,0 +1,378 @@
+{
+  "cases": [
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "[2017] UKSC 27",
+        "caseName": "Essop v Home Office"
+      },
+      "result": {
+        "trustLevel": "VERIFIED",
+        "reason": "Exact neutral-citation match in Find Case Law: [2017] UKSC 27 — Essop & Ors v Home Office (UK Border Agency).",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+27&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "[2017] UKSC 999",
+        "caseName": "Essop v Home Office"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Citation [2017] UKSC 999 not confirmed, but a related judgment exists: [2017] UKSC 27. Verify manually.",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+999&page=1"
+      ]
+    },
+    {
+      "mode": "ok:EMPTY_FEED",
+      "input": {
+        "citation": "[1801] FAKE 1",
+        "caseName": "Madeup v Nobody"
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "Neutral citation [1801] FAKE 1 not found in Find Case Law (note: coverage is ~2003 onward).",
+        "source": "find_case_law"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B1801%5D+FAKE+1&page=1"
+      ]
+    },
+    {
+      "mode": "abort",
+      "input": {
+        "citation": "[2017] UKSC 27",
+        "caseName": "Essop v Home Office"
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "Live verification unavailable (Find Case Law timed out — it may be slow; retry.).",
+        "source": "unavailable"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+27&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FMX_FEED",
+      "input": {
+        "citation": "[2020] UKSC 1",
+        "caseName": "FMX Food Merchants v HMRC"
+      },
+      "result": {
+        "trustLevel": "VERIFIED",
+        "reason": "Exact neutral-citation match in Find Case Law: [2020] UKSC 1 — FMX Food Merchants Import Export Co Ltd v HMRC.",
+        "source": "find_case_law",
+        "matchedTitle": "FMX Food Merchants Import Export Co Ltd v HMRC",
+        "matchedCitation": "[2020] UKSC 1",
+        "slug": "uksc/2020/1",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2020%5D+UKSC+1&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FMX_FEED",
+      "input": {
+        "citation": "Nonexistent v Fabricated Ltd [2020] UKSC 1"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Neutral citation [2020] UKSC 1 exists but resolves to 'FMX Food Merchants Import Export Co Ltd v HMRC', which does not match the cited party name(s) — likely a mis-citation; verify manually.",
+        "source": "find_case_law",
+        "matchedTitle": "FMX Food Merchants Import Export Co Ltd v HMRC",
+        "matchedCitation": "[2020] UKSC 1",
+        "slug": "uksc/2020/1",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2020%5D+UKSC+1&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FMX_FEED",
+      "input": {
+        "citation": "[2020] UKSC 1",
+        "caseName": "Nonexistent v Fabricated Ltd"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Neutral citation [2020] UKSC 1 exists but resolves to 'FMX Food Merchants Import Export Co Ltd v HMRC', which does not match the cited party name(s) — likely a mis-citation; verify manually.",
+        "source": "find_case_law",
+        "matchedTitle": "FMX Food Merchants Import Export Co Ltd v HMRC",
+        "matchedCitation": "[2020] UKSC 1",
+        "slug": "uksc/2020/1",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2020%5D+UKSC+1&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FMX_FEED",
+      "input": {
+        "citation": "[2020] UKSC 1"
+      },
+      "result": {
+        "trustLevel": "VERIFIED",
+        "reason": "Exact neutral-citation match in Find Case Law: [2020] UKSC 1 — FMX Food Merchants Import Export Co Ltd v HMRC.",
+        "source": "find_case_law",
+        "matchedTitle": "FMX Food Merchants Import Export Co Ltd v HMRC",
+        "matchedCitation": "[2020] UKSC 1",
+        "slug": "uksc/2020/1",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2020/1"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2020%5D+UKSC+1&page=1"
+      ]
+    },
+    {
+      "mode": "abort",
+      "input": {
+        "citation": "Nonexistent v Fabricated Ltd [2020] UKSC 1"
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "Live verification unavailable (Find Case Law timed out — it may be slow; retry.).",
+        "source": "unavailable"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2020%5D+UKSC+1&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "caseName": "Laffy v Wkcic Group"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Possible match in Find Case Law: [2026] EAT 90. Citation not independently confirmed.",
+        "source": "find_case_law",
+        "matchedTitle": "G Laffy v Wkcic Group T/A Capital City College Group",
+        "matchedCitation": "[2026] EAT 90",
+        "slug": "eat/2026/90",
+        "url": "https://caselaw.nationalarchives.gov.uk/eat/2026/90"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=Laffy+v+Wkcic+Group&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "caseName": "Essop v Home Office"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Possible match in Find Case Law: [2017] UKSC 27. Citation not independently confirmed.",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=Essop+v+Home+Office&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "caseName": "Nobody v Nowhere"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Possible match in Find Case Law: [2017] UKSC 27. Citation not independently confirmed.",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=Nobody+v+Nowhere&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "Essop & Ors v Home Office [2017] UKSC 27"
+      },
+      "result": {
+        "trustLevel": "VERIFIED",
+        "reason": "Exact neutral-citation match in Find Case Law: [2017] UKSC 27 — Essop & Ors v Home Office (UK Border Agency).",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+27&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {},
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "No citation or case name to verify.",
+        "source": "find_case_law"
+      },
+      "fetched": []
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "",
+        "caseName": "  "
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "No citation or case name to verify.",
+        "source": "find_case_law"
+      },
+      "fetched": []
+    },
+    {
+      "mode": "status:503",
+      "input": {
+        "citation": "[2017] UKSC 27"
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "Live verification unavailable (Find Case Law returned 503 — try again later.).",
+        "source": "unavailable"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+27&page=1"
+      ]
+    },
+    {
+      "mode": "status:404",
+      "input": {
+        "citation": "[2017] UKSC 27"
+      },
+      "result": {
+        "trustLevel": "QUARANTINED",
+        "reason": "Neutral citation [2017] UKSC 27 not found in Find Case Law (note: coverage is ~2003 onward).",
+        "source": "find_case_law"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2017%5D+UKSC+27&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED_VARIANT",
+      "input": {
+        "citation": "[2019] EWCA Civ 123",
+        "caseName": "Smith & Jones v Acme & Co"
+      },
+      "result": {
+        "trustLevel": "VERIFIED",
+        "reason": "Exact neutral-citation match in Find Case Law: [2019] EWCA Civ 123 — Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'.",
+        "source": "find_case_law",
+        "matchedTitle": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+        "matchedCitation": "[2019] EWCA Civ 123",
+        "slug": "ewca/civ/2019/123",
+        "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2019%5D+EWCA+Civ+123&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED_VARIANT",
+      "input": {
+        "citation": "[2019] EWCA Civ 123",
+        "caseName": "Wholly Unrelated v Party"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Neutral citation [2019] EWCA Civ 123 exists but resolves to 'Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'', which does not match the cited party name(s) — likely a mis-citation; verify manually.",
+        "source": "find_case_law",
+        "matchedTitle": "Smith & Jones v Acme & Co <Ltd> \"Q\" 'A' 'B'",
+        "matchedCitation": "[2019] EWCA Civ 123",
+        "slug": "ewca/civ/2019/123",
+        "url": "https://caselaw.nationalarchives.gov.uk/ewca/civ/2019/123"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B2019%5D+EWCA+Civ+123&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED_VARIANT",
+      "input": {
+        "caseName": "No Citation Case"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Possible match in Find Case Law: No Citation Case. Citation not independently confirmed.",
+        "source": "find_case_law",
+        "matchedTitle": "No Citation Case",
+        "slug": "eat/2021/7",
+        "url": "https://caselaw.nationalarchives.gov.uk/eat/2021/7"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=No+Citation+Case&page=1"
+      ]
+    },
+    {
+      "mode": "ok:FEED",
+      "input": {
+        "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "caseName": "Polkey v AE Dayton Services Ltd"
+      },
+      "result": {
+        "trustLevel": "CHECK",
+        "reason": "Citation [1987] UKHL 8 not confirmed, but a related judgment exists: [2017] UKSC 27. Verify manually.",
+        "source": "find_case_law",
+        "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+        "matchedCitation": "[2017] UKSC 27",
+        "slug": "uksc/2017/27",
+        "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+      },
+      "fetched": [
+        "https://caselaw.nationalarchives.gov.uk/atom.xml?query=%5B1987%5D+UKHL+8&page=1"
+      ]
+    }
+  ],
+  "cache": {
+    "first": {
+      "trustLevel": "VERIFIED",
+      "reason": "Exact neutral-citation match in Find Case Law: [2017] UKSC 27 — Essop & Ors v Home Office (UK Border Agency).",
+      "source": "find_case_law",
+      "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+      "matchedCitation": "[2017] UKSC 27",
+      "slug": "uksc/2017/27",
+      "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+    },
+    "second": {
+      "trustLevel": "VERIFIED",
+      "reason": "Exact neutral-citation match in Find Case Law: [2017] UKSC 27 — Essop & Ors v Home Office (UK Border Agency).",
+      "source": "find_case_law",
+      "matchedTitle": "Essop & Ors v Home Office (UK Border Agency)",
+      "matchedCitation": "[2017] UKSC 27",
+      "slug": "uksc/2017/27",
+      "url": "https://caselaw.nationalarchives.gov.uk/uksc/2017/27"
+    },
+    "fetch_calls_total": 1
+  }
+}

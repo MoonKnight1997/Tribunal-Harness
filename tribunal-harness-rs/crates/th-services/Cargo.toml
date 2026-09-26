@@ -1,0 +1,26 @@
+[package]
+name = "th-services"
+description = "Tribunal Harness — async I/O services (TNA Find Case Law, Anthropic Messages, PDF/DOCX extraction, refinement, debate engine) behind an injectable HttpClient."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+th-core = { path = "../th-core" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+regex = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+async-trait = { workspace = true }
+tracing = { workspace = true }
+reqwest = { workspace = true }
+pdf-extract = { workspace = true }
+zip = { workspace = true }
+quick-xml = { workspace = true }
+uuid = { workspace = true }
+futures-util = { version = "0.3", default-features = false }
+lopdf = "0.36"
+
+[dev-dependencies]

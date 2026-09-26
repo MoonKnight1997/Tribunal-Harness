@@ -1,0 +1,4683 @@
+{
+  "cases": [
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Shamoon v Chief Constable [2003] UKHL 11",
+      "result": {
+        "originalCitation": "Shamoon v Chief Constable [2003] UKHL 11",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Exact match: Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11"
+      }
+    },
+    {
+      "input": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+      "result": {
+        "originalCitation": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Exact match: British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007"
+      }
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+      "result": {
+        "originalCitation": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Exact match: Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+      }
+    },
+    {
+      "input": "BHS v Burchell [1978]",
+      "result": {
+        "originalCitation": "BHS v Burchell [1978]",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended."
+      }
+    },
+    {
+      "input": "Essop v Home Office [2017] UKSC 27",
+      "result": {
+        "originalCitation": "Essop v Home Office [2017] UKSC 27",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Essop",
+          "neutralCitation": "[2017] UKSC 27",
+          "fullName": "Essop v Home Office",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+        },
+        "reason": "Exact match: Essop v Home Office [2017] UKSC 27"
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1988] AC 344",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [1988] AC 344",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([1988] AC 344) does not match the verified citation [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2025] UKSC 99",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [2025] UKSC 99",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([2025] UKSC 99) does not match the verified citation [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "Nonexistent Authority v Someone [1987] UKHL 8",
+      "result": {
+        "originalCitation": "Nonexistent Authority v Someone [1987] UKHL 8",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Chief Constable of West Yorkshire Police v Vento (No 2) [2002]",
+      "result": {
+        "originalCitation": "Chief Constable of West Yorkshire Police v Vento (No 2) [2002]",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Case name matches Vento v Chief Constable of West Yorkshire Police (No 2), but no neutral citation was supplied to verify against [2002] EWCA Civ 1871. Manual check recommended."
+      }
+    },
+    {
+      "input": "Smith v Acme Corp [2025] EAT 999",
+      "result": {
+        "originalCitation": "Smith v Acme Corp [2025] EAT 999",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "",
+      "result": {
+        "originalCitation": "",
+        "trustLevel": "QUARANTINED",
+        "reason": "Empty citation string"
+      }
+    },
+    {
+      "input": "   ",
+      "result": {
+        "originalCitation": "   ",
+        "trustLevel": "QUARANTINED",
+        "reason": "Empty citation string"
+      }
+    },
+    {
+      "input": "polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": {
+        "originalCitation": "polkey v AE Dayton Services Ltd [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28",
+      "result": {
+        "originalCitation": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Tesco v USDAW",
+          "neutralCitation": "[2024] UKSC 28",
+          "fullName": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Where a contractual term confers a permanent right (e.g. retained pay), the employer cannot circumvent it by dismissing and re-engaging on inferior terms. An injunction may be granted to prevent the employer from terminating employment for this purpose."
+        },
+        "reason": "Exact match: Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28"
+      }
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979",
+      "result": {
+        "originalCitation": "Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Exact match: Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979"
+      }
+    },
+    {
+      "input": "Archibald v Fife Council [2004] UKHL 32",
+      "result": {
+        "originalCitation": "Archibald v Fife Council [2004] UKHL 32",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Exact match: Archibald v Fife Council [2004] UKHL 32"
+      }
+    },
+    {
+      "input": "Made Up Case v Nobody [2025] EAT 000",
+      "result": {
+        "originalCitation": "Made Up Case v Nobody [2025] EAT 000",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton [1987] UKHL 8",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Homer v Chief Constable [2012] UKSC 15",
+      "result": {
+        "originalCitation": "Homer v Chief Constable [2012] UKSC 15",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Exact match: Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15"
+      }
+    },
+    {
+      "input": "Polkey",
+      "result": {
+        "originalCitation": "Polkey",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but no neutral citation was supplied to verify against [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "Polkey [1987]UKHL 8",
+      "result": {
+        "originalCitation": "Polkey [1987]UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Polkey  v   AE Dayton  [ 1987 ]  UKHL  8",
+      "result": {
+        "originalCitation": "Polkey  v   AE Dayton  [ 1987 ]  UKHL  8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "See Polkey v AE Dayton Services Ltd [1987] UKHL 8 at [12]",
+      "result": {
+        "originalCitation": "See Polkey v AE Dayton Services Ltd [1987] UKHL 8 at [12]",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH C-555/07",
+      "result": {
+        "originalCitation": "Kucukdeveci v Swedex GmbH C-555/07",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Kucukdeveci",
+          "neutralCitation": "C-555/07",
+          "fullName": "Kucukdeveci v Swedex GmbH",
+          "court": "EWCA",
+          "tier": "persuasive",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "EU principle of non-discrimination on grounds of age is a general principle of EU law. National courts must disapply domestic legislation that conflicts, even in disputes between private parties."
+        },
+        "reason": "Case name matches Kucukdeveci v Swedex GmbH, but no neutral citation was supplied to verify against C-555/07. Manual check recommended."
+      }
+    },
+    {
+      "input": "Kucukdeveci C-555/07",
+      "result": {
+        "originalCitation": "Kucukdeveci C-555/07",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Kucukdeveci",
+          "neutralCitation": "C-555/07",
+          "fullName": "Kucukdeveci v Swedex GmbH",
+          "court": "EWCA",
+          "tier": "persuasive",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "EU principle of non-discrimination on grounds of age is a general principle of EU law. National courts must disapply domestic legislation that conflicts, even in disputes between private parties."
+        },
+        "reason": "Case name matches Kucukdeveci v Swedex GmbH, but no neutral citation was supplied to verify against C-555/07. Manual check recommended."
+      }
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [1981] 1 Ch 448",
+      "result": {
+        "originalCitation": "Gunton v Richmond-upon-Thames London Borough Council [1981] 1 Ch 448",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but no neutral citation was supplied to verify against [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [1982] ICR 156",
+      "result": {
+        "originalCitation": "Williams v Compair Maxam Ltd [1982] ICR 156",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Williams v Compair Maxam",
+          "neutralCitation": "[1982] ICR 156",
+          "fullName": "Williams v Compair Maxam Ltd",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Five principles for fair redundancy selection: (1) maximum warning, (2) fair selection criteria, (3) objective application, (4) consultation, (5) consider alternative employment."
+        },
+        "reason": "Exact match: Williams v Compair Maxam Ltd [1982] ICR 156"
+      }
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [1978] ICR 221",
+      "result": {
+        "originalCitation": "Western Excavating (ECC) Ltd v Sharp [1978] ICR 221",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Exact match: Western Excavating (ECC) Ltd v Sharp [1978] ICR 221"
+      }
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] EWCA Civ 142",
+      "result": {
+        "originalCitation": "Igen Ltd v Wong [2005] EWCA Civ 142",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Exact match: Igen Ltd v Wong [2005] EWCA Civ 142"
+      }
+    },
+    {
+      "input": "Igen v Wong [2005] ICR 931",
+      "result": {
+        "originalCitation": "Igen v Wong [2005] ICR 931",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Case name matches Igen Ltd v Wong, but the cited neutral citation ([2005] ICR 931) does not match the verified citation [2005] EWCA Civ 142. Manual check recommended."
+      }
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871",
+      "result": {
+        "originalCitation": "Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Exact match: Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871"
+      }
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2003] EWCA Civ 1012",
+      "result": {
+        "originalCitation": "Robertson v Bexley Community Centre [2003] EWCA Civ 1012",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Robertson v Bexley",
+          "neutralCitation": "[2003] EWCA Civ 1012",
+          "fullName": "Robertson v Bexley Community Centre",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment"
+          ],
+          "principle": "Time limits in employment tribunals are strictly enforced. An extension of time is the exception, not the rule. The burden is on the claimant to show it was not reasonably practicable to present the claim in time (unfair dismissal) or that it is just and equitable to extend (discrimination)."
+        },
+        "reason": "Exact match: Robertson v Bexley Community Centre [2003] EWCA Civ 1012"
+      }
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2024] EAT 111",
+      "result": {
+        "originalCitation": "Khatun v Winn Solicitors Ltd [2024] EAT 111",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Khatun v Winn",
+          "neutralCitation": "[2024] EAT 111",
+          "fullName": "Khatun v Winn Solicitors Ltd",
+          "court": "EAT",
+          "tier": "persuasive",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Fire and rehire as a tactic to impose inferior terms may render a dismissal unfair under ERA 1996 s98, even before ERA 2025 made it automatically unfair. The employer must demonstrate genuine business necessity."
+        },
+        "reason": "Exact match: Khatun v Winn Solicitors Ltd [2024] EAT 111"
+      }
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403",
+      "result": {
+        "originalCitation": "Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Exact match: Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403"
+      }
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] UKEAT 0060_07_2908",
+      "result": {
+        "originalCitation": "Environment Agency v Rowan [2008] UKEAT 0060_07_2908",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Environment Agency v Rowan",
+          "neutralCitation": "[2008] UKEAT 0060_07_2908",
+          "fullName": "Environment Agency v Rowan",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "Three-step test for reasonable adjustments: (1) identify the PCP/physical feature/auxiliary aid, (2) identify how it places the disabled person at a substantial disadvantage compared to non-disabled persons, (3) identify what adjustment would remove or reduce that disadvantage."
+        },
+        "reason": "Exact match: Environment Agency v Rowan [2008] UKEAT 0060_07_2908"
+      }
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202",
+      "result": {
+        "originalCitation": "Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Exact match: Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202"
+      }
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16",
+      "result": {
+        "originalCitation": "Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Exact match: Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16"
+      }
+    },
+    {
+      "input": "Anya v University of Oxford [2001] EWCA Civ 405",
+      "result": {
+        "originalCitation": "Anya v University of Oxford [2001] EWCA Civ 405",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Anya v University of Oxford",
+          "neutralCitation": "[2001] EWCA Civ 405",
+          "fullName": "Anya v University of Oxford",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Tribunals must consider the totality of the evidence, not just individual incidents in isolation, when determining whether discrimination has occurred."
+        },
+        "reason": "Exact match: Anya v University of Oxford [2001] EWCA Civ 405"
+      }
+    },
+    {
+      "input": "Pemberton v Inwood [2018] EWCA Civ 564",
+      "result": {
+        "originalCitation": "Pemberton v Inwood [2018] EWCA Civ 564",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Exact match: Pemberton v Inwood [2018] EWCA Civ 564"
+      }
+    },
+    {
+      "input": "Chagger v Abbey National plc [2009] EWCA Civ 1176",
+      "result": {
+        "originalCitation": "Chagger v Abbey National plc [2009] EWCA Civ 1176",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chagger",
+          "neutralCitation": "[2009] EWCA Civ 1176",
+          "fullName": "Chagger v Abbey National plc",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination"
+          ],
+          "principle": "In discrimination cases, the Polkey percentage reduction principle applies. Compensation may be reduced by the chance that the claimant would have been dismissed in any event, even without the discrimination."
+        },
+        "reason": "Exact match: Chagger v Abbey National plc [2009] EWCA Civ 1176"
+      }
+    },
+    {
+      "input": "the polkey principle applies here",
+      "result": {
+        "originalCitation": "the polkey principle applies here",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but no neutral citation was supplied to verify against [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "[1987] UKHL 8",
+      "result": {
+        "originalCitation": "[1987] UKHL 8",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "[2005] EWCA Civ 142 Igen",
+      "result": {
+        "originalCitation": "[2005] EWCA Civ 142 Igen",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Burchell",
+      "result": {
+        "originalCitation": "Burchell",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1980] ICR 303",
+      "result": {
+        "originalCitation": "British Home Stores Ltd v Burchell [1980] ICR 303",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but the cited neutral citation ([1980] ICR 303) does not match the verified citation [1978] UKEAT 0108_78_2007. Manual check recommended."
+      }
+    },
+    {
+      "input": "Polkey [1987] UKHL 8",
+      "result": {
+        "originalCitation": "Polkey [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but no neutral citation was supplied to verify against [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services Ltd [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "POLKEY V AE DAYTON SERVICES LTD [1987] UKHL 8",
+      "result": {
+        "originalCitation": "POLKEY V AE DAYTON SERVICES LTD [1987] UKHL 8",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+      }
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007",
+      "result": {
+        "originalCitation": "British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Exact match: British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007"
+      }
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell",
+      "result": {
+        "originalCitation": "British Home Stores Ltd v Burchell",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended."
+      }
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [2099] UKSC 999",
+      "result": {
+        "originalCitation": "British Home Stores Ltd v Burchell [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1978] UKEAT 0108_78_2007. Manual check recommended."
+      }
+    },
+    {
+      "input": "BRITISH HOME STORES LTD V BURCHELL [1978] UKEAT 0108_78_2007",
+      "result": {
+        "originalCitation": "BRITISH HOME STORES LTD V BURCHELL [1978] UKEAT 0108_78_2007",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Exact match: British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007"
+      }
+    },
+    {
+      "input": "Iceland Frozen Foods [1982] UKEAT 0062_82_2207",
+      "result": {
+        "originalCitation": "Iceland Frozen Foods [1982] UKEAT 0062_82_2207",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Exact match: Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+      }
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones",
+      "result": {
+        "originalCitation": "Iceland Frozen Foods Ltd v Jones",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Case name matches Iceland Frozen Foods Ltd v Jones, but no neutral citation was supplied to verify against [1982] UKEAT 0062_82_2207. Manual check recommended."
+      }
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Iceland Frozen Foods Ltd v Jones [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Case name matches Iceland Frozen Foods Ltd v Jones, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1982] UKEAT 0062_82_2207. Manual check recommended."
+      }
+    },
+    {
+      "input": "ICELAND FROZEN FOODS LTD V JONES [1982] UKEAT 0062_82_2207",
+      "result": {
+        "originalCitation": "ICELAND FROZEN FOODS LTD V JONES [1982] UKEAT 0062_82_2207",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Exact match: Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207"
+      }
+    },
+    {
+      "input": "Williams v Compair Maxam [1982] ICR 156",
+      "result": {
+        "originalCitation": "Williams v Compair Maxam [1982] ICR 156",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Williams v Compair Maxam",
+          "neutralCitation": "[1982] ICR 156",
+          "fullName": "Williams v Compair Maxam Ltd",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Five principles for fair redundancy selection: (1) maximum warning, (2) fair selection criteria, (3) objective application, (4) consultation, (5) consider alternative employment."
+        },
+        "reason": "Exact match: Williams v Compair Maxam Ltd [1982] ICR 156"
+      }
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd",
+      "result": {
+        "originalCitation": "Williams v Compair Maxam Ltd",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Williams v Compair Maxam",
+          "neutralCitation": "[1982] ICR 156",
+          "fullName": "Williams v Compair Maxam Ltd",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Five principles for fair redundancy selection: (1) maximum warning, (2) fair selection criteria, (3) objective application, (4) consultation, (5) consider alternative employment."
+        },
+        "reason": "Case name matches Williams v Compair Maxam Ltd, but no neutral citation was supplied to verify against [1982] ICR 156. Manual check recommended."
+      }
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Williams v Compair Maxam Ltd [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Williams v Compair Maxam",
+          "neutralCitation": "[1982] ICR 156",
+          "fullName": "Williams v Compair Maxam Ltd",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Five principles for fair redundancy selection: (1) maximum warning, (2) fair selection criteria, (3) objective application, (4) consultation, (5) consider alternative employment."
+        },
+        "reason": "Case name matches Williams v Compair Maxam Ltd, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1982] ICR 156. Manual check recommended."
+      }
+    },
+    {
+      "input": "WILLIAMS V COMPAIR MAXAM LTD [1982] ICR 156",
+      "result": {
+        "originalCitation": "WILLIAMS V COMPAIR MAXAM LTD [1982] ICR 156",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Williams v Compair Maxam",
+          "neutralCitation": "[1982] ICR 156",
+          "fullName": "Williams v Compair Maxam Ltd",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Five principles for fair redundancy selection: (1) maximum warning, (2) fair selection criteria, (3) objective application, (4) consultation, (5) consider alternative employment."
+        },
+        "reason": "Exact match: Williams v Compair Maxam Ltd [1982] ICR 156"
+      }
+    },
+    {
+      "input": "Western Excavating [1978] ICR 221",
+      "result": {
+        "originalCitation": "Western Excavating [1978] ICR 221",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Exact match: Western Excavating (ECC) Ltd v Sharp [1978] ICR 221"
+      }
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp",
+      "result": {
+        "originalCitation": "Western Excavating (ECC) Ltd v Sharp",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Case name matches Western Excavating (ECC) Ltd v Sharp, but no neutral citation was supplied to verify against [1978] ICR 221. Manual check recommended."
+      }
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Western Excavating (ECC) Ltd v Sharp [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Case name matches Western Excavating (ECC) Ltd v Sharp, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1978] ICR 221. Manual check recommended."
+      }
+    },
+    {
+      "input": "WESTERN EXCAVATING (ECC) LTD V SHARP [1978] ICR 221",
+      "result": {
+        "originalCitation": "WESTERN EXCAVATING (ECC) LTD V SHARP [1978] ICR 221",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Exact match: Western Excavating (ECC) Ltd v Sharp [1978] ICR 221"
+      }
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11",
+      "result": {
+        "originalCitation": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Exact match: Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11"
+      }
+    },
+    {
+      "input": "Shamoon [2003] UKHL 11",
+      "result": {
+        "originalCitation": "Shamoon [2003] UKHL 11",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Exact match: Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11"
+      }
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+      "result": {
+        "originalCitation": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Case name matches Shamoon v Chief Constable of the Royal Ulster Constabulary, but no neutral citation was supplied to verify against [2003] UKHL 11. Manual check recommended."
+      }
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Case name matches Shamoon v Chief Constable of the Royal Ulster Constabulary, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2003] UKHL 11. Manual check recommended."
+      }
+    },
+    {
+      "input": "SHAMOON V CHIEF CONSTABLE OF THE ROYAL ULSTER CONSTABULARY [2003] UKHL 11",
+      "result": {
+        "originalCitation": "SHAMOON V CHIEF CONSTABLE OF THE ROYAL ULSTER CONSTABULARY [2003] UKHL 11",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Exact match: Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11"
+      }
+    },
+    {
+      "input": "Igen v Wong [2005] EWCA Civ 142",
+      "result": {
+        "originalCitation": "Igen v Wong [2005] EWCA Civ 142",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Exact match: Igen Ltd v Wong [2005] EWCA Civ 142"
+      }
+    },
+    {
+      "input": "Igen Ltd v Wong",
+      "result": {
+        "originalCitation": "Igen Ltd v Wong",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Case name matches Igen Ltd v Wong, but no neutral citation was supplied to verify against [2005] EWCA Civ 142. Manual check recommended."
+      }
+    },
+    {
+      "input": "Igen Ltd v Wong [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Igen Ltd v Wong [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Case name matches Igen Ltd v Wong, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2005] EWCA Civ 142. Manual check recommended."
+      }
+    },
+    {
+      "input": "IGEN LTD V WONG [2005] EWCA CIV 142",
+      "result": {
+        "originalCitation": "IGEN LTD V WONG [2005] EWCA CIV 142",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Exact match: Igen Ltd v Wong [2005] EWCA Civ 142"
+      }
+    },
+    {
+      "input": "Anya v University of Oxford",
+      "result": {
+        "originalCitation": "Anya v University of Oxford",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Anya v University of Oxford",
+          "neutralCitation": "[2001] EWCA Civ 405",
+          "fullName": "Anya v University of Oxford",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Tribunals must consider the totality of the evidence, not just individual incidents in isolation, when determining whether discrimination has occurred."
+        },
+        "reason": "Case name matches Anya v University of Oxford, but no neutral citation was supplied to verify against [2001] EWCA Civ 405. Manual check recommended."
+      }
+    },
+    {
+      "input": "Anya v University of Oxford [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Anya v University of Oxford [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Anya v University of Oxford",
+          "neutralCitation": "[2001] EWCA Civ 405",
+          "fullName": "Anya v University of Oxford",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Tribunals must consider the totality of the evidence, not just individual incidents in isolation, when determining whether discrimination has occurred."
+        },
+        "reason": "Case name matches Anya v University of Oxford, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2001] EWCA Civ 405. Manual check recommended."
+      }
+    },
+    {
+      "input": "ANYA V UNIVERSITY OF OXFORD [2001] EWCA CIV 405",
+      "result": {
+        "originalCitation": "ANYA V UNIVERSITY OF OXFORD [2001] EWCA CIV 405",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Anya v University of Oxford",
+          "neutralCitation": "[2001] EWCA Civ 405",
+          "fullName": "Anya v University of Oxford",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Tribunals must consider the totality of the evidence, not just individual incidents in isolation, when determining whether discrimination has occurred."
+        },
+        "reason": "Exact match: Anya v University of Oxford [2001] EWCA Civ 405"
+      }
+    },
+    {
+      "input": "Essop [2017] UKSC 27",
+      "result": {
+        "originalCitation": "Essop [2017] UKSC 27",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Essop",
+          "neutralCitation": "[2017] UKSC 27",
+          "fullName": "Essop v Home Office",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+        },
+        "reason": "Exact match: Essop v Home Office [2017] UKSC 27"
+      }
+    },
+    {
+      "input": "Essop v Home Office",
+      "result": {
+        "originalCitation": "Essop v Home Office",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Essop",
+          "neutralCitation": "[2017] UKSC 27",
+          "fullName": "Essop v Home Office",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+        },
+        "reason": "Case name matches Essop v Home Office, but no neutral citation was supplied to verify against [2017] UKSC 27. Manual check recommended."
+      }
+    },
+    {
+      "input": "Essop v Home Office [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Essop v Home Office [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Essop",
+          "neutralCitation": "[2017] UKSC 27",
+          "fullName": "Essop v Home Office",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+        },
+        "reason": "Case name matches Essop v Home Office, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2017] UKSC 27. Manual check recommended."
+      }
+    },
+    {
+      "input": "ESSOP V HOME OFFICE [2017] UKSC 27",
+      "result": {
+        "originalCitation": "ESSOP V HOME OFFICE [2017] UKSC 27",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Essop",
+          "neutralCitation": "[2017] UKSC 27",
+          "fullName": "Essop v Home Office",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+        },
+        "reason": "Exact match: Essop v Home Office [2017] UKSC 27"
+      }
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15",
+      "result": {
+        "originalCitation": "Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Exact match: Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15"
+      }
+    },
+    {
+      "input": "Homer [2012] UKSC 15",
+      "result": {
+        "originalCitation": "Homer [2012] UKSC 15",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Exact match: Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15"
+      }
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police",
+      "result": {
+        "originalCitation": "Homer v Chief Constable of West Yorkshire Police",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Case name matches Homer v Chief Constable of West Yorkshire Police, but no neutral citation was supplied to verify against [2012] UKSC 15. Manual check recommended."
+      }
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Homer v Chief Constable of West Yorkshire Police [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Case name matches Homer v Chief Constable of West Yorkshire Police, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2012] UKSC 15. Manual check recommended."
+      }
+    },
+    {
+      "input": "HOMER V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE [2012] UKSC 15",
+      "result": {
+        "originalCitation": "HOMER V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE [2012] UKSC 15",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Exact match: Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15"
+      }
+    },
+    {
+      "input": "Pemberton [2018] EWCA Civ 564",
+      "result": {
+        "originalCitation": "Pemberton [2018] EWCA Civ 564",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Exact match: Pemberton v Inwood [2018] EWCA Civ 564"
+      }
+    },
+    {
+      "input": "Pemberton v Inwood",
+      "result": {
+        "originalCitation": "Pemberton v Inwood",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Case name matches Pemberton v Inwood, but no neutral citation was supplied to verify against [2018] EWCA Civ 564. Manual check recommended."
+      }
+    },
+    {
+      "input": "Pemberton v Inwood [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Pemberton v Inwood [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Case name matches Pemberton v Inwood, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2018] EWCA Civ 564. Manual check recommended."
+      }
+    },
+    {
+      "input": "PEMBERTON V INWOOD [2018] EWCA CIV 564",
+      "result": {
+        "originalCitation": "PEMBERTON V INWOOD [2018] EWCA CIV 564",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Exact match: Pemberton v Inwood [2018] EWCA Civ 564"
+      }
+    },
+    {
+      "input": "Richmond Pharmacology [2009] UKEAT 0458_08_2403",
+      "result": {
+        "originalCitation": "Richmond Pharmacology [2009] UKEAT 0458_08_2403",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Exact match: Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403"
+      }
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal",
+      "result": {
+        "originalCitation": "Richmond Pharmacology v Dhaliwal",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Case name matches Richmond Pharmacology v Dhaliwal, but no neutral citation was supplied to verify against [2009] UKEAT 0458_08_2403. Manual check recommended."
+      }
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Richmond Pharmacology v Dhaliwal [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Case name matches Richmond Pharmacology v Dhaliwal, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2009] UKEAT 0458_08_2403. Manual check recommended."
+      }
+    },
+    {
+      "input": "RICHMOND PHARMACOLOGY V DHALIWAL [2009] UKEAT 0458_08_2403",
+      "result": {
+        "originalCitation": "RICHMOND PHARMACOLOGY V DHALIWAL [2009] UKEAT 0458_08_2403",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Exact match: Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403"
+      }
+    },
+    {
+      "input": "Derbyshire [2007] UKHL 16",
+      "result": {
+        "originalCitation": "Derbyshire [2007] UKHL 16",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Exact match: Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16"
+      }
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council",
+      "result": {
+        "originalCitation": "Derbyshire v St Helens Metropolitan Borough Council",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Case name matches Derbyshire v St Helens Metropolitan Borough Council, but no neutral citation was supplied to verify against [2007] UKHL 16. Manual check recommended."
+      }
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Derbyshire v St Helens Metropolitan Borough Council [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Case name matches Derbyshire v St Helens Metropolitan Borough Council, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2007] UKHL 16. Manual check recommended."
+      }
+    },
+    {
+      "input": "DERBYSHIRE V ST HELENS METROPOLITAN BOROUGH COUNCIL [2007] UKHL 16",
+      "result": {
+        "originalCitation": "DERBYSHIRE V ST HELENS METROPOLITAN BOROUGH COUNCIL [2007] UKHL 16",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Exact match: Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16"
+      }
+    },
+    {
+      "input": "Environment Agency v Rowan",
+      "result": {
+        "originalCitation": "Environment Agency v Rowan",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Environment Agency v Rowan",
+          "neutralCitation": "[2008] UKEAT 0060_07_2908",
+          "fullName": "Environment Agency v Rowan",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "Three-step test for reasonable adjustments: (1) identify the PCP/physical feature/auxiliary aid, (2) identify how it places the disabled person at a substantial disadvantage compared to non-disabled persons, (3) identify what adjustment would remove or reduce that disadvantage."
+        },
+        "reason": "Case name matches Environment Agency v Rowan, but no neutral citation was supplied to verify against [2008] UKEAT 0060_07_2908. Manual check recommended."
+      }
+    },
+    {
+      "input": "Environment Agency v Rowan [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Environment Agency v Rowan [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Environment Agency v Rowan",
+          "neutralCitation": "[2008] UKEAT 0060_07_2908",
+          "fullName": "Environment Agency v Rowan",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "Three-step test for reasonable adjustments: (1) identify the PCP/physical feature/auxiliary aid, (2) identify how it places the disabled person at a substantial disadvantage compared to non-disabled persons, (3) identify what adjustment would remove or reduce that disadvantage."
+        },
+        "reason": "Case name matches Environment Agency v Rowan, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2008] UKEAT 0060_07_2908. Manual check recommended."
+      }
+    },
+    {
+      "input": "ENVIRONMENT AGENCY V ROWAN [2008] UKEAT 0060_07_2908",
+      "result": {
+        "originalCitation": "ENVIRONMENT AGENCY V ROWAN [2008] UKEAT 0060_07_2908",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Environment Agency v Rowan",
+          "neutralCitation": "[2008] UKEAT 0060_07_2908",
+          "fullName": "Environment Agency v Rowan",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "Three-step test for reasonable adjustments: (1) identify the PCP/physical feature/auxiliary aid, (2) identify how it places the disabled person at a substantial disadvantage compared to non-disabled persons, (3) identify what adjustment would remove or reduce that disadvantage."
+        },
+        "reason": "Exact match: Environment Agency v Rowan [2008] UKEAT 0060_07_2908"
+      }
+    },
+    {
+      "input": "Archibald [2004] UKHL 32",
+      "result": {
+        "originalCitation": "Archibald [2004] UKHL 32",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Exact match: Archibald v Fife Council [2004] UKHL 32"
+      }
+    },
+    {
+      "input": "Archibald v Fife Council",
+      "result": {
+        "originalCitation": "Archibald v Fife Council",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Case name matches Archibald v Fife Council, but no neutral citation was supplied to verify against [2004] UKHL 32. Manual check recommended."
+      }
+    },
+    {
+      "input": "Archibald v Fife Council [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Archibald v Fife Council [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Case name matches Archibald v Fife Council, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2004] UKHL 32. Manual check recommended."
+      }
+    },
+    {
+      "input": "ARCHIBALD V FIFE COUNCIL [2004] UKHL 32",
+      "result": {
+        "originalCitation": "ARCHIBALD V FIFE COUNCIL [2004] UKHL 32",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Exact match: Archibald v Fife Council [2004] UKHL 32"
+      }
+    },
+    {
+      "input": "Cavendish Munro [2010] UKEAT 0195_09_0202",
+      "result": {
+        "originalCitation": "Cavendish Munro [2010] UKEAT 0195_09_0202",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Exact match: Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202"
+      }
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+      "result": {
+        "originalCitation": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Case name matches Cavendish Munro Professional Risks Management Ltd v Geduld, but no neutral citation was supplied to verify against [2010] UKEAT 0195_09_0202. Manual check recommended."
+      }
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Cavendish Munro Professional Risks Management Ltd v Geduld [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Case name matches Cavendish Munro Professional Risks Management Ltd v Geduld, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2010] UKEAT 0195_09_0202. Manual check recommended."
+      }
+    },
+    {
+      "input": "CAVENDISH MUNRO PROFESSIONAL RISKS MANAGEMENT LTD V GEDULD [2010] UKEAT 0195_09_0202",
+      "result": {
+        "originalCitation": "CAVENDISH MUNRO PROFESSIONAL RISKS MANAGEMENT LTD V GEDULD [2010] UKEAT 0195_09_0202",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Exact match: Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202"
+      }
+    },
+    {
+      "input": "Chesterton Global [2017] EWCA Civ 979",
+      "result": {
+        "originalCitation": "Chesterton Global [2017] EWCA Civ 979",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Exact match: Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979"
+      }
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed",
+      "result": {
+        "originalCitation": "Chesterton Global Ltd v Nurmohamed",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Case name matches Chesterton Global Ltd v Nurmohamed, but no neutral citation was supplied to verify against [2017] EWCA Civ 979. Manual check recommended."
+      }
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Chesterton Global Ltd v Nurmohamed [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Case name matches Chesterton Global Ltd v Nurmohamed, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2017] EWCA Civ 979. Manual check recommended."
+      }
+    },
+    {
+      "input": "CHESTERTON GLOBAL LTD V NURMOHAMED [2017] EWCA CIV 979",
+      "result": {
+        "originalCitation": "CHESTERTON GLOBAL LTD V NURMOHAMED [2017] EWCA CIV 979",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Exact match: Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979"
+      }
+    },
+    {
+      "input": "Gunton [1981] 1 Ch 448",
+      "result": {
+        "originalCitation": "Gunton [1981] 1 Ch 448",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but no neutral citation was supplied to verify against [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council",
+      "result": {
+        "originalCitation": "Gunton v Richmond-upon-Thames London Borough Council",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but no neutral citation was supplied to verify against [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Gunton v Richmond-upon-Thames London Borough Council [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "GUNTON V RICHMOND-UPON-THAMES LONDON BOROUGH COUNCIL [1981] 1 CH 448",
+      "result": {
+        "originalCitation": "GUNTON V RICHMOND-UPON-THAMES LONDON BOROUGH COUNCIL [1981] 1 CH 448",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but no neutral citation was supplied to verify against [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "Vento [2002] EWCA Civ 1871",
+      "result": {
+        "originalCitation": "Vento [2002] EWCA Civ 1871",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Exact match: Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871"
+      }
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+      "result": {
+        "originalCitation": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Case name matches Vento v Chief Constable of West Yorkshire Police (No 2), but no neutral citation was supplied to verify against [2002] EWCA Civ 1871. Manual check recommended."
+      }
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Vento v Chief Constable of West Yorkshire Police (No 2) [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Case name matches Vento v Chief Constable of West Yorkshire Police (No 2), but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2002] EWCA Civ 1871. Manual check recommended."
+      }
+    },
+    {
+      "input": "VENTO V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE (NO 2) [2002] EWCA CIV 1871",
+      "result": {
+        "originalCitation": "VENTO V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE (NO 2) [2002] EWCA CIV 1871",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Vento",
+          "neutralCitation": "[2002] EWCA Civ 1871",
+          "fullName": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Three bands for injury to feelings awards in discrimination cases. Updated annually by Presidential Guidance. Current (2024-25): lower band £1,200-£11,200; middle band £11,200-£33,700; upper band £33,700-£56,200; exceptional cases above upper band."
+        },
+        "reason": "Exact match: Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871"
+      }
+    },
+    {
+      "input": "Chagger [2009] EWCA Civ 1176",
+      "result": {
+        "originalCitation": "Chagger [2009] EWCA Civ 1176",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chagger",
+          "neutralCitation": "[2009] EWCA Civ 1176",
+          "fullName": "Chagger v Abbey National plc",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination"
+          ],
+          "principle": "In discrimination cases, the Polkey percentage reduction principle applies. Compensation may be reduced by the chance that the claimant would have been dismissed in any event, even without the discrimination."
+        },
+        "reason": "Exact match: Chagger v Abbey National plc [2009] EWCA Civ 1176"
+      }
+    },
+    {
+      "input": "Chagger v Abbey National plc",
+      "result": {
+        "originalCitation": "Chagger v Abbey National plc",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Chagger",
+          "neutralCitation": "[2009] EWCA Civ 1176",
+          "fullName": "Chagger v Abbey National plc",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination"
+          ],
+          "principle": "In discrimination cases, the Polkey percentage reduction principle applies. Compensation may be reduced by the chance that the claimant would have been dismissed in any event, even without the discrimination."
+        },
+        "reason": "Case name matches Chagger v Abbey National plc, but no neutral citation was supplied to verify against [2009] EWCA Civ 1176. Manual check recommended."
+      }
+    },
+    {
+      "input": "Chagger v Abbey National plc [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Chagger v Abbey National plc [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Chagger",
+          "neutralCitation": "[2009] EWCA Civ 1176",
+          "fullName": "Chagger v Abbey National plc",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination"
+          ],
+          "principle": "In discrimination cases, the Polkey percentage reduction principle applies. Compensation may be reduced by the chance that the claimant would have been dismissed in any event, even without the discrimination."
+        },
+        "reason": "Case name matches Chagger v Abbey National plc, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2009] EWCA Civ 1176. Manual check recommended."
+      }
+    },
+    {
+      "input": "CHAGGER V ABBEY NATIONAL PLC [2009] EWCA CIV 1176",
+      "result": {
+        "originalCitation": "CHAGGER V ABBEY NATIONAL PLC [2009] EWCA CIV 1176",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Chagger",
+          "neutralCitation": "[2009] EWCA Civ 1176",
+          "fullName": "Chagger v Abbey National plc",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination"
+          ],
+          "principle": "In discrimination cases, the Polkey percentage reduction principle applies. Compensation may be reduced by the chance that the claimant would have been dismissed in any event, even without the discrimination."
+        },
+        "reason": "Exact match: Chagger v Abbey National plc [2009] EWCA Civ 1176"
+      }
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH",
+      "result": {
+        "originalCitation": "Kucukdeveci v Swedex GmbH",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Kucukdeveci",
+          "neutralCitation": "C-555/07",
+          "fullName": "Kucukdeveci v Swedex GmbH",
+          "court": "EWCA",
+          "tier": "persuasive",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "EU principle of non-discrimination on grounds of age is a general principle of EU law. National courts must disapply domestic legislation that conflicts, even in disputes between private parties."
+        },
+        "reason": "Case name matches Kucukdeveci v Swedex GmbH, but no neutral citation was supplied to verify against C-555/07. Manual check recommended."
+      }
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Kucukdeveci v Swedex GmbH [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Kucukdeveci",
+          "neutralCitation": "C-555/07",
+          "fullName": "Kucukdeveci v Swedex GmbH",
+          "court": "EWCA",
+          "tier": "persuasive",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "EU principle of non-discrimination on grounds of age is a general principle of EU law. National courts must disapply domestic legislation that conflicts, even in disputes between private parties."
+        },
+        "reason": "Case name matches Kucukdeveci v Swedex GmbH, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation C-555/07. Manual check recommended."
+      }
+    },
+    {
+      "input": "KUCUKDEVECI V SWEDEX GMBH C-555/07",
+      "result": {
+        "originalCitation": "KUCUKDEVECI V SWEDEX GMBH C-555/07",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Kucukdeveci",
+          "neutralCitation": "C-555/07",
+          "fullName": "Kucukdeveci v Swedex GmbH",
+          "court": "EWCA",
+          "tier": "persuasive",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "EU principle of non-discrimination on grounds of age is a general principle of EU law. National courts must disapply domestic legislation that conflicts, even in disputes between private parties."
+        },
+        "reason": "Case name matches Kucukdeveci v Swedex GmbH, but no neutral citation was supplied to verify against C-555/07. Manual check recommended."
+      }
+    },
+    {
+      "input": "Robertson v Bexley [2003] EWCA Civ 1012",
+      "result": {
+        "originalCitation": "Robertson v Bexley [2003] EWCA Civ 1012",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Robertson v Bexley",
+          "neutralCitation": "[2003] EWCA Civ 1012",
+          "fullName": "Robertson v Bexley Community Centre",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment"
+          ],
+          "principle": "Time limits in employment tribunals are strictly enforced. An extension of time is the exception, not the rule. The burden is on the claimant to show it was not reasonably practicable to present the claim in time (unfair dismissal) or that it is just and equitable to extend (discrimination)."
+        },
+        "reason": "Exact match: Robertson v Bexley Community Centre [2003] EWCA Civ 1012"
+      }
+    },
+    {
+      "input": "Robertson v Bexley Community Centre",
+      "result": {
+        "originalCitation": "Robertson v Bexley Community Centre",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Robertson v Bexley",
+          "neutralCitation": "[2003] EWCA Civ 1012",
+          "fullName": "Robertson v Bexley Community Centre",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment"
+          ],
+          "principle": "Time limits in employment tribunals are strictly enforced. An extension of time is the exception, not the rule. The burden is on the claimant to show it was not reasonably practicable to present the claim in time (unfair dismissal) or that it is just and equitable to extend (discrimination)."
+        },
+        "reason": "Case name matches Robertson v Bexley Community Centre, but no neutral citation was supplied to verify against [2003] EWCA Civ 1012. Manual check recommended."
+      }
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Robertson v Bexley Community Centre [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Robertson v Bexley",
+          "neutralCitation": "[2003] EWCA Civ 1012",
+          "fullName": "Robertson v Bexley Community Centre",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment"
+          ],
+          "principle": "Time limits in employment tribunals are strictly enforced. An extension of time is the exception, not the rule. The burden is on the claimant to show it was not reasonably practicable to present the claim in time (unfair dismissal) or that it is just and equitable to extend (discrimination)."
+        },
+        "reason": "Case name matches Robertson v Bexley Community Centre, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2003] EWCA Civ 1012. Manual check recommended."
+      }
+    },
+    {
+      "input": "ROBERTSON V BEXLEY COMMUNITY CENTRE [2003] EWCA CIV 1012",
+      "result": {
+        "originalCitation": "ROBERTSON V BEXLEY COMMUNITY CENTRE [2003] EWCA CIV 1012",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Robertson v Bexley",
+          "neutralCitation": "[2003] EWCA Civ 1012",
+          "fullName": "Robertson v Bexley Community Centre",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal",
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment"
+          ],
+          "principle": "Time limits in employment tribunals are strictly enforced. An extension of time is the exception, not the rule. The burden is on the claimant to show it was not reasonably practicable to present the claim in time (unfair dismissal) or that it is just and equitable to extend (discrimination)."
+        },
+        "reason": "Exact match: Robertson v Bexley Community Centre [2003] EWCA Civ 1012"
+      }
+    },
+    {
+      "input": "Tesco v USDAW [2024] UKSC 28",
+      "result": {
+        "originalCitation": "Tesco v USDAW [2024] UKSC 28",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Tesco v USDAW",
+          "neutralCitation": "[2024] UKSC 28",
+          "fullName": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Where a contractual term confers a permanent right (e.g. retained pay), the employer cannot circumvent it by dismissing and re-engaging on inferior terms. An injunction may be granted to prevent the employer from terminating employment for this purpose."
+        },
+        "reason": "Exact match: Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28"
+      }
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+      "result": {
+        "originalCitation": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Tesco v USDAW",
+          "neutralCitation": "[2024] UKSC 28",
+          "fullName": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Where a contractual term confers a permanent right (e.g. retained pay), the employer cannot circumvent it by dismissing and re-engaging on inferior terms. An injunction may be granted to prevent the employer from terminating employment for this purpose."
+        },
+        "reason": "Case name matches Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers, but no neutral citation was supplied to verify against [2024] UKSC 28. Manual check recommended."
+      }
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Tesco v USDAW",
+          "neutralCitation": "[2024] UKSC 28",
+          "fullName": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Where a contractual term confers a permanent right (e.g. retained pay), the employer cannot circumvent it by dismissing and re-engaging on inferior terms. An injunction may be granted to prevent the employer from terminating employment for this purpose."
+        },
+        "reason": "Case name matches Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2024] UKSC 28. Manual check recommended."
+      }
+    },
+    {
+      "input": "TESCO STORES LTD V UNION OF SHOP, DISTRIBUTIVE AND ALLIED WORKERS [2024] UKSC 28",
+      "result": {
+        "originalCitation": "TESCO STORES LTD V UNION OF SHOP, DISTRIBUTIVE AND ALLIED WORKERS [2024] UKSC 28",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Tesco v USDAW",
+          "neutralCitation": "[2024] UKSC 28",
+          "fullName": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Where a contractual term confers a permanent right (e.g. retained pay), the employer cannot circumvent it by dismissing and re-engaging on inferior terms. An injunction may be granted to prevent the employer from terminating employment for this purpose."
+        },
+        "reason": "Exact match: Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28"
+      }
+    },
+    {
+      "input": "Khatun v Winn [2024] EAT 111",
+      "result": {
+        "originalCitation": "Khatun v Winn [2024] EAT 111",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Khatun v Winn",
+          "neutralCitation": "[2024] EAT 111",
+          "fullName": "Khatun v Winn Solicitors Ltd",
+          "court": "EAT",
+          "tier": "persuasive",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Fire and rehire as a tactic to impose inferior terms may render a dismissal unfair under ERA 1996 s98, even before ERA 2025 made it automatically unfair. The employer must demonstrate genuine business necessity."
+        },
+        "reason": "Exact match: Khatun v Winn Solicitors Ltd [2024] EAT 111"
+      }
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd",
+      "result": {
+        "originalCitation": "Khatun v Winn Solicitors Ltd",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Khatun v Winn",
+          "neutralCitation": "[2024] EAT 111",
+          "fullName": "Khatun v Winn Solicitors Ltd",
+          "court": "EAT",
+          "tier": "persuasive",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Fire and rehire as a tactic to impose inferior terms may render a dismissal unfair under ERA 1996 s98, even before ERA 2025 made it automatically unfair. The employer must demonstrate genuine business necessity."
+        },
+        "reason": "Case name matches Khatun v Winn Solicitors Ltd, but no neutral citation was supplied to verify against [2024] EAT 111. Manual check recommended."
+      }
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2099] UKSC 999",
+      "result": {
+        "originalCitation": "Khatun v Winn Solicitors Ltd [2099] UKSC 999",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Khatun v Winn",
+          "neutralCitation": "[2024] EAT 111",
+          "fullName": "Khatun v Winn Solicitors Ltd",
+          "court": "EAT",
+          "tier": "persuasive",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Fire and rehire as a tactic to impose inferior terms may render a dismissal unfair under ERA 1996 s98, even before ERA 2025 made it automatically unfair. The employer must demonstrate genuine business necessity."
+        },
+        "reason": "Case name matches Khatun v Winn Solicitors Ltd, but the cited neutral citation ([2099] UKSC 999) does not match the verified citation [2024] EAT 111. Manual check recommended."
+      }
+    },
+    {
+      "input": "KHATUN V WINN SOLICITORS LTD [2024] EAT 111",
+      "result": {
+        "originalCitation": "KHATUN V WINN SOLICITORS LTD [2024] EAT 111",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Khatun v Winn",
+          "neutralCitation": "[2024] EAT 111",
+          "fullName": "Khatun v Winn Solicitors Ltd",
+          "court": "EAT",
+          "tier": "persuasive",
+          "claimTypes": [
+            "fire_and_rehire",
+            "unfair_dismissal"
+          ],
+          "principle": "Fire and rehire as a tactic to impose inferior terms may render a dismissal unfair under ERA 1996 s98, even before ERA 2025 made it automatically unfair. The employer must demonstrate genuine business necessity."
+        },
+        "reason": "Exact match: Khatun v Winn Solicitors Ltd [2024] EAT 111"
+      }
+    },
+    {
+      "input": "Polkey v AE Dayton Services [1988] ICR 142",
+      "result": {
+        "originalCitation": "Polkey v AE Dayton Services [1988] ICR 142",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Polkey",
+          "neutralCitation": "[1987] UKHL 8",
+          "fullName": "Polkey v AE Dayton Services Ltd",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+        },
+        "reason": "Case name matches Polkey v AE Dayton Services Ltd, but the cited neutral citation ([1988] ICR 142) does not match the verified citation [1987] UKHL 8. Manual check recommended."
+      }
+    },
+    {
+      "input": "Iceland Frozen Foods v Jones [1983] ICR 17",
+      "result": {
+        "originalCitation": "Iceland Frozen Foods v Jones [1983] ICR 17",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Iceland Frozen Foods",
+          "neutralCitation": "[1982] UKEAT 0062_82_2207",
+          "fullName": "Iceland Frozen Foods Ltd v Jones",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "The band of reasonable responses test: the tribunal must not substitute its own view for that of the employer. The question is whether the dismissal fell within the range of reasonable responses open to a reasonable employer."
+        },
+        "reason": "Case name matches Iceland Frozen Foods Ltd v Jones, but the cited neutral citation ([1983] ICR 17) does not match the verified citation [1982] UKEAT 0062_82_2207. Manual check recommended."
+      }
+    },
+    {
+      "input": "BHS v Burchell [1980] ICR 303",
+      "result": {
+        "originalCitation": "BHS v Burchell [1980] ICR 303",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "BHS v Burchell",
+          "neutralCitation": "[1978] UKEAT 0108_78_2007",
+          "fullName": "British Home Stores Ltd v Burchell",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+        },
+        "reason": "Case name matches British Home Stores Ltd v Burchell, but the cited neutral citation ([1980] ICR 303) does not match the verified citation [1978] UKEAT 0108_78_2007. Manual check recommended."
+      }
+    },
+    {
+      "input": "Western Excavating v Sharp [1978] ICR 221",
+      "result": {
+        "originalCitation": "Western Excavating v Sharp [1978] ICR 221",
+        "trustLevel": "VERIFIED",
+        "matchedAuthority": {
+          "shortName": "Western Excavating",
+          "neutralCitation": "[1978] ICR 221",
+          "fullName": "Western Excavating (ECC) Ltd v Sharp",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "unfair_dismissal"
+          ],
+          "principle": "Constructive dismissal requires a fundamental breach of contract by the employer, not merely unreasonable behaviour. The contract test, not the reasonableness test, applies."
+        },
+        "reason": "Exact match: Western Excavating (ECC) Ltd v Sharp [1978] ICR 221"
+      }
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] ICR 931",
+      "result": {
+        "originalCitation": "Igen Ltd v Wong [2005] ICR 931",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Igen v Wong",
+          "neutralCitation": "[2005] EWCA Civ 142",
+          "fullName": "Igen Ltd v Wong",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination",
+            "indirect_discrimination",
+            "harassment",
+            "victimisation"
+          ],
+          "principle": "Two-stage burden of proof: (1) claimant proves facts from which the tribunal could conclude discrimination occurred, (2) burden shifts to respondent to prove a non-discriminatory explanation."
+        },
+        "reason": "Case name matches Igen Ltd v Wong, but the cited neutral citation ([2005] ICR 931) does not match the verified citation [2005] EWCA Civ 142. Manual check recommended."
+      }
+    },
+    {
+      "input": "Madarassy v Nomura [2007] ICR 867",
+      "result": {
+        "originalCitation": "Madarassy v Nomura [2007] ICR 867",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Nagarajan v London Regional Transport [2000] 1 AC 501",
+      "result": {
+        "originalCitation": "Nagarajan v London Regional Transport [2000] 1 AC 501",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Shamoon v Chief Constable of the RUC [2003] ICR 337",
+      "result": {
+        "originalCitation": "Shamoon v Chief Constable of the RUC [2003] ICR 337",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Shamoon",
+          "neutralCitation": "[2003] UKHL 11",
+          "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "direct_discrimination"
+          ],
+          "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+        },
+        "reason": "Case name matches Shamoon v Chief Constable of the Royal Ulster Constabulary, but the cited neutral citation ([2003] ICR 337) does not match the verified citation [2003] UKHL 11. Manual check recommended."
+      }
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire [2012] ICR 704",
+      "result": {
+        "originalCitation": "Homer v Chief Constable of West Yorkshire [2012] ICR 704",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Homer",
+          "neutralCitation": "[2012] UKSC 15",
+          "fullName": "Homer v Chief Constable of West Yorkshire Police",
+          "court": "UKSC",
+          "tier": "binding",
+          "claimTypes": [
+            "indirect_discrimination"
+          ],
+          "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+        },
+        "reason": "Case name matches Homer v Chief Constable of West Yorkshire Police, but the cited neutral citation ([2012] ICR 704) does not match the verified citation [2012] UKSC 15. Manual check recommended."
+      }
+    },
+    {
+      "input": "Bilka-Kaufhaus v Weber von Hartz [1987] ICR 110",
+      "result": {
+        "originalCitation": "Bilka-Kaufhaus v Weber von Hartz [1987] ICR 110",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Pemberton v Inwood [2018] ICR 1291",
+      "result": {
+        "originalCitation": "Pemberton v Inwood [2018] ICR 1291",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Pemberton",
+          "neutralCitation": "[2018] EWCA Civ 564",
+          "fullName": "Pemberton v Inwood",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "For harassment, the tribunal must consider both the subjective perception of the claimant and whether it is objectively reasonable for the conduct to have that effect. Context matters."
+        },
+        "reason": "Case name matches Pemberton v Inwood, but the cited neutral citation ([2018] ICR 1291) does not match the verified citation [2018] EWCA Civ 564. Manual check recommended."
+      }
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] ICR 724",
+      "result": {
+        "originalCitation": "Richmond Pharmacology v Dhaliwal [2009] ICR 724",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Richmond Pharmacology",
+          "neutralCitation": "[2009] UKEAT 0458_08_2403",
+          "fullName": "Richmond Pharmacology v Dhaliwal",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "harassment"
+          ],
+          "principle": "Three elements of harassment under EA 2010 s26: (1) unwanted conduct, (2) related to a protected characteristic, (3) having the purpose or effect of violating dignity or creating an intimidating, hostile, degrading, humiliating or offensive environment."
+        },
+        "reason": "Case name matches Richmond Pharmacology v Dhaliwal, but the cited neutral citation ([2009] ICR 724) does not match the verified citation [2009] UKEAT 0458_08_2403. Manual check recommended."
+      }
+    },
+    {
+      "input": "Land Registry v Grant [2011] ICR 1390",
+      "result": {
+        "originalCitation": "Land Registry v Grant [2011] ICR 1390",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841",
+      "result": {
+        "originalCitation": "Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Derbyshire",
+          "neutralCitation": "[2007] UKHL 16",
+          "fullName": "Derbyshire v St Helens Metropolitan Borough Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "victimisation"
+          ],
+          "principle": "Victimisation covers detriment because the worker has done a protected act. The employer's honest and reasonable steps to protect their litigation position may not constitute victimisation, but intimidation or threats will."
+        },
+        "reason": "Case name matches Derbyshire v St Helens Metropolitan Borough Council, but the cited neutral citation ([2007] ICR 841) does not match the verified citation [2007] UKHL 16. Manual check recommended."
+      }
+    },
+    {
+      "input": "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773",
+      "result": {
+        "originalCitation": "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] ICR 218",
+      "result": {
+        "originalCitation": "Environment Agency v Rowan [2008] ICR 218",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Environment Agency v Rowan",
+          "neutralCitation": "[2008] UKEAT 0060_07_2908",
+          "fullName": "Environment Agency v Rowan",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "Three-step test for reasonable adjustments: (1) identify the PCP/physical feature/auxiliary aid, (2) identify how it places the disabled person at a substantial disadvantage compared to non-disabled persons, (3) identify what adjustment would remove or reduce that disadvantage."
+        },
+        "reason": "Case name matches Environment Agency v Rowan, but the cited neutral citation ([2008] ICR 218) does not match the verified citation [2008] UKEAT 0060_07_2908. Manual check recommended."
+      }
+    },
+    {
+      "input": "Archibald v Fife Council [2004] ICR 954",
+      "result": {
+        "originalCitation": "Archibald v Fife Council [2004] ICR 954",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Archibald",
+          "neutralCitation": "[2004] UKHL 32",
+          "fullName": "Archibald v Fife Council",
+          "court": "UKHL",
+          "tier": "binding",
+          "claimTypes": [
+            "reasonable_adjustments"
+          ],
+          "principle": "The duty to make reasonable adjustments may require positive discrimination — treating the disabled person more favourably — to level the playing field. This is the opposite of the symmetry principle in direct discrimination."
+        },
+        "reason": "Case name matches Archibald v Fife Council, but the cited neutral citation ([2004] ICR 954) does not match the verified citation [2004] UKHL 32. Manual check recommended."
+      }
+    },
+    {
+      "input": "Smith v Churchills Stairlifts Plc [2006] ICR 524",
+      "result": {
+        "originalCitation": "Smith v Churchills Stairlifts Plc [2006] ICR 524",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Cavendish Munro v Geduld [2010] ICR 325",
+      "result": {
+        "originalCitation": "Cavendish Munro v Geduld [2010] ICR 325",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Cavendish Munro",
+          "neutralCitation": "[2010] UKEAT 0195_09_0202",
+          "fullName": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+          "court": "EAT",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A qualifying disclosure must convey information, not merely make an allegation. Stating 'you are in breach of contract' is an allegation; stating 'you have failed to pay me £X which was due on Y date' conveys information."
+        },
+        "reason": "Case name matches Cavendish Munro Professional Risks Management Ltd v Geduld, but the cited neutral citation ([2010] ICR 325) does not match the verified citation [2010] UKEAT 0195_09_0202. Manual check recommended."
+      }
+    },
+    {
+      "input": "Chesterton Global v Nurmohamed [2017] ICR 920",
+      "result": {
+        "originalCitation": "Chesterton Global v Nurmohamed [2017] ICR 920",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Chesterton Global",
+          "neutralCitation": "[2017] EWCA Civ 979",
+          "fullName": "Chesterton Global Ltd v Nurmohamed",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "whistleblowing"
+          ],
+          "principle": "A disclosure can be 'in the public interest' even if the worker's predominant motive is personal. The tribunal should consider: the numbers affected, the nature of the interests, the nature of the wrongdoing, and the identity of the wrongdoer."
+        },
+        "reason": "Case name matches Chesterton Global Ltd v Nurmohamed, but the cited neutral citation ([2017] ICR 920) does not match the verified citation [2017] EWCA Civ 979. Manual check recommended."
+      }
+    },
+    {
+      "input": "Kilraine v London Borough of Wandsworth [2018] ICR 1850",
+      "result": {
+        "originalCitation": "Kilraine v London Borough of Wandsworth [2018] ICR 1850",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Babula v Waltham Forest College [2007] ICR 1026",
+      "result": {
+        "originalCitation": "Babula v Waltham Forest College [2007] ICR 1026",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Geys v Société Générale [2013] 1 AC 523",
+      "result": {
+        "originalCitation": "Geys v Société Générale [2013] 1 AC 523",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames LBC [1981] Ch 448",
+      "result": {
+        "originalCitation": "Gunton v Richmond-upon-Thames LBC [1981] Ch 448",
+        "trustLevel": "CHECK",
+        "matchedAuthority": {
+          "shortName": "Gunton",
+          "neutralCitation": "[1981] 1 Ch 448",
+          "fullName": "Gunton v Richmond-upon-Thames London Borough Council",
+          "court": "EWCA",
+          "tier": "binding",
+          "claimTypes": [
+            "wrongful_dismissal"
+          ],
+          "principle": "Wrongful dismissal is a contractual claim. Damages are limited to the notice period the employee should have received. The employee must mitigate their loss."
+        },
+        "reason": "Case name matches Gunton v Richmond-upon-Thames London Borough Council, but the cited neutral citation ([1981] Ch 448) does not match the verified citation [1981] 1 Ch 448. Manual check recommended."
+      }
+    },
+    {
+      "input": "Laws v London Chronicle [1959] 1 WLR 698",
+      "result": {
+        "originalCitation": "Laws v London Chronicle [1959] 1 WLR 698",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    },
+    {
+      "input": "This is a new statutory provision — case law will develop from 2027",
+      "result": {
+        "originalCitation": "This is a new statutory provision — case law will develop from 2027",
+        "trustLevel": "QUARANTINED",
+        "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+      }
+    }
+  ],
+  "extract_validator": [
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Shamoon v Chief Constable [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108_78_2007"
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062_82_2207"
+    },
+    {
+      "input": "BHS v Burchell [1978]",
+      "result": null
+    },
+    {
+      "input": "Essop v Home Office [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1988] AC 344",
+      "result": "[1988] AC 344"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2025] UKSC 99",
+      "result": "[2025] UKSC 99"
+    },
+    {
+      "input": "Nonexistent Authority v Someone [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Chief Constable of West Yorkshire Police v Vento (No 2) [2002]",
+      "result": null
+    },
+    {
+      "input": "Smith v Acme Corp [2025] EAT 999",
+      "result": "[2025] EAT 999"
+    },
+    {
+      "input": "",
+      "result": null
+    },
+    {
+      "input": "   ",
+      "result": null
+    },
+    {
+      "input": "polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979",
+      "result": "[2017] EWCA Civ 979"
+    },
+    {
+      "input": "Archibald v Fife Council [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Made Up Case v Nobody [2025] EAT 000",
+      "result": "[2025] EAT 000"
+    },
+    {
+      "input": "Polkey v AE Dayton [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Homer v Chief Constable [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Polkey",
+      "result": null
+    },
+    {
+      "input": "Polkey [1987]UKHL 8",
+      "result": "[1987]UKHL 8"
+    },
+    {
+      "input": "Polkey  v   AE Dayton  [ 1987 ]  UKHL  8",
+      "result": "[ 1987 ] UKHL 8"
+    },
+    {
+      "input": "See Polkey v AE Dayton Services Ltd [1987] UKHL 8 at [12]",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH C-555/07",
+      "result": null
+    },
+    {
+      "input": "Kucukdeveci C-555/07",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [1981] 1 Ch 448",
+      "result": null
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] EWCA Civ 142",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Igen v Wong [2005] ICR 931",
+      "result": "[2005] ICR 931"
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871",
+      "result": "[2002] EWCA Civ 1871"
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2003] EWCA Civ 1012",
+      "result": "[2003] EWCA Civ 1012"
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458_08_2403"
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] UKEAT 0060_07_2908",
+      "result": "[2008] UKEAT 0060_07_2908"
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195_09_0202"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Anya v University of Oxford [2001] EWCA Civ 405",
+      "result": "[2001] EWCA Civ 405"
+    },
+    {
+      "input": "Pemberton v Inwood [2018] EWCA Civ 564",
+      "result": "[2018] EWCA Civ 564"
+    },
+    {
+      "input": "Chagger v Abbey National plc [2009] EWCA Civ 1176",
+      "result": "[2009] EWCA Civ 1176"
+    },
+    {
+      "input": "the polkey principle applies here",
+      "result": null
+    },
+    {
+      "input": "[1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "[2005] EWCA Civ 142 Igen",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Burchell",
+      "result": null
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1980] ICR 303",
+      "result": "[1980] ICR 303"
+    },
+    {
+      "input": "Polkey [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd",
+      "result": null
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "POLKEY V AE DAYTON SERVICES LTD [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108_78_2007"
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell",
+      "result": null
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "BRITISH HOME STORES LTD V BURCHELL [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108_78_2007"
+    },
+    {
+      "input": "Iceland Frozen Foods [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062_82_2207"
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones",
+      "result": null
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ICELAND FROZEN FOODS LTD V JONES [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062_82_2207"
+    },
+    {
+      "input": "Williams v Compair Maxam [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd",
+      "result": null
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "WILLIAMS V COMPAIR MAXAM LTD [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Western Excavating [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp",
+      "result": null
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "WESTERN EXCAVATING (ECC) LTD V SHARP [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Shamoon [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+      "result": null
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "SHAMOON V CHIEF CONSTABLE OF THE ROYAL ULSTER CONSTABULARY [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Igen v Wong [2005] EWCA Civ 142",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Igen Ltd v Wong",
+      "result": null
+    },
+    {
+      "input": "Igen Ltd v Wong [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "IGEN LTD V WONG [2005] EWCA CIV 142",
+      "result": "[2005] EWCA CIV 142"
+    },
+    {
+      "input": "Anya v University of Oxford",
+      "result": null
+    },
+    {
+      "input": "Anya v University of Oxford [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ANYA V UNIVERSITY OF OXFORD [2001] EWCA CIV 405",
+      "result": "[2001] EWCA CIV 405"
+    },
+    {
+      "input": "Essop [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Essop v Home Office",
+      "result": null
+    },
+    {
+      "input": "Essop v Home Office [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ESSOP V HOME OFFICE [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Homer [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police",
+      "result": null
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "HOMER V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Pemberton [2018] EWCA Civ 564",
+      "result": "[2018] EWCA Civ 564"
+    },
+    {
+      "input": "Pemberton v Inwood",
+      "result": null
+    },
+    {
+      "input": "Pemberton v Inwood [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "PEMBERTON V INWOOD [2018] EWCA CIV 564",
+      "result": "[2018] EWCA CIV 564"
+    },
+    {
+      "input": "Richmond Pharmacology [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458_08_2403"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal",
+      "result": null
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "RICHMOND PHARMACOLOGY V DHALIWAL [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458_08_2403"
+    },
+    {
+      "input": "Derbyshire [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council",
+      "result": null
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "DERBYSHIRE V ST HELENS METROPOLITAN BOROUGH COUNCIL [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Environment Agency v Rowan",
+      "result": null
+    },
+    {
+      "input": "Environment Agency v Rowan [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ENVIRONMENT AGENCY V ROWAN [2008] UKEAT 0060_07_2908",
+      "result": "[2008] UKEAT 0060_07_2908"
+    },
+    {
+      "input": "Archibald [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Archibald v Fife Council",
+      "result": null
+    },
+    {
+      "input": "Archibald v Fife Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ARCHIBALD V FIFE COUNCIL [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Cavendish Munro [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195_09_0202"
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+      "result": null
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CAVENDISH MUNRO PROFESSIONAL RISKS MANAGEMENT LTD V GEDULD [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195_09_0202"
+    },
+    {
+      "input": "Chesterton Global [2017] EWCA Civ 979",
+      "result": "[2017] EWCA Civ 979"
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed",
+      "result": null
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CHESTERTON GLOBAL LTD V NURMOHAMED [2017] EWCA CIV 979",
+      "result": "[2017] EWCA CIV 979"
+    },
+    {
+      "input": "Gunton [1981] 1 Ch 448",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "GUNTON V RICHMOND-UPON-THAMES LONDON BOROUGH COUNCIL [1981] 1 CH 448",
+      "result": null
+    },
+    {
+      "input": "Vento [2002] EWCA Civ 1871",
+      "result": "[2002] EWCA Civ 1871"
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+      "result": null
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "VENTO V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE (NO 2) [2002] EWCA CIV 1871",
+      "result": "[2002] EWCA CIV 1871"
+    },
+    {
+      "input": "Chagger [2009] EWCA Civ 1176",
+      "result": "[2009] EWCA Civ 1176"
+    },
+    {
+      "input": "Chagger v Abbey National plc",
+      "result": null
+    },
+    {
+      "input": "Chagger v Abbey National plc [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CHAGGER V ABBEY NATIONAL PLC [2009] EWCA CIV 1176",
+      "result": "[2009] EWCA CIV 1176"
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH",
+      "result": null
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "KUCUKDEVECI V SWEDEX GMBH C-555/07",
+      "result": null
+    },
+    {
+      "input": "Robertson v Bexley [2003] EWCA Civ 1012",
+      "result": "[2003] EWCA Civ 1012"
+    },
+    {
+      "input": "Robertson v Bexley Community Centre",
+      "result": null
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ROBERTSON V BEXLEY COMMUNITY CENTRE [2003] EWCA CIV 1012",
+      "result": "[2003] EWCA CIV 1012"
+    },
+    {
+      "input": "Tesco v USDAW [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+      "result": null
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "TESCO STORES LTD V UNION OF SHOP, DISTRIBUTIVE AND ALLIED WORKERS [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Khatun v Winn [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd",
+      "result": null
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "KHATUN V WINN SOLICITORS LTD [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Polkey v AE Dayton Services [1988] ICR 142",
+      "result": "[1988] ICR 142"
+    },
+    {
+      "input": "Iceland Frozen Foods v Jones [1983] ICR 17",
+      "result": "[1983] ICR 17"
+    },
+    {
+      "input": "BHS v Burchell [1980] ICR 303",
+      "result": "[1980] ICR 303"
+    },
+    {
+      "input": "Western Excavating v Sharp [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] ICR 931",
+      "result": "[2005] ICR 931"
+    },
+    {
+      "input": "Madarassy v Nomura [2007] ICR 867",
+      "result": "[2007] ICR 867"
+    },
+    {
+      "input": "Nagarajan v London Regional Transport [2000] 1 AC 501",
+      "result": null
+    },
+    {
+      "input": "Shamoon v Chief Constable of the RUC [2003] ICR 337",
+      "result": "[2003] ICR 337"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire [2012] ICR 704",
+      "result": "[2012] ICR 704"
+    },
+    {
+      "input": "Bilka-Kaufhaus v Weber von Hartz [1987] ICR 110",
+      "result": "[1987] ICR 110"
+    },
+    {
+      "input": "Pemberton v Inwood [2018] ICR 1291",
+      "result": "[2018] ICR 1291"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] ICR 724",
+      "result": "[2009] ICR 724"
+    },
+    {
+      "input": "Land Registry v Grant [2011] ICR 1390",
+      "result": "[2011] ICR 1390"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841",
+      "result": "[2007] ICR 841"
+    },
+    {
+      "input": "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773",
+      "result": "[2013] IRLR 773"
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] ICR 218",
+      "result": "[2008] ICR 218"
+    },
+    {
+      "input": "Archibald v Fife Council [2004] ICR 954",
+      "result": "[2004] ICR 954"
+    },
+    {
+      "input": "Smith v Churchills Stairlifts Plc [2006] ICR 524",
+      "result": "[2006] ICR 524"
+    },
+    {
+      "input": "Cavendish Munro v Geduld [2010] ICR 325",
+      "result": "[2010] ICR 325"
+    },
+    {
+      "input": "Chesterton Global v Nurmohamed [2017] ICR 920",
+      "result": "[2017] ICR 920"
+    },
+    {
+      "input": "Kilraine v London Borough of Wandsworth [2018] ICR 1850",
+      "result": "[2018] ICR 1850"
+    },
+    {
+      "input": "Babula v Waltham Forest College [2007] ICR 1026",
+      "result": "[2007] ICR 1026"
+    },
+    {
+      "input": "Geys v Société Générale [2013] 1 AC 523",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames LBC [1981] Ch 448",
+      "result": "[1981] Ch 448"
+    },
+    {
+      "input": "Laws v London Chronicle [1959] 1 WLR 698",
+      "result": null
+    },
+    {
+      "input": "This is a new statutory provision — case law will develop from 2027",
+      "result": null
+    }
+  ],
+  "extract_fcl": [
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Shamoon v Chief Constable [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "BHS v Burchell [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108"
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062"
+    },
+    {
+      "input": "BHS v Burchell [1978]",
+      "result": null
+    },
+    {
+      "input": "Essop v Home Office [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [1988] AC 344",
+      "result": "[1988] AC 344"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2025] UKSC 99",
+      "result": "[2025] UKSC 99"
+    },
+    {
+      "input": "Nonexistent Authority v Someone [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Chief Constable of West Yorkshire Police v Vento (No 2) [2002]",
+      "result": null
+    },
+    {
+      "input": "Smith v Acme Corp [2025] EAT 999",
+      "result": "[2025] EAT 999"
+    },
+    {
+      "input": "",
+      "result": null
+    },
+    {
+      "input": "   ",
+      "result": null
+    },
+    {
+      "input": "polkey v AE Dayton Services Ltd [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2017] EWCA Civ 979",
+      "result": "[2017] EWCA Civ 979"
+    },
+    {
+      "input": "Archibald v Fife Council [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Made Up Case v Nobody [2025] EAT 000",
+      "result": "[2025] EAT 000"
+    },
+    {
+      "input": "Polkey v AE Dayton [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Homer v Chief Constable [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Polkey",
+      "result": null
+    },
+    {
+      "input": "Polkey [1987]UKHL 8",
+      "result": "[1987]UKHL 8"
+    },
+    {
+      "input": "Polkey  v   AE Dayton  [ 1987 ]  UKHL  8",
+      "result": "[ 1987 ] UKHL 8"
+    },
+    {
+      "input": "See Polkey v AE Dayton Services Ltd [1987] UKHL 8 at [12]",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH C-555/07",
+      "result": null
+    },
+    {
+      "input": "Kucukdeveci C-555/07",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [1981] 1 Ch 448",
+      "result": null
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] EWCA Civ 142",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Igen v Wong [2005] ICR 931",
+      "result": "[2005] ICR 931"
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2002] EWCA Civ 1871",
+      "result": "[2002] EWCA Civ 1871"
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2003] EWCA Civ 1012",
+      "result": "[2003] EWCA Civ 1012"
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458"
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] UKEAT 0060_07_2908",
+      "result": "[2008] UKEAT 0060"
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Anya v University of Oxford [2001] EWCA Civ 405",
+      "result": "[2001] EWCA Civ 405"
+    },
+    {
+      "input": "Pemberton v Inwood [2018] EWCA Civ 564",
+      "result": "[2018] EWCA Civ 564"
+    },
+    {
+      "input": "Chagger v Abbey National plc [2009] EWCA Civ 1176",
+      "result": "[2009] EWCA Civ 1176"
+    },
+    {
+      "input": "the polkey principle applies here",
+      "result": null
+    },
+    {
+      "input": "[1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "[2005] EWCA Civ 142 Igen",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Burchell",
+      "result": null
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1980] ICR 303",
+      "result": "[1980] ICR 303"
+    },
+    {
+      "input": "Polkey [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd",
+      "result": null
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "POLKEY V AE DAYTON SERVICES LTD [1987] UKHL 8",
+      "result": "[1987] UKHL 8"
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108"
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell",
+      "result": null
+    },
+    {
+      "input": "British Home Stores Ltd v Burchell [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "BRITISH HOME STORES LTD V BURCHELL [1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108"
+    },
+    {
+      "input": "Iceland Frozen Foods [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062"
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones",
+      "result": null
+    },
+    {
+      "input": "Iceland Frozen Foods Ltd v Jones [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ICELAND FROZEN FOODS LTD V JONES [1982] UKEAT 0062_82_2207",
+      "result": "[1982] UKEAT 0062"
+    },
+    {
+      "input": "Williams v Compair Maxam [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd",
+      "result": null
+    },
+    {
+      "input": "Williams v Compair Maxam Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "WILLIAMS V COMPAIR MAXAM LTD [1982] ICR 156",
+      "result": "[1982] ICR 156"
+    },
+    {
+      "input": "Western Excavating [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp",
+      "result": null
+    },
+    {
+      "input": "Western Excavating (ECC) Ltd v Sharp [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "WESTERN EXCAVATING (ECC) LTD V SHARP [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Shamoon [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+      "result": null
+    },
+    {
+      "input": "Shamoon v Chief Constable of the Royal Ulster Constabulary [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "SHAMOON V CHIEF CONSTABLE OF THE ROYAL ULSTER CONSTABULARY [2003] UKHL 11",
+      "result": "[2003] UKHL 11"
+    },
+    {
+      "input": "Igen v Wong [2005] EWCA Civ 142",
+      "result": "[2005] EWCA Civ 142"
+    },
+    {
+      "input": "Igen Ltd v Wong",
+      "result": null
+    },
+    {
+      "input": "Igen Ltd v Wong [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "IGEN LTD V WONG [2005] EWCA CIV 142",
+      "result": "[2005] EWCA CIV 142"
+    },
+    {
+      "input": "Anya v University of Oxford",
+      "result": null
+    },
+    {
+      "input": "Anya v University of Oxford [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ANYA V UNIVERSITY OF OXFORD [2001] EWCA CIV 405",
+      "result": "[2001] EWCA CIV 405"
+    },
+    {
+      "input": "Essop [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Essop v Home Office",
+      "result": null
+    },
+    {
+      "input": "Essop v Home Office [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ESSOP V HOME OFFICE [2017] UKSC 27",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Homer [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police",
+      "result": null
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire Police [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "HOMER V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE [2012] UKSC 15",
+      "result": "[2012] UKSC 15"
+    },
+    {
+      "input": "Pemberton [2018] EWCA Civ 564",
+      "result": "[2018] EWCA Civ 564"
+    },
+    {
+      "input": "Pemberton v Inwood",
+      "result": null
+    },
+    {
+      "input": "Pemberton v Inwood [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "PEMBERTON V INWOOD [2018] EWCA CIV 564",
+      "result": "[2018] EWCA CIV 564"
+    },
+    {
+      "input": "Richmond Pharmacology [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal",
+      "result": null
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "RICHMOND PHARMACOLOGY V DHALIWAL [2009] UKEAT 0458_08_2403",
+      "result": "[2009] UKEAT 0458"
+    },
+    {
+      "input": "Derbyshire [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council",
+      "result": null
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "DERBYSHIRE V ST HELENS METROPOLITAN BOROUGH COUNCIL [2007] UKHL 16",
+      "result": "[2007] UKHL 16"
+    },
+    {
+      "input": "Environment Agency v Rowan",
+      "result": null
+    },
+    {
+      "input": "Environment Agency v Rowan [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ENVIRONMENT AGENCY V ROWAN [2008] UKEAT 0060_07_2908",
+      "result": "[2008] UKEAT 0060"
+    },
+    {
+      "input": "Archibald [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Archibald v Fife Council",
+      "result": null
+    },
+    {
+      "input": "Archibald v Fife Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ARCHIBALD V FIFE COUNCIL [2004] UKHL 32",
+      "result": "[2004] UKHL 32"
+    },
+    {
+      "input": "Cavendish Munro [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195"
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld",
+      "result": null
+    },
+    {
+      "input": "Cavendish Munro Professional Risks Management Ltd v Geduld [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CAVENDISH MUNRO PROFESSIONAL RISKS MANAGEMENT LTD V GEDULD [2010] UKEAT 0195_09_0202",
+      "result": "[2010] UKEAT 0195"
+    },
+    {
+      "input": "Chesterton Global [2017] EWCA Civ 979",
+      "result": "[2017] EWCA Civ 979"
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed",
+      "result": null
+    },
+    {
+      "input": "Chesterton Global Ltd v Nurmohamed [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CHESTERTON GLOBAL LTD V NURMOHAMED [2017] EWCA CIV 979",
+      "result": "[2017] EWCA CIV 979"
+    },
+    {
+      "input": "Gunton [1981] 1 Ch 448",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames London Borough Council [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "GUNTON V RICHMOND-UPON-THAMES LONDON BOROUGH COUNCIL [1981] 1 CH 448",
+      "result": null
+    },
+    {
+      "input": "Vento [2002] EWCA Civ 1871",
+      "result": "[2002] EWCA Civ 1871"
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2)",
+      "result": null
+    },
+    {
+      "input": "Vento v Chief Constable of West Yorkshire Police (No 2) [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "VENTO V CHIEF CONSTABLE OF WEST YORKSHIRE POLICE (NO 2) [2002] EWCA CIV 1871",
+      "result": "[2002] EWCA CIV 1871"
+    },
+    {
+      "input": "Chagger [2009] EWCA Civ 1176",
+      "result": "[2009] EWCA Civ 1176"
+    },
+    {
+      "input": "Chagger v Abbey National plc",
+      "result": null
+    },
+    {
+      "input": "Chagger v Abbey National plc [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "CHAGGER V ABBEY NATIONAL PLC [2009] EWCA CIV 1176",
+      "result": "[2009] EWCA CIV 1176"
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH",
+      "result": null
+    },
+    {
+      "input": "Kucukdeveci v Swedex GmbH [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "KUCUKDEVECI V SWEDEX GMBH C-555/07",
+      "result": null
+    },
+    {
+      "input": "Robertson v Bexley [2003] EWCA Civ 1012",
+      "result": "[2003] EWCA Civ 1012"
+    },
+    {
+      "input": "Robertson v Bexley Community Centre",
+      "result": null
+    },
+    {
+      "input": "Robertson v Bexley Community Centre [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "ROBERTSON V BEXLEY COMMUNITY CENTRE [2003] EWCA CIV 1012",
+      "result": "[2003] EWCA CIV 1012"
+    },
+    {
+      "input": "Tesco v USDAW [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+      "result": null
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "TESCO STORES LTD V UNION OF SHOP, DISTRIBUTIVE AND ALLIED WORKERS [2024] UKSC 28",
+      "result": "[2024] UKSC 28"
+    },
+    {
+      "input": "Khatun v Winn [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd",
+      "result": null
+    },
+    {
+      "input": "Khatun v Winn Solicitors Ltd [2099] UKSC 999",
+      "result": "[2099] UKSC 999"
+    },
+    {
+      "input": "KHATUN V WINN SOLICITORS LTD [2024] EAT 111",
+      "result": "[2024] EAT 111"
+    },
+    {
+      "input": "Polkey v AE Dayton Services [1988] ICR 142",
+      "result": "[1988] ICR 142"
+    },
+    {
+      "input": "Iceland Frozen Foods v Jones [1983] ICR 17",
+      "result": "[1983] ICR 17"
+    },
+    {
+      "input": "BHS v Burchell [1980] ICR 303",
+      "result": "[1980] ICR 303"
+    },
+    {
+      "input": "Western Excavating v Sharp [1978] ICR 221",
+      "result": "[1978] ICR 221"
+    },
+    {
+      "input": "Igen Ltd v Wong [2005] ICR 931",
+      "result": "[2005] ICR 931"
+    },
+    {
+      "input": "Madarassy v Nomura [2007] ICR 867",
+      "result": "[2007] ICR 867"
+    },
+    {
+      "input": "Nagarajan v London Regional Transport [2000] 1 AC 501",
+      "result": null
+    },
+    {
+      "input": "Shamoon v Chief Constable of the RUC [2003] ICR 337",
+      "result": "[2003] ICR 337"
+    },
+    {
+      "input": "Homer v Chief Constable of West Yorkshire [2012] ICR 704",
+      "result": "[2012] ICR 704"
+    },
+    {
+      "input": "Bilka-Kaufhaus v Weber von Hartz [1987] ICR 110",
+      "result": "[1987] ICR 110"
+    },
+    {
+      "input": "Pemberton v Inwood [2018] ICR 1291",
+      "result": "[2018] ICR 1291"
+    },
+    {
+      "input": "Richmond Pharmacology v Dhaliwal [2009] ICR 724",
+      "result": "[2009] ICR 724"
+    },
+    {
+      "input": "Land Registry v Grant [2011] ICR 1390",
+      "result": "[2011] ICR 1390"
+    },
+    {
+      "input": "Derbyshire v St Helens Metropolitan Borough Council [2007] ICR 841",
+      "result": "[2007] ICR 841"
+    },
+    {
+      "input": "Woodhouse v West North West Homes Leeds Ltd [2013] IRLR 773",
+      "result": "[2013] IRLR 773"
+    },
+    {
+      "input": "Environment Agency v Rowan [2008] ICR 218",
+      "result": "[2008] ICR 218"
+    },
+    {
+      "input": "Archibald v Fife Council [2004] ICR 954",
+      "result": "[2004] ICR 954"
+    },
+    {
+      "input": "Smith v Churchills Stairlifts Plc [2006] ICR 524",
+      "result": "[2006] ICR 524"
+    },
+    {
+      "input": "Cavendish Munro v Geduld [2010] ICR 325",
+      "result": "[2010] ICR 325"
+    },
+    {
+      "input": "Chesterton Global v Nurmohamed [2017] ICR 920",
+      "result": "[2017] ICR 920"
+    },
+    {
+      "input": "Kilraine v London Borough of Wandsworth [2018] ICR 1850",
+      "result": "[2018] ICR 1850"
+    },
+    {
+      "input": "Babula v Waltham Forest College [2007] ICR 1026",
+      "result": "[2007] ICR 1026"
+    },
+    {
+      "input": "Geys v Société Générale [2013] 1 AC 523",
+      "result": null
+    },
+    {
+      "input": "Gunton v Richmond-upon-Thames LBC [1981] Ch 448",
+      "result": "[1981] Ch 448"
+    },
+    {
+      "input": "Laws v London Chronicle [1959] 1 WLR 698",
+      "result": null
+    },
+    {
+      "input": "This is a new statutory provision — case law will develop from 2027",
+      "result": null
+    },
+    {
+      "input": "see Essop v Home Office [2017] UKSC 27 at [25]",
+      "result": "[2017] UKSC 27"
+    },
+    {
+      "input": "[2009] EWCA Civ 1202",
+      "result": "[2009] EWCA Civ 1202"
+    },
+    {
+      "input": "no citation here",
+      "result": null
+    },
+    {
+      "input": "[2026] EAT 90",
+      "result": "[2026] EAT 90"
+    },
+    {
+      "input": "[1978] UKEAT 0108_78_2007",
+      "result": "[1978] UKEAT 0108"
+    }
+  ],
+  "normalise": [
+    {
+      "input": "[2017] UKSC 27",
+      "result": "2017uksc27"
+    },
+    {
+      "input": "[2017]  uksc 27",
+      "result": "2017uksc27"
+    },
+    {
+      "input": "[1978] UKEAT 0108_78_2007",
+      "result": "1978ukeat0108782007"
+    },
+    {
+      "input": "  [2005] EWCA Civ 142 ",
+      "result": "2005ewcaciv142"
+    },
+    {
+      "input": "C-555/07",
+      "result": "c55507"
+    },
+    {
+      "input": "",
+      "result": ""
+    }
+  ],
+  "tokens": [
+    {
+      "input": "Essop v Home Office",
+      "result": [
+        "essop",
+        "home",
+        "office"
+      ]
+    },
+    {
+      "input": "FMX Food Merchants v HMRC",
+      "result": [
+        "food",
+        "merchants",
+        "hmrc"
+      ]
+    },
+    {
+      "input": "Nonexistent v Fabricated Ltd",
+      "result": [
+        "nonexistent",
+        "fabricated"
+      ]
+    },
+    {
+      "input": "Polkey v AE Dayton Services Ltd",
+      "result": [
+        "polkey",
+        "dayton",
+        "services"
+      ]
+    },
+    {
+      "input": "Tesco Stores Ltd v Union of Shop, Distributive and Allied Workers",
+      "result": [
+        "tesco",
+        "stores",
+        "union",
+        "shop",
+        "distributive",
+        "allied",
+        "workers"
+      ]
+    },
+    {
+      "input": "Smith v. Jones",
+      "result": [
+        "smith",
+        "jones"
+      ]
+    },
+    {
+      "input": "The Group plc v Others",
+      "result": []
+    },
+    {
+      "input": "",
+      "result": []
+    },
+    {
+      "input": "G Laffy v Wkcic Group T/A Capital City College Group",
+      "result": [
+        "laffy",
+        "wkcic",
+        "capital",
+        "city",
+        "college"
+      ]
+    }
+  ],
+  "batches": [
+    {
+      "authorities": [
+        {
+          "citation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+        },
+        {
+          "citation": "Shamoon v Chief Constable [2003] UKHL 11"
+        },
+        {
+          "citation": "Made Up Case v Nobody [2025] EAT 000"
+        }
+      ],
+      "result": {
+        "results": [
+          {
+            "originalCitation": "Polkey v AE Dayton Services Ltd [1987] UKHL 8",
+            "trustLevel": "VERIFIED",
+            "matchedAuthority": {
+              "shortName": "Polkey",
+              "neutralCitation": "[1987] UKHL 8",
+              "fullName": "Polkey v AE Dayton Services Ltd",
+              "court": "UKHL",
+              "tier": "binding",
+              "claimTypes": [
+                "unfair_dismissal"
+              ],
+              "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+            },
+            "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+          },
+          {
+            "originalCitation": "Shamoon v Chief Constable [2003] UKHL 11",
+            "trustLevel": "VERIFIED",
+            "matchedAuthority": {
+              "shortName": "Shamoon",
+              "neutralCitation": "[2003] UKHL 11",
+              "fullName": "Shamoon v Chief Constable of the Royal Ulster Constabulary",
+              "court": "UKHL",
+              "tier": "binding",
+              "claimTypes": [
+                "direct_discrimination"
+              ],
+              "principle": "Detriment means placing the claimant at a disadvantage. A reasonable worker would or might consider the treatment detrimental. It does not require financial loss."
+            },
+            "reason": "Exact match: Shamoon v Chief Constable of the Royal Ulster Constabulary [2003] UKHL 11"
+          },
+          {
+            "originalCitation": "Made Up Case v Nobody [2025] EAT 000",
+            "trustLevel": "QUARANTINED",
+            "reason": "Citation not found in verified authorities database. May be valid but cannot be independently verified."
+          }
+        ],
+        "summary": {
+          "total": 3,
+          "verified": 2,
+          "check": 0,
+          "quarantined": 1,
+          "verifiedPercentage": 67
+        }
+      }
+    },
+    {
+      "authorities": [],
+      "result": {
+        "results": [],
+        "summary": {
+          "total": 0,
+          "verified": 0,
+          "check": 0,
+          "quarantined": 0,
+          "verifiedPercentage": 0
+        }
+      }
+    },
+    {
+      "authorities": [
+        {
+          "citation": "Polkey v AE Dayton [1987] UKHL 8"
+        },
+        {
+          "citation": "Homer v Chief Constable [2012] UKSC 15"
+        }
+      ],
+      "result": {
+        "results": [
+          {
+            "originalCitation": "Polkey v AE Dayton [1987] UKHL 8",
+            "trustLevel": "VERIFIED",
+            "matchedAuthority": {
+              "shortName": "Polkey",
+              "neutralCitation": "[1987] UKHL 8",
+              "fullName": "Polkey v AE Dayton Services Ltd",
+              "court": "UKHL",
+              "tier": "binding",
+              "claimTypes": [
+                "unfair_dismissal"
+              ],
+              "principle": "Procedural fairness is essential. A dismissal may be unfair solely because the employer failed to follow a fair procedure, even if the outcome would have been the same."
+            },
+            "reason": "Exact match: Polkey v AE Dayton Services Ltd [1987] UKHL 8"
+          },
+          {
+            "originalCitation": "Homer v Chief Constable [2012] UKSC 15",
+            "trustLevel": "VERIFIED",
+            "matchedAuthority": {
+              "shortName": "Homer",
+              "neutralCitation": "[2012] UKSC 15",
+              "fullName": "Homer v Chief Constable of West Yorkshire Police",
+              "court": "UKSC",
+              "tier": "binding",
+              "claimTypes": [
+                "indirect_discrimination"
+              ],
+              "principle": "Justification under indirect discrimination requires the employer to show a legitimate aim and that the PCP is a proportionate means of achieving it. Cost alone cannot justify discrimination."
+            },
+            "reason": "Exact match: Homer v Chief Constable of West Yorkshire Police [2012] UKSC 15"
+          }
+        ],
+        "summary": {
+          "total": 2,
+          "verified": 2,
+          "check": 0,
+          "quarantined": 0,
+          "verifiedPercentage": 100
+        }
+      }
+    },
+    {
+      "authorities": [
+        {
+          "citation": "BHS v Burchell [1978]"
+        },
+        {
+          "citation": ""
+        },
+        {
+          "citation": "Essop v Home Office [2017] UKSC 27"
+        }
+      ],
+      "result": {
+        "results": [
+          {
+            "originalCitation": "BHS v Burchell [1978]",
+            "trustLevel": "CHECK",
+            "matchedAuthority": {
+              "shortName": "BHS v Burchell",
+              "neutralCitation": "[1978] UKEAT 0108_78_2007",
+              "fullName": "British Home Stores Ltd v Burchell",
+              "court": "EAT",
+              "tier": "binding",
+              "claimTypes": [
+                "unfair_dismissal"
+              ],
+              "principle": "Three-stage test for misconduct dismissals: (1) genuine belief in guilt, (2) reasonable grounds for that belief, (3) reasonable investigation."
+            },
+            "reason": "Case name matches British Home Stores Ltd v Burchell, but no neutral citation was supplied to verify against [1978] UKEAT 0108_78_2007. Manual check recommended."
+          },
+          {
+            "originalCitation": "",
+            "trustLevel": "QUARANTINED",
+            "reason": "Empty citation string"
+          },
+          {
+            "originalCitation": "Essop v Home Office [2017] UKSC 27",
+            "trustLevel": "VERIFIED",
+            "matchedAuthority": {
+              "shortName": "Essop",
+              "neutralCitation": "[2017] UKSC 27",
+              "fullName": "Essop v Home Office",
+              "court": "UKSC",
+              "tier": "binding",
+              "claimTypes": [
+                "indirect_discrimination"
+              ],
+              "principle": "Claimant need not show why the PCP puts the group at a disadvantage. Statistical evidence of group disadvantage is sufficient. The reason for the disadvantage is irrelevant to establishing the prima facie case."
+            },
+            "reason": "Exact match: Essop v Home Office [2017] UKSC 27"
+          }
+        ],
+        "summary": {
+          "total": 3,
+          "verified": 1,
+          "check": 1,
+          "quarantined": 1,
+          "verifiedPercentage": 33
+        }
+      }
+    }
+  ]
+}

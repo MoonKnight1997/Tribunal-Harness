@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   build-and-test:
-    name: build & test
+    name: coffeecup — lint, type-check, test, build
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: tribunal-harness
+        working-directory: coffeecup
     steps:
       - uses: actions/checkout@v4
 
@@ -22,7 +22,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: tribunal-harness/package-lock.json
+          cache-dependency-path: coffeecup/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -31,9 +31,9 @@ jobs:
         run: npm run lint
 
       - name: Type-check
-        run: npx tsc --noEmit
+        run: npm run typecheck
 
-      - name: Test
+      - name: Test (Vitest, in-process Postgres, mock model provider)
         run: npm test
 
       - name: Build

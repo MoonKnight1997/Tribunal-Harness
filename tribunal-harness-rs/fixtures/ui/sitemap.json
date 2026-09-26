@@ -1,0 +1,104 @@
+[
+  {
+    "url": "https://tribunalharness.co.uk/",
+    "lastModified": "<now>",
+    "changeFrequency": "weekly",
+    "priority": 1
+  },
+  {
+    "url": "https://tribunalharness.co.uk/how-it-works",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.9
+  },
+  {
+    "url": "https://tribunalharness.co.uk/analysis-engine",
+    "lastModified": "<now>",
+    "changeFrequency": "weekly",
+    "priority": 0.9
+  },
+  {
+    "url": "https://tribunalharness.co.uk/pricing",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.8
+  },
+  {
+    "url": "https://tribunalharness.co.uk/about",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.7
+  },
+  {
+    "url": "https://tribunalharness.co.uk/era-2025",
+    "lastModified": "<now>",
+    "changeFrequency": "weekly",
+    "priority": 0.9
+  },
+  {
+    "url": "https://tribunalharness.co.uk/case-law-db",
+    "lastModified": "<now>",
+    "changeFrequency": "weekly",
+    "priority": 0.8
+  },
+  {
+    "url": "https://tribunalharness.co.uk/documentation",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.8
+  },
+  {
+    "url": "https://tribunalharness.co.uk/methodology",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.7
+  },
+  {
+    "url": "https://tribunalharness.co.uk/security",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.6
+  },
+  {
+    "url": "https://tribunalharness.co.uk/ethics",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.6
+  },
+  {
+    "url": "https://tribunalharness.co.uk/blog",
+    "lastModified": "<now>",
+    "changeFrequency": "weekly",
+    "priority": 0.7
+  },
+  {
+    "url": "https://tribunalharness.co.uk/product",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.7
+  },
+  {
+    "url": "https://tribunalharness.co.uk/contact",
+    "lastModified": "<now>",
+    "changeFrequency": "yearly",
+    "priority": 0.5
+  },
+  {
+    "url": "https://tribunalharness.co.uk/privacy",
+    "lastModified": "<now>",
+    "changeFrequency": "yearly",
+    "priority": 0.4
+  },
+  {
+    "url": "https://tribunalharness.co.uk/terms",
+    "lastModified": "<now>",
+    "changeFrequency": "yearly",
+    "priority": 0.4
+  },
+  {
+    "url": "https://tribunalharness.co.uk/request-access",
+    "lastModified": "<now>",
+    "changeFrequency": "monthly",
+    "priority": 0.8
+  }
+]

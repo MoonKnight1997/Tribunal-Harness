@@ -1,0 +1,66 @@
+{
+  "client_key": [
+    {
+      "xff": "1.1.1.1, 2.2.2.2, 3.3.3.3",
+      "result": "3.3.3.3"
+    },
+    {
+      "xff": "9.9.9.9",
+      "result": "9.9.9.9"
+    },
+    {
+      "xff": null,
+      "result": "unknown-ip"
+    },
+    {
+      "xff": " 1.1.1.1 ,  ",
+      "result": "1.1.1.1"
+    },
+    {
+      "xff": ",,,",
+      "result": "unknown-ip"
+    },
+    {
+      "xff": "a,b",
+      "result": "b"
+    }
+  ],
+  "sequence": [
+    {
+      "key": "a",
+      "allowed": true
+    },
+    {
+      "key": "a",
+      "allowed": true
+    },
+    {
+      "key": "a",
+      "allowed": true
+    },
+    {
+      "key": "a",
+      "allowed": false
+    },
+    {
+      "key": "b",
+      "allowed": true
+    },
+    {
+      "key": "b",
+      "allowed": true
+    },
+    {
+      "key": "b",
+      "allowed": true
+    },
+    {
+      "key": "b",
+      "allowed": false
+    },
+    {
+      "key": "a",
+      "allowed": false
+    }
+  ]
+}

@@ -1,0 +1,761 @@
+{
+  "generated_today": "2026-09-23",
+  "cases": [
+    {
+      "date_of_act": "2025-06-01",
+      "claim_types": [
+        "unfair_dismissal",
+        "direct_discrimination",
+        "indirect_discrimination",
+        "harassment",
+        "victimisation",
+        "reasonable_adjustments",
+        "whistleblowing",
+        "wrongful_dismissal",
+        "fire_and_rehire",
+        "zero_hours_rights"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "direct_discrimination",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "indirect_discrimination",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "harassment",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "victimisation",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "reasonable_adjustments",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "whistleblowing",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "wrongful_dismissal",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "fire_and_rehire",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          },
+          {
+            "claim_type": "zero_hours_rights",
+            "base_deadline": "2025-08-31",
+            "final_deadline": "2025-08-31",
+            "original_deadline": "2025-08-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -388,
+            "is_expired": true
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "Your deadline (2025-08-31) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2025-08-31. Practical target: file by the previous working day, 2025-08-29.",
+          "One or more deadlines have expired. A tribunal may still accept a late claim under the 'just and equitable' (discrimination) or 'not reasonably practicable' (unfair dismissal) tests. Seek legal advice immediately.",
+          "Wrongful dismissal: this calculator shows the ET route time limit (3 or 6 months less 1 day). If your claim exceeds the ET damages cap of £25,000, you may wish to bring it in the county court instead, where the Limitation Act 1980 allows 6 years from breach of contract."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2027-03-01",
+      "claim_types": [
+        "unfair_dismissal",
+        "direct_discrimination",
+        "indirect_discrimination",
+        "harassment",
+        "victimisation",
+        "reasonable_adjustments",
+        "whistleblowing",
+        "wrongful_dismissal",
+        "fire_and_rehire",
+        "zero_hours_rights"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "unfair_dismissal (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "direct_discrimination",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "direct_discrimination (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "indirect_discrimination",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "indirect_discrimination (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "harassment",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "harassment (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "victimisation",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "victimisation (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "reasonable_adjustments",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "reasonable_adjustments (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "whistleblowing",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "whistleblowing (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "wrongful_dismissal",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "wrongful_dismissal (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "fire_and_rehire",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "fire_and_rehire (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          },
+          {
+            "claim_type": "zero_hours_rights",
+            "base_deadline": "2027-05-31",
+            "final_deadline": "2027-05-31",
+            "original_deadline": "2027-05-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 250,
+            "is_expired": false
+          },
+          {
+            "claim_type": "zero_hours_rights (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-08-31",
+            "final_deadline": "2027-08-31",
+            "original_deadline": "2027-08-31",
+            "regime": "post_era_2025",
+            "days_remaining": 342,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "post_era_2025",
+        "warnings": [
+          "The ERA 2025 six-month time-limit commencement (assumed October 2026) is NOT yet confirmed by Statutory Instrument. Because the applicable regime is uncertain, each claim is shown TWICE: the conservative three-month deadline is listed first as the PRIMARY deadline, and the six-month deadline second as a clearly-labelled secondary entry that applies only if the SI confirms the assumed commencement. Treat the shorter (three-month) deadline as operative until the SI is confirmed. Exact commencement date to be confirmed by Statutory Instrument.",
+          "Your deadline (2027-05-31) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2027-05-31. Practical target: file by the previous working day, 2027-05-28.",
+          "Wrongful dismissal: this calculator shows the ET route time limit (3 or 6 months less 1 day). If your claim exceeds the ET damages cap of £25,000, you may wish to bring it in the county court instead, where the Limitation Act 1980 allows 6 years from breach of contract."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-09-15",
+      "claim_types": [
+        "unfair_dismissal",
+        "wrongful_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-12-14",
+            "final_deadline": "2026-12-14",
+            "original_deadline": "2026-12-14",
+            "regime": "pre_era_2025",
+            "days_remaining": 82,
+            "is_expired": false
+          },
+          {
+            "claim_type": "wrongful_dismissal",
+            "base_deadline": "2026-12-14",
+            "final_deadline": "2026-12-14",
+            "original_deadline": "2026-12-14",
+            "regime": "pre_era_2025",
+            "days_remaining": 82,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "The date of the act is shortly before the assumed ERA 2025 six-month time-limit commencement (October 2026), which is NOT yet confirmed by Statutory Instrument. The conservative three-month deadline is shown. If the confirmed commencement turns out to be earlier than assumed, a longer six-month limit could apply — this would not shorten the deadline shown. Exact commencement date to be confirmed by Statutory Instrument.",
+          "Wrongful dismissal: this calculator shows the ET route time limit (3 or 6 months less 1 day). If your claim exceeds the ET damages cap of £25,000, you may wish to bring it in the county court instead, where the Limitation Act 1980 allows 6 years from breach of contract."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-09-29",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-12-28",
+            "final_deadline": "2026-12-28",
+            "original_deadline": "2026-12-28",
+            "regime": "pre_era_2025",
+            "days_remaining": 96,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "The date of the act is shortly before the assumed ERA 2025 six-month time-limit commencement (October 2026), which is NOT yet confirmed by Statutory Instrument. The conservative three-month deadline is shown. If the confirmed commencement turns out to be earlier than assumed, a longer six-month limit could apply — this would not shorten the deadline shown. Exact commencement date to be confirmed by Statutory Instrument.",
+          "Your deadline (2026-12-28) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2026-12-28. Practical target: file by the previous working day, 2026-12-24."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2020-01-01",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2020-03-31",
+            "final_deadline": "2020-03-31",
+            "original_deadline": "2020-03-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -2367,
+            "is_expired": true
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "One or more deadlines have expired. A tribunal may still accept a late claim under the 'just and equitable' (discrimination) or 'not reasonably practicable' (unfair dismissal) tests. Seek legal advice immediately."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2028-10-01",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2028-12-31",
+            "final_deadline": "2028-12-31",
+            "original_deadline": "2028-12-31",
+            "regime": "pre_era_2025",
+            "days_remaining": 830,
+            "is_expired": false
+          },
+          {
+            "claim_type": "unfair_dismissal (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2029-03-31",
+            "final_deadline": "2029-03-31",
+            "original_deadline": "2029-03-31",
+            "regime": "post_era_2025",
+            "days_remaining": 920,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "post_era_2025",
+        "warnings": [
+          "The ERA 2025 six-month time-limit commencement (assumed October 2026) is NOT yet confirmed by Statutory Instrument. Because the applicable regime is uncertain, each claim is shown TWICE: the conservative three-month deadline is listed first as the PRIMARY deadline, and the six-month deadline second as a clearly-labelled secondary entry that applies only if the SI confirms the assumed commencement. Treat the shorter (three-month) deadline as operative until the SI is confirmed. Exact commencement date to be confirmed by Statutory Instrument.",
+          "Your deadline (2028-12-31) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2028-12-31. Practical target: file by the previous working day, 2028-12-29.",
+          "Your deadline (2029-03-31) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2029-03-31. Practical target: file by the previous working day, 2029-03-30.",
+          "WARNING: One or more deadlines fall after 2028. The bank holiday calendar used by this calculator only covers up to 2028. Bank holiday extensions may not be applied correctly. Please verify your deadline against the GOV.UK bank holidays calendar."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2025-06-01",
+      "claim_types": [],
+      "result": {
+        "deadlines": [],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": []
+      }
+    },
+    {
+      "date_of_act": "2026-09-23",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-12-22",
+            "final_deadline": "2026-12-22",
+            "original_deadline": "2026-12-22",
+            "regime": "pre_era_2025",
+            "days_remaining": 90,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "The date of the act is shortly before the assumed ERA 2025 six-month time-limit commencement (October 2026), which is NOT yet confirmed by Statutory Instrument. The conservative three-month deadline is shown. If the confirmed commencement turns out to be earlier than assumed, a longer six-month limit could apply — this would not shorten the deadline shown. Exact commencement date to be confirmed by Statutory Instrument."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-06-30",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-09-29",
+            "final_deadline": "2026-09-29",
+            "original_deadline": "2026-09-29",
+            "regime": "pre_era_2025",
+            "days_remaining": 6,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "URGENT: Your earliest deadline expires in 6 days. Seek immediate advice if you have not already filed your claim."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-06-26",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-09-25",
+            "final_deadline": "2026-09-25",
+            "original_deadline": "2026-09-25",
+            "regime": "pre_era_2025",
+            "days_remaining": 2,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "URGENT: Your earliest deadline expires in 2 days. Seek immediate advice if you have not already filed your claim."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-06-25",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-09-24",
+            "final_deadline": "2026-09-24",
+            "original_deadline": "2026-09-24",
+            "regime": "pre_era_2025",
+            "days_remaining": 1,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "URGENT: Your earliest deadline expires in 1 days. Seek immediate advice if you have not already filed your claim."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-06-24",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-09-23",
+            "final_deadline": "2026-09-23",
+            "original_deadline": "2026-09-23",
+            "regime": "pre_era_2025",
+            "days_remaining": 0,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "URGENT: Your earliest deadline expires in 0 days. Seek immediate advice if you have not already filed your claim."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-06-15",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "acas_day_a": "2026-08-04",
+      "acas_day_b": "2026-09-03",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-09-14",
+            "acas_extended_deadline": "2026-10-14",
+            "final_deadline": "2026-10-14",
+            "original_deadline": "2026-10-14",
+            "regime": "pre_era_2025",
+            "days_remaining": 21,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": []
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "acas_day_a": "2025-04-10",
+      "acas_day_b": "2025-04-15",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2025-03-31",
+            "final_deadline": "2025-03-31",
+            "original_deadline": "2025-03-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -541,
+            "is_expired": true
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "ACAS conciliation begun after the limit expired does not extend time (ERA 1996 s.207B). The deadline shown is the unextended statutory limit and the claim may already be out of time — seek advice immediately.",
+          "One or more deadlines have expired. A tribunal may still accept a late claim under the 'just and equitable' (discrimination) or 'not reasonably practicable' (unfair dismissal) tests. Seek legal advice immediately."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2025-01-01",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "acas_day_a": "2025-02-15",
+      "acas_day_b": "2025-02-01",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2025-03-31",
+            "acas_extended_deadline": "2025-03-31",
+            "final_deadline": "2025-03-31",
+            "original_deadline": "2025-03-31",
+            "regime": "pre_era_2025",
+            "days_remaining": -541,
+            "is_expired": true
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "One or more deadlines have expired. A tribunal may still accept a late claim under the 'just and equitable' (discrimination) or 'not reasonably practicable' (unfair dismissal) tests. Seek legal advice immediately."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-09-15",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "acas_day_a": "2026-09-20",
+      "acas_day_b": "2026-10-05",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2026-12-14",
+            "acas_extended_deadline": "2026-12-29",
+            "final_deadline": "2026-12-29",
+            "original_deadline": "2026-12-29",
+            "regime": "pre_era_2025",
+            "days_remaining": 97,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "pre_era_2025",
+        "warnings": [
+          "The date of the act is shortly before the assumed ERA 2025 six-month time-limit commencement (October 2026), which is NOT yet confirmed by Statutory Instrument. The conservative three-month deadline is shown. If the confirmed commencement turns out to be earlier than assumed, a longer six-month limit could apply — this would not shorten the deadline shown. Exact commencement date to be confirmed by Statutory Instrument."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2027-01-31",
+      "claim_types": [
+        "harassment",
+        "victimisation"
+      ],
+      "acas_day_a": "2027-04-30",
+      "acas_day_b": "2027-05-31",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "harassment",
+            "base_deadline": "2027-04-30",
+            "acas_extended_deadline": "2027-06-30",
+            "final_deadline": "2027-06-30",
+            "original_deadline": "2027-06-30",
+            "regime": "pre_era_2025",
+            "days_remaining": 280,
+            "is_expired": false
+          },
+          {
+            "claim_type": "harassment (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-07-30",
+            "acas_extended_deadline": "2027-08-30",
+            "final_deadline": "2027-08-30",
+            "original_deadline": "2027-08-30",
+            "regime": "post_era_2025",
+            "days_remaining": 341,
+            "is_expired": false
+          },
+          {
+            "claim_type": "victimisation",
+            "base_deadline": "2027-04-30",
+            "acas_extended_deadline": "2027-06-30",
+            "final_deadline": "2027-06-30",
+            "original_deadline": "2027-06-30",
+            "regime": "pre_era_2025",
+            "days_remaining": 280,
+            "is_expired": false
+          },
+          {
+            "claim_type": "victimisation (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-07-30",
+            "acas_extended_deadline": "2027-08-30",
+            "final_deadline": "2027-08-30",
+            "original_deadline": "2027-08-30",
+            "regime": "post_era_2025",
+            "days_remaining": 341,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "post_era_2025",
+        "warnings": [
+          "The ERA 2025 six-month time-limit commencement (assumed October 2026) is NOT yet confirmed by Statutory Instrument. Because the applicable regime is uncertain, each claim is shown TWICE: the conservative three-month deadline is listed first as the PRIMARY deadline, and the six-month deadline second as a clearly-labelled secondary entry that applies only if the SI confirms the assumed commencement. Treat the shorter (three-month) deadline as operative until the SI is confirmed. Exact commencement date to be confirmed by Statutory Instrument.",
+          "Your deadline (2027-08-30) falls on a weekend or bank holiday. The statutory time limit is NOT extended to the next working day — you must present your claim on or before 2027-08-30. Practical target: file by the previous working day, 2027-08-27."
+        ]
+      }
+    },
+    {
+      "date_of_act": "2026-11-30",
+      "claim_types": [
+        "unfair_dismissal"
+      ],
+      "acas_day_a": "2027-02-27",
+      "acas_day_b": "2027-03-30",
+      "result": {
+        "deadlines": [
+          {
+            "claim_type": "unfair_dismissal",
+            "base_deadline": "2027-02-28",
+            "acas_extended_deadline": "2027-04-30",
+            "final_deadline": "2027-04-30",
+            "original_deadline": "2027-04-30",
+            "regime": "pre_era_2025",
+            "days_remaining": 219,
+            "is_expired": false
+          },
+          {
+            "claim_type": "unfair_dismissal (6-month regime — applies only if the ERA 2025 Statutory Instrument confirms the assumed October 2026 commencement)",
+            "base_deadline": "2027-05-29",
+            "acas_extended_deadline": "2027-06-29",
+            "final_deadline": "2027-06-29",
+            "original_deadline": "2027-06-29",
+            "regime": "post_era_2025",
+            "days_remaining": 279,
+            "is_expired": false
+          }
+        ],
+        "time_limit_regime": "post_era_2025",
+        "warnings": [
+          "The ERA 2025 six-month time-limit commencement (assumed October 2026) is NOT yet confirmed by Statutory Instrument. Because the applicable regime is uncertain, each claim is shown TWICE: the conservative three-month deadline is listed first as the PRIMARY deadline, and the six-month deadline second as a clearly-labelled secondary entry that applies only if the SI confirms the assumed commencement. Treat the shorter (three-month) deadline as operative until the SI is confirmed. Exact commencement date to be confirmed by Statutory Instrument."
+        ]
+      }
+    }
+  ]
+}
