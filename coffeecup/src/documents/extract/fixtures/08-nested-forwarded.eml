@@ -1,0 +1,32 @@
+From: colleague@acme.example
+To: worker@example.com
+Subject: Fwd: Re: Priya
+Date: Tue, 3 Mar 2026 20:00:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="outer-mixed"
+
+--outer-mixed
+Content-Type: text/plain; charset=utf-8
+
+Thought you should see this.
+--outer-mixed
+Content-Type: message/rfc822
+Content-Disposition: inline
+
+From: director@acme.example
+To: manager@acme.example
+Subject: Re: Priya
+Date: Mon, 19 Jan 2026 18:45:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="inner-alt"
+
+--inner-alt
+Content-Type: text/plain; charset=utf-8
+
+Suspend her tomorrow, 20 January 2026. We can sort the paperwork later.
+--inner-alt
+Content-Type: text/html; charset=utf-8
+
+<p>Suspend her tomorrow, 20 January 2026. We can sort the paperwork later.</p>
+--inner-alt--
+--outer-mixed--

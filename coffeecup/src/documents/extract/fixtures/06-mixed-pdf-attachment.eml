@@ -1,0 +1,19 @@
+From: payroll@acme.example
+To: worker@example.com
+Subject: Payslip attached
+Date: Sat, 28 Feb 2026 09:00:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="mixed-1"
+
+--mixed-1
+Content-Type: text/plain; charset=utf-8
+
+Please find your payslip for February 2026 attached. Net pay was paid on 28 February 2026.
+
+--mixed-1
+Content-Type: application/pdf; name="payslip.pdf"
+Content-Disposition: attachment; filename="payslip.pdf"
+Content-Transfer-Encoding: base64
+
+JVBERi0xLjQKMSAwIG9iaiA8PCA+PiBlbmRvYmoKJSVFT0YK
+--mixed-1--

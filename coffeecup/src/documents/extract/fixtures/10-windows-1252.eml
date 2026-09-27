@@ -1,0 +1,9 @@
+From: hr@acme.example
+To: worker@example.com
+Subject: Warning
+Date: Wed, 4 Mar 2026 11:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+You were given a “final written warning” on 4 March 2026. Expenses of €40 were refused.

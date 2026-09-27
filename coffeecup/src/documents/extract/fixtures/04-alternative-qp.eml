@@ -1,0 +1,20 @@
+From: hr@acme.example
+To: worker@example.com
+Subject: Investigation meeting
+Date: Wed, 11 Feb 2026 08:00:00 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="alt-boundary-1"
+
+--alt-boundary-1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+We=E2=80=99re writing to confirm the investigation meeting on 12 February 2=
+026 at 2pm. Please bring your notes =E2=80=94 thank you.
+
+--alt-boundary-1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><p>We=E2=80=99re writing to confirm the investigation meeting on 12 February 2026 at 2pm.</p></body></html>
+--alt-boundary-1--
