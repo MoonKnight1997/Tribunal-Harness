@@ -7,7 +7,36 @@ import { api, errorMessage } from "@/components/api";
 import { Button, Card, Notice, Pill, Textarea, Empty } from "@/components/ui";
 import { Markdown } from "@/components/markdown";
 
-type ArtifactView = { id: string; type: string; title: string; content: string; version: number; status: string; stale: boolean; staleReason: string | null; updatedAt: string };
+type ReviewFlagView = { kind: string; excerpt: string; note: string };
+type ArtifactView = { id: string; type: string; title: string; content: string; version: number; status: string; stale: boolean; staleReason: string | null; updatedAt: string; reviewFlags?: ReviewFlagView[]; userEditedAt?: string | null };
+
+const FLAG_LABELS: Record<string, string> = {
+    unsupported_date: "Date not in your record",
+    unsupported_name: "Name not on your case",
+    unsupported_quote: "Quotation not found in your record",
+    percentage: "Percentage",
+    strength_assertion: "Judgement about the outcome",
+    fabricated_source: "Legal citation not in your record",
+    other: "Check this",
+};
+
+/** Deterministic checks found wording the reader should verify. They flag; they do not certify. */
+function ReviewFlags({ flags }: { flags: ReviewFlagView[] }) {
+    if (flags.length === 0) return null;
+    return (
+        <div className="mb-3 rounded-lg border border-warn/40 bg-surface-muted p-3 text-sm">
+            <p className="mb-1 font-medium">Check before you use this</p>
+            <p className="mb-2 text-ink-muted">Automatic checks found {flags.length === 1 ? "one thing" : `${flags.length} things`} that could not be matched to your record. Passing these checks does not mean a document is right; failing them means look closely.</p>
+            <ul className="space-y-1">
+                {flags.map((f, i) => (
+                    <li key={i}>
+                        <span className="font-medium">{FLAG_LABELS[f.kind] ?? FLAG_LABELS.other}:</span> {f.note} <span className="block text-ink-muted">“{f.excerpt}”</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
 
 export function Exports({ caseId, artifacts, processes, entitlements, claimsEnabled }: { caseId: string; artifacts: ArtifactView[]; processes: Array<{ id: string; type: string; state: string }>; entitlements: { paymentsEnabled: boolean; casePass: boolean; claimPack: boolean }; claimsEnabled: boolean }) {
     const router = useRouter();
@@ -61,8 +90,9 @@ export function Exports({ caseId, artifacts, processes, entitlements, claimsEnab
             {artifacts.length === 0 ? <Empty>Nothing generated yet.</Empty> : (
                 <div className="space-y-3">
                     {artifacts.map((a) => (
-                        <Card key={a.id} title={<button className="text-left" onClick={() => setOpen(open === a.id ? null : a.id)}>{a.title} <span className="text-sm font-normal text-ink-muted">v{a.version}</span></button>} aside={<span className="flex gap-1">{a.stale && <Pill tone="warn">out of date</Pill>}<Pill tone={a.status === "final" ? "ok" : "neutral"}>{a.status}</Pill></span>}>
+                        <Card key={a.id} title={<button className="text-left" onClick={() => setOpen(open === a.id ? null : a.id)}>{a.title} <span className="text-sm font-normal text-ink-muted">v{a.version}</span></button>} aside={<span className="flex gap-1">{a.userEditedAt && <Pill tone="accent">edited by you</Pill>}{(a.reviewFlags?.length ?? 0) > 0 && <Pill tone="warn">{a.reviewFlags!.length} to check</Pill>}{a.stale && <Pill tone="warn">out of date</Pill>}<Pill tone={a.status === "final" ? "ok" : "neutral"}>{a.status}</Pill></span>}>
                             {a.stale && <p className="mb-2 text-sm text-warn">Your record changed ({a.staleReason}). Generate a fresh version, or keep editing this one if you prefer.</p>}
+                            <ReviewFlags flags={a.reviewFlags ?? []} />
                             {open === a.id && (
                                 editing?.id === a.id ? (
                                     <div className="space-y-2">

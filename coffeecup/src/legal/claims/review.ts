@@ -6,6 +6,7 @@
 import type { ClaimElementStatus } from "@/db/schema";
 import { hasSource } from "@/legal/sources/registry";
 import type { ReviewQuestion } from "@/ai/tasks/review-analysis";
+import { containsForbiddenLanguage, redactForbiddenLanguage } from "./language";
 
 export interface DraftElement {
     elementKey: string;
@@ -31,8 +32,6 @@ export interface DeterministicFinding {
     question: ReviewQuestion;
     note: string;
 }
-
-const FORBIDDEN_WORDS = /\b(strong|weak|winner|hopeless|likely to win|likely to lose|\d{1,3}\s?%|per ?cent)\b/i;
 
 export function deterministicReview(elements: DraftElement[], facts: FactLite[]): { elements: DraftElement[]; findings: DeterministicFinding[] } {
     const byId = new Map(facts.map((f) => [f.id, f]));
@@ -61,7 +60,10 @@ export function deterministicReview(elements: DraftElement[], facts: FactLite[])
             findings.push({ conclusionId: el.elementKey, question: "supported_by_confirmed_facts", note: "Marked supported with no confirmed supporting fact. Downgraded to information missing." });
             status = "information_missing";
         }
-        if (FORBIDDEN_WORDS.test(el.reasoning)) {
+        // Strength / likelihood language is redacted wherever it occurs (every
+        // match, case-insensitive). The shared list lives in ./language.ts.
+        const hadForbiddenLanguage = containsForbiddenLanguage(el.reasoning);
+        if (hadForbiddenLanguage) {
             findings.push({ conclusionId: el.elementKey, question: "output_within_evidence", note: "Reasoning contained a likelihood or strength judgement; removed." });
         }
         const missingSources = el.sourceKeys.filter((k) => !hasSource(k));
@@ -74,7 +76,7 @@ export function deterministicReview(elements: DraftElement[], facts: FactLite[])
         return {
             ...el,
             status,
-            reasoning: FORBIDDEN_WORDS.test(el.reasoning) ? el.reasoning.replace(FORBIDDEN_WORDS, "[assessment removed]") : el.reasoning,
+            reasoning: hadForbiddenLanguage ? redactForbiddenLanguage(el.reasoning) : el.reasoning,
             supportingFactIds: cleanSupporting,
             contraryFactIds: el.contraryFactIds.filter((id) => byId.has(id)),
             sourceKeys: el.sourceKeys.filter((k) => hasSource(k)),

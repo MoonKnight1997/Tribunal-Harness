@@ -188,6 +188,15 @@ function draft(task: string, inputJson: string): string {
     } catch {
         payload = { text: inputJson };
     }
+    // Drafting v2 wraps the record as { authoritative, supplementary }. Facts
+    // come from the authoritative part only; supplementary notes are listed
+    // under their own heading and never merged into the facts.
+    type Supplementary = { preparation?: Record<string, unknown> };
+    let supplementary: Supplementary | null = null;
+    if (payload.authoritative && typeof payload.authoritative === "object") {
+        supplementary = (payload.supplementary as Supplementary | null | undefined) ?? null;
+        payload = payload.authoritative as Record<string, unknown>;
+    }
     const lines: string[] = [];
     const title = String(payload.title ?? task.replace(/_/g, " "));
     lines.push(`# ${title}`);
@@ -228,6 +237,24 @@ function draft(task: string, inputJson: string): string {
         lines.push("## What I am asking for");
         lines.push(String(payload.desiredResolution));
         lines.push("");
+    }
+    const prep = supplementary?.preparation;
+    if (prep && typeof prep === "object") {
+        const list = (k: string) => (Array.isArray(prep[k]) ? (prep[k] as unknown[]).map(String).filter(Boolean) : []);
+        const text = (k: string) => (typeof prep[k] === "string" && (prep[k] as string).trim() ? String(prep[k]) : null);
+        const sections: Array<[string, string[]]> = [
+            ["Key issues (your notes)", list("keyIssues")],
+            ["Steps already taken (your notes)", list("stepsTaken")],
+            ["Money issues (your notes)", text("moneyIssues") ? [text("moneyIssues")!] : []],
+            ["What you want (your notes)", text("desiredResolution") ? [text("desiredResolution")!] : []],
+            ["Questions to clarify (your notes)", list("questionsToClarify")],
+        ];
+        for (const [heading, items] of sections) {
+            if (!items.length) continue;
+            lines.push(`## ${heading}`);
+            for (const it of items) lines.push(`- ${it}`);
+            lines.push("");
+        }
     }
     if (Array.isArray(payload.uncertainties) && payload.uncertainties.length) {
         lines.push("## Points still to confirm");

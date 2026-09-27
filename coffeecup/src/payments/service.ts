@@ -16,6 +16,7 @@ import { requireCaseAccess, type Actor } from "@/cases/access";
 import { recordAudit } from "@/cases/audit";
 import { grantEntitlement, revokeEntitlement, paymentsEnabled } from "@/entitlements/service";
 import { PRICING } from "./pricing";
+import { requireFlag } from "@/flags/guard";
 import type { PaymentProvider } from "./provider";
 import { BRAND } from "@/brand/config";
 
@@ -44,6 +45,9 @@ export async function startCheckout(actor: Actor, caseId: string, tier: Entitlem
     if (!paymentsEnabled()) throw new ValidationError("Payments are not enabled on this deployment; all features are available.");
     const cfg = PRICING.tiers[tier];
     if (!cfg) throw new ValidationError("Unknown product.");
+    // The Claim Pack sells claim-related features; it may not be sold while the
+    // regulatory flag for offering paid claim features is off.
+    if (tier === "claim_pack") requireFlag("ENABLE_PAID_CLAIM_FEATURES");
     const p = await getPaymentProvider();
     const session = await p.createCheckout({
         userId: actor.userId,

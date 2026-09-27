@@ -25,9 +25,10 @@ import { requireEntitlement } from "@/entitlements/service";
 import { getSource } from "@/legal/sources/registry";
 import { formatLongDate } from "@/lib/dates";
 import { BRAND, LEGAL_INFORMATION_DISCLAIMER } from "@/brand/config";
-import { generateArtifact, type ArtifactRow } from "@/artifacts/service";
+import { generateArtifact, hashPayload, type ArtifactRow } from "@/artifacts/service";
 import { getDb } from "@/db/client";
-import { artifacts } from "@/db/schema";
+import { artifacts, type ArtifactGeneration } from "@/db/schema";
+import { ValidationError } from "@/lib/errors";
 import { eq } from "drizzle-orm";
 import { newId } from "@/lib/ids";
 import { recordAudit } from "@/cases/audit";
@@ -55,6 +56,8 @@ export interface Et1ReadinessPack {
     unresolvedQuestions: string[];
     missingRequired: string[];
     provenance: { factIds: string[]; eventIds: string[]; documentIds: string[]; claimCandidateIds: string[] };
+    /** Deadline rule ids/versions the time-limit section was computed from. */
+    ruleVersions: Array<{ id: string; version: string }>;
     filing: { officialRoute: { title: string; url: string }; note: string };
     disclaimer: string;
 }
@@ -146,6 +149,7 @@ export async function buildEt1ReadinessPack(actor: Actor, caseId: string, opts?:
         unresolvedQuestions: unresolved,
         missingRequired: [...new Set(missingRequired)],
         provenance: { factIds: facts.map((f) => f.id), eventIds: events.map((e) => e.id), documentIds: docs.map((d) => d.id), claimCandidateIds },
+        ruleVersions: [...new Map(deadlines.map((d) => [`${d.ruleId}@${d.ruleVersion}`, { id: d.ruleId, version: d.ruleVersion }])).values()],
         filing: { officialRoute: { title: govuk.title, url: govuk.url }, note: `${BRAND.name} does not submit claims. Complete the official ET1 form yourself through the GOV.UK service, or with help from an adviser. People involved: ${people.map((p) => `${p.name} (${p.role})`).join(", ") || "none recorded"}.` },
         disclaimer: LEGAL_INFORMATION_DISCLAIMER,
     };
@@ -186,13 +190,33 @@ export function renderEt1Pack(pack: Et1ReadinessPack): string {
     return L.join("\n");
 }
 
-/** Persist the rendered pack as an editable artifact (versioned). */
+export const ET1_PACK_TASK = "et1_readiness_pack_v1";
+
+/**
+ * Persist the rendered pack as an editable artifact (versioned). This is the
+ * deterministic path: no model is involved, so it is NOT gated by
+ * ENABLE_PERSONALISED_ET1_DRAFTING (see src/artifacts/policy.ts). The
+ * generation snapshot records that, with a hash of the exact pack rendered.
+ */
 export async function saveEt1PackArtifact(actor: Actor, caseId: string, pack: Et1ReadinessPack): Promise<ArtifactRow> {
     await requireCaseAccess(actor, caseId);
+    if (pack.caseId !== caseId) throw new ValidationError("This pack belongs to a different case.");
     const db = await getDb();
     const existing = await db.select().from(artifacts).where(eq(artifacts.caseId, caseId));
     const version = existing.filter((a) => a.type === "et1_readiness_pack").reduce((m, a) => Math.max(m, a.version), 0) + 1;
     const id = newId();
+    const govuk = getSource("govuk_et1");
+    const generation: ArtifactGeneration = {
+        task: ET1_PACK_TASK,
+        promptVersion: "deterministic",
+        provider: "deterministic",
+        model: "deterministic",
+        payloadHash: hashPayload(JSON.stringify(pack)),
+        supplementaryKeys: [],
+        ruleVersions: pack.ruleVersions ?? [],
+        sourceVersions: [{ key: govuk.key, version: govuk.version }],
+        generatedAt: pack.generatedAt,
+    };
     await db.insert(artifacts).values({
         id,
         caseId,
@@ -202,9 +226,11 @@ export async function saveEt1PackArtifact(actor: Actor, caseId: string, pack: Et
         version,
         status: "draft",
         basis: { factIds: pack.provenance.factIds, eventIds: pack.provenance.eventIds, documentIds: pack.provenance.documentIds, inputsHash: pack.generatedAt },
+        generation,
+        reviewFlags: [],
         generatedBy: "system",
     });
-    await recordAudit({ userId: actor.userId, caseId, action: "artifact.generated", targetType: "artifact", targetId: id, details: { type: "et1_readiness_pack", version } });
+    await recordAudit({ userId: actor.userId, caseId, action: "artifact.generated", targetType: "artifact", targetId: id, details: { type: "et1_readiness_pack", version, task: ET1_PACK_TASK, provider: "deterministic" } });
     return (await db.select().from(artifacts).where(eq(artifacts.id, id)))[0];
 }
 
