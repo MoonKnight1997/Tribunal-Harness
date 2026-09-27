@@ -40,3 +40,7 @@ coverage/
 *.key
 *.pem
 secrets.*
+
+# Playwright
+e2e-results/
+playwright-report/

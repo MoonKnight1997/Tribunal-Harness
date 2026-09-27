@@ -17,7 +17,9 @@
         "db:generate": "drizzle-kit generate",
         "db:migrate": "tsx scripts/migrate.ts",
         "db:studio": "drizzle-kit studio",
-        "jobs:run": "tsx scripts/run-jobs.ts"
+        "jobs:run": "tsx scripts/run-jobs.ts",
+        "test:e2e": "playwright test",
+        "test:e2e:ui": "playwright test --ui"
     },
     "dependencies": {
         "@electric-sql/pglite": "^0.3.0",
@@ -32,6 +34,7 @@
         "zod": "^3.24.0"
     },
     "devDependencies": {
+        "@playwright/test": "^1.63.0",
         "@tailwindcss/postcss": "^4.0.0",
         "@types/node": "^22.0.0",
         "@types/react": "^19.0.0",
