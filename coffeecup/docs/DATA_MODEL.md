@@ -28,7 +28,22 @@ columns stored as `YYYY-MM-DD` strings; never timestamps.
 
 Structured fact keys the engines read: `employment_start`, `employment_end`,
 `dismissal_date`, `effective_date_of_termination`, `date_of_last_act`,
-`date_of_deduction`, `acas_day_a`, `acas_day_b`, plus process dates.
+`date_of_deduction`, `acas_day_a`, `acas_day_b`, plus process dates. Each
+carries `value_precision` (`exact` / `approximate` / `month` / `year`). The
+deadline engine reads one confirmed value per key; two confirmed rows with
+different values are a conflict the user must resolve, never a recency pick.
+Triggers are never substituted between claim families: discrimination and
+whistleblowing use `date_of_last_act` only, unlawful deductions
+`date_of_deduction` only, dismissal-based claims the EDT chain
+(`effective_date_of_termination` → `dismissal_date` → employment end date when
+employment has ended).
+
+Acas process data (`processes.data`, type `acas_early_conciliation`):
+`notificationDate` is Day A; `certificateIssueDate` is the date on the
+certificate; `certificateReceivedDate` is Day B when known;
+`certificateDeliveryMethod` (`email` / `post` / `unknown`) drives deemed
+receipt. `acas_day_b` mirrors the receipt date if given, else the issue date
+(conservative; ERA 1996 s207B(2), SI 2014/254 rule 9).
 
 ## Provenance
 
@@ -66,7 +81,7 @@ Extraction statuses: `queued`, `processing`, `completed`, `failed`,
 
 | Table | Purpose |
 |---|---|
-| `deadlines` | kind, label, calculated date (nullable), rule id + version, full explanation (trigger, assumptions, Acas effect, source, warnings, missing information, secondary), status |
+| `deadlines` | kind, label, calculated date (nullable), rule id + version, full explanation (trigger with date/precision/source/confirmed/conflicting values, assumptions, Acas effect, Acas basis for Day A/Day B, source, warnings, missing information, secondary, unadjusted floor while conciliation is pending), status (`calculated` / `uncertain` / `pending_acas` / `stale`; `expired` is derived on read from today's date), computed-for date |
 | `claim_candidates` | claim type, triggers, supporting/contrary fact ids, missing facts, time-limit info, Acas status, sources, uncertainties, alternatives, reviewer result, stale, inputs hash |
 | `claim_elements` | element key, label, status (supported / potentially_supported / disputed / unsupported_on_current_information / information_missing / not_applicable), reasoning, fact ids, missing information, source keys |
 | `evidence_links` | fact / claim element ↔ document / event |
