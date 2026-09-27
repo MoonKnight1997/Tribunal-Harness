@@ -1,0 +1,5 @@
+{
+  "updatedAt": null,
+  "note": "No successful fetch recorded. The 2026-09-27T00:06Z run from the build environment could not reach any source host (egress proxy answered 403 to CONNECT). Run `npm run legal:check-sources -- --update` from a network with access to legislation.gov.uk, gov.uk and acas.org.uk to seed this file.",
+  "sources": {}
+}
