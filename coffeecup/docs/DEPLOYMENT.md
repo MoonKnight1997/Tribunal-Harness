@@ -95,5 +95,13 @@ secrets).
 - Data-processing agreement with the model provider; confirm no training on inputs.
 - Independent regulatory review of enabled flags (Legal Services Act boundary).
 - Backups and restore drill for Postgres.
-- Confirm the Employment Rights Act 2025 commencement SI and set
-  `ERA_2025_TIME_LIMIT_COMMENCEMENT` / `TIME_LIMIT_SI_CONFIRMED` accordingly.
+- Confirm the Employment Rights Act 2025 commencement instruments. There is no
+  operator switch: `TIME_LIMIT_SI_CONFIRMED` is derived in code from
+  `src/legal/rules/register.ts` (a rule counts as confirmed only when its
+  register entry is `commenced` with a recorded commencement instrument that
+  was actually fetched). Confirming a commencement is a reviewed code change
+  per `docs/LEGAL_SOURCE_GOVERNANCE.md` ("How to add or confirm a
+  commencement"). `ERA_2025_TIME_LIMIT_COMMENCEMENT` only overrides the
+  *assumed* GB date and never confirms anything. Run
+  `npm run legal:check-sources` and clear every `UNREAD`/`UNREACH` before
+  relying on deadlines.

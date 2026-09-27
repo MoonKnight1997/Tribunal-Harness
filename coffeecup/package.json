@@ -19,7 +19,8 @@
         "db:studio": "drizzle-kit studio",
         "jobs:run": "tsx scripts/run-jobs.ts",
         "test:e2e": "playwright test",
-        "test:e2e:ui": "playwright test --ui"
+        "test:e2e:ui": "playwright test --ui",
+        "legal:check-sources": "tsx scripts/check-legal-sources.ts"
     },
     "dependencies": {
         "@electric-sql/pglite": "^0.3.0",

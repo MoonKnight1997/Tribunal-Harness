@@ -1,6 +1,17 @@
-// Employment Rights Act 2025 — Commencement Dates
-// Update these when Statutory Instruments confirm exact dates
-// All dates are the first date ON WHICH the new provision applies
+// Employment Rights Act 2025 (2025 c. 36) — Commencement Dates
+// Update these ONLY when a made commencement instrument has been read and
+// recorded in src/legal/rules/register.ts (and the verification register in
+// docs/improvement-2026-09/SOURCE_VERIFICATION_REGISTER.md).
+// All dates are the first date ON WHICH the new provision applies.
+
+import {
+    allGbEra2025TimeLimitRulesCommenced,
+    ASSUMED_TIME_LIMIT_COMMENCEMENT,
+    REPORTED_SCOTLAND_CONTRACT_CLAIMS_COMMENCEMENT,
+    REGISTER_SESSION,
+    registerEntry,
+    type RuleStatus,
+} from "@/legal/rules/register";
 
 export const ERA_2025 = {
     // Royal Assent
@@ -18,8 +29,16 @@ export const ERA_2025 = {
     SEXUAL_HARASSMENT_WHISTLEBLOWING: "2026-04-06",
     FAIR_WORK_AGENCY: "2026-04-07",
 
-    // October 2026 commencement (exact date TBC by Statutory Instrument)
-    ET_TIME_LIMIT_6_MONTHS: "2026-10-01",
+    // October 2026 (working assumptions — no commencement instrument has been
+    // read; see the register). The government timetable as reported on
+    // 25 September 2026 gives different dates for several of these; those
+    // entries are marked `unresolved` in the tracker and the dates below were
+    // NOT moved, because a policy timetable is not the controlling instrument.
+    ET_TIME_LIMIT_6_MONTHS: ASSUMED_TIME_LIMIT_COMMENCEMENT,
+    // Scottish employment-contract claims (Extension of Jurisdiction (Scotland)
+    // Order 1994) are reported to change later, by a Scottish instrument. Reported
+    // date only; the engine never leads with it (see boc_scotland_6m_era2025).
+    ET_TIME_LIMIT_6_MONTHS_SCOTLAND_CONTRACT: REPORTED_SCOTLAND_CONTRACT_CLAIMS_COMMENCEMENT,
     HARASSMENT_ALL_REASONABLE_STEPS: "2026-10-01",
     THIRD_PARTY_HARASSMENT: "2026-10-01",
     NDA_VOID: "2026-10-01",
@@ -46,6 +65,24 @@ export const ERA_2025 = {
 // Statutory Instrument (all Oct-2026 provisions + the 2027 "SI awaited" entries).
 // Prompts/UI branch on this (via TBC_COMMENCEMENT_KEYS / formatCommencementLabel)
 // so an unconfirmed date is never asserted as fixed. (F-16)
+//
+// Source fields (F08):
+//   sourceStatus — what the source register can actually stand behind:
+//     commenced | made_not_yet_commenced | announced | assumed | unresolved.
+//     `unresolved` = the reported government timetable differs from the stored
+//     position (or the stored position was never sourced) and the instrument
+//     could not be retrieved. The stored date is NOT moved; the label says so.
+//   sourceUrl    — the instrument or page the position rests on.
+//   verifiedAt   — date the source was last actually read (null if never / not this review).
+//   unresolved   — true when verifiedAt is null and the position is under review.
+export type TrackerSourceStatus = RuleStatus | "unresolved";
+
+/** Prior review at which the in-force entries were last read (registry LAST_REVIEW, 24 Sept 2026). Not re-fetched in the 26/27 Sept 2026 session (egress blocked). */
+const PRIOR_REVIEW = "2026-09-24";
+const SI_2026_3 = "https://www.legislation.gov.uk/uksi/2026/3/made";
+const GOVUK_TIMETABLE_URL = "https://www.gov.uk/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update";
+export const UNDER_REVIEW_LABEL = "Date under review — see source register";
+
 export const ERA_2025_TRACKER = [
     {
         // F-24(b): industrial-action ballot/notice changes are in force but had
@@ -57,6 +94,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "TRADE_UNION_BALLOT_CHANGES",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Industrial action dismissal — auto unfair",
@@ -66,6 +107,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "INDUSTRIAL_ACTION_DISMISSAL",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "SSP from day 1",
@@ -75,6 +120,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "SSP_DAY_ONE",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Paternity leave — day 1 right",
@@ -84,6 +133,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "PATERNITY_LEAVE_DAY_ONE",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Parental leave — day 1 right",
@@ -93,6 +146,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "PARENTAL_LEAVE_DAY_ONE",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Sexual harassment as whistleblowing",
@@ -102,6 +159,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "SEXUAL_HARASSMENT_WHISTLEBLOWING",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Collective redundancy — 180-day period",
@@ -111,6 +172,10 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "COLLECTIVE_REDUNDANCY_180_DAYS",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "Fair Work Agency established",
@@ -120,78 +185,117 @@ export const ERA_2025_TRACKER = [
         status: "in_force" as const,
         key: "FAIR_WORK_AGENCY",
         tbc: false,
+        sourceStatus: "commenced" as TrackerSourceStatus,
+        sourceUrl: SI_2026_3,
+        verifiedAt: PRIOR_REVIEW as string | null,
+        unresolved: false,
     },
     {
         provision: "ET time limit — 6 months",
         old_position: "3 months less 1 day",
         new_position: "6 months less 1 day",
-        commencement: "Oct 2026 (SI awaited)",
+        // Reported as 1 October 2026 (GB) with Scottish contract claims on
+        // 9 November 2026. No commencement instrument has been read, so the
+        // engine keeps leading with the three-month limit.
+        commencement: "1 Oct 2026 reported — commencement instrument not yet verified (see source register); Scottish contract claims reported 9 Nov 2026",
         status: "upcoming" as const,
         key: "ET_TIME_LIMIT_6_MONTHS",
         tbc: true,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: "https://www.legislation.gov.uk/ukpga/2025/36/contents",
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Harassment — all reasonable steps",
         old_position: "Reasonable steps defence",
         new_position: "All reasonable steps required",
-        commencement: "Oct 2026 (SI awaited)",
+        commencement: `${UNDER_REVIEW_LABEL} (stored Oct 2026; timetable reported 30 Oct 2026)`,
         status: "upcoming" as const,
         key: "HARASSMENT_ALL_REASONABLE_STEPS",
         tbc: true,
+        sourceStatus: "unresolved" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Third-party harassment liability",
         old_position: "No employer liability for third-party acts",
         new_position: "Employer liable unless all reasonable steps taken",
-        commencement: "Oct 2026 (SI awaited)",
+        commencement: `${UNDER_REVIEW_LABEL} (stored Oct 2026; timetable reported 30 Oct 2026)`,
         status: "upcoming" as const,
         key: "THIRD_PARTY_HARASSMENT",
         tbc: true,
+        sourceStatus: "unresolved" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "NDAs void for harassment/discrimination",
         old_position: "NDAs enforceable",
         new_position: "NDAs preventing disclosure are void",
-        commencement: "Oct 2026 (SI awaited)",
+        commencement: `${UNDER_REVIEW_LABEL} (stored Oct 2026; timetable reported 2027, no day fixed)`,
         status: "upcoming" as const,
         key: "NDA_VOID",
         tbc: true,
+        sourceStatus: "unresolved" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Union right to inform workers",
         old_position: "No right",
         new_position: "Right to inform workers of union membership",
-        commencement: "Oct 2026 (SI awaited)",
+        commencement: `${UNDER_REVIEW_LABEL} (stored Oct 2026; timetable reported 1 Jan 2027)`,
         status: "upcoming" as const,
         key: "UNION_INFORM_RIGHT",
         tbc: true,
+        sourceStatus: "unresolved" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Qualifying period — 6 months",
         old_position: "2 years' continuous employment",
         new_position: "6 months' continuous employment",
-        commencement: "1 Jan 2027",
+        commencement: "1 Jan 2027 (SI 2026/559 reported; instrument not yet verified — see source register)",
         status: "upcoming" as const,
         key: "QUALIFYING_PERIOD_6_MONTHS",
         tbc: false,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: "https://www.legislation.gov.uk/uksi/2026/559/made",
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Compensatory award — uncapped",
         old_position: "Capped at lower of 1 year's pay or ~£115,115",
         new_position: "No statutory cap",
-        commencement: "1 Jan 2027",
+        commencement: "1 Jan 2027 (commencement instrument not yet verified — see source register)",
         status: "upcoming" as const,
         key: "COMPENSATORY_AWARD_UNCAPPED",
         tbc: false,
+        sourceStatus: "assumed" as TrackerSourceStatus,
+        sourceUrl: "https://www.legislation.gov.uk/uksi/2026/559/made",
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Fire and rehire — automatically unfair",
         old_position: "No specific statutory protection",
         new_position: "Automatically unfair (limited financial distress defence)",
-        commencement: "1 Jan 2027",
+        commencement: "1 Jan 2027 (commencement instrument not yet verified — see source register)",
         status: "upcoming" as const,
         key: "FIRE_AND_REHIRE_AUTO_UNFAIR",
         tbc: false,
+        sourceStatus: "assumed" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         // F-24(a): the master spec lists "fire and replace: automatically unfair"
@@ -199,10 +303,14 @@ export const ERA_2025_TRACKER = [
         provision: "Fire and replace — automatically unfair",
         old_position: "No specific statutory protection",
         new_position: "Automatically unfair (dismiss and replace with new hire)",
-        commencement: "1 Jan 2027",
+        commencement: "1 Jan 2027 (commencement instrument not yet verified — see source register)",
         status: "upcoming" as const,
         key: "FIRE_AND_REPLACE_AUTO_UNFAIR",
         tbc: false,
+        sourceStatus: "assumed" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Zero-hours contract rights",
@@ -212,6 +320,10 @@ export const ERA_2025_TRACKER = [
         status: "awaiting_si" as const,
         key: "ZERO_HOURS_PROTECTIONS",
         tbc: true,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Maternity — extended redundancy protection",
@@ -221,6 +333,10 @@ export const ERA_2025_TRACKER = [
         status: "awaiting_si" as const,
         key: "MATERNITY_EXTENDED_PROTECTION",
         tbc: true,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         provision: "Flexible working — strengthened right",
@@ -230,6 +346,10 @@ export const ERA_2025_TRACKER = [
         status: "awaiting_si" as const,
         key: "FLEXIBLE_WORKING_STRENGTHENED",
         tbc: true,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
     {
         // F-24(a): AGGREGATE_REDUNDANCY_THRESHOLD existed as a constant but had no
@@ -241,10 +361,21 @@ export const ERA_2025_TRACKER = [
         status: "awaiting_si" as const,
         key: "AGGREGATE_REDUNDANCY_THRESHOLD",
         tbc: true,
+        sourceStatus: "announced" as TrackerSourceStatus,
+        sourceUrl: GOVUK_TIMETABLE_URL,
+        verifiedAt: null as string | null,
+        unresolved: true,
     },
 ] as const;
 
 export type ERA2025TrackerEntry = (typeof ERA_2025_TRACKER)[number];
+
+/** The register entry backing a tracker key, if the register models it. */
+export function trackerRegisterEntry(key: string) {
+    return registerEntry(key);
+}
+
+export { REGISTER_SESSION };
 
 // F-32: validate the ERA_2025_TIME_LIMIT_COMMENCEMENT env override at module load.
 // A non-empty but malformed value must fail loudly. The previous `env || default`
@@ -279,11 +410,14 @@ export const TIME_LIMIT_CONFIG = {
     PRE_ERA_2025_MONTHS: 3,
     POST_ERA_2025_MONTHS: 6,
     COMMENCEMENT_DATE: resolveTimeLimitCommencement(),
-    // F-3 support: the Oct 2026 SI is not yet confirmed. The deadline calculator
-    // reads this to decide whether to hedge (compute/show the conservative shorter
-    // 3-month regime) for acts on/after the assumed commencement date. Flip to true
-    // (alongside setting ERA_2025_TIME_LIMIT_COMMENCEMENT) only once the SI confirms.
-    TIME_LIMIT_SI_CONFIRMED: false,
+    // F-3 / F08: the retained calculator (et-time-limit.ts) reads this to decide
+    // whether to hedge (lead with the conservative three-month regime) for acts
+    // on/after the assumed commencement. It is NOT an operator switch and NOT an
+    // environment variable: it is derived from the source register and is true
+    // only when every GB ERA 2025 six-month rule is `commenced` with a recorded
+    // commencement instrument (src/legal/rules/register.ts). To flip it, record
+    // the made instrument in the register — a reviewed code change.
+    TIME_LIMIT_SI_CONFIRMED: allGbEra2025TimeLimitRulesCommenced(),
 } as const;
 
 export const QUALIFYING_PERIOD_CONFIG = {
@@ -415,4 +549,17 @@ export function formatCommencementLabel(iso: string, tbc: boolean): string {
     return tbc
         ? `${formatCommencementMonth(iso)} (exact date TBC by SI)`
         : formatCommencementDate(iso);
+}
+
+/**
+ * F08: label for a tracker key that respects the source register. An
+ * `unresolved` entry (reported timetable differs from the stored date and the
+ * instrument could not be read) renders "Date under review — see source
+ * register" instead of asserting either date. Other entries fall through to
+ * formatCommencementLabel.
+ */
+export function commencementLabelForKey(key: string, iso: string): string {
+    const entry = ERA_2025_TRACKER.find((e) => e.key === key);
+    if (entry?.sourceStatus === "unresolved") return UNDER_REVIEW_LABEL;
+    return formatCommencementLabel(iso, entry?.tbc ?? true);
 }
