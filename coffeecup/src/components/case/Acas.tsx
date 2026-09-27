@@ -9,7 +9,35 @@ import type { AcasProcessData } from "@/db/schema";
 import type { StateDef } from "@/processes/machines";
 import { formatLongDate } from "@/lib/dates";
 
-export function Acas({ caseId, process, states, timeLimits }: { caseId: string; process: { id: string; state: string; data: AcasProcessData } | null; states: StateDef[]; timeLimits: Array<{ label: string; date: string | null; status: string; acasEffect: string | null; missing: string[] }> }) {
+export interface AcasTimeLimitView {
+    label: string;
+    date: string | null;
+    /** calculated | uncertain | pending_acas | expired (presented for today). */
+    status: string;
+    acasEffect: string | null;
+    missing: string[];
+    /** The date the limit would have expired without Acas, shown as a floor while conciliation is pending. */
+    unadjustedDate: string | null;
+    dayBBasis: string | null;
+    triggerPrecision: string | null;
+}
+
+const STATUS_LABEL: Record<string, string> = {
+    calculated: "calculated",
+    uncertain: "needs information",
+    pending_acas: "paused for Acas",
+    expired: "appears to have passed",
+    stale: "being recalculated",
+};
+
+function statusTone(status: string): "ok" | "warn" | "urgent" | "accent" {
+    if (status === "expired") return "urgent";
+    if (status === "uncertain") return "warn";
+    if (status === "pending_acas") return "accent";
+    return "ok";
+}
+
+export function Acas({ caseId, process, states, timeLimits }: { caseId: string; process: { id: string; state: string; data: AcasProcessData } | null; states: StateDef[]; timeLimits: AcasTimeLimitView[] }) {
     const router = useRouter();
     const [busy, setBusy] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -21,6 +49,8 @@ export function Acas({ caseId, process, states, timeLimits }: { caseId: string; 
         conciliatorContact: d.conciliatorContact ?? "",
         certificateStatus: d.certificateStatus ?? "not_started",
         certificateIssueDate: d.certificateIssueDate ?? "",
+        certificateReceivedDate: d.certificateReceivedDate ?? "",
+        certificateDeliveryMethod: d.certificateDeliveryMethod ?? "unknown",
         certificateNumber: d.certificateNumber ?? "",
         keyIssues: (d.preparation?.keyIssues ?? []).join("\n"),
         stepsTaken: (d.preparation?.stepsTaken ?? []).join("\n"),
@@ -51,7 +81,7 @@ export function Acas({ caseId, process, states, timeLimits }: { caseId: string; 
             <div className="space-y-4">
                 {error && <Notice tone="warn">{error}</Notice>}
                 <Card title="Not started yet">
-                    <p className="mb-3 text-ink-muted">Start the Acas stage to record your notification date, reference and certificate, and to prepare what you want to say. Time limits are paused between the day Acas receives your notification and the day the certificate is issued.</p>
+                    <p className="mb-3 text-ink-muted">Start the Acas stage to record your notification date, reference and certificate, and to prepare what you want to say. Time limits are paused between the day Acas receives your notification (Day A) and the day you receive the certificate (Day B).</p>
                     <Button disabled={busy} onClick={() => run(() => api(`/api/cases/${caseId}/processes`, { body: { type: "acas_early_conciliation" } }))}>Start the Acas stage</Button>
                     <p className="mt-3 text-sm"><Link href="/help/acas-early-conciliation">Read about Early Conciliation first</Link></p>
                 </Card>
@@ -68,11 +98,20 @@ export function Acas({ caseId, process, states, timeLimits }: { caseId: string; 
                 {def && def.next.length > 0 && <div className="flex flex-wrap gap-2">{def.next.map((n) => <Button key={n} variant="secondary" disabled={busy} onClick={() => run(() => api(`/api/cases/${caseId}/processes/${process.id}/transition`, { body: { to: n } }))}>{states.find((s) => s.id === n)?.label ?? n}</Button>)}</div>}
             </Card>
             <Card title="Your tribunal time limits, with Acas taken into account">
-                <ul className="space-y-2">
+                <ul className="space-y-3">
                     {timeLimits.map((t) => (
                         <li key={t.label}>
-                            <span className="font-medium">{t.label}:</span> {t.date ? formatLongDate(t.date) : "not yet calculable"} <Pill tone={t.status === "expired" ? "urgent" : t.status === "uncertain" ? "warn" : "ok"}>{t.status}</Pill>
+                            <span className="font-medium">{t.label}:</span>{" "}
+                            {t.status === "pending_acas" ? "paused for Acas conciliation" : t.date ? formatLongDate(t.date) : "not yet calculable"}{" "}
+                            <Pill tone={statusTone(t.status)}>{STATUS_LABEL[t.status] ?? t.status}</Pill>
+                            {t.triggerPrecision && t.triggerPrecision !== "exact" && <Pill tone="warn">approximate date</Pill>}
+                            {t.status === "pending_acas" && t.unadjustedDate && (
+                                <span className="block text-sm">
+                                    The extended deadline can&apos;t be worked out until you add the certificate date. It will be <strong>no earlier than {formatLongDate(t.unadjustedDate)}</strong> (the date it would have expired without Acas).
+                                </span>
+                            )}
                             {t.acasEffect && <span className="block text-sm text-ink-muted">{t.acasEffect}</span>}
+                            {t.dayBBasis === "issue_date_assumed" && <span className="block text-sm text-ink-muted">Day B has been taken as the date on the certificate. If you received it later, add that date below: the deadline can only move later, never earlier.</span>}
                             {t.missing.length > 0 && <span className="block text-sm text-warn">Needed: {t.missing.join(" ")}</span>}
                         </li>
                     ))}
@@ -81,7 +120,7 @@ export function Acas({ caseId, process, states, timeLimits }: { caseId: string; 
             </Card>
             <Card title="Acas details">
                 <div className="grid gap-4 sm:grid-cols-2">
-                    <Field label="Date Acas received your notification (Day A)"><Input type="date" value={form.notificationDate} onChange={(e) => setForm({ ...form, notificationDate: e.target.value })} /></Field>
+                    <Field label="Date Acas received your notification (Day A)" hint="The day Acas received your Early Conciliation form or call. The time limit is paused from the day after this."><Input type="date" value={form.notificationDate} onChange={(e) => setForm({ ...form, notificationDate: e.target.value })} /></Field>
                     <Field label="Acas reference"><Input value={form.reference} onChange={(e) => setForm({ ...form, reference: e.target.value })} /></Field>
                     <Field label="Conciliator (optional)"><Input value={form.conciliatorName} onChange={(e) => setForm({ ...form, conciliatorName: e.target.value })} /></Field>
                     <Field label="Conciliator contact (optional)"><Input value={form.conciliatorContact} onChange={(e) => setForm({ ...form, conciliatorContact: e.target.value })} /></Field>
@@ -93,10 +132,42 @@ export function Acas({ caseId, process, states, timeLimits }: { caseId: string; 
                             <option value="not_required">Not required for my claim</option>
                         </Select>
                     </Field>
-                    <Field label="Certificate issue date (Day B)"><Input type="date" value={form.certificateIssueDate} onChange={(e) => setForm({ ...form, certificateIssueDate: e.target.value })} /></Field>
                     <Field label="Certificate number"><Input value={form.certificateNumber} onChange={(e) => setForm({ ...form, certificateNumber: e.target.value })} /></Field>
+                    <Field label="Date on the certificate (issue date)" hint="The date printed on the certificate. This is not necessarily Day B."><Input type="date" value={form.certificateIssueDate} onChange={(e) => setForm({ ...form, certificateIssueDate: e.target.value })} /></Field>
+                    <Field label="Date you received the certificate (if different)" hint="Day B is the day you received, or are treated as receiving, the certificate. The pause ends on Day B. Leave blank if it is the same as the date on the certificate."><Input type="date" value={form.certificateReceivedDate} onChange={(e) => setForm({ ...form, certificateReceivedDate: e.target.value })} /></Field>
+                    <Field label="How it was sent" hint="Email counts as received the day it is sent. If posted and you do not know when it arrived, we use the date on the certificate, which is the cautious choice.">
+                        <Select value={form.certificateDeliveryMethod} onChange={(e) => setForm({ ...form, certificateDeliveryMethod: e.target.value as NonNullable<AcasProcessData["certificateDeliveryMethod"]> })}>
+                            <option value="unknown">Not sure</option>
+                            <option value="email">Email</option>
+                            <option value="post">Post</option>
+                        </Select>
+                    </Field>
                 </div>
-                <div className="mt-4"><Button disabled={busy} onClick={() => run(() => api(`/api/cases/${caseId}/processes/${process.id}`, { method: "PATCH", body: { notificationDate: form.notificationDate || null, reference: form.reference || null, conciliatorName: form.conciliatorName || null, conciliatorContact: form.conciliatorContact || null, certificateStatus: form.certificateStatus ?? "not_started", certificateIssueDate: form.certificateIssueDate || null, certificateNumber: form.certificateNumber || null } }))}>Save Acas details</Button></div>
+                <div className="mt-4">
+                    <Button
+                        disabled={busy}
+                        onClick={() =>
+                            run(() =>
+                                api(`/api/cases/${caseId}/processes/${process.id}`, {
+                                    method: "PATCH",
+                                    body: {
+                                        notificationDate: form.notificationDate || null,
+                                        reference: form.reference || null,
+                                        conciliatorName: form.conciliatorName || null,
+                                        conciliatorContact: form.conciliatorContact || null,
+                                        certificateStatus: form.certificateStatus ?? "not_started",
+                                        certificateIssueDate: form.certificateIssueDate || null,
+                                        certificateReceivedDate: form.certificateReceivedDate || null,
+                                        certificateDeliveryMethod: form.certificateDeliveryMethod || "unknown",
+                                        certificateNumber: form.certificateNumber || null,
+                                    },
+                                }),
+                            )
+                        }
+                    >
+                        Save Acas details
+                    </Button>
+                </div>
             </Card>
             <Card title="Prepare for the conversation">
                 <div className="grid gap-4 sm:grid-cols-2">

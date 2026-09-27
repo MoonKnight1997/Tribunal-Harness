@@ -10,7 +10,8 @@
  * approval. Filing is routed to the official GOV.UK service.
  */
 
-import type { AcasProcessData } from "@/db/schema";
+import type { AcasBasis, AcasProcessData, DatePrecision } from "@/db/schema";
+import { resolveAcasDayB } from "@/processes/service";
 import { requireCaseAccess, type Actor } from "@/cases/access";
 import { getEmployment, listPersons } from "@/cases/service";
 import { listConfirmedEvents } from "@/timeline/service";
@@ -45,9 +46,34 @@ export interface Et1ReadinessPack {
     claimant: Et1Section<{ name: string | null; email: string | null }>;
     respondent: Et1Section<{ employerName: string | null; legalEntity: string | null; address: string | null }>;
     employment: Et1Section<{ jobTitle: string | null; status: string | null; startDate: string | null; endDate: string | null; stillEmployed: boolean | null; pay: string | null; hours: string | null; workplace: string | null }>;
-    acas: Et1Section<{ reference: string | null; certificateNumber: string | null; notificationDate: string | null; certificateIssueDate: string | null; status: string }>;
+    acas: Et1Section<{
+        reference: string | null;
+        certificateNumber: string | null;
+        notificationDate: string | null;
+        certificateIssueDate: string | null;
+        /** Day B when the worker recorded it. */
+        certificateReceivedDate: string | null;
+        certificateDeliveryMethod: string | null;
+        /** How Day B was fixed for the time-limit calculation (ERA 1996 s207B(2)). */
+        dayBBasis: AcasBasis["dayBBasis"];
+        status: string;
+    }>;
     claimCategories: Et1Section<Array<{ claimType: string; label: string; elementsSupported: number; elementsTotal: number; missingFacts: string[]; stale: boolean }>>;
-    timeLimits: Et1Section<Array<{ label: string; date: string | null; status: string; sourceReference: string; warnings: string[] }>>;
+    timeLimits: Et1Section<
+        Array<{
+            label: string;
+            date: string | null;
+            status: string;
+            sourceReference: string;
+            warnings: string[];
+            triggerDate: string | null;
+            triggerPrecision: DatePrecision | null;
+            triggerSource: string | null;
+            /** When conciliation is pending: the floor the final deadline cannot be earlier than. */
+            unadjustedDate: string | null;
+            dayBBasis: AcasBasis["dayBBasis"] | null;
+        }>
+    >;
     chronology: Et1Section<Array<{ date: string; title: string; description: string | null; approximate: boolean; disputed: boolean }>>;
     particulars: Et1Section<string[]>;
     remedy: Et1Section<{ desiredResolution: string[]; moneyIssues: string | null }>;
@@ -86,10 +112,21 @@ export async function buildEt1ReadinessPack(actor: Actor, caseId: string, opts?:
     const empMissing = [!emp.jobTitle ? "Job title." : "", !emp.startDate ? "Employment start date." : "", emp.stillEmployed === false && !emp.endDate ? "Employment end date." : "", !emp.pay ? "Pay before tax." : "", !emp.hours ? "Hours per week." : ""].filter(Boolean);
     missingRequired.push(...empMissing.filter((m) => /start date|end date/.test(m)));
 
-    const acasData = { reference: acas.reference ?? null, certificateNumber: acas.certificateNumber ?? null, notificationDate: acas.notificationDate ?? null, certificateIssueDate: acas.certificateIssueDate ?? null, status: acas.certificateStatus ?? (acas.notificationDate ? "in_progress" : "not_started") };
+    const dayB = resolveAcasDayB(acas);
+    const acasData = {
+        reference: acas.reference ?? null,
+        certificateNumber: acas.certificateNumber ?? null,
+        notificationDate: acas.notificationDate ?? null,
+        certificateIssueDate: acas.certificateIssueDate ?? null,
+        certificateReceivedDate: acas.certificateReceivedDate ?? null,
+        certificateDeliveryMethod: acas.certificateDeliveryMethod ?? null,
+        dayBBasis: dayB.basis,
+        status: acas.certificateStatus ?? (acas.notificationDate ? "in_progress" : "not_started"),
+    };
     const acasMissing: string[] = [];
     if (acasData.status !== "issued" && acasData.status !== "not_required") acasMissing.push("An Acas Early Conciliation certificate is normally required before the ET1 can be accepted.");
     if (acasData.status === "issued" && !acasData.certificateNumber) acasMissing.push("The certificate number (it is on the certificate Acas sent you).");
+    if (acasData.status === "issued" && dayB.basis === "issue_date_assumed") unresolved.push("The date you received the Acas certificate (Day B) is not recorded; the time limit uses the date on the certificate, which is the cautious assumption. Add the receipt date on the Acas page if you know it.");
     missingRequired.push(...acasMissing);
 
     const claimCategories: Et1ReadinessPack["claimCategories"]["data"] = [];
@@ -110,9 +147,26 @@ export async function buildEt1ReadinessPack(actor: Actor, caseId: string, opts?:
 
     const timeLimits = deadlines
         .filter((d) => d.kind.startsWith("et_time_limit"))
-        .map((d) => ({ label: d.label, date: d.calculatedDate, status: d.status, sourceReference: d.explanation.source.reference, warnings: d.explanation.warnings }));
-    const tlMissing = deadlines.filter((d) => d.status === "uncertain" && d.kind.startsWith("et_time_limit")).flatMap((d) => d.explanation.missingInformation);
+        .map((d) => ({
+            label: d.label,
+            date: d.calculatedDate,
+            status: d.status,
+            sourceReference: d.explanation.source.reference,
+            warnings: d.explanation.warnings,
+            triggerDate: d.explanation.triggerDate,
+            triggerPrecision: d.explanation.trigger?.precision ?? null,
+            triggerSource: d.explanation.trigger?.source ?? null,
+            unadjustedDate: d.explanation.unadjusted?.date ?? null,
+            dayBBasis: d.explanation.acas?.dayBBasis ?? null,
+        }));
+    const tlMissing = deadlines.filter((d) => (d.status === "uncertain" || d.status === "pending_acas") && d.kind.startsWith("et_time_limit")).flatMap((d) => d.explanation.missingInformation);
     if (deadlines.some((d) => d.status === "expired" && d.kind.startsWith("et_time_limit"))) unresolved.push("At least one time limit appears to have passed. Seek advice urgently about whether a late claim could be accepted.");
+    if (deadlines.some((d) => d.status === "pending_acas" && d.kind.startsWith("et_time_limit"))) unresolved.push("Acas conciliation is in progress: the extended time limit cannot be worked out until the certificate date (Day B) is added.");
+    for (const d of deadlines) {
+        if (d.kind.startsWith("et_time_limit") && d.explanation.trigger?.precision && d.explanation.trigger.precision !== "exact") {
+            unresolved.push(`${d.label}: the triggering date (${d.explanation.triggerDate}) is recorded as ${d.explanation.trigger.precision}. The deadline may be earlier than shown; confirm the exact date.`);
+        }
+    }
 
     const chronology = events.map((e) => ({ date: e.date, title: e.title, description: e.description, approximate: e.dateApproximate, disputed: e.disputed }));
     const chronologyMissing = events.length === 0 ? ["No confirmed events. Confirm or add events on the Timeline."] : [];
@@ -167,9 +221,31 @@ export function renderEt1Pack(pack: Et1ReadinessPack): string {
     section(pack.claimant.title, [`- Name: ${pack.claimant.data.name ?? "[add]"}`, `- Email: ${pack.claimant.data.email ?? "[add]"}`], pack.claimant.missing);
     section(pack.respondent.title, [`- Employer: ${pack.respondent.data.employerName ?? "[add]"}`, `- Legal entity: ${pack.respondent.data.legalEntity ?? "[add]"}`, `- Address: ${pack.respondent.data.address ?? "[add]"}`], pack.respondent.missing);
     section(pack.employment.title, [`- Job title: ${pack.employment.data.jobTitle ?? "[add]"}`, `- Status: ${pack.employment.data.status ?? "[add]"}`, `- Start: ${formatLongDate(pack.employment.data.startDate)}`, `- End: ${pack.employment.data.stillEmployed ? "still employed" : formatLongDate(pack.employment.data.endDate)}`, `- Pay: ${pack.employment.data.pay ?? "[add]"}`, `- Hours per week: ${pack.employment.data.hours ?? "[add]"}`], pack.employment.missing);
-    section(pack.acas.title, [`- Status: ${pack.acas.data.status.replace(/_/g, " ")}`, `- Reference: ${pack.acas.data.reference ?? "[add]"}`, `- Certificate number: ${pack.acas.data.certificateNumber ?? "[add]"}`, `- Day A (notification): ${formatLongDate(pack.acas.data.notificationDate)}`, `- Day B (certificate): ${formatLongDate(pack.acas.data.certificateIssueDate)}`], pack.acas.missing);
+    section(
+        pack.acas.title,
+        [
+            `- Status: ${pack.acas.data.status.replace(/_/g, " ")}`,
+            `- Reference: ${pack.acas.data.reference ?? "[add]"}`,
+            `- Certificate number: ${pack.acas.data.certificateNumber ?? "[add]"}`,
+            `- Day A (date Acas received the notification): ${formatLongDate(pack.acas.data.notificationDate)}`,
+            `- Date on the certificate: ${formatLongDate(pack.acas.data.certificateIssueDate)}`,
+            `- Date the certificate was received (Day B): ${pack.acas.data.certificateReceivedDate ? formatLongDate(pack.acas.data.certificateReceivedDate) : "[not recorded]"}`,
+            `- Sent by: ${pack.acas.data.certificateDeliveryMethod ?? "[not recorded]"}`,
+            `- Day B basis used for the time limit: ${pack.acas.data.dayBBasis.replace(/_/g, " ")}`,
+        ],
+        pack.acas.missing,
+    );
     section(pack.claimCategories.title, pack.claimCategories.data.map((c) => `- ${c.label}: ${c.elementsSupported} of ${c.elementsTotal} elements currently supported${c.stale ? " (out of date)" : ""}${c.missingFacts.length ? `; still needed: ${c.missingFacts.slice(0, 3).join("; ")}` : ""}`), pack.claimCategories.missing);
-    section(pack.timeLimits.title, pack.timeLimits.data.map((t) => `- ${t.label}: ${t.date ?? "not yet calculable"} (${t.status}; ${t.sourceReference})${t.warnings.length ? ` — ${t.warnings[0]}` : ""}`), pack.timeLimits.missing);
+    section(
+        pack.timeLimits.title,
+        pack.timeLimits.data.map((t) => {
+            const head = t.status === "pending_acas" ? `paused for Acas conciliation — no earlier than ${t.unadjustedDate ?? "the unadjusted date"}` : t.date ?? "not yet calculable";
+            const precision = t.triggerPrecision && t.triggerPrecision !== "exact" ? `; trigger date ${t.triggerDate} is ${t.triggerPrecision}` : "";
+            const basis = t.dayBBasis && t.dayBBasis !== "none" ? `; Day B basis: ${t.dayBBasis.replace(/_/g, " ")}` : "";
+            return `- ${t.label}: ${head} (${t.status}; ${t.sourceReference}${precision}${basis})${t.warnings.length ? ` — ${t.warnings[0]}` : ""}`;
+        }),
+        pack.timeLimits.missing,
+    );
     section(pack.chronology.title, pack.chronology.data.map((e) => `- ${formatLongDate(e.date)}${e.approximate ? " (approx.)" : ""}: ${e.title}${e.disputed ? " (disputed)" : ""}`), pack.chronology.missing);
     section(pack.particulars.title, pack.particulars.data.map((p, i) => `${i + 1}. ${p}`), pack.particulars.missing);
     section(pack.remedy.title, [...pack.remedy.data.desiredResolution.map((r) => `- ${r}`), ...(pack.remedy.data.moneyIssues ? [`- Money: ${pack.remedy.data.moneyIssues}`] : [])], pack.remedy.missing);
