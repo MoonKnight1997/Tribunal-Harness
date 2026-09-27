@@ -37,12 +37,58 @@ export type PdfStatus =
     | "upstream_unavailable"
     | "error";
 
+export interface PdfPageBoundary {
+    /** 1-based page number. */
+    page: number;
+    /** Offsets of this page's text within `markdown`. Pages with no text have no boundary. */
+    startOffset: number;
+    endOffset: number;
+}
+
 export interface PdfMarkdownResult {
     status: PdfStatus;
     markdown?: string;
     pages?: number;
+    /** Per-page offsets into `markdown`, so a quote's offset can be mapped to a page. */
+    pageBoundaries?: PdfPageBoundary[];
     detail?: string;
     sourceUrl?: string;
+}
+
+/** pdf.js text content, as pdf-parse's default page renderer consumes it. */
+interface PdfTextItem {
+    str: string;
+    transform: number[];
+}
+interface PdfPageData {
+    getTextContent(options: { normalizeWhitespace: boolean; disableCombineTextItems: boolean }): Promise<{ items: PdfTextItem[] }>;
+}
+
+/** Same line-joining rule as pdf-parse's default renderer, kept here so we can capture per-page text. */
+async function renderPage(pageData: PdfPageData): Promise<string> {
+    const content = await pageData.getTextContent({ normalizeWhitespace: false, disableCombineTextItems: false });
+    let lastY: number | undefined;
+    let text = "";
+    for (const item of content.items) {
+        if (lastY === item.transform[5] || lastY === undefined) text += item.str;
+        else text += `\n${item.str}`;
+        lastY = item.transform[5];
+    }
+    return text;
+}
+
+/** Join tidied page texts with blank lines and record where each page sits. */
+export function joinPages(pageTexts: string[]): { markdown: string; pageBoundaries: PdfPageBoundary[] } {
+    let markdown = "";
+    const pageBoundaries: PdfPageBoundary[] = [];
+    pageTexts.forEach((raw, i) => {
+        const t = tidyToMarkdown(raw);
+        if (!t) return;
+        if (markdown) markdown += "\n\n";
+        pageBoundaries.push({ page: i + 1, startOffset: markdown.length, endOffset: markdown.length + t.length });
+        markdown += t;
+    });
+    return { markdown, pageBoundaries };
 }
 
 /** Light text -> Markdown tidy: normalise newlines, drop trailing spaces, collapse blank runs. */
@@ -65,8 +111,18 @@ export async function pdfBufferToMarkdown(buffer: Buffer): Promise<PdfMarkdownRe
     if (!looksLikePdf(buffer)) return { status: "not_pdf", detail: "Not a PDF (missing %PDF- header)." };
     try {
         const pdfParse = (await import("pdf-parse")).default;
-        const data = await pdfParse(buffer);
-        const md = tidyToMarkdown(data.text || "");
+        // Capture each page's text so quotes can be mapped back to a page number.
+        const pageTexts: string[] = [];
+        const data = await pdfParse(buffer, {
+            pagerender: async (pageData: PdfPageData) => {
+                const t = await renderPage(pageData);
+                pageTexts.push(t);
+                return t;
+            },
+        });
+        // If the renderer was bypassed (e.g. a stubbed parser), fall back to the whole text as one page.
+        const joined = pageTexts.length > 0 ? joinPages(pageTexts) : joinPages([data.text || ""]);
+        const md = joined.markdown;
         if (!md) {
             return {
                 status: "empty",
@@ -74,7 +130,7 @@ export async function pdfBufferToMarkdown(buffer: Buffer): Promise<PdfMarkdownRe
                 detail: "No extractable text — the PDF is likely scanned/image-only (would need OCR).",
             };
         }
-        return { status: "ok", markdown: md, pages: data.numpages };
+        return { status: "ok", markdown: md, pages: data.numpages, pageBoundaries: joined.pageBoundaries };
     } catch (e) {
         return { status: "error", detail: `PDF parse failed: ${e instanceof Error ? e.message : String(e)}` };
     }

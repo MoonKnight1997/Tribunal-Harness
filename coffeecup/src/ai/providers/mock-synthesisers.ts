@@ -8,6 +8,7 @@
  */
 
 import { isIsoDate } from "@/lib/dates";
+import { parseExtractionInput } from "@/ai/tasks/extract-document";
 
 const MONTHS: Record<string, number> = {
     january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8, september: 9, october: 10, november: 11, december: 12,
@@ -85,13 +86,10 @@ export function classifyDocument(text: string, filename = ""): string {
     return "unknown";
 }
 
-function extractDocument(inputJson: string): string {
-    let payload: { text?: string; filename?: string } = {};
-    try {
-        payload = JSON.parse(inputJson);
-    } catch {
-        payload = { text: inputJson };
-    }
+function extractDocument(input: string): string {
+    // The real task frames the document text as untrusted data between
+    // markers; parseExtractionInput recovers it (and falls back to legacy JSON).
+    const payload = parseExtractionInput(input);
     const text = payload.text ?? "";
     const dates = findDates(text);
     const seen = new Set<string>();
@@ -123,7 +121,8 @@ function extractDocument(inputJson: string): string {
     const allegationRe = /(?:allegation|alleged that|it is alleged)[:\s]+([^.\n]{10,200})/gi;
     let am: RegExpExecArray | null;
     while ((am = allegationRe.exec(text)) !== null && allegations.length < 10) {
-        allegations.push({ allegation: am[1].trim(), evidence: null });
+        // Quote copied verbatim from the input so quote verification is exercised end to end.
+        allegations.push({ allegation: am[1].trim(), evidence: null, quote: sentenceAround(text, am.index).slice(0, 300) });
     }
     const documentDate = dates[0]?.iso ?? null;
     return JSON.stringify({
@@ -139,12 +138,7 @@ function extractDocument(inputJson: string): string {
 }
 
 function classifyOnly(inputJson: string): string {
-    let payload: { text?: string; filename?: string } = {};
-    try {
-        payload = JSON.parse(inputJson);
-    } catch {
-        payload = { text: inputJson };
-    }
+    const payload = parseExtractionInput(inputJson);
     return JSON.stringify({ documentType: classifyDocument(payload.text ?? "", payload.filename), confidence: 60, reason: "keyword match (mock)" });
 }
 

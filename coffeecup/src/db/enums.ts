@@ -110,13 +110,23 @@ export const DOCUMENT_TYPES = [
 ] as const;
 export type DocumentType = (typeof DOCUMENT_TYPES)[number];
 
-export const EXTRACTION_STATUSES = ["queued", "processing", "completed", "failed", "requires_review", "unsupported"] as const;
+/**
+ * completed        every part/chunk was read and every returned item was usable
+ * partial          text was read and proposals made, but the coverage manifest or
+ *                  item diagnostics show gaps (truncated, a failed chunk, dropped
+ *                  items, an unreadable email part)
+ * requires_review  text was read but no proposals could be made (model failure,
+ *                  fair-use limit, low OCR confidence, everything dropped)
+ * failed           nothing could be read
+ * unsupported      the file type is kept as evidence but not read (e.g. image with no OCR)
+ */
+export const EXTRACTION_STATUSES = ["queued", "processing", "completed", "partial", "failed", "requires_review", "unsupported"] as const;
 export type ExtractionStatus = (typeof EXTRACTION_STATUSES)[number];
 
 export const PROCESS_TYPES = ["grievance", "disciplinary", "grievance_appeal", "disciplinary_appeal", "acas_early_conciliation", "informal"] as const;
 export type ProcessType = (typeof PROCESS_TYPES)[number];
 
-export const JOB_STATUSES = ["queued", "processing", "completed", "failed", "requires_review"] as const;
+export const JOB_STATUSES = ["queued", "processing", "completed", "failed", "requires_review", "cancelled"] as const;
 export type JobStatus = (typeof JOB_STATUSES)[number];
 
 export const ARTIFACT_TYPES = [

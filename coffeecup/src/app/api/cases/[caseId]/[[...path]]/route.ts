@@ -162,6 +162,7 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
             });
         }
         if (seg1 && seg2 === "reprocess" && method === "POST") return json({ jobId: await documents.reprocessDocument(actor, caseId, seg1) });
+        if (seg1 && seg2 === "cancel" && method === "POST") return json({ cancelled: await documents.cancelExtraction(actor, caseId, seg1) });
         if (seg1 && !seg2 && method === "GET") return json({ document: await documents.getDocument(actor, caseId, seg1), links: await documents.listDocumentLinks(actor, caseId, seg1) });
         if (seg1 && !seg2 && method === "PATCH") return json({ document: await documents.updateDocument(actor, caseId, seg1, await body() as never) });
         if (seg1 && !seg2 && method === "DELETE") {

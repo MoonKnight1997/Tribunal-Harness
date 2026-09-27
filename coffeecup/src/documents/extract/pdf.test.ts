@@ -5,11 +5,27 @@ import {
     isAllowedPdfUrl,
     pdfBufferToMarkdown,
     fetchPdfAsMarkdown,
+    joinPages,
 } from "./pdf";
 
-// Mock pdf-parse so tests are deterministic and offline.
+// Mock pdf-parse so tests are deterministic and offline. Like the real
+// library, it calls `options.pagerender(pageData)` once per page (see
+// node_modules/pdf-parse/lib/pdf-parse.js), so the per-page capture path is
+// exercised: two fake pages whose text items sit on different y positions.
+const FAKE_PAGES = [
+    [{ str: "Para one.", transform: [1, 0, 0, 1, 72, 700] }],
+    [{ str: "Para two.   ", transform: [1, 0, 0, 1, 72, 700] }, { str: "Wrapped line.", transform: [1, 0, 0, 1, 72, 680] }],
+];
 vi.mock("pdf-parse", () => ({
-    default: vi.fn(async () => ({ text: "Para one.\n\n\nPara two.   \nWrapped line.", numpages: 2 })),
+    default: vi.fn(async (_buf: Buffer, options?: { pagerender?: (p: unknown) => Promise<string> }) => {
+        let text = "";
+        for (const items of FAKE_PAGES) {
+            const pageData = { getTextContent: async () => ({ items }) };
+            const t = options?.pagerender ? await options.pagerender(pageData) : items.map((i) => i.str).join("\n");
+            text += `\n\n${t}`;
+        }
+        return { text, numpages: FAKE_PAGES.length };
+    }),
 }));
 
 function pdfBuffer(extra = "test content"): Buffer {
@@ -51,6 +67,20 @@ describe("pdfBufferToMarkdown", () => {
         expect(r.markdown).toContain("Para one.");
         expect(r.markdown).not.toMatch(/\n{3,}/); // tidied
         expect(r.pages).toBe(2);
+    });
+    it("records where each page's text sits so quotes can be mapped to a page", async () => {
+        const r = await pdfBufferToMarkdown(pdfBuffer());
+        expect(r.markdown).toBe("Para one.\n\nPara two.\nWrapped line.");
+        expect(r.pageBoundaries).toEqual([
+            { page: 1, startOffset: 0, endOffset: 9 },
+            { page: 2, startOffset: 11, endOffset: 34 },
+        ]);
+        expect(r.markdown!.slice(11, 34)).toBe("Para two.\nWrapped line.");
+    });
+    it("joinPages skips empty pages but keeps their numbering", () => {
+        const j = joinPages(["First", "", "  \n", "Third"]);
+        expect(j.markdown).toBe("First\n\nThird");
+        expect(j.pageBoundaries).toEqual([{ page: 1, startOffset: 0, endOffset: 5 }, { page: 4, startOffset: 7, endOffset: 12 }]);
     });
     it("rejects an empty buffer", async () => {
         expect((await pdfBufferToMarkdown(Buffer.alloc(0))).status).toBe("empty");

@@ -9,7 +9,7 @@
 import { and, asc, eq, inArray } from "drizzle-orm";
 import { z } from "zod";
 import { getDb } from "@/db/client";
-import { documentLinks, events, EVENT_CATEGORIES, type Provenance } from "@/db/schema";
+import { documentLinks, events, EVENT_CATEGORIES, type Provenance, type SourceLocation } from "@/db/schema";
 import { newId } from "@/lib/ids";
 import { ValidationError } from "@/lib/errors";
 import { isIsoDate } from "@/lib/dates";
@@ -61,7 +61,22 @@ export async function addEvent(actor: Actor, caseId: string, raw: z.input<typeof
 /** Pipeline entry point: propose an event for review. */
 export async function proposeEvent(
     caseId: string,
-    input: { date: string; dateEnd?: string | null; dateApproximate?: boolean; title: string; description?: string | null; category?: string; confidence?: number; sourceDocumentId?: string | null; jobId?: string | null; provenance?: Provenance },
+    input: {
+        date: string;
+        dateEnd?: string | null;
+        dateApproximate?: boolean;
+        title: string;
+        description?: string | null;
+        category?: string;
+        confidence?: number;
+        sourceDocumentId?: string | null;
+        jobId?: string | null;
+        provenance?: Provenance;
+        /** Verbatim passage the proposal came from, where it sits, and whether it was found in the source. */
+        sourceQuote?: string | null;
+        sourceLocation?: SourceLocation | null;
+        quoteVerified?: boolean | null;
+    },
 ): Promise<EventRow | null> {
     if (!isIsoDate(input.date)) return null;
     const db = await getDb();
@@ -82,6 +97,9 @@ export async function proposeEvent(
         confidence: input.confidence ?? null,
         provenance: input.provenance ?? "DOCUMENT_EXTRACTED",
         proposedByJobId: input.jobId ?? null,
+        sourceQuote: input.sourceQuote?.slice(0, 1000) ?? null,
+        sourceLocation: input.sourceLocation ?? null,
+        quoteVerified: input.quoteVerified ?? null,
     });
     if (input.sourceDocumentId) await linkDocuments(caseId, id, [input.sourceDocumentId]);
     return getEvent(caseId, id);
