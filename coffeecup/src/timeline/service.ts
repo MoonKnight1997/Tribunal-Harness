@@ -11,11 +11,12 @@ import { z } from "zod";
 import { getDb } from "@/db/client";
 import { documentLinks, events, EVENT_CATEGORIES, type Provenance } from "@/db/schema";
 import { newId } from "@/lib/ids";
-import { ValidationError } from "@/lib/errors";
+import { NotFoundError, ValidationError } from "@/lib/errors";
 import { isIsoDate } from "@/lib/dates";
 import { requireCaseAccess, touchCase, type Actor } from "@/cases/access";
 import { recordAudit } from "@/cases/audit";
 import { markStale } from "@/cases/staleness";
+import { assertCaseOwns } from "@/cases/references";
 
 export type EventRow = typeof events.$inferSelect;
 
@@ -39,6 +40,7 @@ export async function addEvent(actor: Actor, caseId: string, raw: z.input<typeof
     if (!parsed.success) throw new ValidationError("Please check the event details.", parsed.error.flatten());
     const input = parsed.data;
     if (input.dateEnd && input.dateEnd < input.date) throw new ValidationError("The end date cannot be before the start date.");
+    await assertCaseOwns(caseId, { documentIds: input.sourceDocumentIds, personIds: input.actorIds });
     const db = await getDb();
     const id = newId();
     await db.insert(events).values({
@@ -64,6 +66,8 @@ export async function proposeEvent(
     input: { date: string; dateEnd?: string | null; dateApproximate?: boolean; title: string; description?: string | null; category?: string; confidence?: number; sourceDocumentId?: string | null; jobId?: string | null; provenance?: Provenance },
 ): Promise<EventRow | null> {
     if (!isIsoDate(input.date)) return null;
+    // Pipeline callers pass the document they are extracting from; it must be this case's.
+    await assertCaseOwns(caseId, { documentIds: [input.sourceDocumentId] });
     const db = await getDb();
     const category = (EVENT_CATEGORIES as readonly string[]).includes(input.category ?? "") ? (input.category as EventRow["category"]) : "other";
     const id = newId();
@@ -96,7 +100,8 @@ async function linkDocuments(caseId: string, eventId: string, documentIds: strin
 async function getEvent(caseId: string, eventId: string): Promise<EventRow> {
     const db = await getDb();
     const rows = await db.select().from(events).where(and(eq(events.id, eventId), eq(events.caseId, caseId))).limit(1);
-    if (!rows[0]) throw new ValidationError("Event not found.");
+    // Same error for a foreign event id as for a missing one.
+    if (!rows[0]) throw new NotFoundError("Event not found.");
     return rows[0];
 }
 
@@ -130,6 +135,7 @@ export async function updateEvent(actor: Actor, caseId: string, eventId: string,
     const date = input.date ?? existing.date;
     const dateEnd = input.dateEnd === undefined ? existing.dateEnd : input.dateEnd;
     if (dateEnd && dateEnd < date) throw new ValidationError("The end date cannot be before the start date.");
+    await assertCaseOwns(caseId, { documentIds: input.sourceDocumentIds, personIds: input.actorIds });
     const db = await getDb();
     const patch: Partial<typeof events.$inferInsert> = { ...input, updatedAt: new Date() };
     // Editing a proposal is an implicit user review: the user has looked at it.

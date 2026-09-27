@@ -27,9 +27,16 @@
  *   POST /summary/propose, POST /summary/confirm
  *   POST /checkout
  *   POST /purge
+ *
+ * Bodies the services validate themselves (events, facts, people, issues,
+ * processes, allegations, grounds, artifacts PATCH, case) are passed through
+ * unchanged. Bodies the services take as plain arguments are parsed here with
+ * the Zod schemas below, so a malformed body is a 400 `validation` response
+ * and never reaches a service (or becomes a 500).
  */
 
 import { NextResponse, type NextRequest } from "next/server";
+import { z } from "zod";
 import { handle, readJson, json, requestOrigin } from "@/lib/http";
 import { AppError, NotFoundError, ValidationError } from "@/lib/errors";
 import { requireUser } from "@/auth/current-user";
@@ -51,10 +58,34 @@ import { purgeCaseNow } from "@/cases/retention";
 import { track } from "@/analytics/service";
 import { isFlagEnabled } from "@/flags";
 import { STRUCTURED_FACT_KEYS, type StructuredFactKey } from "@/facts/service";
-import type { ArtifactType, EntitlementTier, ProcessType } from "@/db/schema";
+import { ARTIFACT_TYPES, ENTITLEMENT_TIERS, type ProcessType } from "@/db/schema";
 import type { Actor } from "@/cases/access";
+import { isIsoDate } from "@/lib/dates";
 
 type Params = { params: Promise<{ caseId: string; path?: string[] }> };
+
+// ── route-level body schemas ────────────────────────────────────────────
+const nonEmptyId = z.string().trim().min(1).max(200);
+const MergeBody = z.object({ keepId: nonEmptyId, mergeIds: z.array(nonEmptyId).min(1).max(100) });
+const TransitionBody = z.object({ to: z.string().trim().min(1).max(100), note: z.string().trim().max(2000).nullable().optional() });
+const TaskPatchBody = z.object({ done: z.boolean().optional() });
+const SummaryConfirmBody = z.object({ summary: z.string().max(5000) });
+const CheckoutBody = z.object({ tier: z.enum(ENTITLEMENT_TIERS) });
+const StructuredFactBody = z.object({
+    value: z.string().refine(isIsoDate, "Expected a date in YYYY-MM-DD format").nullable().optional(),
+    statement: z.string().trim().max(4000).optional(),
+});
+const ArtifactCreateBody = z.object({
+    type: z.enum(ARTIFACT_TYPES),
+    processId: nonEmptyId.nullable().optional(),
+    extra: z.record(z.string(), z.unknown()).optional(),
+});
+
+function parseBody<T extends z.ZodTypeAny>(schema: T, raw: unknown): z.output<T> {
+    const parsed = schema.safeParse(raw);
+    if (!parsed.success) throw new ValidationError("Please check the request.", parsed.error.flatten());
+    return parsed.data;
+}
 
 async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse | Response> {
     const { user, actor } = await requireUser();
@@ -101,8 +132,8 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
         }
         if (!seg1 && method === "POST") return json({ event: await timeline.addEvent(actor, caseId, await body() as never) }, { status: 201 });
         if (seg1 === "merge" && method === "POST") {
-            const b = (await body()) as { keepId: string; mergeIds: string[] };
-            return json({ event: await timeline.mergeEvents(actor, caseId, b.keepId, b.mergeIds ?? []) });
+            const b = parseBody(MergeBody, await body());
+            return json({ event: await timeline.mergeEvents(actor, caseId, b.keepId, b.mergeIds) });
         }
         if (seg1 && seg2 === "confirm" && method === "POST") return json({ event: await timeline.confirmEvent(actor, caseId, seg1) });
         if (seg1 && seg2 === "reject" && method === "POST") {
@@ -125,7 +156,7 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
         if (!seg1 && method === "POST") return json({ fact: await facts.addFact(actor, caseId, await body() as never) }, { status: 201 });
         if (seg1 === "structured" && seg2 && method === "PUT") {
             if (!(STRUCTURED_FACT_KEYS as readonly string[]).includes(seg2)) throw new ValidationError("Unknown structured fact key.");
-            const b = (await body()) as { value: string | null; statement?: string };
+            const b = parseBody(StructuredFactBody, await body());
             return json({ fact: await facts.setStructuredFact(actor, caseId, seg2 as StructuredFactKey, b.value ?? null, b.statement) });
         }
         if (seg1 && seg2 === "confirm" && method === "POST") return json({ fact: await facts.confirmFact(actor, caseId, seg1) });
@@ -195,8 +226,8 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
         if (seg1 && !seg2 && method === "GET") return json({ process: await processes.getProcess(actor, caseId, seg1), transitions: await processes.listTransitions(actor, caseId, seg1) });
         if (seg1 && !seg2 && method === "PATCH") return json({ process: await processes.updateProcessData(actor, caseId, seg1, await body()) });
         if (seg1 && seg2 === "transition" && method === "POST") {
-            const b = (await body()) as { to: string; note?: string };
-            return json({ process: await processes.transitionProcess(actor, caseId, seg1, b.to, b.note) });
+            const b = parseBody(TransitionBody, await body());
+            return json({ process: await processes.transitionProcess(actor, caseId, seg1, b.to, b.note ?? undefined) });
         }
         if (seg1 && seg2 === "allegations" && method === "GET") return json({ allegations: await processes.listAllegations(actor, caseId, seg1) });
         if (seg1 && seg2 === "allegations" && method === "POST") return json({ allegation: await processes.addAllegation(actor, caseId, seg1, await body() as never) }, { status: 201 });
@@ -227,7 +258,7 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
         if (!seg1 && method === "GET") return json({ tasks: await tasks.listTasks(actor, caseId) });
         if (!seg1 && method === "POST") return json({ task: await tasks.addTask(actor, caseId, await body() as never) }, { status: 201 });
         if (seg1 && method === "PATCH") {
-            const b = (await body()) as { done?: boolean };
+            const b = parseBody(TaskPatchBody, await body());
             return json({ task: await tasks.completeTask(actor, caseId, seg1, b.done ?? true) });
         }
         if (seg1 && method === "DELETE") {
@@ -240,7 +271,7 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
     if (seg0 === "artifacts") {
         if (!seg1 && method === "GET") return json({ artifacts: await artifacts.listArtifacts(actor, caseId) });
         if (!seg1 && method === "POST") {
-            const b = (await body()) as { type: ArtifactType; processId?: string | null; extra?: Record<string, unknown> };
+            const b = parseBody(ArtifactCreateBody, await body());
             const a = await artifacts.generateArtifact(actor, caseId, b.type, { processId: b.processId ?? null, extra: b.extra });
             const evt = b.type === "grievance_letter" ? "grievance_produced" : b.type === "disciplinary_response" ? "disciplinary_prep_produced" : b.type.endsWith("_appeal") ? "appeal_produced" : null;
             if (evt) await track(evt, actor.userId, { artifactType: b.type });
@@ -289,14 +320,14 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
     // ── summary ─────────────────────────────────────────────────────────
     if (seg0 === "summary" && seg1 === "propose" && method === "POST") return json(await proposeSituationSummary(actor, caseId));
     if (seg0 === "summary" && seg1 === "confirm" && method === "POST") {
-        const b = (await body()) as { summary: string };
-        await confirmSituationSummary(actor, caseId, String(b.summary ?? ""));
+        const b = parseBody(SummaryConfirmBody, await body());
+        await confirmSituationSummary(actor, caseId, b.summary);
         return json({ ok: true });
     }
 
     // ── checkout ────────────────────────────────────────────────────────
     if (seg0 === "checkout" && method === "POST") {
-        const b = (await body()) as { tier: EntitlementTier };
+        const b = parseBody(CheckoutBody, await body());
         const res = await startCheckout(actor, caseId, b.tier, { customerEmail: user.email, origin: requestOrigin(request) });
         return json(res);
     }
