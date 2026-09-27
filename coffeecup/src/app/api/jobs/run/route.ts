@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { timingSafeEqual } from "node:crypto";
+import os from "node:os";
 import { runPendingJobs } from "@/jobs/service";
 import { purgeExpiredCases } from "@/cases/retention";
 // Registers job handlers.
@@ -19,7 +20,9 @@ export async function POST(request: NextRequest) {
     if (!expected || a.length !== b.length || !timingSafeEqual(a, b)) {
         return NextResponse.json({ error: "Unauthorised." }, { status: 401 });
     }
-    const jobs = await runPendingJobs(Number(process.env.JOBS_BATCH_SIZE ?? 20));
+    // Worker identity for job leases (`lockedBy`); an abandoned lease is reclaimed by a later run.
+    const workerId = process.env.JOBS_WORKER_ID ?? `${os.hostname()}:${process.pid}:http`;
+    const jobs = await runPendingJobs(Number(process.env.JOBS_BATCH_SIZE ?? 20), workerId);
     const purged = await purgeExpiredCases();
-    return NextResponse.json({ ran: jobs.length, statuses: jobs.map((j) => ({ id: j.id, type: j.type, status: j.status })), purgedCases: purged });
+    return NextResponse.json({ ran: jobs.length, worker: workerId, statuses: jobs.map((j) => ({ id: j.id, type: j.type, status: j.status })), purgedCases: purged });
 }

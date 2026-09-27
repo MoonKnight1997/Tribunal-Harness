@@ -14,7 +14,7 @@
 import { and, desc, eq, ne } from "drizzle-orm";
 import { z } from "zod";
 import { getDb } from "@/db/client";
-import { facts, PROVENANCES, type DatePrecision, type Provenance } from "@/db/schema";
+import { facts, PROVENANCES, type DatePrecision, type Provenance, type SourceLocation } from "@/db/schema";
 import { newId } from "@/lib/ids";
 import { ValidationError } from "@/lib/errors";
 import { isIsoDate } from "@/lib/dates";
@@ -112,7 +112,22 @@ export async function addFact(actor: Actor, caseId: string, raw: z.input<typeof 
 }
 
 /** System entry point for pipeline-proposed facts (extraction). Never confirmed. */
-export async function proposeFact(caseId: string, input: { statement: string; provenance: Provenance; confidence?: number; key?: string | null; value?: string | null; sourceDocumentId?: string | null; sourceEventId?: string | null }): Promise<FactRow> {
+export async function proposeFact(
+    caseId: string,
+    input: {
+        statement: string;
+        provenance: Provenance;
+        confidence?: number;
+        key?: string | null;
+        value?: string | null;
+        sourceDocumentId?: string | null;
+        sourceEventId?: string | null;
+        /** Verbatim passage the proposal came from, where it sits, and whether it was found in the source. */
+        sourceQuote?: string | null;
+        sourceLocation?: SourceLocation | null;
+        quoteVerified?: boolean | null;
+    },
+): Promise<FactRow> {
     await assertCaseOwns(caseId, { documentIds: [input.sourceDocumentId], eventIds: [input.sourceEventId] });
     const db = await getDb();
     const id = newId();
@@ -131,6 +146,9 @@ export async function proposeFact(caseId: string, input: { statement: string; pr
         value: input.value ?? null,
         sourceDocumentId: input.sourceDocumentId ?? null,
         sourceEventId: input.sourceEventId ?? null,
+        sourceQuote: input.sourceQuote?.slice(0, 1000) ?? null,
+        sourceLocation: input.sourceLocation ?? null,
+        quoteVerified: input.quoteVerified ?? null,
     });
     await recordAudit({ caseId, action: "fact.proposed", targetType: "fact", targetId: id, details: { provenance: input.provenance, key: input.key ?? null } });
     return getFact(caseId, id);

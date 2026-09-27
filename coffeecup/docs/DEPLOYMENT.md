@@ -63,6 +63,23 @@ Document extraction and the retention purge run as jobs. In production set
   platform cron every minute), or
 - `npm run jobs:run` from a worker/cron container.
 
+Each worker run identifies itself (`hostname:pid`, or `JOBS_WORKER_ID`) and
+takes a lease of `JOBS_LEASE_SECONDS` (default 300) on every job it claims. A
+worker killed mid-job leaves a `processing` row whose lease expires; the next
+run reclaims it automatically, so no database edit is needed to recover. A
+handler exception re-queues the job with exponential backoff (15 s × 2^attempts,
+capped at one hour) until `max_attempts` is reached. Set the lease longer than
+your slowest expected job (large PDFs, OCR).
+
+### OCR (optional)
+
+Images are always kept as evidence. To have their text read locally, install
+`tesseract` on the worker and set `OCR_PROVIDER=tesseract_cli`. Scanned PDFs
+additionally need `pdftoppm` (poppler-utils) to rasterise pages. Nothing is
+ever sent to a network OCR service. The extraction report records per-page
+character counts and confidence; low confidence marks the document
+"needs a look" rather than proposing from it silently.
+
 ## Payments (optional)
 
 1. `PAYMENTS_ENABLED=1`, `PAYMENT_PROVIDER=stripe`, `STRIPE_SECRET_KEY`,

@@ -1,0 +1,10 @@
+From: payroll@acme.example
+To: worker@example.com
+Subject: Pay query
+Date: Fri, 27 Feb 2026 16:30:00 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+
+SGVsbG8gWm/DqywKCllvdXIgZmluYWwgcGF5IG9mIMKjMSwyMzQuNTYgd2FzIHByb2Nlc3NlZCBv
+biAyNyBGZWJydWFyeSAyMDI2LiBOYcOvdmUgY2Fmw6kgcsOpc3Vtw6kuCgpQYXlyb2xs

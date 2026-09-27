@@ -1,0 +1,13 @@
+From: manager@acme.example
+To: worker@example.com
+Subject: Meeting notes
+Date: Thu, 5 Mar 2026 13:00:00 +0000
+MIME-Version: 1.0
+Content-Type: text/html; charset=utf-8
+
+<html><head><title>Notes</title><style>p { color: red }</style></head><body>
+<p>Notes of the meeting on <b>5 March 2026</b>.</p>
+<p>You said you were &ldquo;unhappy&rdquo; with the rota &amp; the pay.<br>We agreed to review it.</p>
+<ul><li>Action: HR to respond by 12 March 2026</li><li>Action: manager to share the rota</li></ul>
+<script>alert('x')</script>
+</body></html>
