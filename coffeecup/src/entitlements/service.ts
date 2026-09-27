@@ -17,6 +17,7 @@ import { EntitlementRequiredError } from "@/lib/errors";
 import type { Actor } from "@/cases/access";
 import { recordAudit } from "@/cases/audit";
 import { PRICING } from "@/payments/pricing";
+import { policyTierForArtifact } from "@/artifacts/policy";
 
 export type EntitlementRow = typeof entitlements.$inferSelect;
 
@@ -41,16 +42,9 @@ export async function requireEntitlement(actor: Actor, caseId: string, tier: Ent
     if (!(await hasEntitlement(actor, caseId, tier))) throw new EntitlementRequiredError(PRICING.tiers[tier].name);
 }
 
-/** Which artifacts need which tier. Deadline information is never paywalled. */
+/** Which artifacts need which tier — read from the artifact policy table. Deadline information is never paywalled. */
 export function tierForArtifact(type: ArtifactType): EntitlementTier | null {
-    switch (type) {
-        case "potential_claims_summary":
-        case "et1_readiness_pack":
-        case "case_pack":
-            return "claim_pack";
-        default:
-            return "case_pass";
-    }
+    return policyTierForArtifact(type);
 }
 
 export async function requireEntitlementForArtifact(actor: Actor, caseId: string, type: ArtifactType): Promise<void> {

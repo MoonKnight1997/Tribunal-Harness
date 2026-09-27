@@ -22,6 +22,8 @@ import { eq } from "drizzle-orm";
 import { todayISO } from "@/lib/dates";
 import { publicCapabilities } from "@/flags";
 import { hasEntitlement, paymentsEnabled } from "@/entitlements/service";
+import { checkAndCountUsage } from "@/entitlements/fair-use";
+import { ValidationError } from "@/lib/errors";
 
 export interface Dashboard {
     case: { id: string; title: string; stage: string; stageLabel: string; stagePlain: string; jurisdiction: string; status: string; summaryStale: boolean };
@@ -106,6 +108,9 @@ export async function buildDashboard(actor: Actor, caseId: string): Promise<Dash
 /** Regenerate the "what is happening" summary from confirmed material; the user then confirms/edits it. */
 export async function proposeSituationSummary(actor: Actor, caseId: string): Promise<{ summary: string; stillUnclear: string[] }> {
     await requireCaseAccess(actor, caseId);
+    // A model call: counts against the same daily fair-use allowance as drafting.
+    const usage = await checkAndCountUsage(actor.userId, caseId, "ai_generation");
+    if (!usage.ok) throw new ValidationError(usage.reason);
     const employment = await getEmployment(actor, caseId);
     const events = await listConfirmedEvents(caseId);
     const facts = await listConfirmedFacts(caseId);
