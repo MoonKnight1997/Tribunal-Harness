@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { api, errorMessage } from "@/components/api";
 import { Button, Card, Field, Input, Notice, Select, Textarea, Pill, Empty } from "@/components/ui";
@@ -9,7 +10,7 @@ import { formatLongDate } from "@/lib/dates";
 
 type EventView = {
     id: string; date: string; dateEnd: string | null; dateApproximate: boolean; title: string; description: string | null; category: string;
-    actorIds: string[]; sourceDocumentIds: string[]; status: string; userConfirmed: boolean; confidence: number | null; disputed: boolean; provenance: string; mergedIntoId: string | null;
+    actorIds: string[]; sourceDocumentIds: string[]; status: string; userConfirmed: boolean; disputed: boolean; provenance: string; mergedIntoId: string | null;
 };
 
 const blank = { date: "", dateEnd: "", dateApproximate: false, title: "", description: "", category: "other", disputed: false, sourceDocumentIds: [] as string[], actorIds: [] as string[] };
@@ -99,27 +100,10 @@ export function Timeline({ caseId, events, documents, people }: { caseId: string
             {error && <Notice tone="warn">{error}</Notice>}
             {EventForm}
             {proposed.length > 0 && (
-                <Card title={`We found ${proposed.length} possible event${proposed.length === 1 ? "" : "s"} in your documents`}>
-                    <p className="mb-3 text-sm text-ink-muted">Check each one. Confirm if it is right, edit if the date or wording is off, or reject it. Nothing here counts until you confirm it.</p>
-                    <ul className="space-y-2">
-                        {proposed.map((e) => (
-                            <li key={e.id} className="rounded-lg border border-warn/40 bg-warn-soft p-3">
-                                <div className="flex flex-wrap items-start justify-between gap-2">
-                                    <div>
-                                        <p className="font-medium">{formatLongDate(e.date)}{e.dateApproximate ? " (approx.)" : ""} — {e.title}</p>
-                                        {e.description && e.description !== e.title && <p className="text-sm text-ink-muted">{e.description}</p>}
-                                        <p className="text-xs text-ink-muted">From {e.sourceDocumentIds.map(docName).join(", ") || "a document"}{e.confidence !== null ? ` · confidence ${e.confidence}%` : ""}</p>
-                                    </div>
-                                    <div className="flex gap-1">
-                                        <Button disabled={busy} onClick={() => run(() => api(`/api/cases/${caseId}/events/${e.id}/confirm`, { method: "POST", body: {} }))}>Confirm</Button>
-                                        <Button variant="secondary" onClick={() => startEdit(e)}>Edit</Button>
-                                        <Button variant="quiet" disabled={busy} onClick={() => run(() => api(`/api/cases/${caseId}/events/${e.id}/reject`, { method: "POST", body: {} }))}>Reject</Button>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </Card>
+                <Notice tone="info">
+                    {proposed.length === 1 ? "1 possible event" : `${proposed.length} possible events`} read from your documents {proposed.length === 1 ? "is" : "are"} waiting for you to check. Nothing counts until you confirm it.{" "}
+                    <Link href={`/app/cases/${caseId}/review`}>Review {proposed.length === 1 ? "it" : "them"}</Link>
+                </Notice>
             )}
             <Card title="Confirmed events" aside={selected.length > 1 ? <Button variant="secondary" disabled={busy} onClick={() => run(async () => { await api(`/api/cases/${caseId}/events/merge`, { body: { keepId: selected[0], mergeIds: selected.slice(1) } }); setSelected([]); })}>Merge {selected.length} into first</Button> : <span className="text-sm text-ink-muted">Tick two or more duplicates to merge</span>}>
                 {confirmed.length === 0 ? <Empty>No confirmed events yet.</Empty> : (

@@ -29,6 +29,7 @@ description. Anonymous triage persists nothing; saving a case needs an account.
 | Area | Capability |
 |---|---|
 | Home | "What should I pay attention to now": situation, important dates, where you are, next steps, recent activity, missing information, links |
+| Review | The evidence inbox (below): every proposed event, fact and employer allegation read from documents, with the source passage beside it, until the worker decides |
 | My case | Employment details, people, issues and desired outcomes, facts with provenance and correction |
 | Timeline | Add/edit/delete/merge events; confirm or reject events proposed from documents; approximate and disputed flags; document and people links |
 | Documents | Upload PDF/DOCX/TXT/EML/images (≤10 MB); extraction with explicit status; reclassify; re-run; download; delete |
@@ -39,6 +40,35 @@ description. Anonymous triage persists nothing; saving a case needs an account.
 | Tasks | System-suggested and user tasks |
 | Exports | Editable generated documents (letters, preparation, chronology, summary, Acas note, ET1 readiness pack); case pack export (Markdown/JSON) |
 | Help | Guides with jurisdiction and review dates; resource directory by category, no referral fees |
+
+## The evidence inbox
+
+Everything a document or the model proposes — timeline events, structured and
+narrative facts, and the employer's allegations from disciplinary material —
+waits in one queue at **Review** (`/app/cases/:id/review`, `GET /review`).
+The nav shows a count of items left at every stage.
+
+- **The passage is beside the proposal.** The server computes a short excerpt
+  of the document's extracted text around the recorded source location (or,
+  failing that, around the quoted or proposed wording) and the page highlights
+  it. The worker never has to download the file and search for a sentence.
+- **Three voices are kept apart.** Each item carries a plain label: *The
+  document says*, *The employer alleges*, *The model inferred*, *You said*.
+  Recording an allegation notes what the employer says; it never becomes a
+  confirmed fact and the page says so.
+- **Trust signals, not scores.** Provenance and whether the quoted passage was
+  actually found in the document are shown. Numeric model confidence is never
+  sent to the client: it is not a calibrated reliability measure.
+- **Conflicts are explicit.** A structured fact whose value differs from the
+  confirmed one offers *Keep the confirmed date* or *Use this date instead*
+  (which supersedes the old value). A proposed event on the same date as a
+  similar confirmed event offers *Merge with the event on the timeline*. A
+  quote the pipeline could not verify is flagged.
+- **Correction keeps the original.** Editing a proposal confirms the corrected
+  version; the source quote, location and the superseded row are kept.
+- **Keyboard and touch.** `j`/`k` or arrows move, `c` confirms, `e` edits,
+  `r` rejects, `?` lists shortcuts; every action is also a button. A polite
+  live region announces the remaining count after each decision.
 
 ## What it does not do
 

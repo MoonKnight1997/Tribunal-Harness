@@ -7,6 +7,7 @@ import { cx } from "@/components/ui";
 
 const ITEMS: Array<{ id: NavSection; label: string; path: string }> = [
     { id: "home", label: "Home", path: "" },
+    { id: "review", label: "Review", path: "/review" },
     { id: "case", label: "My case", path: "/case" },
     { id: "timeline", label: "Timeline", path: "/timeline" },
     { id: "documents", label: "Documents", path: "/documents" },
@@ -18,7 +19,7 @@ const ITEMS: Array<{ id: NavSection; label: string; path: string }> = [
     { id: "help", label: "Help", path: "/help" },
 ];
 
-export function CaseNav({ caseId, sections, title }: { caseId: string; sections: NavSection[]; title: string }) {
+export function CaseNav({ caseId, sections, title, counts }: { caseId: string; sections: NavSection[]; title: string; counts?: Partial<Record<NavSection, number>> }) {
     const pathname = usePathname();
     const base = `/app/cases/${caseId}`;
     return (
@@ -30,10 +31,17 @@ export function CaseNav({ caseId, sections, title }: { caseId: string; sections:
                     {ITEMS.filter((i) => sections.includes(i.id)).map((i) => {
                         const href = `${base}${i.path}`;
                         const active = i.path === "" ? pathname === base : pathname.startsWith(href);
+                        const count = counts?.[i.id] ?? 0;
                         return (
                             <li key={i.id}>
                                 <Link href={href} className={cx("block whitespace-nowrap border-b-2 px-3 py-2 text-[15px] no-underline", active ? "border-accent text-accent-strong" : "border-transparent text-ink-muted hover:text-ink")} aria-current={active ? "page" : undefined}>
                                     {i.label}
+                                    {count > 0 && (
+                                        <span className="ml-1.5 inline-block min-w-[1.5rem] rounded-full bg-warn-soft px-1.5 text-center text-xs font-semibold text-warn" data-testid={`nav-count-${i.id}`}>
+                                            {count}
+                                            <span className="sr-only"> items to review</span>
+                                        </span>
+                                    )}
                                 </Link>
                             </li>
                         );

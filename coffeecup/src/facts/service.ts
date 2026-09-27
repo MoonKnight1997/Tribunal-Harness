@@ -246,3 +246,28 @@ export async function setStructuredFact(actor: Actor, caseId: string, key: Struc
     }
     return addFact(actor, caseId, { statement: statement ?? `${key.replace(/_/g, " ")}: ${value}`, key, value, status: "confirmed", provenance: "USER_CONFIRMED" });
 }
+
+// ---------------------------------------------------------------------------
+// Evidence inbox conflict resolution (appended; see src/review)
+// ---------------------------------------------------------------------------
+
+/**
+ * "Use this value instead": confirm a proposed structured fact and supersede
+ * the currently confirmed fact(s) for the same key, so the engines see one
+ * value. Provenance follows the same rules as `confirmFact`. Without a key it
+ * behaves exactly like `confirmFact`.
+ */
+export async function adoptFact(actor: Actor, caseId: string, factId: string): Promise<FactRow> {
+    await requireCaseAccess(actor, caseId);
+    const fact = await getFact(caseId, factId);
+    if (fact.key) {
+        const db = await getDb();
+        const others = await db.select().from(facts).where(and(eq(facts.caseId, caseId), eq(facts.key, fact.key), eq(facts.status, "confirmed")));
+        const superseded = others.filter((o) => o.id !== factId);
+        for (const o of superseded) {
+            await db.update(facts).set({ status: "superseded", supersededById: factId, updatedAt: new Date() }).where(eq(facts.id, o.id));
+        }
+        if (superseded.length) await recordAudit({ userId: actor.userId, caseId, action: "fact.superseded_by_proposal", targetType: "fact", targetId: factId, details: { superseded: superseded.map((o) => o.id), key: fact.key } });
+    }
+    return confirmFact(actor, caseId, factId);
+}
