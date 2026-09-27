@@ -24,6 +24,8 @@ test.
 | Deadline engine | `legal/deadlines/engine.test.ts` | rule versioning by event date, missing dates, Acas effects, expired limits, jurisdiction differences, approximate dates |
 | Provider layer | `ai/structured.test.ts` | JSON extraction, Zod validation + retry, malformed output rejection, provider failure, routing |
 | Documents / timeline / facts | `documents/service.test.ts` | extraction, review queue, confirm/correct/reject/merge, provenance transitions, extraction failure recovery, malformed model output, isolation |
+| Evidence inbox | `review/service.test.ts` | queue over events/facts/allegations, excerpt from offsets and from quote search, word-boundary context, conflicts (differing structured fact, duplicate event, unverified quote), adopt supersedes, accept/withdraw allegation, remaining count, no confidence in payload, isolation |
+| Evidence inbox over HTTP | `app/api/cases/route.review.test.ts` | `GET /review`, `POST /allegations/:id/accept|withdraw`, `POST /facts/:id/reject|adopt`, foreign ids 404 identical to missing |
 | Processes / artifacts / Acas | `processes/service.test.ts` | state machines, Acas Code version, allegations, appeal grounds, drafting from confirmed material, staleness, Acas deadline updates, employer-policy appeal windows |
 | Claims | `claims/service.test.ts` | flag gating, deterministic triggers, element statuses, qualifying service, ERA 2025 availability, Northern Ireland, deterministic review, hallucinated fact ids, provider failure, staleness |
 | ET1 / exports / intake / payments / deletion | `et1/service.test.ts` | pack assembly, case pack, resources, triage, intake → case, webhook verification, replay, refund revocation, purge, account deletion |
@@ -47,8 +49,18 @@ payment entitlements ✔ · regulatory feature flags ✔ · provider failure ✔
 malformed structured model output ✔ · hallucinated citation/fact rejection ✔ ·
 ET1 pack assembly ✔
 
-## Browser testing
+## Browser journeys
 
-Playwright is not wired in this repository yet. The journeys run against the
-service layer, which the route handlers call directly; `npm run build`
-verifies pages and client/server boundaries compile.
+```bash
+npx playwright test                          # all specs, desktop + phone projects
+npx playwright test e2e/evidence-review.spec.ts
+```
+
+`playwright.config.ts` starts `next dev` on its own port against an in-memory
+PGlite database with the mock provider (first run compiles for about a
+minute). Two projects: desktop keyboard use and a phone viewport.
+
+| Spec | Covers |
+|---|---|
+| `e2e/smoke.spec.ts` | liveness, public start page disclaimer, sign-up |
+| `e2e/evidence-review.spec.ts` | sign up → seed a disciplinary case and upload `invite.txt` → `/review`: highlighted passage beside the item, provenance labels, `j`/`k`/`c`/`r` keyboard flow, live-region and nav count updates, allegations recorded as the employer's with the "does not mean you agree" note, completion message; phone: excerpt stacked under the item, no horizontal overflow, touch actions |

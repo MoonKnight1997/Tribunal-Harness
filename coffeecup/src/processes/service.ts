@@ -382,3 +382,37 @@ export async function getAcasProcess(caseId: string): Promise<ProcessRow | null>
     const rows = await db.select().from(processes).where(and(eq(processes.caseId, caseId), eq(processes.type, "acas_early_conciliation"))).orderBy(asc(processes.startedAt));
     return rows[rows.length - 1] ?? null;
 }
+
+// ---------------------------------------------------------------------------
+// Evidence inbox decisions on proposed allegations (appended; see src/review)
+// ---------------------------------------------------------------------------
+
+/**
+ * Record a proposed allegation as the employer's allegation (status proposed →
+ * open). Provenance stays EMPLOYER_ALLEGATION: recording what the employer says
+ * is not agreeing with it, and it never becomes a confirmed fact by itself.
+ */
+export async function acceptAllegation(actor: Actor, caseId: string, allegationId: string): Promise<AllegationRow> {
+    await requireCaseAccess(actor, caseId);
+    const existing = await getAllegation(caseId, allegationId);
+    const db = await getDb();
+    if (existing.status === "proposed") {
+        await db.update(allegations).set({ status: "open", provenance: "EMPLOYER_ALLEGATION", updatedAt: new Date() }).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId)));
+        await touchCase(caseId);
+        await recordAudit({ userId: actor.userId, caseId, action: "allegation.accepted", targetType: "allegation", targetId: allegationId });
+        await markStale(caseId, "allegations changed", ["artifacts"]);
+    }
+    return getAllegation(caseId, allegationId);
+}
+
+/** The proposal was not an allegation (or was wrong): withdraw it. The row is kept for audit. */
+export async function withdrawAllegation(actor: Actor, caseId: string, allegationId: string): Promise<AllegationRow> {
+    await requireCaseAccess(actor, caseId);
+    const existing = await getAllegation(caseId, allegationId);
+    const db = await getDb();
+    await db.update(allegations).set({ status: "withdrawn", updatedAt: new Date() }).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId)));
+    await touchCase(caseId);
+    await recordAudit({ userId: actor.userId, caseId, action: "allegation.withdrawn", targetType: "allegation", targetId: allegationId, details: { wasProposed: existing.status === "proposed" } });
+    await markStale(caseId, "allegations changed", ["artifacts"]);
+    return getAllegation(caseId, allegationId);
+}

@@ -15,20 +15,20 @@ export interface StageInfo {
     nav: NavSection[];
 }
 
-export type NavSection = "home" | "case" | "timeline" | "documents" | "process" | "acas" | "claims" | "tasks" | "exports" | "help";
+export type NavSection = "home" | "review" | "case" | "timeline" | "documents" | "process" | "acas" | "claims" | "tasks" | "exports" | "help";
 
 export const STAGES: StageInfo[] = [
-    { id: "understanding", label: "Understanding the problem", plain: "You are working out what has happened and what matters.", nav: ["home", "case", "timeline", "documents", "tasks", "help"] },
-    { id: "informal_resolution", label: "Trying to resolve it informally", plain: "You are raising the problem informally with your manager or HR.", nav: ["home", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
-    { id: "grievance", label: "Grievance", plain: "You are preparing, or have raised, a formal grievance.", nav: ["home", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
-    { id: "disciplinary", label: "Disciplinary process", plain: "Your employer has started an investigation or disciplinary process.", nav: ["home", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
-    { id: "internal_appeal", label: "Internal appeal", plain: "You are appealing a grievance or disciplinary outcome.", nav: ["home", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
-    { id: "acas_early_conciliation", label: "Acas Early Conciliation", plain: "You have contacted, or are about to contact, Acas.", nav: ["home", "case", "timeline", "documents", "process", "acas", "tasks", "exports", "help"] },
-    { id: "considering_tribunal", label: "Considering a tribunal claim", plain: "You are deciding whether to bring an Employment Tribunal claim.", nav: ["home", "case", "timeline", "documents", "process", "acas", "claims", "tasks", "exports", "help"] },
-    { id: "et1_preparation", label: "Preparing an ET1", plain: "You are gathering the information needed to complete the ET1 claim form.", nav: ["home", "case", "timeline", "documents", "process", "acas", "claims", "tasks", "exports", "help"] },
-    { id: "et1_submitted", label: "Claim submitted", plain: "Your claim has been sent to the tribunal.", nav: ["home", "case", "timeline", "documents", "acas", "claims", "tasks", "exports", "help"] },
-    { id: "resolved", label: "Resolved", plain: "The problem has been resolved or settled.", nav: ["home", "case", "timeline", "documents", "exports", "help"] },
-    { id: "closed", label: "Closed", plain: "You have closed this case.", nav: ["home", "case", "timeline", "documents", "exports", "help"] },
+    { id: "understanding", label: "Understanding the problem", plain: "You are working out what has happened and what matters.", nav: ["home", "review", "case", "timeline", "documents", "tasks", "help"] },
+    { id: "informal_resolution", label: "Trying to resolve it informally", plain: "You are raising the problem informally with your manager or HR.", nav: ["home", "review", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
+    { id: "grievance", label: "Grievance", plain: "You are preparing, or have raised, a formal grievance.", nav: ["home", "review", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
+    { id: "disciplinary", label: "Disciplinary process", plain: "Your employer has started an investigation or disciplinary process.", nav: ["home", "review", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
+    { id: "internal_appeal", label: "Internal appeal", plain: "You are appealing a grievance or disciplinary outcome.", nav: ["home", "review", "case", "timeline", "documents", "process", "tasks", "exports", "help"] },
+    { id: "acas_early_conciliation", label: "Acas Early Conciliation", plain: "You have contacted, or are about to contact, Acas.", nav: ["home", "review", "case", "timeline", "documents", "process", "acas", "tasks", "exports", "help"] },
+    { id: "considering_tribunal", label: "Considering a tribunal claim", plain: "You are deciding whether to bring an Employment Tribunal claim.", nav: ["home", "review", "case", "timeline", "documents", "process", "acas", "claims", "tasks", "exports", "help"] },
+    { id: "et1_preparation", label: "Preparing an ET1", plain: "You are gathering the information needed to complete the ET1 claim form.", nav: ["home", "review", "case", "timeline", "documents", "process", "acas", "claims", "tasks", "exports", "help"] },
+    { id: "et1_submitted", label: "Claim submitted", plain: "Your claim has been sent to the tribunal.", nav: ["home", "review", "case", "timeline", "documents", "acas", "claims", "tasks", "exports", "help"] },
+    { id: "resolved", label: "Resolved", plain: "The problem has been resolved or settled.", nav: ["home", "review", "case", "timeline", "documents", "exports", "help"] },
+    { id: "closed", label: "Closed", plain: "You have closed this case.", nav: ["home", "review", "case", "timeline", "documents", "exports", "help"] },
 ];
 
 export function stageInfo(stage: CaseStage): StageInfo {

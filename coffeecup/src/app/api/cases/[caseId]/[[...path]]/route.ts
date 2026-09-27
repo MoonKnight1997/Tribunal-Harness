@@ -12,11 +12,12 @@
  *   GET|PATCH /employment
  *   GET|POST /people, PATCH|DELETE /people/:pid
  *   GET|POST /events, PATCH|DELETE /events/:eid, POST /events/:eid/confirm|reject, POST /events/merge
- *   GET|POST /facts, POST /facts/:fid/confirm|reject|correct, PUT /facts/structured/:key
+ *   GET|POST /facts, POST /facts/:fid/confirm|reject|correct|adopt, PUT /facts/structured/:key
+ *   GET /review                                evidence inbox (proposed events, facts, allegations)
  *   GET|POST /documents (multipart), GET|PATCH|DELETE /documents/:did, GET /documents/:did/download, POST /documents/:did/reprocess
  *   GET|POST /issues, PATCH|DELETE /issues/:iid
  *   GET|POST /processes, GET|PATCH /processes/:pid, POST /processes/:pid/transition
- *   GET|POST /processes/:pid/allegations, PATCH|DELETE /allegations/:aid
+ *   GET|POST /processes/:pid/allegations, PATCH|DELETE /allegations/:aid, POST /allegations/:aid/accept|withdraw
  *   GET|POST /processes/:pid/grounds, PATCH|DELETE /grounds/:gid
  *   GET|POST /deadlines   (POST recomputes)
  *   GET|POST /tasks, PATCH|DELETE /tasks/:tid
@@ -44,6 +45,7 @@ import * as cases from "@/cases/service";
 import { buildDashboard, proposeSituationSummary, confirmSituationSummary } from "@/cases/dashboard";
 import * as timeline from "@/timeline/service";
 import * as facts from "@/facts/service";
+import { buildReviewQueue } from "@/review/service";
 import * as documents from "@/documents/service";
 import * as issues from "@/issues/service";
 import * as processes from "@/processes/service";
@@ -165,7 +167,11 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
             return json({ ok: true });
         }
         if (seg1 && seg2 === "correct" && method === "POST") return json({ fact: await facts.correctFact(actor, caseId, seg1, await body() as never) });
+        if (seg1 && seg2 === "adopt" && method === "POST") return json({ fact: await facts.adoptFact(actor, caseId, seg1) });
     }
+
+    // ── evidence inbox ──────────────────────────────────────────────────
+    if (seg0 === "review" && !seg1 && method === "GET") return json(await buildReviewQueue(actor, caseId));
 
     // ── documents ───────────────────────────────────────────────────────
     if (seg0 === "documents") {
@@ -235,6 +241,8 @@ async function dispatch(request: NextRequest, ctx: Params): Promise<NextResponse
         if (seg1 && seg2 === "grounds" && method === "POST") return json({ ground: await processes.addAppealGround(actor, caseId, seg1, await body() as never) }, { status: 201 });
     }
     if (seg0 === "allegations" && seg1) {
+        if (seg2 === "accept" && method === "POST") return json({ allegation: await processes.acceptAllegation(actor, caseId, seg1) });
+        if (seg2 === "withdraw" && method === "POST") return json({ allegation: await processes.withdrawAllegation(actor, caseId, seg1) });
         if (method === "PATCH") return json({ allegation: await processes.updateAllegation(actor, caseId, seg1, await body() as never) });
         if (method === "DELETE") {
             await processes.deleteAllegation(actor, caseId, seg1);
