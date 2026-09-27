@@ -128,7 +128,13 @@ describe("Acas workspace and deadlines", () => {
         await updateProcessData(alice, c.id, acas.id, { notificationDate: "2026-04-01", reference: "R123456/26/01" });
         expect((await getStructuredFact(c.id, "acas_day_a"))?.value).toBe("2026-04-01");
         dl = await listDeadlines(alice, c.id);
-        expect(dl.find((d) => d.kind === "et_time_limit:unfair_dismissal")!.explanation.missingInformation).toContain("Acas certificate date (Day B).");
+        // Day A known, Day B not: the clock is paused and the extended limit is
+        // not calculable (ERA 1996 s207B). Never "calculated" or "expired" here.
+        const pending = dl.find((d) => d.kind === "et_time_limit:unfair_dismissal")!;
+        expect(pending.status).toBe("pending_acas");
+        expect(pending.calculatedDate).toBeNull();
+        expect(pending.explanation.unadjusted?.date).toBe("2026-06-02");
+        expect(pending.explanation.missingInformation).toContain("The date you received your Acas certificate (Day B).");
 
         await updateProcessData(alice, c.id, acas.id, { certificateIssueDate: "2026-04-29", certificateNumber: "R123456/26/01", certificateStatus: "issued" });
         dl = await listDeadlines(alice, c.id);
@@ -136,6 +142,8 @@ describe("Acas workspace and deadlines", () => {
         // 2 Jun + 28 days paused = 30 Jun; one month from Day B = 29 May → later wins.
         expect(after.calculatedDate).toBe("2026-06-30");
         expect(after.explanation.acasEffect).toMatch(/28 days/);
+        // Only the issue date is known, so Day B is taken as that date (conservative) and says so.
+        expect(after.explanation.acas?.dayBBasis).toBe("issue_date_assumed");
         expect(after.explanation.source.reference).toBe("ERA 1996 s111(2)");
 
         await expect(updateProcessData(alice, c.id, acas.id, { certificateIssueDate: "next week" })).rejects.toThrow(/YYYY-MM-DD/);

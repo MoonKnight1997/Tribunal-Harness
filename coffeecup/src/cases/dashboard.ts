@@ -9,7 +9,7 @@ import { listConfirmedEvents, listProposedEvents } from "@/timeline/service";
 import { listConfirmedFacts, listFacts } from "@/facts/service";
 import { listDocuments } from "@/documents/service";
 import { listProcesses } from "@/processes/service";
-import { listDeadlines } from "@/legal/deadlines/case-deadlines";
+import { listDeadlines, presentDeadline } from "@/legal/deadlines/case-deadlines";
 import { listTasks } from "@/tasks/service";
 import { listArtifacts } from "@/artifacts/service";
 import { listIssues } from "@/issues/service";
@@ -28,7 +28,7 @@ import { ValidationError } from "@/lib/errors";
 export interface Dashboard {
     case: { id: string; title: string; stage: string; stageLabel: string; stagePlain: string; jurisdiction: string; status: string; summaryStale: boolean };
     situation: { summary: string | null; stillUnclear: string[] };
-    important: Array<{ label: string; date: string | null; status: string; daysAway: number | null; headline: string }>;
+    important: Array<{ label: string; date: string | null; status: string; daysAway: number | null; headline: string; precision: string | null; unadjustedDate: string | null }>;
     nextSteps: Array<{ id: string; title: string; kind: string; dueDate: string | null; systemKey: string | null }>;
     recentActivity: Array<{ kind: "document" | "event" | "artifact"; title: string; at: string; status?: string }>;
     missingInformation: string[];
@@ -40,7 +40,7 @@ export interface Dashboard {
     entitlements: { paymentsEnabled: boolean; casePass: boolean; claimPack: boolean };
 }
 
-export async function buildDashboard(actor: Actor, caseId: string): Promise<Dashboard> {
+export async function buildDashboard(actor: Actor, caseId: string, opts?: { today?: string }): Promise<Dashboard> {
     const c = await requireCaseAccess(actor, caseId);
     const employment = await getEmployment(actor, caseId);
     const [events, proposedEvents, facts, allFacts, docs, processes, deadlines, tasks, artifacts, issues] = await Promise.all([
@@ -50,12 +50,12 @@ export async function buildDashboard(actor: Actor, caseId: string): Promise<Dash
         listFacts(actor, caseId, { status: "proposed" }),
         listDocuments(actor, caseId),
         listProcesses(actor, caseId),
-        listDeadlines(actor, caseId),
+        listDeadlines(actor, caseId, { today: opts?.today }),
         listTasks(actor, caseId),
         listArtifacts(actor, caseId),
         listIssues(actor, caseId),
     ]);
-    const today = todayISO();
+    const today = opts?.today ?? todayISO();
     const missing = new Set<string>();
     if (!employment.employerName) missing.add("Employer name.");
     if (!employment.employmentStatus || employment.employmentStatus === "unsure") missing.add("Whether you are an employee, a worker or self-employed.");
@@ -65,17 +65,28 @@ export async function buildDashboard(actor: Actor, caseId: string): Promise<Dash
     if (events.length === 0) missing.add("At least one confirmed event on the timeline.");
     if (issues.length === 0) missing.add("What the problem is about and what outcome you want.");
 
+    // listDeadlines already applies presentDeadline for `today`; re-apply so a
+    // caller passing rows from elsewhere gets the same derivation.
     const important = deadlines
-        .map((d) => {
-            const daysAway = d.calculatedDate ? Math.round((Date.parse(`${d.calculatedDate}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / 86_400_000) : null;
-            const headline = !d.calculatedDate
-                ? `${d.label}: needs a date before it can be worked out.`
-                : d.status === "expired"
-                    ? `${d.label}: appears to have passed on ${d.calculatedDate}.`
-                    : `${d.label}: ${d.calculatedDate}${daysAway !== null ? ` (${daysAway} days)` : ""}.`;
-            return { label: d.label, date: d.calculatedDate, status: d.status, daysAway, headline };
+        .map((raw) => {
+            const d = presentDeadline(raw, today);
+            const precision = d.explanation.trigger?.precision ?? null;
+            const approx = precision && precision !== "exact" ? " (approximate date)" : "";
+            const unadjustedDate = d.explanation.unadjusted?.date ?? null;
+            let headline: string;
+            if (d.status === "pending_acas") {
+                headline = `${d.label}: paused for Acas conciliation since ${d.explanation.acas?.dayA ?? "Day A"}. The extended deadline can't be worked out until you add the certificate date; it will be no earlier than ${unadjustedDate ?? "the unadjusted date"}.${approx}`;
+            } else if (d.status === "uncertain" || !d.calculatedDate) {
+                const missing = d.explanation.missingInformation[0] ?? "a date";
+                headline = `${d.label}: can't be worked out yet. Needed: ${missing}`;
+            } else if (d.status === "expired") {
+                headline = `${d.label}: appears to have passed on ${d.calculatedDate}.${approx}`;
+            } else {
+                headline = `${d.label}: ${d.calculatedDate}${d.daysRemaining !== null ? ` (${d.daysRemaining} days)` : ""}.${approx}`;
+            }
+            return { label: d.label, date: d.calculatedDate, status: d.status, daysAway: d.daysRemaining, headline, precision, unadjustedDate };
         })
-        .sort((a, b) => (a.date ?? "9999") < (b.date ?? "9999") ? -1 : 1);
+        .sort((a, b) => ((a.date ?? a.unadjustedDate ?? "9999") < (b.date ?? b.unadjustedDate ?? "9999") ? -1 : 1));
 
     const recent = [
         ...docs.slice(0, 5).map((d) => ({ kind: "document" as const, title: d.filename, at: d.uploadedAt.toISOString(), status: d.extractionStatus })),

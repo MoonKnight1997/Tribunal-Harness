@@ -111,23 +111,109 @@ export async function listTransitions(actor: Actor, caseId: string, processId: s
     return db.select().from(processTransitions).where(eq(processTransitions.processId, processId)).orderBy(asc(processTransitions.occurredAt));
 }
 
-/** Shallow-merge structured process data. Acas dates are mirrored to facts. */
+// ---------------------------------------------------------------------------
+// Acas dates: validation shared with intake
+// ---------------------------------------------------------------------------
+
+/** Empty strings from forms mean "cleared"; store null. */
+const optionalDate = z.preprocess((v) => (v === "" ? null : v), isoDate.nullable().optional());
+
+/**
+ * Acas Early Conciliation date fields (ERA 1996 s207B(2)):
+ * - notificationDate = Day A (the day Acas received the notification);
+ * - certificateIssueDate = the date on the certificate (NOT Day B by itself);
+ * - certificateReceivedDate = Day B when the worker knows it;
+ * - certificateDeliveryMethod drives deemed receipt (email → sent date; post
+ *   → we still use the issue date conservatively rather than invent a delay).
+ */
+export const AcasDatesInput = z.object({
+    notificationDate: optionalDate,
+    certificateIssueDate: optionalDate,
+    certificateReceivedDate: optionalDate,
+    certificateDeliveryMethod: z.preprocess((v) => (v === "" ? null : v), z.enum(["email", "post", "unknown"]).nullable().optional()),
+});
+export type AcasDatesInputType = z.input<typeof AcasDatesInput>;
+
+export const ACAS_DATE_FIELDS = ["notificationDate", "certificateIssueDate", "certificateReceivedDate", "certificateDeliveryMethod"] as const;
+
+/**
+ * Reject reversed or inconsistent Acas dates at input. The engine also
+ * refuses to clamp them, but the user should be told at the point of entry.
+ */
+export function validateAcasDates(d: { notificationDate?: string | null; certificateIssueDate?: string | null; certificateReceivedDate?: string | null }): void {
+    const a = d.notificationDate ?? null;
+    const issued = d.certificateIssueDate ?? null;
+    const received = d.certificateReceivedDate ?? null;
+    if ((issued || received) && !a) {
+        throw new ValidationError("Please enter the date Acas received your notification (Day A) before the certificate dates. Day B cannot come before Day A.");
+    }
+    if (a && issued && issued < a) throw new ValidationError(`The certificate date (${issued}) cannot be before the date Acas received your notification (${a}).`);
+    if (a && received && received < a) throw new ValidationError(`The date you received the certificate (${received}) cannot be before the date Acas received your notification (${a}).`);
+    if (issued && received && received < issued) throw new ValidationError(`The date you received the certificate (${received}) cannot be before the date on the certificate (${issued}).`);
+}
+
+/**
+ * Day B for the engine, from Acas process data. Receipt date when the worker
+ * gave it; otherwise the issue date (conservative: never later than the true
+ * Day B). Email delivery makes the issue date a deemed receipt date.
+ */
+export function resolveAcasDayB(acas: AcasProcessData): { dayB: string | null; basis: "received" | "issue_date_assumed" | "deemed_received" | "pending" | "none"; statement: string | null } {
+    if (acas.certificateReceivedDate) return { dayB: acas.certificateReceivedDate, basis: "received", statement: `I received my Acas certificate on ${acas.certificateReceivedDate} (Day B).` };
+    if (acas.certificateIssueDate) {
+        if (acas.certificateDeliveryMethod === "email") return { dayB: acas.certificateIssueDate, basis: "deemed_received", statement: `My Acas certificate is dated ${acas.certificateIssueDate} and was sent by email, so it is treated as received that day (Day B).` };
+        return { dayB: acas.certificateIssueDate, basis: "issue_date_assumed", statement: `My Acas certificate is dated ${acas.certificateIssueDate}; the date I received it is not recorded, so this is used as Day B.` };
+    }
+    if (acas.notificationDate) return { dayB: null, basis: "pending", statement: null };
+    return { dayB: null, basis: "none", statement: null };
+}
+
+const APPEAL_WINDOW_MAX_DAYS = 60;
+
+/**
+ * Shallow-merge structured process data. Acas dates are validated and
+ * mirrored to facts (acas_day_a / acas_day_b); outcome dates and appeal
+ * windows mark deadlines stale so the employer-policy appeal deadline is
+ * recomputed.
+ */
 export async function updateProcessData(actor: Actor, caseId: string, processId: string, patch: Record<string, unknown>): Promise<ProcessRow> {
     const proc = await getProcess(actor, caseId, processId);
     const db = await getDb();
     for (const [k, v] of Object.entries(patch)) {
         if (/date$/i.test(k) && typeof v === "string" && v !== "" && !isIsoDate(v)) throw new ValidationError(`"${k}" must be a date in YYYY-MM-DD format.`);
     }
-    const data = { ...(proc.data as Record<string, unknown>), ...patch } as ProcessData;
+    if ("appealWindowDays" in patch && patch.appealWindowDays !== null && patch.appealWindowDays !== undefined) {
+        const n = patch.appealWindowDays;
+        if (typeof n !== "number" || !Number.isInteger(n) || n < 1 || n > APPEAL_WINDOW_MAX_DAYS) {
+            throw new ValidationError(`The number of days allowed to appeal must be a whole number between 1 and ${APPEAL_WINDOW_MAX_DAYS} (check the outcome letter).`);
+        }
+    }
+
+    const before = proc.data as Record<string, unknown>;
+    let effectivePatch: Record<string, unknown> = patch;
+    const acasDatesTouched = proc.type === "acas_early_conciliation" && ACAS_DATE_FIELDS.some((f) => f in patch);
+    if (proc.type === "acas_early_conciliation") {
+        const parsed = AcasDatesInput.safeParse(patch);
+        if (!parsed.success) throw new ValidationError("Please check the Acas dates.", parsed.error.flatten());
+        const normalised: Record<string, unknown> = {};
+        for (const f of ACAS_DATE_FIELDS) if (f in patch) normalised[f] = parsed.data[f] ?? null;
+        effectivePatch = { ...patch, ...normalised };
+        validateAcasDates({ ...(before as AcasProcessData), ...(normalised as Partial<AcasProcessData>) });
+    }
+
+    const data = { ...before, ...effectivePatch } as ProcessData;
     await db.update(processes).set({ data, updatedAt: new Date() }).where(eq(processes.id, processId));
     await touchCase(caseId);
     await recordAudit({ userId: actor.userId, caseId, action: "process.data_updated", targetType: "process", targetId: processId, details: { fields: Object.keys(patch) } });
 
-    if (proc.type === "acas_early_conciliation") {
+    if (proc.type === "acas_early_conciliation" && acasDatesTouched) {
         const acas = data as AcasProcessData;
-        if ("notificationDate" in patch) await setStructuredFact(actor, caseId, "acas_day_a", acas.notificationDate || null, acas.notificationDate ? `Acas Early Conciliation notified on ${acas.notificationDate} (Day A).` : undefined);
-        if ("certificateIssueDate" in patch) await setStructuredFact(actor, caseId, "acas_day_b", acas.certificateIssueDate || null, acas.certificateIssueDate ? `Acas certificate issued on ${acas.certificateIssueDate} (Day B).` : undefined);
-        if ("notificationDate" in patch || "certificateIssueDate" in patch) await markStale(caseId, "Acas dates changed", ["deadlines", "claims", "artifacts"]);
+        await setStructuredFact(actor, caseId, "acas_day_a", acas.notificationDate || null, acas.notificationDate ? `Acas Early Conciliation notified on ${acas.notificationDate} (Day A).` : undefined);
+        const dayB = resolveAcasDayB(acas);
+        await setStructuredFact(actor, caseId, "acas_day_b", dayB.dayB, dayB.statement ?? undefined);
+        await markStale(caseId, "Acas dates changed", ["deadlines", "claims", "artifacts"]);
+    }
+    if ((proc.type === "grievance" || proc.type === "disciplinary") && (("outcomeDate" in patch && patch.outcomeDate !== before.outcomeDate) || ("appealWindowDays" in patch && patch.appealWindowDays !== before.appealWindowDays))) {
+        await markStale(caseId, "outcome date or appeal window changed", ["deadlines", "artifacts"]);
     }
     await markStale(caseId, "process details changed", ["artifacts"]);
     return getProcess(actor, caseId, processId);

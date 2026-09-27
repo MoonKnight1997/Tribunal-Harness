@@ -16,8 +16,22 @@ export default async function AcasPage({ params }: { params: Promise<{ caseId: s
     const et = deadlines.filter((d) => d.kind.startsWith("et_time_limit"));
     return (
         <div>
-            <PageHeader title="Acas Early Conciliation" intro="Before most tribunal claims you must notify Acas. Recording your Acas dates here updates your time limits automatically." />
-            <Acas caseId={caseId} process={proc ? { id: proc.id, state: proc.state, data: proc.data as AcasProcessData } : null} states={ACAS_STATES} timeLimits={et.map((d) => ({ label: d.label, date: d.calculatedDate, status: d.status, acasEffect: d.explanation.acasEffect, missing: d.explanation.missingInformation }))} />
+            <PageHeader title="Acas Early Conciliation" intro="Before most tribunal claims you must notify Acas. Recording your Acas dates here updates your time limits automatically. Day A is the day Acas received your notification; Day B is the day you received the certificate." />
+            <Acas
+                caseId={caseId}
+                process={proc ? { id: proc.id, state: proc.state, data: proc.data as AcasProcessData } : null}
+                states={ACAS_STATES}
+                timeLimits={et.map((d) => ({
+                    label: d.label,
+                    date: d.calculatedDate,
+                    status: d.status,
+                    acasEffect: d.explanation.acasEffect,
+                    missing: d.explanation.missingInformation,
+                    unadjustedDate: d.explanation.unadjusted?.date ?? null,
+                    dayBBasis: d.explanation.acas?.dayBBasis ?? null,
+                    triggerPrecision: d.explanation.trigger?.precision ?? null,
+                }))}
+            />
         </div>
     );
 }

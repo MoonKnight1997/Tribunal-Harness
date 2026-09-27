@@ -74,12 +74,18 @@ export function renderCasePackMarkdown(pack: CasePack): string {
     L.push("## Employment", "", `- Employer: ${pack.employment.employerName ?? "[not recorded]"}`, `- Job title: ${pack.employment.jobTitle ?? "[not recorded]"}`, `- Status: ${pack.employment.employmentStatus ?? "[not recorded]"}`, `- Start: ${formatLongDate(pack.employment.startDate)}`, `- End: ${pack.employment.stillEmployed ? "still employed" : formatLongDate(pack.employment.endDate)}`, "");
     if (pack.people.length) L.push("## People", "", ...pack.people.map((p) => `- ${p.name} (${p.role}${p.organisation ? `, ${p.organisation}` : ""})`), "");
     if (pack.issues.length) L.push("## Issues", "", ...pack.issues.map((i) => `- **${i.title}** (${i.category})${i.description ? `: ${i.description}` : ""}${i.desiredResolution ? ` — wanted: ${i.desiredResolution}` : ""}`), "");
-    L.push("## Important dates", "");
+    L.push("## Important dates", "", `_Statuses as at ${pack.exportedAt.slice(0, 10)}. "pending_acas" means the clock is paused for Acas conciliation and the extended deadline cannot be worked out yet._`, "");
     for (const d of pack.deadlines) {
-        L.push(`- **${d.label}**: ${d.calculatedDate ?? "not yet calculable"} (${d.status})`);
-        L.push(`  - Trigger: ${d.explanation.triggerDescription}${d.explanation.triggerDate ? ` — ${d.explanation.triggerDate}` : ""}`);
+        const t = d.explanation.trigger;
+        const precision = t?.precision && t.precision !== "exact" ? ` (${t.precision} date)` : "";
+        const headline = d.status === "pending_acas" ? `paused for Acas conciliation — no earlier than ${d.explanation.unadjusted?.date ?? "the unadjusted date"}` : d.calculatedDate ?? "not yet calculable";
+        L.push(`- **${d.label}**: ${headline} (${d.status})${precision}`);
+        L.push(`  - Trigger: ${d.explanation.triggerDescription}${d.explanation.triggerDate ? ` — ${d.explanation.triggerDate}` : ""}${t?.precision ? `; precision: ${t.precision}` : ""}${t?.source ? `; from ${t.source}` : ""}${t && !t.confirmed ? "; not confirmed" : ""}`);
+        if (t?.conflictingValues?.length) L.push(`  - Conflicting dates recorded: ${t.conflictingValues.join(", ")}`);
         for (const a of d.explanation.assumptions) L.push(`  - Assumes: ${a}`);
         if (d.explanation.acasEffect) L.push(`  - Acas: ${d.explanation.acasEffect}`);
+        if (d.explanation.acas && d.explanation.acas.dayBBasis !== "none") L.push(`  - Acas basis: Day A ${d.explanation.acas.dayA ?? "not recorded"}; Day B ${d.explanation.acas.dayB ?? "not yet known"} (${d.explanation.acas.dayBBasis.replace(/_/g, " ")})${d.explanation.acas.note ? ` — ${d.explanation.acas.note}` : ""}`);
+        if (d.explanation.unadjusted) L.push(`  - Without Acas: ${d.explanation.unadjusted.note}`);
         L.push(`  - Source: ${d.explanation.source.title} (${d.explanation.source.reference}, version ${d.explanation.source.version})`);
         for (const w of d.explanation.warnings) L.push(`  - Warning: ${w}`);
         for (const m of d.explanation.missingInformation) L.push(`  - Missing: ${m}`);

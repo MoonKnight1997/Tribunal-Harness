@@ -29,6 +29,9 @@ import { requireCaseAccess, touchCase, type Actor, type CaseRow } from "./access
 import { stageForEntryRoute } from "./stages";
 import { markStale } from "./staleness";
 
+/** Precision values for employment dates (same set as facts.valuePrecision). */
+const DATE_PRECISIONS = ["exact", "approximate", "month", "year"] as const;
+
 const isoDate = z.string().refine(isIsoDate, "Expected a date in YYYY-MM-DD format");
 
 export const CreateCaseInput = z.object({
@@ -162,7 +165,11 @@ export const EmploymentInput = z.object({
     jobTitle: z.string().trim().max(200).nullable().optional(),
     employmentStatus: z.enum(EMPLOYMENT_STATUSES).nullable().optional(),
     startDate: isoDate.nullable().optional(),
+    /** Precision of startDate as the user gave it. Never inferred. */
+    startDatePrecision: z.enum(DATE_PRECISIONS).optional(),
     endDate: isoDate.nullable().optional(),
+    /** Precision of endDate as the user gave it; the deadline engine carries it into its explanation. */
+    endDatePrecision: z.enum(DATE_PRECISIONS).optional(),
     stillEmployed: z.boolean().nullable().optional(),
     payAmount: z.string().trim().max(50).nullable().optional(),
     payPeriod: z.string().trim().max(50).nullable().optional(),
@@ -199,10 +206,14 @@ export async function updateEmployment(actor: Actor, caseId: string, raw: z.inpu
     await touchCase(caseId);
     await recordAudit({ userId: actor.userId, caseId, action: "employment.updated", details: { fields: Object.keys(input) } });
 
-    // Date changes invalidate downstream calculations (see staleness.ts).
+    // Date, precision and status changes invalidate downstream calculations
+    // (see DEADLINE_INPUTS.employmentFields in staleness.ts).
     const dateChanged =
         (input.startDate !== undefined && input.startDate !== before.startDate) ||
         (input.endDate !== undefined && input.endDate !== before.endDate) ||
+        (input.startDatePrecision !== undefined && input.startDatePrecision !== before.startDatePrecision) ||
+        (input.endDatePrecision !== undefined && input.endDatePrecision !== before.endDatePrecision) ||
+        (input.stillEmployed !== undefined && input.stillEmployed !== before.stillEmployed) ||
         (input.employmentStatus !== undefined && input.employmentStatus !== before.employmentStatus);
     if (dateChanged) {
         await markStale(caseId, "employment dates or status changed", ["deadlines", "claims", "artifacts", "summary"]);

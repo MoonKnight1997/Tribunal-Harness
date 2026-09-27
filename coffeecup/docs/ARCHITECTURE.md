@@ -56,14 +56,19 @@ Facts and events carry `provenance` and `status`. Pipelines write
 
 `cases/staleness.ts` is the dependency map. A changed employment date or
 structured fact invalidates deadlines, claims, artifacts and the summary; a
-changed event invalidates claims, artifacts and summary; Acas dates invalidate
-deadlines, claims and artifacts. Regeneration is explicit.
+changed event invalidates claims, artifacts and summary; Acas dates, process
+outcome dates and appeal windows invalidate deadlines. `DEADLINE_INPUTS` in
+that file lists every input the deadline engine reads. Regeneration is
+explicit, except deadlines: `listDeadlines` recomputes when any row is stale or
+was computed for a different day, and derives `expired` from today's date.
 
 ## Deterministic core
 
 Time limits, qualifying service, Acas effect, appeal windows and claim
 availability are computed by code from structured data with versioned rules.
-The model never calculates a date.
+The model never calculates a date. Missing or conflicting triggers give
+`uncertain`; Acas Day A without Day B gives `pending_acas` with the unadjusted
+date as a floor ("no earlier than"), never a calculated or expired date.
 
 ## Model layer
 

@@ -11,10 +11,10 @@
  * deadline and claim engines can read them without parsing prose.
  */
 
-import { and, desc, eq } from "drizzle-orm";
+import { and, desc, eq, ne } from "drizzle-orm";
 import { z } from "zod";
 import { getDb } from "@/db/client";
-import { facts, PROVENANCES, type Provenance } from "@/db/schema";
+import { facts, PROVENANCES, type DatePrecision, type Provenance } from "@/db/schema";
 import { newId } from "@/lib/ids";
 import { ValidationError } from "@/lib/errors";
 import { isIsoDate } from "@/lib/dates";
@@ -45,6 +45,9 @@ export type StructuredFactKey = (typeof STRUCTURED_FACT_KEYS)[number];
 
 const DATE_KEYS = new Set<string>(STRUCTURED_FACT_KEYS);
 
+/** Precision of a structured date. Mirrors the `DatePrecision` type in the schema. */
+export const DATE_PRECISIONS = ["exact", "approximate", "month", "year"] as const satisfies readonly DatePrecision[];
+
 export const FactInput = z.object({
     statement: z.string().trim().min(3).max(4000),
     provenance: z.enum(PROVENANCES).default("USER_ALLEGATION"),
@@ -53,6 +56,8 @@ export const FactInput = z.object({
     confidence: z.number().int().min(0).max(100).nullable().optional(),
     key: z.string().trim().max(80).nullable().optional(),
     value: z.string().trim().max(400).nullable().optional(),
+    /** Precision of a structured date value; defaults to exact only when the caller says nothing. */
+    precision: z.enum(DATE_PRECISIONS).optional(),
     sourceDocumentId: z.string().nullable().optional(),
     sourceEventId: z.string().nullable().optional(),
     issueId: z.string().nullable().optional(),
@@ -95,12 +100,13 @@ export async function addFact(actor: Actor, caseId: string, raw: z.input<typeof 
         confidence: input.confidence ?? null,
         key: input.key ?? null,
         value: input.value ?? null,
+        valuePrecision: input.precision ?? "exact",
         sourceDocumentId: input.sourceDocumentId ?? null,
         sourceEventId: input.sourceEventId ?? null,
         issueId: input.issueId ?? null,
     });
     await touchCase(caseId);
-    await recordAudit({ userId: actor.userId, caseId, action: "fact.added", targetType: "fact", targetId: id, details: { provenance, status: input.status, key: input.key ?? null } });
+    await recordAudit({ userId: actor.userId, caseId, action: "fact.added", targetType: "fact", targetId: id, details: { provenance, status: input.status, key: input.key ?? null, precision: input.precision ?? "exact" } });
     if (input.status === "confirmed") await markStale(caseId, "a fact was added", staleKindsForFactKey(input.key));
     return getFact(caseId, id);
 }
@@ -150,6 +156,11 @@ export async function listConfirmedFacts(caseId: string): Promise<FactRow[]> {
     return db.select().from(facts).where(and(eq(facts.caseId, caseId), eq(facts.status, "confirmed"))).orderBy(facts.createdAt);
 }
 
+/**
+ * The newest confirmed row for a structured key. Kept for compatibility; the
+ * deadline engine uses `getStructuredFactState`, which refuses to pick one of
+ * several competing confirmed values by recency.
+ */
 export async function getStructuredFact(caseId: string, key: StructuredFactKey): Promise<FactRow | null> {
     const db = await getDb();
     const rows = await db
@@ -161,15 +172,68 @@ export async function getStructuredFact(caseId: string, key: StructuredFactKey):
     return rows[0] ?? null;
 }
 
+export interface StructuredFactState {
+    /** The single confirmed value, or null when none is recorded or when confirmed rows disagree. */
+    value: string | null;
+    precision: DatePrecision | null;
+    /** True when exactly one distinct confirmed value exists. */
+    confirmed: boolean;
+    factId: string | null;
+    /** Distinct confirmed values when more than one exists (the user must resolve them). */
+    conflictingValues: string[];
+}
+
+/**
+ * What the engines may rely on for a structured key: one confirmed value with
+ * its precision, or an explicit conflict. Never silently takes the newest.
+ */
+export async function getStructuredFactState(caseId: string, key: StructuredFactKey): Promise<StructuredFactState> {
+    const db = await getDb();
+    const rows = await db
+        .select()
+        .from(facts)
+        .where(and(eq(facts.caseId, caseId), eq(facts.key, key), eq(facts.status, "confirmed")))
+        .orderBy(desc(facts.updatedAt));
+    const distinct = [...new Set(rows.map((r) => r.value).filter((v): v is string => !!v))];
+    if (distinct.length === 0) return { value: null, precision: null, confirmed: false, factId: null, conflictingValues: [] };
+    if (distinct.length > 1) return { value: null, precision: null, confirmed: false, factId: null, conflictingValues: distinct.sort() };
+    const row = rows.find((r) => r.value === distinct[0])!;
+    return { value: row.value, precision: row.valuePrecision, confirmed: true, factId: row.id, conflictingValues: [] };
+}
+
+/**
+ * Confirm a proposed fact. If another confirmed row exists for the same
+ * structured key with the SAME value, the older row is superseded by this one
+ * so identical confirmations do not pile up. If the values DIFFER, both are
+ * left confirmed and the engines see a conflict the user must resolve; the
+ * code never picks one.
+ */
 export async function confirmFact(actor: Actor, caseId: string, factId: string): Promise<FactRow> {
     await requireCaseAccess(actor, caseId);
     const fact = await getFact(caseId, factId);
     const db = await getDb();
     const provenance: Provenance =
         fact.provenance === "DOCUMENT_EXTRACTED" ? "DOCUMENT_CONFIRMED" : fact.provenance === "EMPLOYER_ALLEGATION" ? "EMPLOYER_ALLEGATION" : "USER_CONFIRMED";
-    await db.update(facts).set({ status: "confirmed", provenance, updatedAt: new Date() }).where(eq(facts.id, factId));
+    const supersededIds: string[] = [];
+    let conflicting: string[] = [];
+    await db.transaction(async (tx) => {
+        await tx.update(facts).set({ status: "confirmed", provenance, updatedAt: new Date() }).where(eq(facts.id, factId));
+        if (fact.key && fact.value) {
+            const others = await tx
+                .select()
+                .from(facts)
+                .where(and(eq(facts.caseId, caseId), eq(facts.key, fact.key), eq(facts.status, "confirmed"), ne(facts.id, factId)));
+            for (const o of others) {
+                if (o.value === fact.value) {
+                    await tx.update(facts).set({ status: "superseded", supersededById: factId, updatedAt: new Date() }).where(eq(facts.id, o.id));
+                    supersededIds.push(o.id);
+                }
+            }
+            conflicting = [...new Set(others.filter((o) => o.value !== fact.value).map((o) => o.value).filter((v): v is string => !!v))];
+        }
+    });
     await touchCase(caseId);
-    await recordAudit({ userId: actor.userId, caseId, action: "fact.confirmed", targetType: "fact", targetId: factId, details: { from: fact.provenance, to: provenance } });
+    await recordAudit({ userId: actor.userId, caseId, action: "fact.confirmed", targetType: "fact", targetId: factId, details: { from: fact.provenance, to: provenance, key: fact.key, superseded: supersededIds, conflictingValues: conflicting } });
     await markStale(caseId, "a fact was confirmed", staleKindsForFactKey(fact.key));
     return getFact(caseId, factId);
 }
@@ -186,14 +250,15 @@ export async function rejectFact(actor: Actor, caseId: string, factId: string): 
 export const CorrectFactInput = z.object({
     statement: z.string().trim().min(3).max(4000).optional(),
     value: z.string().trim().max(400).nullable().optional(),
+    precision: z.enum(DATE_PRECISIONS).optional(),
     disputed: z.boolean().optional(),
 });
 
 /**
  * Correct a fact. The old row is marked superseded (kept for audit) and a new
- * confirmed row with USER_CONFIRMED provenance replaces it. Downstream
- * conclusions are marked stale. A known-wrong extraction is never kept live
- * merely because generated output already used it.
+ * confirmed row with USER_CONFIRMED provenance replaces it, atomically.
+ * Downstream conclusions are marked stale. A known-wrong extraction is never
+ * kept live merely because generated output already used it.
  */
 export async function correctFact(actor: Actor, caseId: string, factId: string, raw: z.input<typeof CorrectFactInput>): Promise<FactRow> {
     await requireCaseAccess(actor, caseId);
@@ -202,47 +267,85 @@ export async function correctFact(actor: Actor, caseId: string, factId: string, 
     const old = await getFact(caseId, factId);
     const value = parsed.data.value !== undefined ? parsed.data.value : old.value;
     validateKeyValue(old.key, value);
+    const precision: DatePrecision = parsed.data.precision ?? old.valuePrecision;
     const db = await getDb();
     const id = newId();
-    await db.insert(facts).values({
-        id,
-        caseId,
-        statement: parsed.data.statement ?? old.statement,
-        provenance: "USER_CONFIRMED",
-        status: "confirmed",
-        disputed: parsed.data.disputed ?? old.disputed,
-        confidence: null,
-        key: old.key,
-        value,
-        sourceDocumentId: old.sourceDocumentId,
-        sourceEventId: old.sourceEventId,
-        issueId: old.issueId,
+    await db.transaction(async (tx) => {
+        await tx.insert(facts).values({
+            id,
+            caseId,
+            statement: parsed.data.statement ?? old.statement,
+            provenance: "USER_CONFIRMED",
+            status: "confirmed",
+            disputed: parsed.data.disputed ?? old.disputed,
+            confidence: null,
+            key: old.key,
+            value,
+            valuePrecision: precision,
+            sourceDocumentId: old.sourceDocumentId,
+            sourceEventId: old.sourceEventId,
+            issueId: old.issueId,
+        });
+        await tx.update(facts).set({ status: "superseded", supersededById: id, updatedAt: new Date() }).where(eq(facts.id, factId));
     });
-    await db.update(facts).set({ status: "superseded", supersededById: id, updatedAt: new Date() }).where(eq(facts.id, factId));
     await touchCase(caseId);
-    await recordAudit({ userId: actor.userId, caseId, action: "fact.corrected", targetType: "fact", targetId: id, details: { superseded: factId, key: old.key } });
+    await recordAudit({ userId: actor.userId, caseId, action: "fact.corrected", targetType: "fact", targetId: id, details: { superseded: factId, key: old.key, precision } });
     await markStale(caseId, `fact corrected${old.key ? ` (${old.key})` : ""}`, staleKindsForFactKey(old.key));
     return getFact(caseId, id);
 }
 
 /**
  * Upsert a structured fact from a form (e.g. the Acas workspace date fields).
- * Supersedes any previous confirmed value for the key.
+ * Supersedes EVERY previous confirmed row for the key in one transaction (so
+ * it also resolves a conflict), and records the precision the user gave.
  */
-export async function setStructuredFact(actor: Actor, caseId: string, key: StructuredFactKey, value: string | null, statement?: string): Promise<FactRow | null> {
+export async function setStructuredFact(actor: Actor, caseId: string, key: StructuredFactKey, value: string | null, statement?: string, precision?: DatePrecision): Promise<FactRow | null> {
     await requireCaseAccess(actor, caseId);
-    const existing = await getStructuredFact(caseId, key);
+    if (value !== null) validateKeyValue(key, value);
+    const db = await getDb();
+    const existingRows = await db
+        .select()
+        .from(facts)
+        .where(and(eq(facts.caseId, caseId), eq(facts.key, key), eq(facts.status, "confirmed")))
+        .orderBy(desc(facts.updatedAt));
+    const wantedPrecision: DatePrecision = precision ?? "exact";
+
     if (value === null) {
-        if (existing) {
-            const db = await getDb();
-            await db.update(facts).set({ status: "superseded", updatedAt: new Date() }).where(eq(facts.id, existing.id));
+        if (existingRows.length) {
+            await db.transaction(async (tx) => {
+                for (const r of existingRows) await tx.update(facts).set({ status: "superseded", updatedAt: new Date() }).where(eq(facts.id, r.id));
+            });
+            await touchCase(caseId);
+            await recordAudit({ userId: actor.userId, caseId, action: "fact.removed", targetType: "fact", targetId: existingRows[0].id, details: { key, superseded: existingRows.map((r) => r.id) } });
             await markStale(caseId, `${key} removed`, staleKindsForFactKey(key));
         }
         return null;
     }
-    if (existing && existing.value === value) return existing;
-    if (existing) {
-        return correctFact(actor, caseId, existing.id, { value, statement: statement ?? existing.statement });
-    }
-    return addFact(actor, caseId, { statement: statement ?? `${key.replace(/_/g, " ")}: ${value}`, key, value, status: "confirmed", provenance: "USER_CONFIRMED" });
+
+    if (existingRows.length === 1 && existingRows[0].value === value && existingRows[0].valuePrecision === wantedPrecision) return existingRows[0];
+
+    const id = newId();
+    const primary = existingRows[0];
+    await db.transaction(async (tx) => {
+        await tx.insert(facts).values({
+            id,
+            caseId,
+            statement: statement ?? primary?.statement ?? `${key.replace(/_/g, " ")}: ${value}`,
+            provenance: "USER_CONFIRMED",
+            status: "confirmed",
+            disputed: primary?.disputed ?? false,
+            confidence: null,
+            key,
+            value,
+            valuePrecision: wantedPrecision,
+            sourceDocumentId: primary?.sourceDocumentId ?? null,
+            sourceEventId: primary?.sourceEventId ?? null,
+            issueId: primary?.issueId ?? null,
+        });
+        for (const r of existingRows) await tx.update(facts).set({ status: "superseded", supersededById: id, updatedAt: new Date() }).where(eq(facts.id, r.id));
+    });
+    await touchCase(caseId);
+    await recordAudit({ userId: actor.userId, caseId, action: existingRows.length ? "fact.corrected" : "fact.added", targetType: "fact", targetId: id, details: { key, precision: wantedPrecision, superseded: existingRows.map((r) => r.id) } });
+    await markStale(caseId, existingRows.length ? `fact corrected (${key})` : "a fact was added", staleKindsForFactKey(key));
+    return getFact(caseId, id);
 }
