@@ -15,7 +15,7 @@ export default async function ExportsPage({ params }: { params: Promise<{ caseId
             <PageHeader title="Documents you have generated and exports" intro="Everything here is drafted from your confirmed record and stays editable. Editing wording never changes your facts. If your record changes, the document is marked out of date." />
             <Exports
                 caseId={caseId}
-                artifacts={artifacts.map((a) => ({ id: a.id, type: a.type, title: a.title, content: a.content, version: a.version, status: a.status, stale: a.stale, staleReason: a.staleReason, updatedAt: a.updatedAt.toISOString() }))}
+                artifacts={artifacts.map((a) => ({ id: a.id, type: a.type, title: a.title, content: a.content, version: a.version, status: a.status, stale: a.stale, staleReason: a.staleReason, updatedAt: a.updatedAt.toISOString(), reviewFlags: a.reviewFlags ?? [], userEditedAt: a.userEditedAt ? a.userEditedAt.toISOString() : null }))}
                 processes={processes.map((p) => ({ id: p.id, type: p.type, state: p.state }))}
                 entitlements={{ paymentsEnabled: paymentsEnabled(), casePass: await hasEntitlement(actor, caseId, "case_pass"), claimPack: await hasEntitlement(actor, caseId, "claim_pack") }}
                 claimsEnabled={isFlagEnabled("ENABLE_PERSONALISED_CLAIM_IDENTIFICATION")}
