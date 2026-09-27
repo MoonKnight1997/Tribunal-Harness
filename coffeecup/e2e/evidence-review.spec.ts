@@ -39,7 +39,13 @@ test.describe("evidence inbox", () => {
     test("proposals from a document can be reviewed from the keyboard, with the passage highlighted", async ({ page }, testInfo) => {
         await signUp(page);
         const caseId = await seedCase(page);
-        await page.goto(`/app/cases/${caseId}/review`);
+
+        // The timeline no longer lists proposals itself (or any confidence figure); it points to Review.
+        await page.goto(`/app/cases/${caseId}/timeline`);
+        await expect(page.getByText(/waiting for you to check/)).toBeVisible();
+        await expect(page.locator("body")).not.toContainText(/confidence/);
+        await page.getByRole("link", { name: /^Review (it|them)$/ }).click();
+        await expect(page).toHaveURL(new RegExp(`/app/cases/${caseId}/review$`));
 
         await expect(page.getByRole("heading", { name: "Review" })).toBeVisible();
         const total = await readRemaining(page);
@@ -78,10 +84,10 @@ test.describe("evidence inbox", () => {
         await expect(remaining(page)).toHaveText(new RegExp(`^${total - 2} item`));
         await expect(page.getByTestId("nav-count-review")).toHaveText(new RegExp(`^${total - 2}`));
 
-        // The confirmed event now sits on the timeline; the timeline no longer shows a review block itself.
+        // The confirmed event now sits on the timeline as a confirmed event.
         await page.goto(`/app/cases/${caseId}/timeline`);
-        await expect(page.getByText(/waiting for you to check/)).toBeVisible();
-        await expect(page.getByRole("link", { name: /^Review/ }).first()).toBeVisible();
+        await expect(page.getByRole("heading", { name: "Confirmed events" })).toBeVisible();
+        await expect(page.getByText(/14 January 2026|3 March 2026/).first()).toBeVisible();
         await expect(page.locator("body")).not.toContainText(/confidence/);
 
         if (testInfo.project.name === "phone") {
@@ -120,9 +126,10 @@ test.describe("evidence inbox", () => {
             } else {
                 await selected.getByRole("button", { name: "Confirm", exact: true }).click();
             }
-            await expect(remaining(page)).toHaveText(i + 1 === total ? /Nothing left/ : new RegExp(`^${total - i - 1} item`), { timeout: 15_000 });
+            if (i + 1 === total) await expect(page.getByText("All reviewed")).toBeVisible({ timeout: 15_000 });
+            else await expect(remaining(page)).toHaveText(new RegExp(`^${total - i - 1} item`), { timeout: 15_000 });
         }
-        await expect(page.getByText("All reviewed")).toBeVisible();
+        await expect(page.getByTestId("review-announce")).toHaveText("Nothing left to review");
         await expect(page.getByRole("link", { name: "Go to the timeline" })).toBeVisible();
         await expect(page.getByRole("link", { name: "Go to My case" })).toBeVisible();
         await expect(page.getByTestId("nav-count-review")).toHaveCount(0);
