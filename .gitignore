@@ -41,3 +41,6 @@ coverage/
 
 # Local-only MCP dev config
 .mcp.json
+
+# Agent worktrees (local only)
+.claude/worktrees/

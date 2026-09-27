@@ -1,5 +1,11 @@
 # PARITY.md — behaviour contract between the TypeScript app and the Rust port
 
+> **Status (27 September 2026):** this contract was between the Rust port and the
+> *former* Tribunal Harness TypeScript app, which has since been removed from the
+> repository (replaced by `../coffeecup/`). The rows remain as the historical
+> evidence they were; none of them says anything about coffeecup. See the note at
+> the top of `README.md`.
+
 One row per feature (from the README list) and per route. The **Verified**
 column is filled only with evidence produced in this repository (a named test,
 a fixture diff, or a captured server response). Status values:

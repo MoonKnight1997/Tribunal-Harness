@@ -1,5 +1,10 @@
 # coffeecup — Target Backend Architecture (Rust)
 
+> **Historical target design — not the current architecture.** The current
+> architecture is described in [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md).
+> The `../tribunal-harness/` app referred to below has been removed from the
+> repository. A Rust port is not planned; see [`docs/DECISIONS.md`](./docs/DECISIONS.md).
+
 > **Status:** Target design, not built. The live app today is the Next.js/TypeScript
 > Tribunal Harness in `../tribunal-harness/`. Moving to Rust is an open founder
 > decision — see [`RECONCILIATION.md`](./RECONCILIATION.md) § Decisions.

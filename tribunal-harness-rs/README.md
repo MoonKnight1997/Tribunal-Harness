@@ -1,5 +1,16 @@
 # Tribunal Harness — Rust rebuild (`tribunal-harness-rs/`)
 
+> **Status (27 September 2026): archived reference build — not the active product.**
+> This crate is a Rust port of the *former* Tribunal Harness Next.js app. That app
+> was replaced by [`../coffeecup/`](../coffeecup/) and no longer exists in this
+> repository; the references below to `../tribunal-harness/` describe the app as
+> it was when the fixtures were recorded (23 September 2026). The Rust port has
+> **no parity relationship with coffeecup**, is not maintained as a product, and
+> its fixture parity is evidence only that it matched the earlier TypeScript
+> implementation, not of independent legal correctness. `rust-ci.yml` still
+> builds and tests it so the archive stays compilable. Any port of coffeecup
+> would be a fresh, measured decision recorded in `../coffeecup/docs/DECISIONS.md`.
+
 A Rust port of the production Next.js app in `../tribunal-harness/`: the same
 HTTP API (identical routes, request/response JSON, status codes and wording),
 the same server-rendered pages, and the same legal content — statutory dates,

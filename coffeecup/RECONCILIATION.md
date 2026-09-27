@@ -1,5 +1,10 @@
 # coffeecup ↔ Tribunal Harness — Reconciliation
 
+> **Historical.** Written against the former `../tribunal-harness/` app, which
+> has since been replaced by the coffeecup app in this directory. The founder
+> decisions listed in § 1 are tracked in [`docs/DECISIONS.md`](./docs/DECISIONS.md);
+> this file is kept as the record of how the plan related to the old code.
+
 > Captured 24 September 2026. How the coffeecup plan ([`PRODUCT-PLAN.md`](./PRODUCT-PLAN.md),
 > [`ARCHITECTURE.md`](./ARCHITECTURE.md)) relates to the existing code in
 > `../tribunal-harness/`, what carries over, what conflicts, and what needs a founder

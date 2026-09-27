@@ -1,5 +1,13 @@
 # coffeecup — Product, UX and Muse Spark 1.3 Runtime Plan
 
+> **Historical planning document — superseded in part.** The coffeecup app in this
+> directory was built (Next.js/TypeScript service layer) after this plan was
+> written; the Rust/Muse Spark runtime described here is **not** the current
+> implementation and re-opens decisions recorded as resolved. Current decisions
+> live in [`docs/DECISIONS.md`](./docs/DECISIONS.md) and the launch scope in
+> [`docs/LAUNCH_SCOPE.md`](./docs/LAUNCH_SCOPE.md). Do not treat the launch date
+> or model/backend choice below as a fresh instruction.
+
 > **Status:** Planning document (captured 24 September 2026). **Launch timing: any launch will be not before February 2027** (founder decision). Build-phase planning, commencement assumptions and pricing should target that date. Nothing in this file is
 > built yet. Read [`RECONCILIATION.md`](./RECONCILIATION.md) for how it maps onto the
 > existing Tribunal Harness code and which decisions still need founder sign-off.
