@@ -22,11 +22,12 @@ import {
     type ProcessType,
 } from "@/db/schema";
 import { newId } from "@/lib/ids";
-import { ValidationError } from "@/lib/errors";
+import { NotFoundError, ValidationError } from "@/lib/errors";
 import { isIsoDate, todayISO } from "@/lib/dates";
 import { requireCaseAccess, touchCase, type Actor } from "@/cases/access";
 import { recordAudit } from "@/cases/audit";
 import { markStale } from "@/cases/staleness";
+import { assertCaseOwns } from "@/cases/references";
 import { acasCodeForDate } from "@/legal/rules/acas-code";
 import { canTransition, initialState, stateDef } from "./machines";
 export { APPEAL_GROUND_LABELS } from "./machines";
@@ -51,6 +52,7 @@ export async function startProcess(actor: Actor, caseId: string, raw: z.input<ty
     const parsed = StartProcessInput.safeParse(raw);
     if (!parsed.success) throw new ValidationError("Please check the process details.", parsed.error.flatten());
     const input = parsed.data;
+    await assertCaseOwns(caseId, { processIds: [input.parentProcessId] });
     const db = await getDb();
     const id = newId();
     const startedOn = input.startedOn ?? todayISO();
@@ -76,7 +78,8 @@ export async function getProcess(actor: Actor, caseId: string, processId: string
     await requireCaseAccess(actor, caseId);
     const db = await getDb();
     const rows = await db.select().from(processes).where(and(eq(processes.id, processId), eq(processes.caseId, caseId))).limit(1);
-    if (!rows[0]) throw new ValidationError("Process not found.");
+    // A process id from another case is indistinguishable from a missing one.
+    if (!rows[0]) throw new NotFoundError("Process not found.");
     return rows[0];
 }
 
@@ -149,6 +152,7 @@ export async function addAllegation(actor: Actor, caseId: string, processId: str
     await getProcess(actor, caseId, processId);
     const parsed = AllegationInput.safeParse(raw);
     if (!parsed.success) throw new ValidationError("Please check the allegation details.", parsed.error.flatten());
+    await assertCaseOwns(caseId, { documentIds: [parsed.data.sourceDocumentId], eventIds: parsed.data.proceduralEventIds });
     const db = await getDb();
     const id = newId();
     await db.insert(allegations).values({
@@ -172,6 +176,14 @@ export async function addAllegation(actor: Actor, caseId: string, processId: str
     return (await db.select().from(allegations).where(eq(allegations.id, id)))[0];
 }
 
+/** (caseId, allegationId) lookup: foreign and missing ids raise the same NotFoundError. */
+async function getAllegation(caseId: string, allegationId: string): Promise<AllegationRow> {
+    const db = await getDb();
+    const rows = await db.select().from(allegations).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId))).limit(1);
+    if (!rows[0]) throw new NotFoundError("Allegation not found.");
+    return rows[0];
+}
+
 export async function listAllegations(actor: Actor, caseId: string, processId: string): Promise<AllegationRow[]> {
     await getProcess(actor, caseId, processId);
     const db = await getDb();
@@ -183,11 +195,11 @@ export async function updateAllegation(actor: Actor, caseId: string, allegationI
     const parsed = AllegationInput.partial().extend({ status: z.enum(["proposed", "open", "responded", "withdrawn"]).optional() }).safeParse(raw);
     if (!parsed.success) throw new ValidationError("Please check the allegation details.", parsed.error.flatten());
     const db = await getDb();
-    const existing = (await db.select().from(allegations).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId))))[0];
-    if (!existing) throw new ValidationError("Allegation not found.");
+    const existing = await getAllegation(caseId, allegationId);
+    await assertCaseOwns(caseId, { documentIds: [parsed.data.sourceDocumentId], eventIds: parsed.data.proceduralEventIds });
     const patch: Partial<typeof allegations.$inferInsert> = { ...parsed.data, updatedAt: new Date() };
     if (existing.status === "proposed" && !parsed.data.status) patch.status = "open";
-    await db.update(allegations).set(patch).where(eq(allegations.id, allegationId));
+    await db.update(allegations).set(patch).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId)));
     await touchCase(caseId);
     await recordAudit({ userId: actor.userId, caseId, action: "allegation.updated", targetType: "allegation", targetId: allegationId, details: { fields: Object.keys(parsed.data) } });
     await markStale(caseId, "allegations changed", ["artifacts"]);
@@ -196,9 +208,11 @@ export async function updateAllegation(actor: Actor, caseId: string, allegationI
 
 export async function deleteAllegation(actor: Actor, caseId: string, allegationId: string): Promise<void> {
     await requireCaseAccess(actor, caseId);
+    await getAllegation(caseId, allegationId);
     const db = await getDb();
     await db.delete(allegations).where(and(eq(allegations.id, allegationId), eq(allegations.caseId, caseId)));
     await recordAudit({ userId: actor.userId, caseId, action: "allegation.deleted", targetType: "allegation", targetId: allegationId });
+    await markStale(caseId, "allegations changed", ["artifacts"]);
 }
 
 // ---------------------------------------------------------------------------
@@ -219,6 +233,7 @@ export async function addAppealGround(actor: Actor, caseId: string, processId: s
     await getProcess(actor, caseId, processId);
     const parsed = AppealGroundInput.safeParse(raw);
     if (!parsed.success) throw new ValidationError("Please check the appeal ground.", parsed.error.flatten());
+    await assertCaseOwns(caseId, { factIds: parsed.data.supportingFactIds, documentIds: parsed.data.supportingDocumentIds });
     const db = await getDb();
     const id = newId();
     await db.insert(appealGrounds).values({
@@ -238,6 +253,14 @@ export async function addAppealGround(actor: Actor, caseId: string, processId: s
     return (await db.select().from(appealGrounds).where(eq(appealGrounds.id, id)))[0];
 }
 
+/** (caseId, groundId) lookup: foreign and missing ids raise the same NotFoundError. */
+async function getAppealGround(caseId: string, groundId: string): Promise<AppealGroundRow> {
+    const db = await getDb();
+    const rows = await db.select().from(appealGrounds).where(and(eq(appealGrounds.id, groundId), eq(appealGrounds.caseId, caseId))).limit(1);
+    if (!rows[0]) throw new NotFoundError("Appeal ground not found.");
+    return rows[0];
+}
+
 export async function listAppealGrounds(actor: Actor, caseId: string, processId: string): Promise<AppealGroundRow[]> {
     await getProcess(actor, caseId, processId);
     const db = await getDb();
@@ -248,18 +271,23 @@ export async function updateAppealGround(actor: Actor, caseId: string, groundId:
     await requireCaseAccess(actor, caseId);
     const parsed = AppealGroundInput.partial().safeParse(raw);
     if (!parsed.success) throw new ValidationError("Please check the appeal ground.", parsed.error.flatten());
+    await getAppealGround(caseId, groundId);
+    await assertCaseOwns(caseId, { factIds: parsed.data.supportingFactIds, documentIds: parsed.data.supportingDocumentIds });
     const db = await getDb();
     await db.update(appealGrounds).set(parsed.data).where(and(eq(appealGrounds.id, groundId), eq(appealGrounds.caseId, caseId)));
-    const row = (await db.select().from(appealGrounds).where(and(eq(appealGrounds.id, groundId), eq(appealGrounds.caseId, caseId))))[0];
-    if (!row) throw new ValidationError("Appeal ground not found.");
+    const row = await getAppealGround(caseId, groundId);
+    await recordAudit({ userId: actor.userId, caseId, action: "appeal_ground.updated", targetType: "appeal_ground", targetId: groundId, details: { fields: Object.keys(parsed.data) } });
     await markStale(caseId, "appeal grounds changed", ["artifacts"]);
     return row;
 }
 
 export async function deleteAppealGround(actor: Actor, caseId: string, groundId: string): Promise<void> {
     await requireCaseAccess(actor, caseId);
+    await getAppealGround(caseId, groundId);
     const db = await getDb();
     await db.delete(appealGrounds).where(and(eq(appealGrounds.id, groundId), eq(appealGrounds.caseId, caseId)));
+    await recordAudit({ userId: actor.userId, caseId, action: "appeal_ground.deleted", targetType: "appeal_ground", targetId: groundId });
+    await markStale(caseId, "appeal grounds changed", ["artifacts"]);
 }
 
 /** Convenience: the single Acas process for a case, if any. */

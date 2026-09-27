@@ -21,6 +21,7 @@ import { isIsoDate } from "@/lib/dates";
 import { requireCaseAccess, touchCase, type Actor } from "@/cases/access";
 import { recordAudit } from "@/cases/audit";
 import { markStale, staleKindsForFactKey } from "@/cases/staleness";
+import { assertCaseOwns } from "@/cases/references";
 
 export type FactRow = typeof facts.$inferSelect;
 
@@ -76,6 +77,7 @@ export async function addFact(actor: Actor, caseId: string, raw: z.input<typeof 
     if (!parsed.success) throw new ValidationError("Please check the fact you entered.", parsed.error.flatten());
     const input = parsed.data;
     validateKeyValue(input.key, input.value);
+    await assertCaseOwns(caseId, { documentIds: [input.sourceDocumentId], eventIds: [input.sourceEventId], issueIds: [input.issueId] });
     let provenance: Provenance = input.provenance;
     if (provenance === "DOCUMENT_CONFIRMED" || provenance === "LEGAL_SOURCE") provenance = "USER_ALLEGATION";
     if (input.status === "confirmed" && (provenance === "USER_ALLEGATION" || provenance === "UNKNOWN")) provenance = "USER_CONFIRMED";
@@ -105,6 +107,7 @@ export async function addFact(actor: Actor, caseId: string, raw: z.input<typeof 
 
 /** System entry point for pipeline-proposed facts (extraction). Never confirmed. */
 export async function proposeFact(caseId: string, input: { statement: string; provenance: Provenance; confidence?: number; key?: string | null; value?: string | null; sourceDocumentId?: string | null; sourceEventId?: string | null }): Promise<FactRow> {
+    await assertCaseOwns(caseId, { documentIds: [input.sourceDocumentId], eventIds: [input.sourceEventId] });
     const db = await getDb();
     const id = newId();
     if (input.key && DATE_KEYS.has(input.key) && (!input.value || !isIsoDate(input.value))) {

@@ -6,7 +6,7 @@
  */
 
 import { createHash } from "node:crypto";
-import { asc, eq } from "drizzle-orm";
+import { and, asc, eq } from "drizzle-orm";
 import { getDb } from "@/db/client";
 import { claimCandidates, claimElements, type AcasProcessData } from "@/db/schema";
 import { newId } from "@/lib/ids";
@@ -19,7 +19,7 @@ import { getAcasProcess } from "@/processes/service";
 import { requireFlag } from "@/flags/guard";
 import { requireEntitlement } from "@/entitlements/service";
 import { checkAndCountUsage } from "@/entitlements/fair-use";
-import { ValidationError } from "@/lib/errors";
+import { NotFoundError, ValidationError } from "@/lib/errors";
 import { getProvider } from "@/ai/routing";
 import { runClaimEngine, type EngineInput } from "@/legal/claims/engine";
 
@@ -106,8 +106,31 @@ export async function listClaimCandidates(actor: Actor, caseId: string): Promise
     return db.select().from(claimCandidates).where(eq(claimCandidates.caseId, caseId)).orderBy(asc(claimCandidates.label));
 }
 
-export async function listClaimElements(actor: Actor, caseId: string, candidateId: string): Promise<ClaimElementRow[]> {
+/**
+ * A candidate is addressed by (caseId, candidateId). A candidate id from
+ * another case yields the same NotFoundError as an id that does not exist.
+ */
+export async function getClaimCandidate(actor: Actor, caseId: string, candidateId: string): Promise<ClaimCandidateRow> {
     await requireCaseAccess(actor, caseId);
+    if (!candidateId) throw new NotFoundError("Claim candidate not found.");
     const db = await getDb();
-    return db.select().from(claimElements).where(eq(claimElements.claimCandidateId, candidateId)).orderBy(asc(claimElements.order));
+    const rows = await db
+        .select()
+        .from(claimCandidates)
+        .where(and(eq(claimCandidates.id, candidateId), eq(claimCandidates.caseId, caseId)))
+        .limit(1);
+    if (!rows[0]) throw new NotFoundError("Claim candidate not found.");
+    return rows[0];
+}
+
+export async function listClaimElements(actor: Actor, caseId: string, candidateId: string): Promise<ClaimElementRow[]> {
+    // Verify the candidate belongs to this case before reading any element,
+    // then bind the element query to both the candidate and the case.
+    await getClaimCandidate(actor, caseId, candidateId);
+    const db = await getDb();
+    return db
+        .select()
+        .from(claimElements)
+        .where(and(eq(claimElements.claimCandidateId, candidateId), eq(claimElements.caseId, caseId)))
+        .orderBy(asc(claimElements.order));
 }
